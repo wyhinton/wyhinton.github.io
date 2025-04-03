@@ -40,6 +40,14 @@ google_analytics:
 
 permalink: /:year/:month/:day/:title/
 
+kramdown:
+  # use Github Flavored Markdown
+  input: GFM
+  # do not replace newlines by <br>s
+  hard_wrap: false
+  # parse markdown inside block-level HTML tag
+  parse_block_html: true
+
 # Includes an icon in the footer for each username you enter
 footer-links:
   email: mkie0125@gmail.com
