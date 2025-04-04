@@ -3,6 +3,59 @@ pre {
   tab-size: 2
 }
 
+/* Ensure the code block only shows scrollbars on hover */
+pre {
+  overflow: hidden; /* Hide scrollbars by default */
+  max-width: 100%;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: #1e1e1e; /* Adjust to match your theme */
+  color: #ffffff;
+  transition: overflow 0.3s ease-in-out;
+}
+
+/* Show scrollbars only when hovered */
+pre:hover {
+  overflow: auto;
+}
+
+/* Hide scrollbars but keep functionality (for WebKit browsers like Chrome, Edge, Safari) */
+pre::-webkit-scrollbar {
+  width: 6px; /* Adjust scrollbar width */
+  height: 6px;
+  background: transparent;
+}
+
+/* Style scrollbar track */
+pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Style scrollbar handle */
+pre::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+/* Hide scrollbar when not hovering (for Firefox) */
+pre {
+  scrollbar-width: none; /* Firefox only */
+}
+
+pre:hover {
+  scrollbar-width: thin;
+}
+
+[data-lang]::before {
+  content: attr(data-lang);
+  display: block;
+  text-align: right;
+  margin-bottom: -22px;
+  padding: 5px;
+  opacity: .5;
+  font-size: 12px;
+}
+
 table {
   @extend .table;
   @extend .table-striped;
