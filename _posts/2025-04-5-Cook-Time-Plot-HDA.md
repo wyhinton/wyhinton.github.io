@@ -13,4 +13,4 @@ You can customize the line color, width, and marker size, as well as all the lab
 ![perf_test_output](../assets/images/my_hdas/cook_time_plot/example_graph.png)
 
 
-[download](../assets/my_hdas/cook_time_plot/cook_time_plot.hda)  [example_file]((../assets/my_hdas/cook_time_plot/cook_time_plot_example.hip)
+[download hda](../assets/my_hdas/cook_time_plot/cook_time_plot.hda)  [example_file](../assets/my_hdas/cook_time_plot/cook_time_plot_example.hip)
