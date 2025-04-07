@@ -14,6 +14,8 @@ You can customize the line color, width, and marker size, as well as all the lab
 
 ![perf_test_output](../assets/images/my_hdas/cook_time_plot/example_graph.png)
 
+![perf_test_output](../assets/images/my_hdas/cook_time_plot/graph.svg)
+
 <a class="prc-Link-Link-85e08" href="https://github.com/wyhinton/wyhinton.github.io/raw/refs/heads/main/assets/images/my_hdas/cook_time_plot/cook_time_plot.hda">Download HDA</a>
 
 <a class="prc-Link-Link-85e08" href="https://github.com/wyhinton/wyhinton.github.io/raw/refs/heads/main/assets/images/my_hdas/cook_time_plot/cook_time_plot_example.hip">Download Example</a>
