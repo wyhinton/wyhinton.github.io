@@ -3,6 +3,10 @@ pre {
   tab-size: 2
 }
 
+div[data-lang="cpp"] > div {
+  background-color: #362e39;
+}
+
 /* Ensure the code block only shows scrollbars on hover */
 pre {
   overflow: hidden; /* Hide scrollbars by default */
