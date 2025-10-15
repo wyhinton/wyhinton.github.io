@@ -12,14 +12,9 @@
     "forceConsistentCasingInFileNames": true,
     "declaration": false,
     "sourceMap": true,
-    "removeComments": false
+    "removeComments": false,
+    "types": ["tweakpane"]          // 👈 add this line
   },
-  "include": [
-    "src/ts/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "assets/js/**/*",
-    "_site/**/*"
-  ]
+  "include": ["src/ts/**/*"],
+  "exclude": ["node_modules", "assets/js/**/*", "_site/**/*"]
 }

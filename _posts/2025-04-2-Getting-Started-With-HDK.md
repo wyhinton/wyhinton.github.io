@@ -134,22 +134,6 @@ ROW_END
 ![sample image](../assets/images/getting_started_with_hdk/snap_to_grid.gif)
 
 
-### Shrink
-
-
-This is great if you want to use some of the HDKs built in libraries to performantly process some geometry, but if your use case involves anything which can't compile within a functions scope, like classes or namespaces, then it won't really work.
-
-After some amount of fiddling around with getting Visual Studio 2022 set up (always a nightmare), I gave up on using CMake or Makefiles to compile my code. Although you need to have Visual Studio installed, if your project is smaller in scope hcustom is probably the best way to compile.  
-
-The documentation says 
-> On Windows, remember to set **MSVCDir** to point to your Microsoft Visual Studio C++ installation before running `make` or `nmake`.
-
-After getting a message for sometime that this environment variable do not exist, I found out from some forum research the directory it actually wants is something like: 
-
-`C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433`
-
-![[HDK_header.png]]
-
 ## Performance Considerations
 
 Ready to write some blazing fast code with your fancy new inline C++? Not so fast. Consider our wave example:
@@ -159,7 +143,8 @@ Ready to write some blazing fast code with your fancy new inline C++? Not so fas
 While C++ wrangles can provide significant performance improvements over VEX or Python, it's important to understand when and how to use them effectively. The overhead of compiling and calling C++ functions can sometimes outweigh the benefits for simple operations or small datasets. Always profile your specific use case to determine if the added complexity is worth the performance gain.
 
 ### Helpful Resources
-https://jurajtomori.wordpress.com/2017/12/01/creating-simple-c-openvdb-node-in-hdkcreating-simple-c-openvdb-node-in-hdk/
+
+- https://jurajtomori.wordpress.com/2017/12/01/creating-simple-c-openvdb-node-in-hdkcreating-simple-c-openvdb-node-in-hdk/
 
 
 

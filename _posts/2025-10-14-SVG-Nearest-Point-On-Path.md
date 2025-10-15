@@ -5,6 +5,10 @@ date: 2025-10-14
 categories: [web-development, svg, optimization, data-structures]
 tags: [typescript]
 ---
+<!-- filepath: c:\Users\Primary User\Desktop\BLOG\wyhinton.github.io\_posts\2025-10-14-SVG-Nearest-Point-On-Path.md -->
+<!-- markdownlint-disable MD033 -->
+<script type="module" src="{{ '/assets/js/svg-nearest-point-demos.js' | relative_url }}"></script>
+
 
 While working on our web mapping tool we ran into an interesting problem in regards to optimizing SVG. As part of the SVG based renderer for our map drawing tool, there was a need to have a tool whereby geo features could be snapped to the perimeter of polygon geometry. This necessitated finding the point on a set of different polygon shapes which was closest to the users cursor. There wasn't too much literature available on this at the time. 
 
@@ -27,27 +31,13 @@ When a user hovers over or near an SVG path, we want to find the exact point on 
 The straightforward approach samples points along the path at regular intervals and finds the one with minimum distance to the cursor.
 
 <div id="linear-demo" class="demo-container">
-<h3>Linear Search Demo</h3>
-<div class="graphics-wrapper">
-<svg width="100%" height="400" id="linear-svg"></svg>
-<div class="controls">
-<label>Sample Rate: <input type="range" id="sample-rate" min="50" max="100" value="50" step="10"></label>
-<span id="sample-count">100 samples</span>
-</div>
-<div class="performance-metrics"><div class="metric">
-<strong class="metric-label">Query Time:</strong> <span id="linear-time">--</span>
-</div>
-<div class="metric">
-<strong class="metric-label">Samples Checked:</strong> <span id="linear-samples">--</span>
-</div>
-<div class="metric">
-<strong class="metric-label">Average FPS:</strong> <span id="linear-fps">--</span>
-</div>
-</div>
-</div>
-<div class="performance-chart">
-<canvas width="580" height="100" id="linear-performance-chart"></canvas>
-</div>
+  <h3>Linear Search Demo</h3>
+  <div class="graphics-wrapper">
+  <svg width="100%" height="400" id="linear-svg"></svg>
+  <div class="performance-chart">
+  <div id="linear-demo-graphics-wrapper"></div>
+  </div>
+  </div>
 </div>
 
 ### Implementation
@@ -163,29 +153,10 @@ The QuadTree approach pre-processes paths into a spatial data structure, enablin
 <div id="quadtree-demo" class="demo-container">
 <h3>QuadTree Demo</h3>
 <div class="graphics-wrapper">
-<svg width="600" height="400" id="quadtree-svg">
-<!-- Multiple paths and quadtree visualization -->
+<svg width="100%" height="400" id="quadtree-svg">
 </svg>
-<div class="controls">
-<label><input type="checkbox" id="show-quadtree" checked> Show QuadTree</label>
-<label>Max Depth: <input type="range" id="max-depth" min="3" max="8" value="5"></label>
-<label>Points per Node: <input type="range" id="max-points" min="5" max="50" value="20"></label>
-</div>
-<div class="performance-metrics"><div class="metric">
-<strong class="metric-label">Query Time:</strong> <span id="quadtree-time">--</span>
-</div>
-<div class="metric">
-<strong class="metric-label">Candidates Checked:</strong> <span id="quadtree-candidates">--</span>
-</div>
-<div class="metric">
-<strong class="metric-label">Search Radius:</strong> <span id="quadtree-radius">--</span>
-</div>
-<div class="metric">
-<strong class="metric-label">Average FPS:</strong> <span id="quadtree-fps">--</span>
-</div>
-</div>
 <div class="performance-chart">
-<canvas width="580" height="100" id="quadtree-performance-chart"></canvas>
+<div id="quadtree-performance-chart"></div>
 </div>
 </div>
 </div>
@@ -451,19 +422,6 @@ class QuadTreePathSearch {
 - More complex implementation
 - Fixed accuracy based on initial sampling
 
-## Performance Comparison
-
-<div id="performance-comparison" class="demo-container">
-<h3>Performance Comparison</h3>
-<canvas width="600" height="300" id="performance-chart"></canvas>
-<div class="controls">
-<button id="run-benchmark">Run Benchmark</button>
-<label>Number of Paths: <input type="range" id="path-count" min="1" max="50" value="10"></label>
-<label>Queries per Test: <input type="range" id="query-count" min="100" max="1000" value="500" step="100"></label>
-</div>
-<div id="benchmark-results"></div>
-</div>
-
 ## When to Use Each Approach
 
 ### Use Linear Search When:
@@ -478,27 +436,7 @@ class QuadTreePathSearch {
 - Many queries expected
 - Memory usage is acceptable
 
-## Interactive Playground
 
-<div id="playground" class="demo-container">
-<h3>Try Both Approaches</h3>
-<svg width="800" height="500" id="playground-svg">
-<!-- Interactive drawing area -->
-</svg>
-<div class="controls">
-<button id="draw-path">Draw New Path</button>
-<button id="clear-paths">Clear All</button>
-<label>
-Algorithm: 
-<select id="algorithm-select">
-<option value="linear">Linear Search</option>
-<option value="quadtree">QuadTree</option>
-<option value="both">Both (Compare)</option>
-</select>
-</label>
-</div>
-<div id="playground-stats"></div>
-</div>
 
 ## Conclusion
 
@@ -592,17 +530,55 @@ font-size: 0.85em;
 }
 
 .performance-chart {
-  margin-top: 1rem;
-  padding: 0.5rem;
-  background: white;
-  border-radius: 4px;
-  border: 1px solid #ddd;
+  width: 300px;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px;
+
 }
 
-.performance-chart canvas {
-  width: 100%;
-  height: 100px;
-  border: none;
+
+/* Tweakpane dark theme styling */
+.tp-dfwv {
+  background: rgba(11, 11, 11, 0.9) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  border: 1px solid #333 !important;
+}
+
+.tp-rotv {
+  background: rgba(0, 0, 0, 0.8) !important;
+  color: #ffffff !important;
+}
+
+.tp-lblv_l {
+  color: #ffffff !important;
+}
+
+.tp-mllv_i {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #4a90e2 !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.tp-sldv_t {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.tp-sldv_k {
+  background: #4a90e2 !important;
+}
+
+.tp-ckbv_i {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.tp-ckbv_w:checked .tp-ckbv_i {
+  background: #4a90e2 !important;
 }
 
 #playground-svg {
@@ -672,32 +648,3 @@ pre {
 
 
 </style>
-
-<script>
-// Interactive demos will be implemented here
-// This would include all the JavaScript for the interactive examples
-document.addEventListener('DOMContentLoaded', function() {
-  initializeLinearDemo();
-  initializeQuadTreeDemo();
-  initializePerformanceComparison();
-  initializePlayground();
-});
-
-function initializeLinearDemo() {
-  // Implementation for linear search demo
-}
-
-function initializeQuadTreeDemo() {
-  // Implementation for quadtree demo
-}
-
-function initializePerformanceComparison() {
-  // Implementation for performance benchmarking
-}
-
-function initializePlayground() {
-  // Implementation for interactive playground
-}
-</script>
-
-<script src="{{ '/assets/js/svg-nearest-point-demos.js' | relative_url }}"></script>

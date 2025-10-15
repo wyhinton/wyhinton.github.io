@@ -193,3 +193,23 @@ h1 .post-icons {
 .post-icons img.post-icon {
   object-fit: contain;
 }
+
+/* SVG Demo Animations */
+@keyframes dash-animation {
+  0% { 
+    stroke-dashoffset: 0; 
+  }
+  100% { 
+    stroke-dashoffset: 10; 
+  }
+}
+
+/* Connection line animation for SVG demos */
+.connection-line {
+  animation: dash-animation 1s linear infinite;
+}
+
+/* Search radius circle animation */
+.search-radius-circle {
+  transition: r 0.3s ease-in-out;
+}

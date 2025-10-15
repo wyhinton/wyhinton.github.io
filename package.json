@@ -2,14 +2,20 @@
   "name": "wyhinton-blog",
   "version": "1.0.0",
   "description": "Jekyll blog with TypeScript support",
-  "scripts": {
-    "build": "tsc",
-    "watch": "tsc --watch",
-    "dev": "tsc --watch"
-  },
+"scripts": {
+  "build": "esbuild src/ts/*.ts --bundle --outdir=assets/js --format=esm --target=es2020",
+  "watch": "esbuild src/ts/*.ts --bundle --outdir=assets/js --format=esm --target=es2020 --watch",
+  "typecheck": "tsc --noEmit"
+},
   "devDependencies": {
-    "typescript": "^5.0.0",
-    "@types/node": "^20.0.0"
+    "@tweakpane/core": "^2.0.5",
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.25.11",
+    "tweakpane": "^4.0.5",
+    "typescript": "^5.9.3"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "stats.js": "^0.17.0"
+  }
 }
