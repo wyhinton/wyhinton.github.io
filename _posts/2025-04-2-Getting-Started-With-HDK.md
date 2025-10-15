@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Getting Started With HDK C++ Wrangles
-tags: [houdini, c++]
+tags: [houdini, c++, python]
 ---
 ![sample image](../assets/images/HDK_header.png)
 In my continuing quest to primarily use Houdini for its Real-time viewport for rendering, having lots of control over the viewport rendering seems like it could be promising. Although the new COPs system has a lot of potential, it still has a relatively high performance impact. There is comparatively little information about using the Houdini Development Kit on the way, and it feels "separate" from other Houdini documentation. The documentation, while exceptionally thorough, does not use the same format as the rest of the application and is a little less user-friendly.  The SideFX lab team has a [single](https://www.sidefx.com/tutorials/quick-tip-getting-started-with-the-hdk/) video on building a basic HDA using the HDK, which goes over setting up your build environment. 
@@ -150,10 +150,13 @@ After getting a message for sometime that this environment variable do not exist
 
 ![[HDK_header.png]]
 
-```
+## Performance Considerations
 
-```
+Ready to write some blazing fast code with your fancy new inline C++? Not so fast. Consider our wave example:
 
+![wave_example](../assets/images/notes_on_performance/wave_performance.svg)
+
+While C++ wrangles can provide significant performance improvements over VEX or Python, it's important to understand when and how to use them effectively. The overhead of compiling and calling C++ functions can sometimes outweigh the benefits for simple operations or small datasets. Always profile your specific use case to determine if the added complexity is worth the performance gain.
 
 ### Helpful Resources
 https://jurajtomori.wordpress.com/2017/12/01/creating-simple-c-openvdb-node-in-hdkcreating-simple-c-openvdb-node-in-hdk/
