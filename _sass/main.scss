@@ -1,4 +1,3 @@
-
 pre {
   tab-size: 2
 }
@@ -157,4 +156,40 @@ pre.highlight {
   .dark-avatar {
     display: inline-block !important;
   }
+}
+
+/* Post Icons Styling */
+.post-icons {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 8px;
+  gap: 4px;
+}
+
+.post-icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  border-radius: 2px;
+  transition: transform 0.2s ease;
+}
+
+.post-icon:hover {
+  transform: scale(1.1);
+}
+
+
+
+/* Adjust spacing in different contexts */
+h1 .post-icons {
+  margin-right: 12px;
+}
+
+.archive-title .post-icons {
+  margin-right: 8px;
+}
+
+/* Ensure proper alignment for mixed icon types */
+.post-icons img.post-icon {
+  object-fit: contain;
 }

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Getting Started With HDK C++ Wrangles
+tags: [houdini, c++]
 ---
 ![sample image](../assets/images/HDK_header.png)
 In my continuing quest to primarily use Houdini for its Real-time viewport for rendering, having lots of control over the viewport rendering seems like it could be promising. Although the new COPs system has a lot of potential, it still has a relatively high performance impact. There is comparatively little information about using the Houdini Development Kit on the way, and it feels "separate" from other Houdini documentation. The documentation, while exceptionally thorough, does not use the same format as the rest of the application and is a little less user-friendly.  The SideFX lab team has a [single](https://www.sidefx.com/tutorials/quick-tip-getting-started-with-the-hdk/) video on building a basic HDA using the HDK, which goes over setting up your build environment. 

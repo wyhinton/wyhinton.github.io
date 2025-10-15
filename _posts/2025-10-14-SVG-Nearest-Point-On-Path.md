@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "SVG Nearest Point On Path: Linear Search vs QuadTree Optimization (TypeScript)"
+title: "SVG Nearest Point On Path: Linear Search vs QuadTree Optimization"
 date: 2025-10-14
 categories: [web-development, svg, optimization, data-structures]
-tags: [typescript, svg, performance, quadtree, geometry]
+tags: [typescript]
 ---
 
 While working on our web mapping tool we ran into an interesting problem in regards to optimizing SVG. As part of the SVG based renderer for our map drawing tool, there was a need to have a tool whereby geo features could be snapped to the perimeter of polygon geometry. This necessitated finding the point on a set of different polygon shapes which was closest to the users cursor. There wasn't too much literature available on this at the time. 

@@ -11,9 +11,17 @@ layout: default
     <span class="post-date archive-date fs-4"
       >{{ post.date | date: "%B %d, %Y" }}</span
     >
-    <a href="{{ post.url | relative_url }}" class="archive-title fs-4"
-      >{{ post.title }}</a
-    >
+    <a href="{{ post.url | relative_url }}" class="archive-title fs-4">
+    {{ post.title }}  
+    </a>
+    <span class="ms-1 home-post-icons">{% include post-icons.html post=post %}</span>
   </div>
   {% endfor %}
 </div>
+
+<style>
+  .home-post-icons > img{
+    width: 32px !important;
+    height: 32px !important;
+  }
+</style>

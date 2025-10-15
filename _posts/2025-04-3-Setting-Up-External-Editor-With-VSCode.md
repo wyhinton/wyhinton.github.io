@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Using an External Editor for C++ Wrangles
+tags: [houdini, c++]
 ---
 When working with the C++ Wrangle in Houdini, it's best to use an external editor for writing code. If you have Houdini Labs installed, setting this up is straightforward. The built-in tool provides a right-click menu option that lets you edit any parameter named **"script"** in an external editor.
 
