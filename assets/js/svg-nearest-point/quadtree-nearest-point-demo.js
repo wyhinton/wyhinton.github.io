@@ -7492,7 +7492,7 @@ var Pane = class extends RootApi {
 };
 var VERSION = new Semver("4.0.5");
 
-// src/ts/shared-types.ts
+// src/ts/svg-nearest-point/shared-types.ts
 async function loadSVGPaths(svgUrl) {
   try {
     const response = await fetch(svgUrl);
@@ -7770,7 +7770,7 @@ function randomlyPlacePaths(svg, paths, padding = 20) {
   return paths;
 }
 
-// src/ts/quadtree-nearest-point-demo.ts
+// src/ts/svg-nearest-point/quadtree-nearest-point-demo.ts
 var QuadTreePathSearch = class {
   constructor(pathElements, sampleRate = 100, maxPoints = 20, maxDepth = 5) {
     this.paths = pathElements;
@@ -8125,3 +8125,4 @@ export {
 tweakpane/dist/tweakpane.js:
   (*! Tweakpane 4.0.5 (c) 2016 cocopon, licensed under the MIT license. *)
 */
+//# sourceMappingURL=quadtree-nearest-point-demo.js.map

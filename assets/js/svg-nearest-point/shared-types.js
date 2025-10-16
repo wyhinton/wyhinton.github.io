@@ -1,4 +1,4 @@
-// src/ts/shared-types.ts
+// src/ts/svg-nearest-point/shared-types.ts
 async function loadSVGPaths(svgUrl) {
   try {
     const response = await fetch(svgUrl);
@@ -314,3 +314,4 @@ export {
   loadSVGPaths,
   randomlyPlacePaths
 };
+//# sourceMappingURL=shared-types.js.map

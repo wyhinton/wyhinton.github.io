@@ -7492,7 +7492,7 @@ var Pane = class extends RootApi {
 };
 var VERSION = new Semver("4.0.5");
 
-// src/ts/shared-types.ts
+// src/ts/svg-nearest-point/shared-types.ts
 async function loadSVGPaths(svgUrl) {
   try {
     const response = await fetch(svgUrl);
@@ -7770,7 +7770,7 @@ function randomlyPlacePaths(svg, paths, padding = 20) {
   return paths;
 }
 
-// src/ts/linear-nearest-point-demo.ts
+// src/ts/svg-nearest-point/linear-nearest-point-demo.ts
 var LinearPathSearch = class {
   constructor(pathElement, sampleRate = 100, pathIndex = 0) {
     this.path = pathElement;
@@ -8150,7 +8150,7 @@ async function initializeLinearDemo() {
   }
 }
 
-// src/ts/quadtree-nearest-point-demo.ts
+// src/ts/svg-nearest-point/quadtree-nearest-point-demo.ts
 var QuadTreePathSearch = class {
   constructor(pathElements, sampleRate = 100, maxPoints = 20, maxDepth = 5) {
     this.paths = pathElements;
@@ -8497,7 +8497,7 @@ function initializeQuadTreeDemoWithPaths(svg, paths) {
   });
 }
 
-// src/ts/svg-nearest-point-demos.ts
+// src/ts/svg-nearest-point/svg-nearest-point-demos.ts
 function initializePerformanceComparison() {
   console.log("Performance comparison demo not yet implemented");
 }
@@ -8515,3 +8515,4 @@ document.addEventListener("DOMContentLoaded", function() {
 tweakpane/dist/tweakpane.js:
   (*! Tweakpane 4.0.5 (c) 2016 cocopon, licensed under the MIT license. *)
 */
+//# sourceMappingURL=svg-nearest-point-demos.js.map

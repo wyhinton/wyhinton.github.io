@@ -7,7 +7,7 @@ tags: [typescript]
 ---
 <!-- filepath: c:\Users\Primary User\Desktop\BLOG\wyhinton.github.io\_posts\2025-10-14-SVG-Nearest-Point-On-Path.md -->
 <!-- markdownlint-disable MD033 -->
-<script type="module" src="{{ '/assets/js/svg-nearest-point-demos.js' | relative_url }}"></script>
+<script type="module" src="{{ '/assets/js/svg-nearest-point/svg-nearest-point-demos.js' | relative_url }}"></script>
 
 
 While working on our web mapping tool we ran into an interesting problem in regards to optimizing SVG. As part of the SVG based renderer for our map drawing tool, there was a need to have a tool whereby geo features could be snapped to the perimeter of polygon geometry. This necessitated finding the point on a set of different polygon shapes which was closest to the users cursor.
