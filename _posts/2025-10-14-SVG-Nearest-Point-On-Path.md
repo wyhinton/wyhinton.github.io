@@ -10,9 +10,10 @@ tags: [typescript]
 <script type="module" src="{{ '/assets/js/svg-nearest-point-demos.js' | relative_url }}"></script>
 
 
-While working on our web mapping tool we ran into an interesting problem in regards to optimizing SVG. As part of the SVG based renderer for our map drawing tool, there was a need to have a tool whereby geo features could be snapped to the perimeter of polygon geometry. This necessitated finding the point on a set of different polygon shapes which was closest to the users cursor. There wasn't too much literature available on this at the time. 
+While working on our web mapping tool we ran into an interesting problem in regards to optimizing SVG. As part of the SVG based renderer for our map drawing tool, there was a need to have a tool whereby geo features could be snapped to the perimeter of polygon geometry. This necessitated finding the point on a set of different polygon shapes which was closest to the users cursor.
 
-In this post, we'll explore two fundamentally different approaches to this problem:
+In this post, we'll explore the naive approach we initially took to this problem, its issues, and then go over a more optimized solution which uses spatial indexing.
+
 
 1. **Linear Search**: Iterating over the path length and checking distances
 2. **QuadTree Optimization**: Pre-computing spatial indices for fast queries
