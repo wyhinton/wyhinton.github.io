@@ -133,14 +133,17 @@ class LinearPathSearch {
   }
 }
 ```
+{: .font-size-12 }
 
 ### Pros and Cons
+
 
 **Advantages:**
 - Simple to understand and implement
 - Works with any SVG path type
 - Memory efficient (no preprocessing required)
 - Accuracy can be tuned with sample rate
+
 
 **Disadvantages:**
 - O(n) time complexity per query
@@ -408,15 +411,16 @@ class QuadTreePathSearch {
   }
 }
 ```
+{: .font-size-12 }
 
 ### Pros and Cons
 
 **Advantages:**
+
 - O(log n) average query time
 - Excellent for multiple paths
 - Scales well with complex scenes
 - Can handle real-time applications
-
 **Disadvantages:**
 - Higher memory usage
 - Preprocessing overhead
