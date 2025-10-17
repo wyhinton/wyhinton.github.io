@@ -441,16 +441,7 @@ class QuadTreePathSearch {
 
 ## Conclusion
 
-Both approaches have their place in modern web development. The linear search is perfect for simple cases and prototyping, while QuadTree optimization becomes essential when performance matters.
-
-For production applications dealing with complex SVG interactions, consider:
-
-1. Start with linear search for MVP
-2. Profile your specific use case
-3. Implement QuadTree if performance bottlenecks appear
-4. Consider hybrid approaches for dynamic content
-
-The key is measuring real-world performance with your actual data and use patterns rather than optimizing prematurely.
+In conclusion, if you ever need to find a position along an SVG curve nearest the users cursor for interactive graphics applications with *many, complex, and static* paths  you will probably need to implement some kind of spacial acceleration like a quadtree. 
 
 <style>
 .demo-container {
