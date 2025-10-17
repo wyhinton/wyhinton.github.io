@@ -7748,7 +7748,8 @@ function updateSampleVisualization(path, sampleRate, container) {
     circle.setAttribute("cx", point.x.toString());
     circle.setAttribute("cy", point.y.toString());
     circle.setAttribute("r", "1.5");
-    circle.setAttribute("fill", "rgba(74, 144, 226, 0.6)");
+    circle.setAttribute("fill", "#d9d9d9");
+    circle.setAttribute("opacity", ".75");
     circle.setAttribute("class", "sample-point path-sample-point");
     container.appendChild(circle);
   }

@@ -377,7 +377,7 @@ function initializeQuadTreeDemoWithPaths(svg: SVGElement, paths: SVGPathElement[
         rect.setAttribute('y', bound.y.toString());
         rect.setAttribute('width', bound.width.toString());
         rect.setAttribute('height', bound.height.toString());
-        rect.setAttribute('class', 'quadtree-boundary quadtree-rect');
+        rect.setAttribute('class', 'quadtree-boundary quadtree-rect quadtree-hoverable');
         quadTreeGroup.appendChild(rect);
       });
     }
