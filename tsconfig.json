@@ -13,7 +13,7 @@
     "declaration": false,
     "sourceMap": true,
     "removeComments": false,
-    "types": ["tweakpane"]          // 👈 add this line
+    "types": ["tweakpane", "three"]          // 👈 add this line
   },
   "include": ["src/ts/**/*"],
   "exclude": ["node_modules", "assets/js/**/*", "_site/**/*"]

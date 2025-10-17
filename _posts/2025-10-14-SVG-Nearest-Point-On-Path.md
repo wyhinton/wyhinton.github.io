@@ -34,10 +34,10 @@ The straightforward approach samples points along the path at regular intervals 
 <div id="linear-demo" class="demo-container">
   <h3>Linear Search Demo</h3>
   <div class="graphics-wrapper">
-  <svg width="100%" height="400" id="linear-svg"></svg>
   <div class="performance-chart">
   <div id="linear-demo-graphics-wrapper"></div>
   </div>
+  <svg width="100%" height="400" id="linear-svg"></svg>
   </div>
 </div>
 
@@ -154,11 +154,11 @@ The QuadTree approach pre-processes paths into a spatial data structure, enablin
 <div id="quadtree-demo" class="demo-container">
 <h3>QuadTree Demo</h3>
 <div class="graphics-wrapper">
-<svg width="100%" height="400" id="quadtree-svg">
-</svg>
 <div class="performance-chart">
 <div id="quadtree-performance-chart"></div>
 </div>
+<svg width="100%" height="400" id="quadtree-svg">
+</svg>
 </div>
 </div>
 
@@ -463,6 +463,8 @@ The key is measuring real-world performance with your actual data and use patter
 
 .graphics-wrapper{
     position: relative;
+    display: flex;
+    gap: 5px;
 }
 
 .demo-container svg {
@@ -533,11 +535,6 @@ font-size: 0.85em;
 .performance-chart {
   width: 300px;
   height: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 5px;
-
 }
 
 
