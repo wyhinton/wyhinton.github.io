@@ -1,0 +1,28 @@
+{
+  "name": "wyhinton-blog",
+  "version": "1.0.0",
+  "description": "Jekyll blog with TypeScript support",
+  "scripts": {
+    "build": "node build.mjs",
+    "watch": "nodemon --watch src --ext ts --exec \"node build.mjs\"",
+    "dev": "npm run watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@tweakpane/core": "^2.0.5",
+    "@types/node": "^20.0.0",
+    "@types/three": "^0.180.0",
+    "esbuild": "^0.25.11",
+    "globby": "^15.0.0",
+    "nodemon": "^3.1.10",
+    "tweakpane": "^4.0.5",
+    "typescript": "^5.9.3"
+  },
+  "private": true,
+  "dependencies": {
+    "stats.js": "^0.17.0",
+    "three": "^0.180.0",
+    "three-orbitcontrols": "^2.110.3",
+    "three-viewport-gizmo": "^2.2.0"
+  }
+}

@@ -1,0 +1,11 @@
+- name: Home
+  link: /
+- name: Web
+  link: web
+- name: 3D
+  link: /3D/
+- name: About
+  link: /about/
+
+# - name: Samples
+#   link: /samples/

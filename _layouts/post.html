@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<script src="/assets/js/lang-tags.js"></script>
+<div class="post">
+  <h1>{{ page.title }}<span class="post-icons">{% include post-icons.html %}</span></h1>
+  <span class="fs-4 text-muted">{{ page.date | date: "%b %d, %y" }}</span>
+  <div class="mt-4">{{ 
+  content | replace: '../assets/images/', '/assets/images/' 
+  | replace: 'ROW_START': '<div class="row">'
+  | replace: 'ROW_END': '</div>'
+  | replace: 'HALF_START', '<div class="col-md-6 col-sm-12">' 
+  | replace: 'HALF_END': '</div>' 
+  }}
+</div>
+</div>
+
+
