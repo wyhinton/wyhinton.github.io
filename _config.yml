@@ -50,13 +50,13 @@ kramdown:
 
 # Includes an icon in the footer for each username you enter
 footer-links:
-  email: mkie0125@gmail.com
-  facebook:
-  github: andrewhwanpark/brutalist-blog
-  instagram: andrewhwanpark
-  linkedin: andrewhwanpark
+  # email: mkie0125@gmail.com
+  # facebook:
+  github: https://github.com/wyhinton
+  # instagram: andrewhwanpark
+  # linkedin: andrewhwanpark
   rss: # just type anything here for a working RSS icon
-  twitter: andrewhwanpark
+  # twitter: andrewhwanpark
 
 plugins:
   - jekyll-seo-tag
