@@ -1,0 +1,233 @@
+pre {
+  tab-size: 2
+}
+
+div[data-lang="cpp"] > div {
+  background-color: #362e39;
+}
+
+/* Ensure the code block only shows scrollbars on hover */
+pre {
+  overflow: hidden; /* Hide scrollbars by default */
+  max-width: 100%;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: #1e1e1e; /* Adjust to match your theme */
+  color: #ffffff;
+  transition: overflow 0.3s ease-in-out;
+}
+
+/* Show scrollbars only when hovered */
+pre:hover {
+  overflow: auto;
+}
+
+/* Hide scrollbars but keep functionality (for WebKit browsers like Chrome, Edge, Safari) */
+pre::-webkit-scrollbar {
+  width: 6px; /* Adjust scrollbar width */
+  height: 6px;
+  background: transparent;
+}
+
+/* Style scrollbar track */
+pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Style scrollbar handle */
+pre::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+/* Hide scrollbar when not hovering (for Firefox) */
+pre {
+  scrollbar-width: none; /* Firefox only */
+}
+
+pre:hover {
+  scrollbar-width: thin;
+}
+
+[data-lang]::before {
+  content: attr(data-lang);
+  display: block;
+  text-align: right;
+  margin-bottom: -22px;
+  padding: 5px;
+  opacity: .5;
+  font-size: 12px;
+}
+
+table {
+  @extend .table;
+  @extend .table-striped;
+}
+
+blockquote {
+  @extend .blockquote;
+}
+
+img {
+  @extend .img-fluid;
+  margin-bottom: 1rem;
+}
+
+.navbar {
+  margin-bottom: 2rem;
+  border-bottom: 0.125rem solid hsl(0, 0%, 30%);
+}
+
+.archive-year {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.archive-date {
+  float: right;
+  margin-left: 1rem;
+}
+
+.archive-item {
+  margin-bottom: 0.5rem;
+}
+
+.footer-container {
+  text-align: center;
+}
+
+.footer-icons {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+.footer-icon-links {
+  text-decoration: none;
+  color: #212529;
+}
+
+.footer-icon-links:hover,
+.footer-icon-links:focus {
+  text-decoration: none;
+  color: #212529;
+}
+
+.archive-title {
+  color: #212529;
+}
+
+.highlight {
+  background-color: #272822;
+}
+
+pre.highlight {
+  padding: 1rem;
+}
+
+.dark-avatar {
+  display: none !important;
+}
+
+.light-avatar,
+.dark-avatar {
+  margin-right: 0.25rem !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .footer-icon-links {
+    text-decoration: none;
+    color: #e1e1e1;
+  }
+
+  .footer-icon-links:hover,
+  .footer-icon-links:focus {
+    text-decoration: none;
+    color: #e1e1e1;
+  }
+
+  .archive-title {
+    color: #e1e1e1;
+  }
+
+  .light-avatar {
+    display: none !important;
+  }
+  .dark-avatar {
+    display: inline-block !important;
+  }
+}
+
+/* Post Icons Styling */
+.post-icons {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 8px;
+  gap: 4px;
+}
+
+.post-icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  border-radius: 2px;
+  transition: transform 0.2s ease;
+}
+
+.post-icon:hover {
+  transform: scale(1.1);
+}
+
+
+
+/* Adjust spacing in different contexts */
+h1 .post-icons {
+  margin-right: 12px;
+}
+
+.archive-title .post-icons {
+  margin-right: 8px;
+}
+
+/* Ensure proper alignment for mixed icon types */
+.post-icons img.post-icon {
+  object-fit: contain;
+}
+
+/* SVG Demo Animations */
+@keyframes dash-animation {
+  0% { 
+    stroke-dashoffset: 0; 
+  }
+  100% { 
+    stroke-dashoffset: 10; 
+  }
+}
+
+/* Connection line animation for SVG demos */
+.connection-line {
+  animation: dash-animation 1s linear infinite;
+}
+
+/* Search radius circle animation */
+.search-radius-circle {
+  transition: r 0.3s ease-in-out;
+}
+
+.font-size-12{
+  font-size: 12px;
+}
+
+
+.ui-snapshot{
+  max-width: 800px;
+  margin-bottom: 0px;
+}
+
+.ui-snapshot > img{
+  margin-bottom: 0px;
+}
+
+.max-width-800{
+  max-width: 800px;
+}

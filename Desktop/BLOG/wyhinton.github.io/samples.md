@@ -1,0 +1,21 @@
+---
+layout: page
+title: Samples
+permalink: /samples/
+---
+
+# Sample Audio Files
+
+{% assign samples = "1_VERY_LONG.mp3,goodwork.wav,GTA5_hey whats going on.wav,GTA_5_jesus_fucking_christ.wav,GTA_5_Pedestrian_Impact_1.wav,GTA_5_ped_impact_2.wav,GTA_5_ped_impact_3.wav,GTA_5_watch_it.wav,GTA_5_you_lame_dog.wav,GTA_5_you_owe_me_a_phone_call.wav,xb_really_deep_.wav,xb_swallowed_up.wav,xs06050100_wav0006.wav,xs06050100_wav0012.wav,xs06050100_wav0026.wav,xv_trapped_with_humans.wav," | split: "," %}
+
+<ul>
+  {% for sample in samples %}
+    <li>
+      <strong>{{ sample }}</strong><br />
+      <audio controls>
+        <source src="{{ 'assets/samples/' | append: sample | relative_url }}" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+    </li>
+  {% endfor %}
+</ul>

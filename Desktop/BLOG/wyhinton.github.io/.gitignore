@@ -1,0 +1,33 @@
+*.gem
+.bundle
+.jekyll-cache
+.sass-cache
+_site
+Gemfile.lock
+
+/sample-player/node_modules
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript
+*.tsbuildinfo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build outputs
+assets/js/*.js.map
+
+# Large old asset files
+old_big_assets/

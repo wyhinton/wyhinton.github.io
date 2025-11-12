@@ -1,0 +1,28 @@
+<!-- Post icons based on tags -->
+{% comment %} Use include.post if passed as parameter, otherwise use page {% endcomment %}
+{% assign current_post = include.post | default: page %}
+
+{% comment %} TypeScript posts {% endcomment %}
+{% if current_post.tags contains 'typescript' %}
+  <img class="post-icon typescript-icon" src="{{ '/assets/images/icons/ts-icon.webp' | relative_url }}" alt="TypeScript" width="16" height="16">
+{% endif %}
+
+{% comment %} Houdini posts {% endcomment %}
+{% if current_post.tags contains 'houdini' %}
+  <img class="post-icon houdini-icon" src="{{ '/assets/images/icons/houdini-icon.png' | relative_url }}" alt="Houdini" width="16" height="16">
+{% endif %}
+
+{% comment %} C++ posts {% endcomment %}
+{% if current_post.tags contains 'c++' %}
+  <img class="post-icon cpp-icon" src="{{ '/assets/images/icons/ISO_C++_Logo.svg.png' | relative_url }}" alt="C++" width="16" height="16">
+{% endif %}
+
+{% comment %} Python posts {% endcomment %}
+{% if current_post.tags contains 'python' %}
+  <img class="post-icon python-icon" src="{{ '/assets/images/icons/python-logo.svg' | relative_url }}" alt="Python" width="16" height="16">
+{% endif %}
+
+{% comment %} Rust posts {% endcomment %}
+{% if current_post.tags contains 'rust' %}
+  <img class="post-icon rust-icon" src="{{ '/assets/images/icons/rust.png' | relative_url }}" alt="Rust" width="16" height="16">
+{% endif %}
