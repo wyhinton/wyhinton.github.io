@@ -20,7 +20,7 @@ Our new CC values can't conflict with any existing ones already used by the Plin
 120         PRESET_SELECT // CC 120 - Preset selection (0-127 maps to presets 0-31)
 ```
 
-### Add Logic 
+### 2. Handle Changes in Our CC Value
 
 All the logic pertaining to processing incoming MIDI messages for the Plinky is contained in the [processmidimsg](https://github.com/plinkysynth/plinky_public/blob/ee4a340fe66fd2705299b4c15381acec44008f42/sw/Core/Src/plinky.c#L1550) function. In it a set of branching statements is used to connect different messages with Plinky's internal functionality, setting parameter values, triggering notes, etc. All we need to do is add in a new check for our CC120 value, and then call the handy, high-level [`SetPreset`](https://github.com/plinkysynth/plinky_public/blob/ff8fcacea7f451863dee1e7342a9fb0223594f9b/sw/Core/Src/params.h#L786) function. We can also write a message to the screen to confirm it's working. 
 
@@ -46,9 +46,9 @@ All the logic pertaining to processing incoming MIDI messages for the Plinky is 
     //...
 ```
 
-### Uploading Custom Firmware
+### 3. Build and Upload Custom Firmware
 
-I'm able to ascertain that the bulk of development for Plinky has occurred on Mac/Linux, so building on Windows using cmake was a bit of a tooling nightmare. The most surefire way to get a build to work is by installing [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html), which to those unfamiliar with STM32 is something of a hybrid between Visual Studio and Arduino IDE. 
+I'm able to ascertain that the bulk of development for Plinky has occurred on Mac/Linux, so building on Windows using cmake was a bit of a tooling nightmare. The most surefire way to get a build to work is by installing [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html), which is something of a hybrid between Visual Studio and Arduino IDE but just for STM32 microcontrollers. 
 
 **Prerequisites**
 - Install STM32CubeIDE - Download free from ST's website
@@ -80,7 +80,7 @@ plink0B4.uf2 - For updating existing Plinky via bootloader
 
 Note that here, we're already working with a flashed Plinky, so we don't need to worry about building the bootloader. We just need to rename plink0B4.uf2 to `CURRENT.uf2`, then load it on to the Plinky as per the [firmware update instructions](https://plinkysynth.com/firmware/).  
 
-Once it's all loaded up (MAKE SURE WHEN YOU LOAD THE FIRMWARE YOU HAVE DISCONNECTED ALL BUT THE USB CABLES), once we reconnect it we can see our CC120 message is controlling our preset.
+Once it's all loaded up (*MAKE SURE WHEN YOU LOAD THE FIRMWARE YOU HAVE DISCONNECTED ALL BUT THE USB CABLE*), once we reconnect our MIDI input we  can see our CC120 message is now interactively scrolling through the Plinky presets.
 
 <div style="display: flex; gap: 20px; margin: 20px 0; justify-content: center;">
 <div style="flex: 1; text-align: center;">
