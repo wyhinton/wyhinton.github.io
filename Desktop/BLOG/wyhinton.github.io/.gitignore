@@ -31,3 +31,6 @@ assets/js/*.js.map
 
 # Large old asset files
 old_big_assets/
+.arduinoIDE/
+.bundle/
+.cargo/
