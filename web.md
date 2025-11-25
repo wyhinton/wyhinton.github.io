@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Web
-permalink: /web/
+title: Projects
+permalink: /projects/
 ---
 
 ## RABapp.org
@@ -35,7 +35,7 @@ An interactive web-map made with Leaflet exploring housing and history in Raleig
 
 </div>
 
-## ayla-gizlice.com
+## [ayla-gizlice.com](https://ayla-gizlice.com/)
 Portfolio site for multi-media artist Ayla Gizlice. Implements a touch-enabled, side-scrolling photo gallery, interactive project gallery, contact form, and a google spreadsheets based backend that allows Ayla to quickly customize the content without writing any code herself. Hosted with Firebase.
 
 <div class="fill-available">
