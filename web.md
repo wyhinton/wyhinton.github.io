@@ -45,6 +45,15 @@ Portfolio site for multi-media artist Ayla Gizlice. Implements a touch-enabled, 
 ![Ayla Gizlice Portfolio - Mobile]({{ '/assets/images/web-projects-showcase/ayla-mobile.gif' | relative_url }})
 
 
+## Eager Rhizome
+
+Eager Rhizome is an installation that fuses generative 3D animation, depth sensing cameras, and AR. An array of depth sensing cameras construct a 3D model of gallery visitors as they move through the space. These 3D models are the digital soil that a lush, fantastic garden grows from. The garden becomes cumulative and expansive, absorbing the history of the visitors who move through the space. The state of the garden can be viewed remotely through a website, via live monitors or projections. Eager Rhizome encourages awareness of the spaces and places we travel through, and how we all contribute to the growth and spread of an art installation.
+
+
+![Eager Rhizome Installation]({{ '/assets/images/web-projects-showcase/Eager_Rhizome.jpeg' | relative_url }})
+
+
+
 <style>
     .fill-available > p > img{
         width: -webkit-fill-available;
