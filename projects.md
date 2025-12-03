@@ -65,6 +65,7 @@ As part of a small team of designers and historians at NCSU, collaborated on an 
 </div>
 Ayla Gizlice is an award-winning ceramicist and installation artist using ceramics, fibers, installation, performance, and creative writing to explore matters of agency, geology, and the body. With a growing archive of photo documentation and increasingly busy practice, she needed a homepage that could present her work clearly and professionally, with aesthetics and styling which complement, but never distract from, the work.
 
+<br>
 Ayla's projects are immersive and often take years to complete.Each one brings together two to four connected pieces and relies on thoughtful writing to explain the research, materials, and processes behind the work. While far from the in-person experience, the sites layout is meant to structure the viewing experience like walking through one of her installations. Upon opening one of her projects, a horizontal gallery maximizes screen real estate for high-resolution images, which is essential for appreciating the many subtle details and material choices unique to Ayla's work. The horizontal scroll also shifts the usual expectations of browsing, creating a more exploratory, story-like way of moving through the work.
 
 <div class="mosaic-grid" markdown="1">
@@ -220,6 +221,19 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
     text-decoration-color: #ff0055;
 }
 
+/* Link icon styling for header links */
+.link-icon {
+    font-size: 0.7em;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+h1 a:hover .link-icon, h2 a:hover .link-icon, h3 a:hover .link-icon, h4 a:hover .link-icon, h5 a:hover .link-icon, h6 a:hover .link-icon {
+    opacity: 1;
+}
+
 /* Tag block styling */
 .tag-block {
   display: flex;
@@ -243,9 +257,18 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Open all links in new tab
   document.querySelectorAll('a').forEach(function(link) {
     link.setAttribute('target', '_blank');
     link.setAttribute('rel', 'noopener noreferrer');
+  });
+  
+  // Insert 🔗 icon into header links
+  document.querySelectorAll('h1 a, h2 a, h3 a, h4 a, h5 a, h6 a').forEach(function(link) {
+    const icon = document.createElement('span');
+    icon.className = 'link-icon';
+    icon.textContent = '🔗';
+    link.appendChild(icon);
   });
 });
 </script>
