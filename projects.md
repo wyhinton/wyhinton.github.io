@@ -63,9 +63,10 @@ As part of a small team of designers and historians at NCSU, collaborated on an 
   <span class="tag">Project Management</span>
   <span class="tag">CMS</span>
 </div>
-Ayla Gizlice is an award winning ceramicist and installation artist using ceramics, fibers, installation, performance, and creative writing to explore matters of agency, geology, and the body. With a growing archive of photo documentation and increasingly busy practice, she needed a homepage that could present her work clearly and professionally, with aesthetics and styling which compliment, but never distract from, the work.
+Ayla Gizlice is an award-winning ceramicist and installation artist using ceramics, fibers, installation, performance, and creative writing to explore matters of agency, geology, and the body. With a growing archive of photo documentation and increasingly busy practice, she needed a homepage that could present her work clearly and professionally, with aesthetics and styling which complement, but never distract from, the work.
 
-Ayla's projects are immersive and often take years to complete.Each one brings together two to four connected pieces and relies on thoughtful writing to explain the research, materials, and processes behind the work. While far from the in-person experience, the sites layout is meant to structure the viewing experience like walking through one of her installations. Upon opening one of her projects, a horizontal gallery maximizes screen real-estate for high-resolution images which is important for making out the many subtle details and material choices unique to Ayla's work. The horizontal scroll also shifts the usual expectations of browsing, creating a more exploratory, story-like way of moving through the work.
+Ayla's projects are immersive and often take years to complete.Each one brings together two to four connected pieces and relies on thoughtful writing to explain the research, materials, and processes behind the work. While far from the in-person experience, the sites layout is meant to structure the viewing experience like walking through one of her installations. Upon opening one of her projects, a horizontal gallery maximizes screen real estate for high-resolution images, which is essential for appreciating the many subtle details and material choices unique to Ayla's work. The horizontal scroll also shifts the usual expectations of browsing, creating a more exploratory, story-like way of moving through the work.
+
 
 
 <div class="fill-available">
