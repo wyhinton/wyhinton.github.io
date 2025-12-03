@@ -67,13 +67,25 @@ Ayla Gizlice is an award-winning ceramicist and installation artist using cerami
 
 Ayla's projects are immersive and often take years to complete.Each one brings together two to four connected pieces and relies on thoughtful writing to explain the research, materials, and processes behind the work. While far from the in-person experience, the sites layout is meant to structure the viewing experience like walking through one of her installations. Upon opening one of her projects, a horizontal gallery maximizes screen real estate for high-resolution images, which is essential for appreciating the many subtle details and material choices unique to Ayla's work. The horizontal scroll also shifts the usual expectations of browsing, creating a more exploratory, story-like way of moving through the work.
 
+<div class="mosaic-grid" markdown="1">
 
+![Ayla Widescreen]({{ '/assets/images/web-projects-showcase/ayla-site/AllSingle/Widescreen-1764738332020.jpeg' | relative_url }})
+{: .mosaic-full-width}
 
-<div class="fill-available">
-![Ayla Gizlice Portfolio - Desktop]({{ '/assets/images/web-projects-showcase/ayla-desktop.gif' | relative_url }})
+![Ayla iPhone 12 Pro]({{ '/assets/images/web-projects-showcase/ayla-site/AllSingle/iPhone 12 Pro-1764740881160.jpeg' | relative_url }})
+
+![Ayla iPad Pro]({{ '/assets/images/web-projects-showcase/ayla-site/AllSingle/iPad-1764740944230.jpeg' | relative_url }})
+{: .ipad-image}
+
+<div class="mosaic-flex-column">
+![iMessage Bubble]({{ '/assets/images/web-projects-showcase/ayla-site/AllSingle/iMessageBubble.PNG' | relative_url }})
+{: .imessage-bubble}
+
+![Favicon]({{ '/assets/images/web-projects-showcase/ayla-site/AllSingle/favicon.png' | relative_url }})
 </div>
 
-![Ayla Gizlice Portfolio - Mobile]({{ '/assets/images/web-projects-showcase/ayla-mobile.gif' | relative_url }})
+</div>
+
 
 
 ## Eager Rhizome
@@ -121,6 +133,41 @@ Eager Rhizome is an installation that fuses generative 3D animation, depth sensi
         height: auto;
     }
     
+    /* Mosaic grid layout */
+    .mosaic-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+        margin: 1rem 0;
+    }
+    
+    .mosaic-grid img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+    .mosaic-grid img, p {
+        margin-bottom: 0px !important;
+    }
+    
+    /* Full width for widescreen images */
+    .mosaic-full-width {
+        grid-column: 1 / -1;
+    }
+    
+    /* iPad Pro takes twice the width */
+    /* .mosaic-grid img:nth-child(5) {
+        grid-column: span 2;
+    } */
+    .ipad-image {
+      grid-column: span 2;
+    }
+    
+
+    .imessage-bubble{
+      mix-blend-mode: lighten;
+    }
     /* Fade-in animation for all images and videos */
     img, video {
         opacity: 0;
