@@ -1,17 +1,19 @@
 import { globby } from 'globby';
 import esbuild from 'esbuild';
 import path from 'path';
+import fs from 'fs';
 
-console.log('🔨 Building TypeScript files...');
+console.log('🔨 Building TypeScript and React files...');
 const startTime = performance.now();
 
-const entryPoints = await globby('src/ts/**/*.ts');
-console.log(`📁 Found ${entryPoints.length} TypeScript files`);
+// Build existing TypeScript files
+const tsEntryPoints = await globby('src/ts/**/*.ts');
+console.log(`📁 Found ${tsEntryPoints.length} TypeScript files`);
 
-for (const entry of entryPoints) {
+for (const entry of tsEntryPoints) {
   const outFile = entry
-    .replace(/^src[\\/]/, '')   // remove 'src/'
-    .replace(/^ts[\\/]/, '');   // optional: remove 'ts/' prefix
+    .replace(/^src[\\/]/, '')
+    .replace(/^ts[\\/]/, '');
   
   console.log(`   📝 Building: ${entry} → assets/js/${outFile.replace(/\.ts$/, '.js')}`);
   
@@ -24,6 +26,29 @@ for (const entry of entryPoints) {
     outfile: `assets/js/${outFile.replace(/\.ts$/, '.js')}`,
     platform: 'browser',
   });
+}
+
+// Build React art app if it exists
+if (fs.existsSync('src/art/index.tsx')) {
+  console.log('   📝 Building React art app...');
+  try {
+    await esbuild.build({
+      entryPoints: ['src/art/index.tsx'],
+      bundle: true,
+      sourcemap: true,
+      format: 'iife',
+      target: ['es2020'],
+      outfile: 'assets/js/art-app.bundle.js',
+      platform: 'browser',
+      jsx: 'automatic',
+      external: [],
+    });
+    console.log('   ✅ React art app built successfully');
+  } catch (error) {
+    console.error('   ❌ Failed to build React art app:', error.message);
+  }
+} else {
+  console.log('   ⚠️  No React art app found at src/art/index.tsx');
 }
 
 const endTime = performance.now();

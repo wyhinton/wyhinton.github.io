@@ -4,14 +4,21 @@
   "description": "Jekyll blog with TypeScript support",
   "scripts": {
     "build": "node build.mjs",
-    "watch": "nodemon --watch src --ext ts --exec \"node build.mjs\"",
+    "watch": "nodemon --watch src --ext ts,tsx --exec \"node build.mjs\"",
+    "watch:art": "nodemon --watch src/art --ext ts,tsx,css --exec \"node build.mjs\"",
     "dev": "npm run watch",
-    "typecheck": "tsc --noEmit"
+    "dev:art": "npm run watch:art",
+    "typecheck": "tsc --noEmit",
+    "start": "bundle exec jekyll serve  --livereload",
+    "dev:full": "concurrently \"npm run watch:art\" \"npm run start\""
   },
   "devDependencies": {
     "@tweakpane/core": "^2.0.5",
     "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
     "@types/three": "^0.180.0",
+    "concurrently": "^8.2.0",
     "esbuild": "^0.25.11",
     "globby": "^15.0.0",
     "nodemon": "^3.1.10",
@@ -20,6 +27,9 @@
   },
   "private": true,
   "dependencies": {
+    "easy-peasy": "latest",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "stats.js": "^0.17.0",
     "three": "^0.180.0",
     "three-orbitcontrols": "^2.110.3",
