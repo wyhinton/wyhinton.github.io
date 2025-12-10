@@ -6,7 +6,7 @@ import ArtGallery from './components/ArtGallery';
 export default function App() {
   return (
     <StoreProvider store={store}>
-      <div className="min-h-screen bg-gray-900 text-white">
+      <div style={{ minHeight: '100vh', backgroundColor: '#ffffff', color: '#333' }}>
         <ArtGallery />
       </div>
     </StoreProvider>

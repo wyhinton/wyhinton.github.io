@@ -11,38 +11,89 @@ export default function ArtCard({ piece }: ArtCardProps) {
   const removePiece = useStoreActions((actions) => actions.art.removePiece);
 
   return (
-    <div className="bg-gray-800 rounded overflow-hidden border border-gray-700 hover:border-green-500 transition-colors">
+    <div style={{
+      backgroundColor: '#ffffff',
+      borderRadius: '8px',
+      overflow: 'hidden',
+      border: '1px solid #e9ecef',
+      boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+      transition: 'box-shadow 0.2s, border-color 0.2s'
+    }}
+    onMouseOver={(e) => {
+      (e.currentTarget as HTMLElement).style.borderColor = '#69ff5e';
+      (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+    }}
+    onMouseOut={(e) => {
+      (e.currentTarget as HTMLElement).style.borderColor = '#e9ecef';
+      (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+    }}>
       <img
         src={piece.imageUrl}
         alt={piece.title}
-        className="w-full h-48 object-cover cursor-pointer hover:opacity-80 transition-opacity"
+        style={{
+          width: '100%',
+          height: '192px',
+          objectFit: 'cover',
+          cursor: 'pointer',
+          transition: 'opacity 0.2s'
+        }}
         onClick={() => selectPiece(piece)}
+        onMouseOver={(e) => (e.target as HTMLElement).style.opacity = '0.8'}
+        onMouseOut={(e) => (e.target as HTMLElement).style.opacity = '1'}
       />
-      <div className="p-4">
-        <h3 className="text-xl font-semibold mb-2 text-white">{piece.title}</h3>
-        <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+      <div style={{ padding: '1rem' }}>
+        <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '0.5rem', color: '#333' }}>
+          {piece.title}
+        </h3>
+        <p style={{ color: '#666', fontSize: '0.9rem', marginBottom: '1rem', lineHeight: '1.4' }}>
           {piece.description}
         </p>
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1rem' }}>
           {piece.tags.map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1 bg-gray-700 text-gray-300 text-xs rounded-full"
+              style={{
+                padding: '0.25rem 0.75rem',
+                backgroundColor: '#f8f9fa',
+                color: '#495057',
+                fontSize: '0.75rem',
+                borderRadius: '1rem',
+                border: '1px solid #e9ecef'
+              }}
             >
               {tag}
             </span>
           ))}
         </div>
-        <div className="flex gap-2">
+        <div style={{ display: 'flex', gap: '0.5rem' }}>
           <button
             onClick={() => selectPiece(piece)}
-            className="flex-1 px-4 py-2 bg-green-500 text-black font-semibold rounded hover:bg-green-400 transition-colors text-sm"
+            style={{
+              flex: '1',
+              padding: '0.5rem 1rem',
+              backgroundColor: '#69ff5e',
+              color: '#000',
+              fontWeight: '600',
+              borderRadius: '6px',
+              border: 'none',
+              cursor: 'pointer',
+              fontSize: '0.875rem'
+            }}
           >
             View
           </button>
           <button
             onClick={() => removePiece(piece.id)}
-            className="px-4 py-2 bg-red-600 text-white font-semibold rounded hover:bg-red-500 transition-colors text-sm"
+            style={{
+              padding: '0.5rem 1rem',
+              backgroundColor: '#dc3545',
+              color: '#fff',
+              fontWeight: '600',
+              borderRadius: '6px',
+              border: 'none',
+              cursor: 'pointer',
+              fontSize: '0.875rem'
+            }}
           >
             Delete
           </button>

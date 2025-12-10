@@ -1097,7 +1097,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect2(create, deps) {
+          function useEffect3(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1880,7 +1880,7 @@
           exports.useContext = useContext2;
           exports.useDebugValue = useDebugValue2;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect2;
+          exports.useEffect = useEffect3;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
@@ -23613,7 +23613,7 @@
             },
             [subscribe, value, getSnapshot]
           );
-          useEffect2(
+          useEffect3(
             function() {
               checkIfSnapshotChanged(inst) && forceUpdate({ inst });
               return subscribe(function() {
@@ -23639,7 +23639,7 @@
           return getSnapshot();
         }
         "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var React4 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState3 = React4.useState, useEffect2 = React4.useEffect, useLayoutEffect = React4.useLayoutEffect, useDebugValue2 = React4.useDebugValue, didWarnOld18Alpha = false, didWarnUncachedGetSnapshot = false, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
+        var React4 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState3 = React4.useState, useEffect3 = React4.useEffect, useLayoutEffect = React4.useLayoutEffect, useDebugValue2 = React4.useDebugValue, didWarnOld18Alpha = false, didWarnUncachedGetSnapshot = false, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
         exports.useSyncExternalStore = void 0 !== React4.useSyncExternalStore ? React4.useSyncExternalStore : shim;
         "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
       })();
@@ -23667,7 +23667,7 @@
           return x2 === y2 && (0 !== x2 || 1 / x2 === 1 / y2) || x2 !== x2 && y2 !== y2;
         }
         "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var React4 = require_react(), shim = require_shim(), objectIs = "function" === typeof Object.is ? Object.is : is, useSyncExternalStore = shim.useSyncExternalStore, useRef2 = React4.useRef, useEffect2 = React4.useEffect, useMemo = React4.useMemo, useDebugValue2 = React4.useDebugValue;
+        var React4 = require_react(), shim = require_shim(), objectIs = "function" === typeof Object.is ? Object.is : is, useSyncExternalStore = shim.useSyncExternalStore, useRef2 = React4.useRef, useEffect3 = React4.useEffect, useMemo = React4.useMemo, useDebugValue2 = React4.useDebugValue;
         exports.useSyncExternalStoreWithSelector = function(subscribe, getSnapshot, getServerSnapshot, selector, isEqual) {
           var instRef = useRef2(null);
           if (null === instRef.current) {
@@ -23710,7 +23710,7 @@
             [getSnapshot, getServerSnapshot, selector, isEqual]
           );
           var value = useSyncExternalStore(subscribe, instRef[0], instRef[1]);
-          useEffect2(
+          useEffect3(
             function() {
               inst.hasValue = true;
               inst.value = value;
@@ -26646,67 +26646,182 @@
   function ArtCard({ piece }) {
     const selectPiece = useStoreActions2((actions) => actions.art.selectPiece);
     const removePiece = useStoreActions2((actions) => actions.art.removePiece);
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "bg-gray-800 rounded overflow-hidden border border-gray-700 hover:border-green-500 transition-colors", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-        "img",
-        {
-          src: piece.imageUrl,
-          alt: piece.title,
-          className: "w-full h-48 object-cover cursor-pointer hover:opacity-80 transition-opacity",
-          onClick: () => selectPiece(piece)
-        }
-      ),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "p-4", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { className: "text-xl font-semibold mb-2 text-white", children: piece.title }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "text-gray-400 text-sm mb-4 line-clamp-2", children: piece.description }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "flex flex-wrap gap-2 mb-4", children: piece.tags.map((tag) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-          "span",
-          {
-            className: "px-3 py-1 bg-gray-700 text-gray-300 text-xs rounded-full",
-            children: tag
-          },
-          tag
-        )) }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex gap-2", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+      "div",
+      {
+        style: {
+          backgroundColor: "#ffffff",
+          borderRadius: "8px",
+          overflow: "hidden",
+          border: "1px solid #e9ecef",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+          transition: "box-shadow 0.2s, border-color 0.2s"
+        },
+        onMouseOver: (e2) => {
+          e2.currentTarget.style.borderColor = "#69ff5e";
+          e2.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
+        },
+        onMouseOut: (e2) => {
+          e2.currentTarget.style.borderColor = "#e9ecef";
+          e2.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.1)";
+        },
+        children: [
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-            "button",
+            "img",
             {
+              src: piece.imageUrl,
+              alt: piece.title,
+              style: {
+                width: "100%",
+                height: "192px",
+                objectFit: "cover",
+                cursor: "pointer",
+                transition: "opacity 0.2s"
+              },
               onClick: () => selectPiece(piece),
-              className: "flex-1 px-4 py-2 bg-green-500 text-black font-semibold rounded hover:bg-green-400 transition-colors text-sm",
-              children: "View"
+              onMouseOver: (e2) => e2.target.style.opacity = "0.8",
+              onMouseOut: (e2) => e2.target.style.opacity = "1"
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-            "button",
-            {
-              onClick: () => removePiece(piece.id),
-              className: "px-4 py-2 bg-red-600 text-white font-semibold rounded hover:bg-red-500 transition-colors text-sm",
-              children: "Delete"
-            }
-          )
-        ] })
-      ] })
-    ] });
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { padding: "1rem" }, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { style: { fontSize: "1.25rem", fontWeight: "600", marginBottom: "0.5rem", color: "#333" }, children: piece.title }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { style: { color: "#666", fontSize: "0.9rem", marginBottom: "1rem", lineHeight: "1.4" }, children: piece.description }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: { display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1rem" }, children: piece.tags.map((tag) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              "span",
+              {
+                style: {
+                  padding: "0.25rem 0.75rem",
+                  backgroundColor: "#f8f9fa",
+                  color: "#495057",
+                  fontSize: "0.75rem",
+                  borderRadius: "1rem",
+                  border: "1px solid #e9ecef"
+                },
+                children: tag
+              },
+              tag
+            )) }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", gap: "0.5rem" }, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "button",
+                {
+                  onClick: () => selectPiece(piece),
+                  style: {
+                    flex: "1",
+                    padding: "0.5rem 1rem",
+                    backgroundColor: "#69ff5e",
+                    color: "#000",
+                    fontWeight: "600",
+                    borderRadius: "6px",
+                    border: "none",
+                    cursor: "pointer",
+                    fontSize: "0.875rem"
+                  },
+                  children: "View"
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "button",
+                {
+                  onClick: () => removePiece(piece.id),
+                  style: {
+                    padding: "0.5rem 1rem",
+                    backgroundColor: "#dc3545",
+                    color: "#fff",
+                    fontWeight: "600",
+                    borderRadius: "6px",
+                    border: "none",
+                    cursor: "pointer",
+                    fontSize: "0.875rem"
+                  },
+                  children: "Delete"
+                }
+              )
+            ] })
+          ] })
+        ]
+      }
+    );
   }
 
   // src/art/components/ArtGallery.tsx
   var import_jsx_runtime2 = __toESM(require_jsx_runtime());
+  var import_meta = {};
   function ArtGallery() {
     const pieces = useStoreState2((state) => state.art.pieces);
     const addPiece = useStoreActions2((actions) => actions.art.addPiece);
     const [showForm, setShowForm] = (0, import_react2.useState)(false);
+    const [loading, setLoading] = (0, import_react2.useState)(true);
+    (0, import_react2.useEffect)(() => {
+      const loadArtFiles = async () => {
+        try {
+          const modules = import_meta.glob("/assets/art/*.{png,jpg,jpeg,gif,webp,mp4,webm,mov}", {
+            eager: true,
+            as: "url"
+          });
+          Object.entries(modules).forEach(([path, url]) => {
+            const filename = path.split("/").pop() || "";
+            const nameWithoutExt = filename.replace(/\.[^/.]+$/, "");
+            const parts = nameWithoutExt.split("_");
+            let title = nameWithoutExt.replace(/_/g, " ");
+            let tags = ["art"];
+            if (parts.length >= 4) {
+              const month = parts[0];
+              const day = parts[1];
+              const year = parts[2];
+              const location = parts.slice(3).join(" ");
+              title = `${month} ${day}, ${year} - ${location}`;
+              tags = ["art", location.toLowerCase(), year];
+            }
+            const existingPiece = pieces.find((p2) => p2.imageUrl === url || p2.title === title);
+            if (!existingPiece) {
+              const artPiece = {
+                id: `auto-${Date.now()}-${Math.random()}`,
+                title,
+                description: `Artwork from ${title}`,
+                imageUrl: url,
+                tags
+              };
+              addPiece(artPiece);
+            }
+          });
+          setLoading(false);
+        } catch (error) {
+          console.error("Failed to load art files:", error);
+          setLoading(false);
+        }
+      };
+      if (pieces.length === 0) {
+        loadArtFiles();
+      } else {
+        setLoading(false);
+      }
+    }, [pieces.length, addPiece]);
     const handleAddPiece = (piece) => {
       addPiece(piece);
       setShowForm(false);
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "container mx-auto px-4 py-12", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h1", { className: "text-5xl font-bold mb-4", children: "Art Gallery" }),
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "text-gray-400 mb-8", children: "A collection of visual works" }),
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { style: { maxWidth: "1200px", margin: "0 auto", padding: "3rem 1rem" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h1", { style: { fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#333" }, children: "Art Gallery" }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { style: { color: "#666", marginBottom: "2rem", fontSize: "1.1rem" }, children: "A collection of visual works" }),
       /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
         "button",
         {
           onClick: () => setShowForm(!showForm),
-          className: "mb-8 px-6 py-2 bg-green-500 text-black font-semibold rounded hover:bg-green-400 transition-colors",
+          style: {
+            marginBottom: "2rem",
+            padding: "0.75rem 1.5rem",
+            backgroundColor: "#69ff5e",
+            color: "#000",
+            fontWeight: "600",
+            border: "none",
+            borderRadius: "6px",
+            cursor: "pointer",
+            fontSize: "1rem",
+            transition: "background-color 0.2s"
+          },
+          onMouseOver: (e2) => e2.target.style.backgroundColor = "#5ce653",
+          onMouseOut: (e2) => e2.target.style.backgroundColor = "#69ff5e",
           children: showForm ? "Cancel" : "Add Piece"
         }
       ),
@@ -26717,7 +26832,11 @@
           onCancel: () => setShowForm(false)
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6", children: pieces.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "col-span-full text-gray-400 text-center py-12", children: "No art pieces yet. Add one to get started!" }) : pieces.map((piece) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ArtCard, { piece }, piece.id)) })
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { style: {
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+        gap: "1.5rem"
+      }, children: pieces.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { style: { gridColumn: "1 / -1", textAlign: "center", padding: "3rem 0" }, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { style: { color: "#666", fontSize: "1.1rem" }, children: "No art pieces yet. Add one to get started!" }) }) : pieces.map((piece) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ArtCard, { piece }, piece.id)) })
     ] });
   }
   function AddPieceForm({ onAdd, onCancel }) {
@@ -26727,6 +26846,17 @@
       imageUrl: "",
       tags: ""
     });
+    const inputStyle = {
+      width: "100%",
+      marginBottom: "1rem",
+      padding: "0.75rem",
+      backgroundColor: "#ffffff",
+      color: "#333",
+      borderRadius: "6px",
+      border: "1px solid #ddd",
+      fontSize: "1rem",
+      outline: "none"
+    };
     const handleChange = (e2) => {
       setFormData({
         ...formData,
@@ -26748,7 +26878,14 @@
       "form",
       {
         onSubmit: handleSubmit,
-        className: "bg-gray-800 p-6 rounded mb-8 border border-gray-700",
+        style: {
+          backgroundColor: "#f8f9fa",
+          padding: "1.5rem",
+          borderRadius: "8px",
+          marginBottom: "2rem",
+          border: "1px solid #e9ecef",
+          boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
+        },
         children: [
           /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
             "input",
@@ -26759,7 +26896,7 @@
               value: formData.title,
               onChange: handleChange,
               required: true,
-              className: "w-full mb-4 p-2 bg-gray-700 text-white rounded border border-gray-600 focus:outline-none focus:border-green-500"
+              style: inputStyle
             }
           ),
           /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
@@ -26770,7 +26907,7 @@
               value: formData.description,
               onChange: handleChange,
               required: true,
-              className: "w-full mb-4 p-2 bg-gray-700 text-white rounded border border-gray-600 focus:outline-none focus:border-green-500"
+              style: inputStyle
             }
           ),
           /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
@@ -26782,7 +26919,7 @@
               value: formData.imageUrl,
               onChange: handleChange,
               required: true,
-              className: "w-full mb-4 p-2 bg-gray-700 text-white rounded border border-gray-600 focus:outline-none focus:border-green-500"
+              style: inputStyle
             }
           ),
           /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
@@ -26793,15 +26930,24 @@
               placeholder: "Tags (comma-separated)",
               value: formData.tags,
               onChange: handleChange,
-              className: "w-full mb-4 p-2 bg-gray-700 text-white rounded border border-gray-600 focus:outline-none focus:border-green-500"
+              style: inputStyle
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "flex gap-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { style: { display: "flex", gap: "1rem" }, children: [
             /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
               "button",
               {
                 type: "submit",
-                className: "px-6 py-2 bg-green-500 text-black font-semibold rounded hover:bg-green-400 transition-colors",
+                style: {
+                  padding: "0.75rem 1.5rem",
+                  backgroundColor: "#69ff5e",
+                  color: "#000",
+                  fontWeight: "600",
+                  borderRadius: "6px",
+                  border: "none",
+                  cursor: "pointer",
+                  fontSize: "1rem"
+                },
                 children: "Add Piece"
               }
             ),
@@ -26810,7 +26956,16 @@
               {
                 type: "button",
                 onClick: onCancel,
-                className: "px-6 py-2 bg-gray-700 text-white font-semibold rounded hover:bg-gray-600 transition-colors",
+                style: {
+                  padding: "0.75rem 1.5rem",
+                  backgroundColor: "#6c757d",
+                  color: "#fff",
+                  fontWeight: "600",
+                  borderRadius: "6px",
+                  border: "none",
+                  cursor: "pointer",
+                  fontSize: "1rem"
+                },
                 children: "Cancel"
               }
             )
@@ -26823,7 +26978,7 @@
   // src/art/app.tsx
   var import_jsx_runtime3 = __toESM(require_jsx_runtime());
   function App() {
-    return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(StoreProvider, { store, children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "min-h-screen bg-gray-900 text-white", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(ArtGallery, {}) }) });
+    return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(StoreProvider, { store, children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { style: { minHeight: "100vh", backgroundColor: "#ffffff", color: "#333" }, children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(ArtGallery, {}) }) });
   }
 
   // src/art/index.tsx
