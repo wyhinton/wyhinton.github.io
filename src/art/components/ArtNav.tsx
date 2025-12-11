@@ -49,7 +49,7 @@ export default function ArtNav({ currentPage, onPageChange }: ArtNavProps) {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     zIndex: 0,
-    opacity: 0.3
+    opacity: 1
   };
 
   const activeButtonStyleWithSprite: React.CSSProperties = {

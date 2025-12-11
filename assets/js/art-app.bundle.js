@@ -1085,7 +1085,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState4(initialState) {
+          function useState5(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1093,11 +1093,11 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useReducer(reducer, initialArg, init);
           }
-          function useRef2(initialValue) {
+          function useRef3(initialValue) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect3(create, deps) {
+          function useEffect4(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1880,15 +1880,15 @@
           exports.useContext = useContext;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect3;
+          exports.useEffect = useEffect4;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
           exports.useLayoutEffect = useLayoutEffect;
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
-          exports.useRef = useRef2;
-          exports.useState = useState4;
+          exports.useRef = useRef3;
+          exports.useState = useState5;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2384,9 +2384,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React4 = require_react();
+          var React5 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React4.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React5.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3993,7 +3993,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React4.Children.forEach(props.children, function(child) {
+                  React5.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -23589,7 +23589,7 @@
       if (true) {
         (function() {
           "use strict";
-          var React4 = require_react();
+          var React5 = require_react();
           var REACT_ELEMENT_TYPE = Symbol.for("react.element");
           var REACT_PORTAL_TYPE = Symbol.for("react.portal");
           var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
@@ -23615,7 +23615,7 @@
             }
             return null;
           }
-          var ReactSharedInternals = React4.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React5.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               {
@@ -24465,10 +24465,10 @@
               return jsxWithValidation(type, props, key, false);
             }
           }
-          var jsx8 = jsxWithValidationDynamic;
+          var jsx9 = jsxWithValidationDynamic;
           var jsxs6 = jsxWithValidationStatic;
           exports.Fragment = REACT_FRAGMENT_TYPE;
-          exports.jsx = jsx8;
+          exports.jsx = jsx9;
           exports.jsxs = jsxs6;
         })();
       }
@@ -24488,11 +24488,11 @@
   });
 
   // src/art/index.tsx
-  var import_react4 = __toESM(require_react());
+  var import_react5 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // src/art/app.tsx
-  var import_react3 = __toESM(require_react());
+  var import_react4 = __toESM(require_react());
 
   // src/art/components/ArtNav.tsx
   var import_react2 = __toESM(require_react());
@@ -24631,7 +24631,7 @@
       left: "50%",
       transform: "translate(-50%, -50%)",
       zIndex: 0,
-      opacity: 0.3
+      opacity: 1
     };
     const activeButtonStyleWithSprite = {
       ...activeButtonStyle,
@@ -25035,6 +25035,27 @@
 
   // src/art/components/ArtGallery.tsx
   var import_jsx_runtime4 = __toESM(require_jsx_runtime());
+  var fadeInStyle = `
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .art-card-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+`;
+  if (typeof document !== "undefined") {
+    const style = document.createElement("style");
+    style.textContent = fadeInStyle;
+    document.head.appendChild(style);
+  }
   function ArtGallery() {
     const sortedAssets = [...artAssets].sort((a, b) => {
       if (!a.date && !b.date) return 0;
@@ -25053,7 +25074,17 @@
         display: "flex",
         flexDirection: "column",
         gap: "1.5rem"
-      }, children: sortedAssets.map((asset) => /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(ArtCard, { asset }, asset.slug)) })
+      }, children: sortedAssets.map((asset, index) => /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+        "div",
+        {
+          className: "art-card-fade-in",
+          style: {
+            animationDelay: `${index * 0.1}s`
+          },
+          children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(ArtCard, { asset })
+        },
+        asset.slug
+      )) })
     ] });
   }
 
@@ -25077,11 +25108,130 @@
     ] });
   }
 
-  // src/art/app.tsx
+  // src/art/components/Butterflies.tsx
+  var import_react3 = __toESM(require_react());
   var import_jsx_runtime6 = __toESM(require_jsx_runtime());
-  function App() {
-    const [currentPage, setCurrentPage] = (0, import_react3.useState)("curation");
+  var SPRITE_CONFIGS = {
+    blue: { rows: 6, cols: 1, width: 64, height: 64, direction: "left" },
+    blue_small: { rows: 6, cols: 1, width: 32, height: 32, direction: "left" },
+    green: { rows: 6, cols: 1, width: 64, height: 64, direction: "right" }
+  };
+  var PerlinNoise = class {
+    constructor(seed) {
+      this.seed = seed;
+    }
+    noise(x) {
+      return Math.sin(x * 12.9898 + this.seed * 78.233) * 43758.5453 % 1;
+    }
+    smoothNoise(t) {
+      const i = Math.floor(t);
+      const f = t - i;
+      const n1 = this.noise(i);
+      const n2 = this.noise(i + 1);
+      return n1 * (1 - f) + n2 * f;
+    }
+  };
+  function Butterflies() {
+    const [butterflies, setButterflies] = (0, import_react3.useState)([]);
+    const nextId = (0, import_react3.useRef)(0);
+    const lastPositions = (0, import_react3.useRef)({});
     (0, import_react3.useEffect)(() => {
+      const createButterfly = () => {
+        const keys = Object.keys(SPRITE_CONFIGS);
+        const sprite = keys[Math.floor(Math.random() * keys.length)];
+        const duration = 9e3 + Math.random() * 8e3;
+        const newButterfly = {
+          id: nextId.current++,
+          sprite,
+          duration,
+          startTime: Date.now(),
+          initialX: 20 + Math.random() * 60,
+          initialY: 20 + Math.random() * 60,
+          scale: 0.5 + Math.random() * 0.8,
+          noise: new PerlinNoise(Math.random() * 1e4)
+        };
+        setButterflies((prev) => [...prev.slice(-1), newButterfly]);
+      };
+      createButterfly();
+      const interval = setInterval(createButterfly, 9e3 + Math.random() * 5e3);
+      return () => clearInterval(interval);
+    }, []);
+    (0, import_react3.useEffect)(() => {
+      const cleanup = setInterval(() => {
+        setButterflies(
+          (prev) => prev.filter((b) => Date.now() - b.startTime < b.duration)
+        );
+      }, 1);
+      return () => clearInterval(cleanup);
+    }, []);
+    return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+      "div",
+      {
+        style: {
+          position: "fixed",
+          inset: 0,
+          pointerEvents: "none",
+          overflow: "hidden",
+          zIndex: 1
+        },
+        children: butterflies.map((b) => {
+          const config = SPRITE_CONFIGS[b.sprite];
+          const elapsed = (Date.now() - b.startTime) / 1e3;
+          const nx = b.noise.smoothNoise(elapsed * 0.4);
+          const ny = b.noise.smoothNoise(elapsed * 0.4 + 100);
+          const xOffset = (nx - 0.5) * 40 + Math.sin(elapsed * 0.6 + b.id) * 12;
+          const yOffset = (ny - 0.5) * 40 + Math.cos(elapsed * 0.6 + b.id) * 12;
+          const x = b.initialX + xOffset;
+          const y = b.initialY + yOffset;
+          const last = lastPositions.current[b.id] || { x, y };
+          const dx = x - last.x;
+          lastPositions.current[b.id] = { x, y };
+          const movingLeft = dx < 0;
+          let shouldFlip = false;
+          if (config.direction === "left") {
+            shouldFlip = !movingLeft;
+          } else {
+            shouldFlip = movingLeft;
+          }
+          return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+            "div",
+            {
+              style: {
+                position: "absolute",
+                left: `${x}%`,
+                top: `${y}%`,
+                transform: `
+                scale(${b.scale})
+                scaleX(${shouldFlip ? -1 : 1})
+              `,
+                transition: "none",
+                opacity: 1
+              },
+              children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+                SpritePlayback,
+                {
+                  src: `assets/sprites/${b.sprite}.png`,
+                  rows: config.rows,
+                  cols: config.cols,
+                  fps: 24,
+                  mode: "loop",
+                  width: config.width,
+                  height: config.height
+                }
+              )
+            },
+            b.id
+          );
+        })
+      }
+    );
+  }
+
+  // src/art/app.tsx
+  var import_jsx_runtime7 = __toESM(require_jsx_runtime());
+  function App() {
+    const [currentPage, setCurrentPage] = (0, import_react4.useState)("curation");
+    (0, import_react4.useEffect)(() => {
       const handleHashChange = () => {
         const hash = window.location.hash.substring(1);
         if (hash === "work" || hash === "curation") {
@@ -25099,26 +25249,27 @@
     const renderCurrentPage = () => {
       switch (currentPage) {
         case "work":
-          return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ArtWork, {});
+          return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(ArtWork, {});
         case "curation":
-          return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ArtGallery, {});
+          return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(ArtGallery, {});
         default:
-          return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ArtGallery, {});
+          return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(ArtGallery, {});
       }
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { minHeight: "100vh", backgroundColor: "#ffffff", color: "#333" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ArtNav, { currentPage, onPageChange: handlePageChange }),
+    return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { minHeight: "100vh", backgroundColor: "#ffffff", color: "#333" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Butterflies, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(ArtNav, { currentPage, onPageChange: handlePageChange }),
       renderCurrentPage()
     ] });
   }
 
   // src/art/index.tsx
-  var import_jsx_runtime7 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime8 = __toESM(require_jsx_runtime());
   var root = import_client.default.createRoot(
     document.getElementById("art-app")
   );
   root.render(
-    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(import_react4.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(App, {}) })
+    /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(import_react5.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(App, {}) })
   );
 })();
 /*! Bundled license information:
