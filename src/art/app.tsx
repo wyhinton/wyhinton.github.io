@@ -3,7 +3,6 @@ import ArtNav from './components/ArtNav';
 import ArtGallery from './components/ArtGallery';
 import ArtWork from './components/ArtWork';
 import Butterflies from './components/Butterflies';
-import SpritePlayback from './components/SpritePlayback';
 
 type PageType = 'work' | 'curation';
 
@@ -44,12 +43,13 @@ export default function App() {
         return <ArtGallery />;
     }
   };
-
   return (
+    <>
     <div style={{ minHeight: '100vh', backgroundColor: '#ffffff', color: '#333' }}>
-      <Butterflies />
+        <Butterflies />
       <ArtNav currentPage={currentPage} onPageChange={handlePageChange} />
       {renderCurrentPage()}
     </div>
+      </>
   );
 }

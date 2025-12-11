@@ -6,8 +6,9 @@
   var __getOwnPropNames = Object.getOwnPropertyNames;
   var __getProtoOf = Object.getPrototypeOf;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
-  var __commonJS = (cb, mod) => function __require() {
-    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+  var __commonJS = (cb, mod3) => function __require() {
+    return mod3 || (0, cb[__getOwnPropNames(cb)[0]])((mod3 = { exports: {} }).exports, mod3), mod3.exports;
   };
   var __copyProps = (to, from, except, desc) => {
     if (from && typeof from === "object" || typeof from === "function") {
@@ -17,14 +18,15 @@
     }
     return to;
   };
-  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  var __toESM = (mod3, isNodeMode, target) => (target = mod3 != null ? __create(__getProtoOf(mod3)) : {}, __copyProps(
     // If the importer is in node compatibility mode or this is not an ESM
     // file that has been converted to a CommonJS file using a Babel-
     // compatible transform (i.e. "__esModule" has not been set), then set
     // "default" to the CommonJS "module.exports" for node compatibility.
-    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-    mod
+    isNodeMode || !mod3 || !mod3.__esModule ? __defProp(target, "default", { value: mod3, enumerable: true }) : target,
+    mod3
   ));
+  var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 
   // node_modules/react/cjs/react.development.js
   var require_react_development = __commonJS({
@@ -297,8 +299,8 @@
             return refObject;
           }
           var isArrayImpl = Array.isArray;
-          function isArray(a) {
-            return isArrayImpl(a);
+          function isArray(a59) {
+            return isArrayImpl(a59);
           }
           function typeName(value) {
             {
@@ -688,8 +690,8 @@
                 if (childKey != null) {
                   escapedChildKey = escapeUserProvidedKey(childKey) + "/";
                 }
-                mapIntoArray(mappedChild, array, escapedChildKey, "", function(c) {
-                  return c;
+                mapIntoArray(mappedChild, array, escapedChildKey, "", function(c59) {
+                  return c59;
                 });
               } else if (mappedChild != null) {
                 if (isValidElement(mappedChild)) {
@@ -737,10 +739,10 @@
                   }
                 }
                 var iterator = iteratorFn.call(iterableChildren);
-                var step;
+                var step3;
                 var ii = 0;
-                while (!(step = iterator.next()).done) {
-                  child = step.value;
+                while (!(step3 = iterator.next()).done) {
+                  child = step3.value;
                   nextName = nextNamePrefix + getElementKey(child, ii++);
                   subtreeCount += mapIntoArray(child, array, escapedPrefix, nextName, callback);
                 }
@@ -1093,7 +1095,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useReducer(reducer, initialArg, init);
           }
-          function useRef3(initialValue) {
+          function useRef2(initialValue) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
@@ -1300,17 +1302,17 @@
                 var sampleLines = sample.stack.split("\n");
                 var controlLines = control.stack.split("\n");
                 var s = sampleLines.length - 1;
-                var c = controlLines.length - 1;
-                while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
-                  c--;
+                var c59 = controlLines.length - 1;
+                while (s >= 1 && c59 >= 0 && sampleLines[s] !== controlLines[c59]) {
+                  c59--;
                 }
-                for (; s >= 1 && c >= 0; s--, c--) {
-                  if (sampleLines[s] !== controlLines[c]) {
-                    if (s !== 1 || c !== 1) {
+                for (; s >= 1 && c59 >= 0; s--, c59--) {
+                  if (sampleLines[s] !== controlLines[c59]) {
+                    if (s !== 1 || c59 !== 1) {
                       do {
                         s--;
-                        c--;
-                        if (c < 0 || sampleLines[s] !== controlLines[c]) {
+                        c59--;
+                        if (c59 < 0 || sampleLines[s] !== controlLines[c59]) {
                           var _frame = "\n" + sampleLines[s].replace(" at new ", " at ");
                           if (fn.displayName && _frame.includes("<anonymous>")) {
                             _frame = _frame.replace("<anonymous>", fn.displayName);
@@ -1322,7 +1324,7 @@
                           }
                           return _frame;
                         }
-                      } while (s >= 1 && c >= 0);
+                      } while (s >= 1 && c59 >= 0);
                     }
                     break;
                   }
@@ -1524,10 +1526,10 @@
               if (typeof iteratorFn === "function") {
                 if (iteratorFn !== node.entries) {
                   var iterator = iteratorFn.call(node);
-                  var step;
-                  while (!(step = iterator.next()).done) {
-                    if (isValidElement(step.value)) {
-                      validateExplicitKey(step.value, parentType);
+                  var step3;
+                  while (!(step3 = iterator.next()).done) {
+                    if (isValidElement(step3.value)) {
+                      validateExplicitKey(step3.value, parentType);
                     }
                   }
                 }
@@ -1887,7 +1889,7 @@
           exports.useLayoutEffect = useLayoutEffect;
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
-          exports.useRef = useRef3;
+          exports.useRef = useRef2;
           exports.useState = useState6;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
@@ -1987,9 +1989,9 @@
               }
             }
           }
-          function compare(a, b) {
-            var diff = a.sortIndex - b.sortIndex;
-            return diff !== 0 ? diff : a.id - b.id;
+          function compare(a59, b59) {
+            var diff = a59.sortIndex - b59.sortIndex;
+            return diff !== 0 ? diff : a59.id - b59.id;
           }
           var ImmediatePriority = 1;
           var UserBlockingPriority = 2;
@@ -2435,7 +2437,7 @@
           var HostPortal = 4;
           var HostComponent = 5;
           var HostText = 6;
-          var Fragment2 = 7;
+          var Fragment3 = 7;
           var Mode = 8;
           var ContextConsumer = 9;
           var ContextProvider = 10;
@@ -3367,17 +3369,17 @@
                 var sampleLines = sample.stack.split("\n");
                 var controlLines = control.stack.split("\n");
                 var s = sampleLines.length - 1;
-                var c = controlLines.length - 1;
-                while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
-                  c--;
+                var c59 = controlLines.length - 1;
+                while (s >= 1 && c59 >= 0 && sampleLines[s] !== controlLines[c59]) {
+                  c59--;
                 }
-                for (; s >= 1 && c >= 0; s--, c--) {
-                  if (sampleLines[s] !== controlLines[c]) {
-                    if (s !== 1 || c !== 1) {
+                for (; s >= 1 && c59 >= 0; s--, c59--) {
+                  if (sampleLines[s] !== controlLines[c59]) {
+                    if (s !== 1 || c59 !== 1) {
                       do {
                         s--;
-                        c--;
-                        if (c < 0 || sampleLines[s] !== controlLines[c]) {
+                        c59--;
+                        if (c59 < 0 || sampleLines[s] !== controlLines[c59]) {
                           var _frame = "\n" + sampleLines[s].replace(" at new ", " at ");
                           if (fn.displayName && _frame.includes("<anonymous>")) {
                             _frame = _frame.replace("<anonymous>", fn.displayName);
@@ -3389,7 +3391,7 @@
                           }
                           return _frame;
                         }
-                      } while (s >= 1 && c >= 0);
+                      } while (s >= 1 && c59 >= 0);
                     }
                     break;
                   }
@@ -3592,7 +3594,7 @@
                 return "DehydratedFragment";
               case ForwardRef:
                 return getWrappedName$1(type, type.render, "ForwardRef");
-              case Fragment2:
+              case Fragment3:
                 return "Fragment";
               case HostComponent:
                 return type;
@@ -3756,7 +3758,7 @@
             if (node.hasOwnProperty(valueField) || typeof descriptor === "undefined" || typeof descriptor.get !== "function" || typeof descriptor.set !== "function") {
               return;
             }
-            var get2 = descriptor.get, set2 = descriptor.set;
+            var get2 = descriptor.get, set6 = descriptor.set;
             Object.defineProperty(node, valueField, {
               configurable: true,
               get: function() {
@@ -3767,7 +3769,7 @@
                   checkFormFieldValueStringCoercion(value);
                 }
                 currentValue = "" + value;
-                set2.call(this, value);
+                set6.call(this, value);
               }
             });
             Object.defineProperty(node, valueField, {
@@ -4024,8 +4026,8 @@
             }
           }
           var isArrayImpl = Array.isArray;
-          function isArray(a) {
-            return isArrayImpl(a);
+          function isArray(a59) {
+            return isArrayImpl(a59);
           }
           var didWarnValueDefaultValue$1;
           {
@@ -5483,13 +5485,13 @@
               restoreStateIfNeeded();
             }
           }
-          function batchedUpdates(fn, a, b) {
+          function batchedUpdates(fn, a59, b59) {
             if (isInsideEventHandler) {
-              return fn(a, b);
+              return fn(a59, b59);
             }
             isInsideEventHandler = true;
             try {
-              return batchedUpdatesImpl(fn, a, b);
+              return batchedUpdatesImpl(fn, a59, b59);
             } finally {
               isInsideEventHandler = false;
               finishEventHandler();
@@ -5553,7 +5555,7 @@
               passiveBrowserEventsSupported = false;
             }
           }
-          function invokeGuardedCallbackProd(name, func, context, a, b, c, d, e, f) {
+          function invokeGuardedCallbackProd(name, func, context, a59, b59, c59, d59, e, f) {
             var funcArgs = Array.prototype.slice.call(arguments, 3);
             try {
               func.apply(context, funcArgs);
@@ -5565,7 +5567,7 @@
           {
             if (typeof window !== "undefined" && typeof window.dispatchEvent === "function" && typeof document !== "undefined" && typeof document.createEvent === "function") {
               var fakeNode = document.createElement("react");
-              invokeGuardedCallbackImpl = function invokeGuardedCallbackDev(name, func, context, a, b, c, d, e, f) {
+              invokeGuardedCallbackImpl = function invokeGuardedCallbackDev(name, func, context, a59, b59, c59, d59, e, f) {
                 if (typeof document === "undefined" || document === null) {
                   throw new Error("The `document` global was defined when React was initialized, but is not defined anymore. This can happen in a test environment if a component schedules an update from an asynchronous callback, but the test has already finished running. To solve this, you can either unmount the component at the end of your test (and ensure that any asynchronous operations get canceled in `componentWillUnmount`), or you can change the test itself to be asynchronous.");
                 }
@@ -5640,12 +5642,12 @@
               caughtError = error2;
             }
           };
-          function invokeGuardedCallback(name, func, context, a, b, c, d, e, f) {
+          function invokeGuardedCallback(name, func, context, a59, b59, c59, d59, e, f) {
             hasError = false;
             caughtError = null;
             invokeGuardedCallbackImpl$1.apply(reporter, arguments);
           }
-          function invokeGuardedCallbackAndCatchFirstError(name, func, context, a, b, c, d, e, f) {
+          function invokeGuardedCallbackAndCatchFirstError(name, func, context, a59, b59, c59, d59, e, f) {
             invokeGuardedCallback.apply(this, arguments);
             if (hasError) {
               var error2 = clearCaughtError();
@@ -5682,7 +5684,7 @@
           function has(key) {
             return key._reactInternals !== void 0;
           }
-          function set(key, value) {
+          function set5(key, value) {
             key._reactInternals = value;
           }
           var NoFlags = (
@@ -5874,10 +5876,10 @@
               }
               return fiber;
             }
-            var a = fiber;
-            var b = alternate;
+            var a59 = fiber;
+            var b59 = alternate;
             while (true) {
-              var parentA = a.return;
+              var parentA = a59.return;
               if (parentA === null) {
                 break;
               }
@@ -5885,7 +5887,7 @@
               if (parentB === null) {
                 var nextParent = parentA.return;
                 if (nextParent !== null) {
-                  a = b = nextParent;
+                  a59 = b59 = nextParent;
                   continue;
                 }
                 break;
@@ -5893,11 +5895,11 @@
               if (parentA.child === parentB.child) {
                 var child = parentA.child;
                 while (child) {
-                  if (child === a) {
+                  if (child === a59) {
                     assertIsMounted(parentA);
                     return fiber;
                   }
-                  if (child === b) {
+                  if (child === b59) {
                     assertIsMounted(parentA);
                     return alternate;
                   }
@@ -5905,23 +5907,23 @@
                 }
                 throw new Error("Unable to find node on an unmounted component.");
               }
-              if (a.return !== b.return) {
-                a = parentA;
-                b = parentB;
+              if (a59.return !== b59.return) {
+                a59 = parentA;
+                b59 = parentB;
               } else {
                 var didFindChild = false;
                 var _child = parentA.child;
                 while (_child) {
-                  if (_child === a) {
+                  if (_child === a59) {
                     didFindChild = true;
-                    a = parentA;
-                    b = parentB;
+                    a59 = parentA;
+                    b59 = parentB;
                     break;
                   }
-                  if (_child === b) {
+                  if (_child === b59) {
                     didFindChild = true;
-                    b = parentA;
-                    a = parentB;
+                    b59 = parentA;
+                    a59 = parentB;
                     break;
                   }
                   _child = _child.sibling;
@@ -5929,16 +5931,16 @@
                 if (!didFindChild) {
                   _child = parentB.child;
                   while (_child) {
-                    if (_child === a) {
+                    if (_child === a59) {
                       didFindChild = true;
-                      a = parentB;
-                      b = parentA;
+                      a59 = parentB;
+                      b59 = parentA;
                       break;
                     }
-                    if (_child === b) {
+                    if (_child === b59) {
                       didFindChild = true;
-                      b = parentB;
-                      a = parentA;
+                      b59 = parentB;
+                      a59 = parentA;
                       break;
                     }
                     _child = _child.sibling;
@@ -5948,14 +5950,14 @@
                   }
                 }
               }
-              if (a.alternate !== b) {
+              if (a59.alternate !== b59) {
                 throw new Error("Return fibers should always be each others' alternates. This error is likely caused by a bug in React. Please file an issue.");
               }
             }
-            if (a.tag !== HostRoot) {
+            if (a59.tag !== HostRoot) {
               throw new Error("Unable to find node on an unmounted component.");
             }
-            if (a.stateNode.current === a) {
+            if (a59.stateNode.current === a59) {
               return fiber;
             }
             return alternate;
@@ -6812,26 +6814,26 @@
           function laneToIndex(lane) {
             return pickArbitraryLaneIndex(lane);
           }
-          function includesSomeLane(a, b) {
-            return (a & b) !== NoLanes;
+          function includesSomeLane(a59, b59) {
+            return (a59 & b59) !== NoLanes;
           }
-          function isSubsetOfLanes(set2, subset) {
-            return (set2 & subset) === subset;
+          function isSubsetOfLanes(set6, subset) {
+            return (set6 & subset) === subset;
           }
-          function mergeLanes(a, b) {
-            return a | b;
+          function mergeLanes(a59, b59) {
+            return a59 | b59;
           }
-          function removeLanes(set2, subset) {
-            return set2 & ~subset;
+          function removeLanes(set6, subset) {
+            return set6 & ~subset;
           }
-          function intersectLanes(a, b) {
-            return a & b;
+          function intersectLanes(a59, b59) {
+            return a59 & b59;
           }
           function laneToLanes(lane) {
             return lane;
           }
-          function higherPriorityLane(a, b) {
-            return a !== NoLane && a < b ? a : b;
+          function higherPriorityLane(a59, b59) {
+            return a59 !== NoLane && a59 < b59 ? a59 : b59;
           }
           function createLaneMap(initial) {
             var laneMap = [];
@@ -7008,14 +7010,14 @@
               currentUpdatePriority = previousPriority;
             }
           }
-          function higherEventPriority(a, b) {
-            return a !== 0 && a < b ? a : b;
+          function higherEventPriority(a59, b59) {
+            return a59 !== 0 && a59 < b59 ? a59 : b59;
           }
-          function lowerEventPriority(a, b) {
-            return a === 0 || a > b ? a : b;
+          function lowerEventPriority(a59, b59) {
+            return a59 === 0 || a59 > b59 ? a59 : b59;
           }
-          function isHigherEventPriority(a, b) {
-            return a !== 0 && a < b;
+          function isHigherEventPriority(a59, b59) {
+            return a59 !== 0 && a59 < b59;
           }
           function lanesToEventPriority(lanes) {
             var lane = getHighestPriorityLane(lanes);
@@ -7655,9 +7657,9 @@
                 if (!Interface.hasOwnProperty(_propName)) {
                   continue;
                 }
-                var normalize = Interface[_propName];
-                if (normalize) {
-                  this[_propName] = normalize(nativeEvent);
+                var normalize5 = Interface[_propName];
+                if (normalize5) {
+                  this[_propName] = normalize5(nativeEvent);
                 } else {
                   this[_propName] = nativeEvent[_propName];
                 }
@@ -11624,9 +11626,9 @@
               }
               return maybeStrictRoot;
             };
-            var setToSortedString = function(set2) {
+            var setToSortedString = function(set6) {
               var array = [];
-              set2.forEach(function(value) {
+              set6.forEach(function(value) {
                 array.push(value);
               });
               return array.sort().join(", ");
@@ -12021,7 +12023,7 @@
               }
             }
             function updateFragment2(returnFiber, current2, fragment, lanes, key) {
-              if (current2 === null || current2.tag !== Fragment2) {
+              if (current2 === null || current2.tag !== Fragment3) {
                 var created = createFiberFromFragment(fragment, returnFiber.mode, lanes, key);
                 created.return = returnFiber;
                 return created;
@@ -12319,15 +12321,15 @@
               var lastPlacedIndex = 0;
               var newIdx = 0;
               var nextOldFiber = null;
-              var step = newChildren.next();
-              for (; oldFiber !== null && !step.done; newIdx++, step = newChildren.next()) {
+              var step3 = newChildren.next();
+              for (; oldFiber !== null && !step3.done; newIdx++, step3 = newChildren.next()) {
                 if (oldFiber.index > newIdx) {
                   nextOldFiber = oldFiber;
                   oldFiber = null;
                 } else {
                   nextOldFiber = oldFiber.sibling;
                 }
-                var newFiber = updateSlot(returnFiber, oldFiber, step.value, lanes);
+                var newFiber = updateSlot(returnFiber, oldFiber, step3.value, lanes);
                 if (newFiber === null) {
                   if (oldFiber === null) {
                     oldFiber = nextOldFiber;
@@ -12348,7 +12350,7 @@
                 previousNewFiber = newFiber;
                 oldFiber = nextOldFiber;
               }
-              if (step.done) {
+              if (step3.done) {
                 deleteRemainingChildren(returnFiber, oldFiber);
                 if (getIsHydrating()) {
                   var numberOfForks = newIdx;
@@ -12357,8 +12359,8 @@
                 return resultingFirstChild;
               }
               if (oldFiber === null) {
-                for (; !step.done; newIdx++, step = newChildren.next()) {
-                  var _newFiber3 = createChild(returnFiber, step.value, lanes);
+                for (; !step3.done; newIdx++, step3 = newChildren.next()) {
+                  var _newFiber3 = createChild(returnFiber, step3.value, lanes);
                   if (_newFiber3 === null) {
                     continue;
                   }
@@ -12377,8 +12379,8 @@
                 return resultingFirstChild;
               }
               var existingChildren = mapRemainingChildren(returnFiber, oldFiber);
-              for (; !step.done; newIdx++, step = newChildren.next()) {
-                var _newFiber4 = updateFromMap(existingChildren, returnFiber, newIdx, step.value, lanes);
+              for (; !step3.done; newIdx++, step3 = newChildren.next()) {
+                var _newFiber4 = updateFromMap(existingChildren, returnFiber, newIdx, step3.value, lanes);
                 if (_newFiber4 !== null) {
                   if (shouldTrackSideEffects) {
                     if (_newFiber4.alternate !== null) {
@@ -12424,7 +12426,7 @@
                 if (child.key === key) {
                   var elementType = element.type;
                   if (elementType === REACT_FRAGMENT_TYPE) {
-                    if (child.tag === Fragment2) {
+                    if (child.tag === Fragment3) {
                       deleteRemainingChildren(returnFiber, child.sibling);
                       var existing = useFiber(child, element.props.children);
                       existing.return = returnFiber;
@@ -13226,11 +13228,11 @@
           var contextStackCursor$1 = createCursor(NO_CONTEXT);
           var contextFiberStackCursor = createCursor(NO_CONTEXT);
           var rootInstanceStackCursor = createCursor(NO_CONTEXT);
-          function requiredContext(c) {
-            if (c === NO_CONTEXT) {
+          function requiredContext(c59) {
+            if (c59 === NO_CONTEXT) {
               throw new Error("Expected host context to exist. This error is likely caused by a bug in React. Please file an issue.");
             }
-            return c;
+            return c59;
           }
           function getRootHostContainer() {
             var rootInstance = requiredContext(rootInstanceStackCursor.current);
@@ -15589,7 +15591,7 @@
           function adoptClassInstance(workInProgress2, instance) {
             instance.updater = classComponentUpdater;
             workInProgress2.stateNode = instance;
-            set(instance, workInProgress2);
+            set5(instance, workInProgress2);
             {
               instance._reactInternalInstance = fakeInternalInstance;
             }
@@ -17446,10 +17448,10 @@
                   if (typeof iteratorFn === "function") {
                     var childrenIterator = iteratorFn.call(children);
                     if (childrenIterator) {
-                      var step = childrenIterator.next();
+                      var step3 = childrenIterator.next();
                       var _i = 0;
-                      for (; !step.done; step = childrenIterator.next()) {
-                        if (!validateSuspenseListNestedChild(step.value, _i)) {
+                      for (; !step3.done; step3 = childrenIterator.next()) {
+                        if (!validateSuspenseListNestedChild(step3.value, _i)) {
                           return;
                         }
                         _i++;
@@ -17900,7 +17902,7 @@
                 var _resolvedProps2 = workInProgress2.elementType === type ? _unresolvedProps2 : resolveDefaultProps(type, _unresolvedProps2);
                 return updateForwardRef(current2, workInProgress2, type, _resolvedProps2, renderLanes2);
               }
-              case Fragment2:
+              case Fragment3:
                 return updateFragment(current2, workInProgress2, renderLanes2);
               case Mode:
                 return updateMode(current2, workInProgress2, renderLanes2);
@@ -18172,7 +18174,7 @@
               case SimpleMemoComponent:
               case FunctionComponent:
               case ForwardRef:
-              case Fragment2:
+              case Fragment3:
               case Mode:
               case Profiler:
               case ContextConsumer:
@@ -20866,11 +20868,11 @@
               }
             }
           }
-          function batchedUpdates$1(fn, a) {
+          function batchedUpdates$1(fn, a59) {
             var prevExecutionContext = executionContext;
             executionContext |= BatchedContext;
             try {
-              return fn(a);
+              return fn(a59);
             } finally {
               executionContext = prevExecutionContext;
               if (executionContext === NoContext && // Treat `act` as if it's inside `batchedUpdates`, even in legacy mode.
@@ -20880,13 +20882,13 @@
               }
             }
           }
-          function discreteUpdates(fn, a, b, c, d) {
+          function discreteUpdates(fn, a59, b59, c59, d59) {
             var previousPriority = getCurrentUpdatePriority();
             var prevTransition = ReactCurrentBatchConfig$3.transition;
             try {
               ReactCurrentBatchConfig$3.transition = null;
               setCurrentUpdatePriority(DiscreteEventPriority);
-              return fn(a, b, c, d);
+              return fn(a59, b59, c59, d59);
             } finally {
               setCurrentUpdatePriority(previousPriority);
               ReactCurrentBatchConfig$3.transition = prevTransition;
@@ -22433,7 +22435,7 @@
             return fiber;
           }
           function createFiberFromFragment(elements, mode, lanes, key) {
-            var fiber = createFiber(Fragment2, elements, key, mode);
+            var fiber = createFiber(Fragment3, elements, key, mode);
             fiber.lanes = lanes;
             return fiber;
           }
@@ -23561,18 +23563,18 @@
         exports.hydrateRoot = m.hydrateRoot;
       } else {
         i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
-        exports.createRoot = function(c, o) {
+        exports.createRoot = function(c59, o) {
           i.usingClientEntryPoint = true;
           try {
-            return m.createRoot(c, o);
+            return m.createRoot(c59, o);
           } finally {
             i.usingClientEntryPoint = false;
           }
         };
-        exports.hydrateRoot = function(c, h, o) {
+        exports.hydrateRoot = function(c59, h, o) {
           i.usingClientEntryPoint = true;
           try {
-            return m.hydrateRoot(c, h, o);
+            return m.hydrateRoot(c59, h, o);
           } finally {
             i.usingClientEntryPoint = false;
           }
@@ -23896,17 +23898,17 @@
                 var sampleLines = sample.stack.split("\n");
                 var controlLines = control.stack.split("\n");
                 var s = sampleLines.length - 1;
-                var c = controlLines.length - 1;
-                while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
-                  c--;
+                var c59 = controlLines.length - 1;
+                while (s >= 1 && c59 >= 0 && sampleLines[s] !== controlLines[c59]) {
+                  c59--;
                 }
-                for (; s >= 1 && c >= 0; s--, c--) {
-                  if (sampleLines[s] !== controlLines[c]) {
-                    if (s !== 1 || c !== 1) {
+                for (; s >= 1 && c59 >= 0; s--, c59--) {
+                  if (sampleLines[s] !== controlLines[c59]) {
+                    if (s !== 1 || c59 !== 1) {
                       do {
                         s--;
-                        c--;
-                        if (c < 0 || sampleLines[s] !== controlLines[c]) {
+                        c59--;
+                        if (c59 < 0 || sampleLines[s] !== controlLines[c59]) {
                           var _frame = "\n" + sampleLines[s].replace(" at new ", " at ");
                           if (fn.displayName && _frame.includes("<anonymous>")) {
                             _frame = _frame.replace("<anonymous>", fn.displayName);
@@ -23918,7 +23920,7 @@
                           }
                           return _frame;
                         }
-                      } while (s >= 1 && c >= 0);
+                      } while (s >= 1 && c59 >= 0);
                     }
                     break;
                   }
@@ -24033,8 +24035,8 @@
             }
           }
           var isArrayImpl = Array.isArray;
-          function isArray(a) {
-            return isArrayImpl(a);
+          function isArray(a59) {
+            return isArrayImpl(a59);
           }
           function typeName(value) {
             {
@@ -24323,10 +24325,10 @@
                 if (typeof iteratorFn === "function") {
                   if (iteratorFn !== node.entries) {
                     var iterator = iteratorFn.call(node);
-                    var step;
-                    while (!(step = iterator.next()).done) {
-                      if (isValidElement(step.value)) {
-                        validateExplicitKey(step.value, parentType);
+                    var step3;
+                    while (!(step3 = iterator.next()).done) {
+                      if (isValidElement(step3.value)) {
+                        validateExplicitKey(step3.value, parentType);
                       }
                     }
                   }
@@ -25610,11 +25612,11 @@
     document.head.appendChild(style);
   }
   function ArtGallery() {
-    const sortedAssets = [...artAssets].sort((a, b) => {
-      if (!a.date && !b.date) return 0;
-      if (!a.date) return 1;
-      if (!b.date) return -1;
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    const sortedAssets = [...artAssets].sort((a59, b59) => {
+      if (!a59.date && !b59.date) return 0;
+      if (!a59.date) return 1;
+      if (!b59.date) return -1;
+      return new Date(b59.date).getTime() - new Date(a59.date).getTime();
     });
     return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { style: { maxWidth: "1200px", margin: "0 auto", padding: "3rem 1rem" }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h2", { children: "Web has worked with many artists in a diverse range of genres. Curation is an important part of there practice" }),
@@ -25665,59 +25667,2037 @@
 
   // src/art/components/Butterflies.tsx
   var import_react4 = __toESM(require_react());
+
+  // node_modules/@thi.ng/api/fn.js
+  var identity = (x) => x;
+
+  // node_modules/@thi.ng/api/api.js
+  var SEMAPHORE = Symbol();
+  var EVENT_ALL = "*";
+
+  // node_modules/@thi.ng/api/mixin.js
+  var mixin = (behaviour, sharedBehaviour = {}) => {
+    const instanceKeys = Reflect.ownKeys(behaviour);
+    const sharedKeys = Reflect.ownKeys(sharedBehaviour);
+    const typeTag = Symbol("isa");
+    function _mixin(clazz) {
+      for (const key of instanceKeys) {
+        const existing = Object.getOwnPropertyDescriptor(
+          clazz.prototype,
+          key
+        );
+        if (!existing || existing.configurable) {
+          Object.defineProperty(clazz.prototype, key, {
+            value: behaviour[key],
+            writable: true
+          });
+        } else {
+        }
+      }
+      Object.defineProperty(clazz.prototype, typeTag, { value: true });
+      return clazz;
+    }
+    for (const key of sharedKeys) {
+      Object.defineProperty(_mixin, key, {
+        value: sharedBehaviour[key],
+        enumerable: sharedBehaviour.propertyIsEnumerable(key)
+      });
+    }
+    Object.defineProperty(_mixin, Symbol.hasInstance, {
+      value: (x) => !!x[typeTag]
+    });
+    return _mixin;
+  };
+
+  // node_modules/@thi.ng/api/mixins/inotify.js
+  var inotify_dispatch = (listeners, e) => {
+    if (!listeners) return false;
+    for (let i = 0, n = listeners.length, l; i < n; i++) {
+      l = listeners[i];
+      l[0].call(l[1], e);
+      if (e.canceled) {
+        return false;
+      }
+    }
+    return true;
+  };
+  var INotifyMixin = mixin({
+    addListener(id, fn, scope) {
+      let l = (this._listeners = this._listeners || {})[id];
+      !l && (l = this._listeners[id] = []);
+      if (this.__listener(l, fn, scope) === -1) {
+        l.push([fn, scope]);
+        return true;
+      }
+      return false;
+    },
+    removeListener(id, fn, scope) {
+      let listeners;
+      if (!(listeners = this._listeners)) return false;
+      const l = listeners[id];
+      if (l) {
+        const idx = this.__listener(l, fn, scope);
+        if (idx !== -1) {
+          l.splice(idx, 1);
+          !l.length && delete listeners[id];
+          return true;
+        }
+      }
+      return false;
+    },
+    notify(e) {
+      let listeners;
+      if (!(listeners = this._listeners)) return false;
+      e.target === void 0 && (e.target = this);
+      const res = inotify_dispatch(listeners[e.id], e);
+      return inotify_dispatch(listeners[EVENT_ALL], e) || res;
+    },
+    __listener(listeners, f, scope) {
+      let i = listeners.length;
+      while (i-- > 0) {
+        const l = listeners[i];
+        if (l[0] === f && l[1] === scope) {
+          break;
+        }
+      }
+      return i;
+    }
+  });
+
+  // node_modules/@thi.ng/errors/deferror.js
+  var defError = (prefix, suffix = (msg) => msg !== void 0 ? ": " + msg : "") => class extends Error {
+    constructor(msg) {
+      super(prefix(msg) + suffix(msg));
+      __publicField(this, "origMessage");
+      this.origMessage = msg !== void 0 ? String(msg) : "";
+    }
+  };
+
+  // node_modules/@thi.ng/errors/unsupported.js
+  var UnsupportedOperationError = defError(
+    () => "unsupported operation"
+  );
+  var unsupported = (msg) => {
+    throw new UnsupportedOperationError(msg);
+  };
+
+  // node_modules/@thi.ng/vectors/vop.js
+  var vop = (dispatch = 1, fallback, ...optimized) => {
+    const impls = [, ,].concat(optimized);
+    const fn = (...args) => {
+      const g = impls[args[dispatch].length] || fallback;
+      return g ? g(...args) : unsupported(`no impl for vec size ${args[dispatch].length}`);
+    };
+    fn.add = (dim, fn2) => impls[dim] = fn2;
+    fn.default = (fn2) => fallback = fn2;
+    fn.impl = (dim) => dim != null ? impls[dim] || fallback : fallback;
+    return fn;
+  };
+
+  // node_modules/@thi.ng/vectors/distsq.js
+  var distSq2 = (a59, b59) => {
+    const dx = a59[0] - b59[0];
+    const dy = a59[1] - b59[1];
+    return dx * dx + dy * dy;
+  };
+  var distSq3 = (a59, b59) => {
+    const dx = a59[0] - b59[0];
+    const dy = a59[1] - b59[1];
+    const dz = a59[2] - b59[2];
+    return dx * dx + dy * dy + dz * dz;
+  };
+  var distSq4 = (a59, b59) => {
+    const dx = a59[0] - b59[0];
+    const dy = a59[1] - b59[1];
+    const dz = a59[2] - b59[2];
+    const dw = a59[3] - b59[3];
+    return dx * dx + dy * dy + dz * dz + dw * dw;
+  };
+  var distSq = vop(
+    0,
+    (a59, b59) => {
+      let sum = 0;
+      for (let i = a59.length; i-- > 0; ) {
+        const d59 = a59[i] - b59[i];
+        sum += d59 * d59;
+      }
+      return sum;
+    },
+    distSq2,
+    distSq3,
+    distSq4
+  );
+
+  // node_modules/@thi.ng/distance/squared.js
+  var Squared = class {
+    constructor(metric) {
+      this.metric = metric;
+    }
+    to(x) {
+      return x * x;
+    }
+    from(x) {
+      return Math.sqrt(x);
+    }
+  };
+  var DIST_SQ = new Squared(distSq);
+  var DIST_SQ1 = new Squared((a59, b59) => (a59 - b59) ** 2);
+  var DIST_SQ2 = new Squared(distSq2);
+  var DIST_SQ3 = new Squared(distSq3);
+
+  // node_modules/@thi.ng/math/api.js
+  var PI = Math.PI;
+  var TAU = PI * 2;
+  var HALF_PI = PI / 2;
+  var THIRD_PI = PI / 3;
+  var QUARTER_PI = PI / 4;
+  var SIXTH_PI = PI / 6;
+  var INV_PI = 1 / PI;
+  var INV_TAU = 1 / TAU;
+  var INV_HALF_PI = 1 / HALF_PI;
+  var DEG2RAD = PI / 180;
+  var RAD2DEG = 180 / PI;
+  var PHI = (1 + Math.sqrt(5)) / 2;
+  var SQRT2 = Math.SQRT2;
+  var SQRT3 = Math.sqrt(3);
+  var SQRT2_2 = SQRT2 / 2;
+  var SQRT3_2 = SQRT3 / 2;
+  var THIRD = 1 / 3;
+  var TWO_THIRD = 2 / 3;
+  var SIXTH = 1 / 6;
+  var EPS = 1e-6;
+
+  // node_modules/@thi.ng/vectors/defopvvn.js
+  var defOpVVN = (op, dispatch = 1) => {
+    const a59 = (o, a210, b210, n) => {
+      !o && (o = a210);
+      for (let i = a210.length; i-- > 0; ) o[i] = op(a210[i], b210[i], n);
+      return o;
+    };
+    const b59 = (o, a210, b210, n) => {
+      !o && (o = a210);
+      o[0] = op(a210[0], b210[0], n);
+      o[1] = op(a210[1], b210[1], n);
+      return o;
+    };
+    const c59 = (o, a210, b210, n) => {
+      !o && (o = a210);
+      o[0] = op(a210[0], b210[0], n);
+      o[1] = op(a210[1], b210[1], n);
+      o[2] = op(a210[2], b210[2], n);
+      return o;
+    };
+    const d59 = (o, a210, b210, n) => {
+      !o && (o = a210);
+      o[0] = op(a210[0], b210[0], n);
+      o[1] = op(a210[1], b210[1], n);
+      o[2] = op(a210[2], b210[2], n);
+      o[3] = op(a210[3], b210[3], n);
+      return o;
+    };
+    return [
+      vop(dispatch, a59, b59, c59, d59),
+      b59,
+      c59,
+      d59
+    ];
+  };
+
+  // node_modules/@thi.ng/vectors/ops.js
+  var $add = (a59, b59) => a59 + b59;
+  var $addm = (a59, b59, c59) => (a59 + b59) * c59;
+  var $div = (a59, b59) => a59 / b59;
+  var $fmod = (a59, b59) => a59 % b59;
+  var $madd = (a59, b59, c59) => a59 * b59 + c59;
+  var $msub = (a59, b59, c59) => a59 * b59 - c59;
+  var $mix = (a59, b59, c59) => a59 + (b59 - a59) * c59;
+  var $mul = (a59, b59) => a59 * b59;
+  var $sub = (a59, b59) => a59 - b59;
+  var $subm = (a59, b59, c59) => (a59 - b59) * c59;
+
+  // node_modules/@thi.ng/vectors/mixn.js
+  var [a, b, c, d] = defOpVVN($mix);
+  var mixN2 = b;
+
+  // node_modules/@thi.ng/vectors/set.js
+  var set2 = (o, a59) => {
+    !o && (o = []);
+    o[0] = a59[0];
+    o[1] = a59[1];
+    return o;
+  };
+  var set3 = (o, a59) => {
+    !o && (o = []);
+    o[0] = a59[0];
+    o[1] = a59[1];
+    o[2] = a59[2];
+    return o;
+  };
+  var set4 = (o, a59) => {
+    !o && (o = []);
+    o[0] = a59[0];
+    o[1] = a59[1];
+    o[2] = a59[2];
+    o[3] = a59[3];
+    return o;
+  };
+  var set = vop(
+    1,
+    (o, a59) => {
+      !o && (o = []);
+      for (let i = a59.length; i-- > 0; ) o[i] = a59[i];
+      return o;
+    },
+    set2,
+    set3,
+    set4
+  );
+
+  // node_modules/@thi.ng/timestep/state.js
+  var VectorState = class {
+    constructor(api, value, update) {
+      __publicField(this, "prev");
+      __publicField(this, "curr");
+      __publicField(this, "setFn");
+      __publicField(this, "mixFn");
+      this.value = value;
+      this.update = update;
+      this.setFn = api.set;
+      this.mixFn = api.mixN;
+      this.prev = this.setFn([], value);
+      this.curr = this.setFn([], value);
+    }
+    deref() {
+      return this.value;
+    }
+    /**
+     * Copies given vector to {@link VectorState.prev}, {@link VectorState.curr}
+     * and {@link VectorState.value}.
+     *
+     * @param value
+     */
+    reset(value) {
+      const set5 = this.setFn;
+      set5(this.prev, value);
+      set5(this.curr, value);
+      set5(this.value, value);
+    }
+    integrate(dt, ctx) {
+      this.setFn(this.prev, this.curr);
+      this.update(this.curr, dt, ctx);
+    }
+    interpolate(alpha) {
+      this.mixFn(this.value, this.prev, this.curr, alpha);
+    }
+  };
+  var defVector = (api, v, update) => new VectorState(api, v, update);
+
+  // node_modules/@thi.ng/timestep/api.js
+  var EVENT_FRAME = "frame";
+  var EVENT_SUBFRAME = "subframe";
+
+  // node_modules/@thi.ng/timestep/timestep.js
+  var __defProp2 = Object.defineProperty;
+  var __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
+  var __decorateClass = (decorators, target, key, kind) => {
+    var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc2(target, key) : target;
+    for (var i = decorators.length - 1, decorator; i >= 0; i--)
+      if (decorator = decorators[i])
+        result = (kind ? decorator(target, key, result) : decorator(result)) || result;
+    if (kind && result) __defProp2(target, key, result);
+    return result;
+  };
+  var TimeStep = class {
+    constructor(opts) {
+      __publicField(this, "start");
+      __publicField(this, "dt");
+      __publicField(this, "maxFrameTime");
+      __publicField(this, "scale");
+      __publicField(this, "t", 0);
+      __publicField(this, "current", 0);
+      __publicField(this, "accumulator", 0);
+      __publicField(this, "frame", 0);
+      __publicField(this, "updates", 0);
+      __publicField(this, "__eventFrame");
+      __publicField(this, "__eventSubFrame");
+      const $opts = {
+        dt: 1 / 60,
+        maxFrameTime: 1 / 4,
+        startTime: 0,
+        scale: 1e-3,
+        ...opts
+      };
+      this.dt = $opts.dt;
+      this.maxFrameTime = $opts.maxFrameTime;
+      this.scale = $opts.scale;
+      this.start = $opts.startTime * this.scale;
+      this.__eventFrame = Object.freeze({ id: EVENT_FRAME, target: this });
+      this.__eventSubFrame = Object.freeze({
+        id: EVENT_SUBFRAME,
+        target: this
+      });
+    }
+    // @ts-ignore mixin
+    // prettier-ignore
+    addListener(id, fn, scope) {
+    }
+    // @ts-ignore mixin
+    // prettier-ignore
+    removeListener(id, fn, scope) {
+    }
+    // @ts-ignore mixin
+    notify(event) {
+    }
+    /**
+     * Updates internal time to given new time `now` (given value will be scaled
+     * via {@link TimeStepOpts.scale}) and performs the required number of fixed
+     * timesteps to integrate and interpolate the given `state` values.
+     *
+     * @remarks
+     * If the scaled time difference since the last step is greater than
+     * {@link TimeStepOpts.maxFrameTime}, it will be limited to the latter.
+     *
+     * If `interpolate` is false, the {@link ITimeStep.interpolate} phase of the
+     * update cycle is skipped. This is useful when using this setup to simulate
+     * sub-steps (e.g. in XPBD) and only requiring the interpolation stage for
+     * the last step.
+     *
+     * @param now
+     * @param items
+     * @param interpolate
+     */
+    update(now, items, interpolate = true) {
+      now = now * this.scale - this.start;
+      this.accumulator += Math.min(now - this.current, this.maxFrameTime);
+      this.current = now;
+      const n = items.length;
+      const dt = this.dt;
+      while (this.accumulator >= dt) {
+        for (let i = 0; i < n; i++) items[i].integrate(dt, this);
+        this.t += dt;
+        this.accumulator -= dt;
+        this.updates++;
+        this.notify(this.__eventSubFrame);
+      }
+      if (interpolate) {
+        const alpha = this.accumulator / dt;
+        for (let i = 0; i < n; i++) items[i].interpolate(alpha, this);
+      }
+      this.frame++;
+      this.notify(this.__eventFrame);
+    }
+  };
+  TimeStep = __decorateClass([
+    INotifyMixin
+  ], TimeStep);
+  var defTimeStep = (opts) => new TimeStep(opts);
+  var integrateAll = (dt, ctx, ...items) => {
+    for (let i = 0, n = items.length; i < n; i++) items[i].integrate(dt, ctx);
+  };
+  var interpolateAll = (alpha, ctx, ...items) => {
+    for (let i = 0, n = items.length; i < n; i++)
+      items[i].interpolate(alpha, ctx);
+  };
+
+  // node_modules/@thi.ng/vectors/defopv.js
+  var defOpV = (op, dispatch = 1) => {
+    const a59 = (o, a210) => {
+      !o && (o = a210);
+      for (let i = a210.length; i-- > 0; ) o[i] = op(a210[i]);
+      return o;
+    };
+    const b59 = (o, a210) => {
+      !o && (o = a210);
+      o[0] = op(a210[0]);
+      o[1] = op(a210[1]);
+      return o;
+    };
+    const c59 = (o, a210) => {
+      !o && (o = a210);
+      o[0] = op(a210[0]);
+      o[1] = op(a210[1]);
+      o[2] = op(a210[2]);
+      return o;
+    };
+    const d59 = (o, a210) => {
+      !o && (o = a210);
+      o[0] = op(a210[0]);
+      o[1] = op(a210[1]);
+      o[2] = op(a210[2]);
+      o[3] = op(a210[3]);
+      return o;
+    };
+    return [
+      vop(dispatch, a59, b59, c59, d59),
+      b59,
+      c59,
+      d59
+    ];
+  };
+
+  // node_modules/@thi.ng/vectors/abs.js
+  var [a2, b2, c2, d2] = defOpV(Math.abs);
+  var abs2 = b2;
+
+  // node_modules/@thi.ng/vectors/acos.js
+  var [a3, b3, c3, d3] = defOpV(Math.acos);
+  var acos2 = b3;
+
+  // node_modules/@thi.ng/vectors/defopvv.js
+  var defOpVV = (op, dispatch = 1, outA = true) => {
+    const a59 = outA ? (o, a210, b210) => {
+      !o && (o = a210);
+      for (let i = a210.length; i-- > 0; ) o[i] = op(a210[i], b210[i]);
+      return o;
+    } : (o, a210, b210) => {
+      !o && (o = b210);
+      for (let i = a210.length; i-- > 0; ) o[i] = op(a210[i], b210[i]);
+      return o;
+    };
+    const b59 = outA ? (o, a210, b210) => {
+      !o && (o = a210);
+      o[0] = op(a210[0], b210[0]);
+      o[1] = op(a210[1], b210[1]);
+      return o;
+    } : (o, a210, b210) => {
+      !o && (o = b210);
+      o[0] = op(a210[0], b210[0]);
+      o[1] = op(a210[1], b210[1]);
+      return o;
+    };
+    const c59 = outA ? (o, a210, b210) => {
+      !o && (o = a210);
+      o[0] = op(a210[0], b210[0]);
+      o[1] = op(a210[1], b210[1]);
+      o[2] = op(a210[2], b210[2]);
+      return o;
+    } : (o, a210, b210) => {
+      !o && (o = b210);
+      o[0] = op(a210[0], b210[0]);
+      o[1] = op(a210[1], b210[1]);
+      o[2] = op(a210[2], b210[2]);
+      return o;
+    };
+    const d59 = outA ? (o, a210, b210) => {
+      !o && (o = a210);
+      o[0] = op(a210[0], b210[0]);
+      o[1] = op(a210[1], b210[1]);
+      o[2] = op(a210[2], b210[2]);
+      o[3] = op(a210[3], b210[3]);
+      return o;
+    } : (o, a210, b210) => {
+      !o && (o = b210);
+      o[0] = op(a210[0], b210[0]);
+      o[1] = op(a210[1], b210[1]);
+      o[2] = op(a210[2], b210[2]);
+      o[3] = op(a210[3], b210[3]);
+      return o;
+    };
+    return [
+      vop(dispatch, a59, b59, c59, d59),
+      b59,
+      c59,
+      d59
+    ];
+  };
+
+  // node_modules/@thi.ng/vectors/add.js
+  var [a4, b4, c4, d4] = defOpVV($add);
+  var add2 = b4;
+
+  // node_modules/@thi.ng/vectors/defopvvv.js
+  var defOpVVV = (op, dispatch = 1, outA = true) => {
+    const a59 = outA ? (o, a210, b210, c210) => {
+      !o && (o = a210);
+      for (let i = a210.length; i-- > 0; ) o[i] = op(a210[i], b210[i], c210[i]);
+      return o;
+    } : (o, a210, b210, c210) => {
+      !o && (o = c210);
+      for (let i = a210.length; i-- > 0; ) o[i] = op(a210[i], b210[i], c210[i]);
+      return o;
+    };
+    const b59 = outA ? (o, a210, b210, c210) => {
+      !o && (o = a210);
+      o[0] = op(a210[0], b210[0], c210[0]);
+      o[1] = op(a210[1], b210[1], c210[1]);
+      return o;
+    } : (o, a210, b210, c210) => {
+      !o && (o = c210);
+      o[0] = op(a210[0], b210[0], c210[0]);
+      o[1] = op(a210[1], b210[1], c210[1]);
+      return o;
+    };
+    const c59 = outA ? (o, a210, b210, c210) => {
+      !o && (o = a210);
+      o[0] = op(a210[0], b210[0], c210[0]);
+      o[1] = op(a210[1], b210[1], c210[1]);
+      o[2] = op(a210[2], b210[2], c210[2]);
+      return o;
+    } : (o, a210, b210, c210) => {
+      !o && (o = c210);
+      o[0] = op(a210[0], b210[0], c210[0]);
+      o[1] = op(a210[1], b210[1], c210[1]);
+      o[2] = op(a210[2], b210[2], c210[2]);
+      return o;
+    };
+    const d59 = outA ? (o, a210, b210, c210) => {
+      !o && (o = a210);
+      o[0] = op(a210[0], b210[0], c210[0]);
+      o[1] = op(a210[1], b210[1], c210[1]);
+      o[2] = op(a210[2], b210[2], c210[2]);
+      o[3] = op(a210[3], b210[3], c210[3]);
+      return o;
+    } : (o, a210, b210, c210) => {
+      !o && (o = c210);
+      o[0] = op(a210[0], b210[0], c210[0]);
+      o[1] = op(a210[1], b210[1], c210[1]);
+      o[2] = op(a210[2], b210[2], c210[2]);
+      o[3] = op(a210[3], b210[3], c210[3]);
+      return o;
+    };
+    return [
+      vop(dispatch, a59, b59, c59, d59),
+      b59,
+      c59,
+      d59
+    ];
+  };
+
+  // node_modules/@thi.ng/vectors/addm.js
+  var [a5, b5, c5, d5] = defOpVVV($addm);
+  var addm2 = b5;
+
+  // node_modules/@thi.ng/vectors/addmn.js
+  var [a6, b6, c6, d6] = defOpVVN($addm);
+  var addmN2 = b6;
+
+  // node_modules/@thi.ng/vectors/defopvn.js
+  var defOpVN = (op, dispatch = 1) => {
+    const a59 = (o, a210, n) => {
+      !o && (o = a210);
+      for (let i = a210.length; i-- > 0; ) o[i] = op(a210[i], n);
+      return o;
+    };
+    const b59 = (o, a210, n) => {
+      !o && (o = a210);
+      o[0] = op(a210[0], n);
+      o[1] = op(a210[1], n);
+      return o;
+    };
+    const c59 = (o, a210, n) => {
+      !o && (o = a210);
+      o[0] = op(a210[0], n);
+      o[1] = op(a210[1], n);
+      o[2] = op(a210[2], n);
+      return o;
+    };
+    const d59 = (o, a210, n) => {
+      !o && (o = a210);
+      o[0] = op(a210[0], n);
+      o[1] = op(a210[1], n);
+      o[2] = op(a210[2], n);
+      o[3] = op(a210[3], n);
+      return o;
+    };
+    return [
+      vop(dispatch, a59, b59, c59, d59),
+      b59,
+      c59,
+      d59
+    ];
+  };
+
+  // node_modules/@thi.ng/vectors/addn.js
+  var [a7, b7, c7, d7] = defOpVN($add);
+  var addN2 = b7;
+
+  // node_modules/@thi.ng/vectors/api.js
+  var mi = -Infinity;
+  var mx = Infinity;
+  var MIN2 = Object.freeze([mi, mi]);
+  var MAX2 = Object.freeze([mx, mx]);
+  var ONE2 = Object.freeze([1, 1]);
+  var ZERO2 = Object.freeze([0, 0]);
+  var X2 = Object.freeze([1, 0]);
+  var Y2 = Object.freeze([0, 1]);
+  var MIN3 = Object.freeze([mi, mi, mi]);
+  var MAX3 = Object.freeze([mx, mx, mx]);
+  var ONE3 = Object.freeze([1, 1, 1]);
+  var ZERO3 = Object.freeze([0, 0, 0]);
+  var X3 = Object.freeze([1, 0, 0]);
+  var Y3 = Object.freeze([0, 1, 0]);
+  var Z3 = Object.freeze([0, 0, 1]);
+  var MIN4 = Object.freeze([mi, mi, mi, mi]);
+  var MAX4 = Object.freeze([mx, mx, mx, mx]);
+  var ONE4 = Object.freeze([1, 1, 1, 1]);
+  var ZERO4 = Object.freeze([0, 0, 0, 0]);
+  var X4 = Object.freeze([1, 0, 0, 0]);
+  var Y4 = Object.freeze([0, 1, 0, 0]);
+  var Z4 = Object.freeze([0, 0, 1, 0]);
+  var W4 = Object.freeze([0, 0, 0, 1]);
+
+  // node_modules/@thi.ng/vectors/asin.js
+  var [a8, b8, c8, d8] = defOpV(Math.asin);
+  var asin2 = b8;
+
+  // node_modules/@thi.ng/vectors/atan.js
+  var [a9, b9, c9, d9] = defOpV(Math.atan);
+  var atan_2 = b9;
+
+  // node_modules/@thi.ng/vectors/atan2.js
+  var [a10, b10, c10, d10] = defOpVV(Math.atan2);
+  var atan2_2 = b10;
+
+  // node_modules/@thi.ng/vectors/ceil.js
+  var [a11, b11, c11, d11] = defOpV(Math.ceil);
+  var ceil2 = b11;
+
+  // node_modules/@thi.ng/math/interval.js
+  var clamp = (x, min, max) => x < min ? min : x > max ? max : x;
+  var clamp01 = (x) => x < 0 ? 0 : x > 1 ? 1 : x;
+  var min2id = (a59, b59) => a59 <= b59 ? 0 : 1;
+  var min3id = (a59, b59, c59) => a59 <= b59 ? a59 <= c59 ? 0 : 2 : b59 <= c59 ? 1 : 2;
+  var min4id = (a59, b59, c59, d59) => a59 <= b59 ? a59 <= c59 ? a59 <= d59 ? 0 : 3 : c59 <= d59 ? 2 : 3 : b59 <= c59 ? b59 <= d59 ? 1 : 3 : c59 <= d59 ? 2 : 3;
+  var max2id = (a59, b59) => a59 >= b59 ? 0 : 1;
+  var max3id = (a59, b59, c59) => a59 >= b59 ? a59 >= c59 ? 0 : 2 : b59 >= c59 ? 1 : 2;
+  var max4id = (a59, b59, c59, d59) => a59 >= b59 ? a59 >= c59 ? a59 >= d59 ? 0 : 3 : c59 >= d59 ? 2 : 3 : b59 >= c59 ? b59 >= d59 ? 1 : 3 : c59 >= d59 ? 2 : 3;
+
+  // node_modules/@thi.ng/vectors/clamp.js
+  var [a12, b12, c12, d12] = defOpVVV(clamp);
+  var clamp2 = b12;
+
+  // node_modules/@thi.ng/vectors/clamp01.js
+  var [a13, b13, c13, d13] = defOpV(clamp01);
+  var clamp01_2 = b13;
+
+  // node_modules/@thi.ng/vectors/clampn.js
+  var clampN2 = (o, a59, b59, c59) => {
+    !o && (o = a59);
+    o[0] = clamp(a59[0], b59, c59);
+    o[1] = clamp(a59[1], b59, c59);
+    return o;
+  };
+  var clampN3 = (o, a59, b59, c59) => {
+    !o && (o = a59);
+    o[0] = clamp(a59[0], b59, c59);
+    o[1] = clamp(a59[1], b59, c59);
+    o[2] = clamp(a59[2], b59, c59);
+    return o;
+  };
+  var clampN4 = (o, a59, b59, c59) => {
+    !o && (o = a59);
+    o[0] = clamp(a59[0], b59, c59);
+    o[1] = clamp(a59[1], b59, c59);
+    o[2] = clamp(a59[2], b59, c59);
+    o[3] = clamp(a59[3], b59, c59);
+    return o;
+  };
+  var clampN = vop(
+    1,
+    (o, a59, b59, c59) => {
+      !o && (o = a59);
+      for (let i = a59.length; i-- > 0; ) o[i] = clamp(a59[i], b59, c59);
+      return o;
+    },
+    clampN2,
+    clampN3,
+    clampN4
+  );
+
+  // node_modules/@thi.ng/vectors/cos.js
+  var [a14, b14, c14, d14] = defOpV(Math.cos);
+  var cos2 = b14;
+
+  // node_modules/@thi.ng/math/angle.js
+  var deg = (theta) => theta * RAD2DEG;
+  var rad = (theta) => theta * DEG2RAD;
+
+  // node_modules/@thi.ng/vectors/degrees.js
+  var [a15, b15, c15, d15] = defOpV(deg);
+  var degrees2 = b15;
+
+  // node_modules/@thi.ng/vectors/dist.js
+  var dist2 = (a59, b59) => Math.sqrt(distSq2(a59, b59));
+
+  // node_modules/@thi.ng/vectors/div.js
+  var [a16, b16, c16, d16] = defOpVV($div);
+  var div2 = b16;
+
+  // node_modules/@thi.ng/vectors/divn.js
+  var [a17, b17, c17, d17] = defOpVN($div);
+  var divN2 = b17;
+
+  // node_modules/@thi.ng/vectors/dot.js
+  var dot2 = (a59, b59) => a59[0] * b59[0] + a59[1] * b59[1];
+  var dot3 = (a59, b59) => a59[0] * b59[0] + a59[1] * b59[1] + a59[2] * b59[2];
+  var dot4 = (a59, b59) => a59[0] * b59[0] + a59[1] * b59[1] + a59[2] * b59[2] + a59[3] * b59[3];
+  var dot = vop(
+    0,
+    (a59, b59) => {
+      let sum = 0;
+      for (let i = a59.length; i-- > 0; ) sum += a59[i] * b59[i];
+      return sum;
+    },
+    dot2,
+    dot3,
+    dot4
+  );
+
+  // node_modules/@thi.ng/vectors/defopvv-new.js
+  var defOpVVNew = (op, dispatch = 1) => {
+    const a59 = (o, a210, b210) => {
+      !o && (o = []);
+      for (let i = a210.length; i-- > 0; ) o[i] = op(a210[i], b210[i]);
+      return o;
+    };
+    const b59 = (o, a210, b210) => {
+      !o && (o = []);
+      o[0] = op(a210[0], b210[0]);
+      o[1] = op(a210[1], b210[1]);
+      return o;
+    };
+    const c59 = (o, a210, b210) => {
+      !o && (o = []);
+      o[0] = op(a210[0], b210[0]);
+      o[1] = op(a210[1], b210[1]);
+      o[2] = op(a210[2], b210[2]);
+      return o;
+    };
+    const d59 = (o, a210, b210) => {
+      !o && (o = []);
+      o[0] = op(a210[0], b210[0]);
+      o[1] = op(a210[1], b210[1]);
+      o[2] = op(a210[2], b210[2]);
+      o[3] = op(a210[3], b210[3]);
+      return o;
+    };
+    return [
+      vop(dispatch, a59, b59, c59, d59),
+      b59,
+      c59,
+      d59
+    ];
+  };
+
+  // node_modules/@thi.ng/vectors/eq.js
+  var [a18, b18, c18, d18] = defOpVVNew((a210, b210) => a210 === b210);
+  var eq2 = b18;
+
+  // node_modules/@thi.ng/math/eqdelta.js
+  var abs = Math.abs;
+  var eqDelta = (a59, b59, eps = EPS) => abs(a59 - b59) <= eps;
+
+  // node_modules/@thi.ng/checks/implements-function.js
+  var implementsFunction = (x, fn) => typeof x?.[fn] === "function";
+
+  // node_modules/@thi.ng/vectors/eqdelta.js
+  var eqDelta2 = (a59, b59, eps = EPS) => {
+    return a59.length === b59.length && eqDelta(a59[0], b59[0], eps) && eqDelta(a59[1], b59[1], eps);
+  };
+  var eqDelta3 = (a59, b59, eps = EPS) => {
+    return a59.length === b59.length && eqDelta(a59[0], b59[0], eps) && eqDelta(a59[1], b59[1], eps) && eqDelta(a59[2], b59[2], eps);
+  };
+  var eqDelta4 = (a59, b59, eps = EPS) => {
+    return a59.length === b59.length && eqDelta(a59[0], b59[0], eps) && eqDelta(a59[1], b59[1], eps) && eqDelta(a59[2], b59[2], eps) && eqDelta(a59[3], b59[3], eps);
+  };
+  var eqDelta5 = vop(
+    0,
+    (v1, v2, eps = EPS) => {
+      if (implementsFunction(v1, "eqDelta")) {
+        return v1.eqDelta(v2, eps);
+      }
+      if (implementsFunction(v2, "eqDelta")) {
+        return v2.eqDelta(v1, eps);
+      }
+      return eqDeltaS(v1, v2, v1.length, eps);
+    },
+    eqDelta2,
+    eqDelta3,
+    eqDelta4
+  );
+  var eqDeltaS = (a59, b59, n, eps = EPS, ia = 0, ib = 0, sa = 1, sb = 1) => {
+    for (; n > 0; n--, ia += sa, ib += sb) {
+      if (!eqDelta(a59[ia], b59[ib], eps)) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  // node_modules/@thi.ng/vectors/equals.js
+  var equals2 = (a59, b59) => a59.length === b59.length && a59[0] === b59[0] && a59[1] === b59[1];
+  var equals3 = (a59, b59) => a59.length === b59.length && a59[0] === b59[0] && a59[1] === b59[1] && a59[2] === b59[2];
+  var equals4 = (a59, b59) => a59.length === b59.length && a59[0] === b59[0] && a59[1] === b59[1] && a59[2] === b59[2] && a59[3] === b59[3];
+  var equals = vop(
+    0,
+    (a59, b59) => {
+      let l = a59.length;
+      if (l === b59.length) {
+        while (l-- > 0 && a59[l] === b59[l]) ;
+      }
+      return l < 0;
+    },
+    equals2,
+    equals3,
+    equals4
+  );
+
+  // node_modules/@thi.ng/vectors/exp.js
+  var [a19, b19, c19, d19] = defOpV(Math.exp);
+  var exp_2 = b19;
+
+  // node_modules/@thi.ng/vectors/exp2.js
+  var [a20, b20, c20, d20] = defOpV((x) => 2 ** x);
+  var exp2_2 = b20;
+
+  // node_modules/@thi.ng/math/fit.js
+  var norm = (x, a59, b59) => b59 !== a59 ? (x - a59) / (b59 - a59) : 0;
+  var fit = (x, a59, b59, c59, d59) => c59 + (d59 - c59) * norm(x, a59, b59);
+  var fit01 = (x, a59, b59) => a59 + (b59 - a59) * clamp01(x);
+
+  // node_modules/@thi.ng/vectors/fit.js
+  var fit2 = (o, a59, b59, c59, d59, e) => {
+    !o && (o = a59);
+    o[0] = fit(a59[0], b59[0], c59[0], d59[0], e[0]);
+    o[1] = fit(a59[1], b59[1], c59[1], d59[1], e[1]);
+    return o;
+  };
+  var fit3 = (o, a59, b59, c59, d59, e) => {
+    !o && (o = a59);
+    o[0] = fit(a59[0], b59[0], c59[0], d59[0], e[0]);
+    o[1] = fit(a59[1], b59[1], c59[1], d59[1], e[1]);
+    o[2] = fit(a59[2], b59[2], c59[2], d59[2], e[2]);
+    return o;
+  };
+  var fit4 = (o, a59, b59, c59, d59, e) => {
+    !o && (o = a59);
+    o[0] = fit(a59[0], b59[0], c59[0], d59[0], e[0]);
+    o[1] = fit(a59[1], b59[1], c59[1], d59[1], e[1]);
+    o[2] = fit(a59[2], b59[2], c59[2], d59[2], e[2]);
+    o[3] = fit(a59[3], b59[3], c59[3], d59[3], e[3]);
+    return o;
+  };
+  var fit5 = vop(
+    1,
+    (o, a59, b59, c59, d59, e) => {
+      !o && (o = a59);
+      for (let i = a59.length; i-- > 0; )
+        o[i] = fit(a59[i], b59[i], c59[i], d59[i], e[i]);
+      return o;
+    },
+    fit2,
+    fit3,
+    fit4
+  );
+
+  // node_modules/@thi.ng/vectors/fit01.js
+  var [a21, b21, c21, d21] = defOpVVV(fit01);
+  var fit01_2 = b21;
+
+  // node_modules/@thi.ng/vectors/floor.js
+  var [a22, b22, c22, d22] = defOpV(Math.floor);
+  var floor2 = b22;
+
+  // node_modules/@thi.ng/vectors/fmod.js
+  var [a23, b23, c23, d23] = defOpVV($fmod);
+  var fmod2 = b23;
+
+  // node_modules/@thi.ng/math/prec.js
+  var mod = (a59, b59) => a59 - b59 * Math.floor(a59 / b59);
+  var fract = (x) => x - Math.floor(x);
+  var roundTo = (x, prec = 1) => Math.round(x / prec) * prec;
+
+  // node_modules/@thi.ng/vectors/fract.js
+  var [a24, b24, c24, d24] = defOpV(fract);
+  var fract2 = b24;
+
+  // node_modules/@thi.ng/vectors/gt.js
+  var [a25, b25, c25, d25] = defOpVVNew((a210, b210) => a210 > b210);
+  var gt2 = b25;
+
+  // node_modules/@thi.ng/vectors/gte.js
+  var [a26, b26, c26, d26] = defOpVVNew((a210, b210) => a210 >= b210);
+  var gte2 = b26;
+
+  // node_modules/@thi.ng/vectors/invsqrt.js
+  var { sqrt } = Math;
+  var [a27, b27, c27, d27] = defOpV((a210) => 1 / sqrt(a210));
+  var invSqrt2 = b27;
+
+  // node_modules/@thi.ng/vectors/magsq.js
+  var magSq2 = (a59) => a59[0] * a59[0] + a59[1] * a59[1];
+  var magSq3 = (a59) => a59[0] * a59[0] + a59[1] * a59[1] + a59[2] * a59[2];
+  var magSq4 = (a59) => a59[0] * a59[0] + a59[1] * a59[1] + a59[2] * a59[2] + a59[3] * a59[3];
+  var magSq = vop(
+    0,
+    (a59) => {
+      let sum = 0;
+      for (let i = a59.length; i-- > 0; ) sum += a59[i] * a59[i];
+      return sum;
+    },
+    magSq2,
+    magSq3,
+    magSq4
+  );
+
+  // node_modules/@thi.ng/vectors/muln.js
+  var [a28, b28, c28, d28] = defOpVN($mul);
+  var mulN = a28;
+  var mulN2 = b28;
+  var mulN3 = c28;
+  var mulN4 = d28;
+
+  // node_modules/@thi.ng/vectors/limit.js
+  var $ = (magSq5, mulN5, set5) => (out, v, n) => {
+    !out && (out = v);
+    const m = magSq5(v);
+    return m > n * n ? mulN5(out, v, n / Math.sqrt(m)) : out !== v ? set5(out, v) : out;
+  };
+  var limit = $(magSq, mulN, set);
+  var limit2 = $(magSq2, mulN2, set2);
+  var limit3 = $(magSq3, mulN3, set3);
+  var limit4 = $(magSq4, mulN4, set4);
+
+  // node_modules/@thi.ng/vectors/log.js
+  var [a29, b29, c29, d29] = defOpV(Math.log);
+  var log_2 = b29;
+
+  // node_modules/@thi.ng/vectors/log2.js
+  var [a30, b30, c30, d30] = defOpV(Math.log2);
+  var log2_2 = b30;
+
+  // node_modules/@thi.ng/vectors/lt.js
+  var [a31, b31, c31, d31] = defOpVVNew((a210, b210) => a210 < b210);
+  var lt2 = b31;
+
+  // node_modules/@thi.ng/vectors/lte.js
+  var [a32, b32, c32, d32] = defOpVVNew((a210, b210) => a210 <= b210);
+  var lte2 = b32;
+
+  // node_modules/@thi.ng/vectors/madd.js
+  var [a33, b33, c33, d33] = defOpVVV($madd);
+  var madd2 = b33;
+
+  // node_modules/@thi.ng/vectors/defopvnv.js
+  var defOpVNV = (op, dispatch = 1) => {
+    const a59 = (o, a210, n, b210) => {
+      !o && (o = a210);
+      for (let i = a210.length; i-- > 0; ) o[i] = op(a210[i], n, b210[i]);
+      return o;
+    };
+    const b59 = (o, a210, n, b210) => {
+      !o && (o = a210);
+      o[0] = op(a210[0], n, b210[0]);
+      o[1] = op(a210[1], n, b210[1]);
+      return o;
+    };
+    const c59 = (o, a210, n, b210) => {
+      !o && (o = a210);
+      o[0] = op(a210[0], n, b210[0]);
+      o[1] = op(a210[1], n, b210[1]);
+      o[2] = op(a210[2], n, b210[2]);
+      return o;
+    };
+    const d59 = (o, a210, n, b210) => {
+      !o && (o = a210);
+      o[0] = op(a210[0], n, b210[0]);
+      o[1] = op(a210[1], n, b210[1]);
+      o[2] = op(a210[2], n, b210[2]);
+      o[3] = op(a210[3], n, b210[3]);
+      return o;
+    };
+    return [
+      vop(dispatch, a59, b59, c59, d59),
+      b59,
+      c59,
+      d59
+    ];
+  };
+
+  // node_modules/@thi.ng/vectors/maddn.js
+  var [a34, b34, c34, d34] = defOpVNV($madd);
+  var maddN2 = b34;
+
+  // node_modules/@thi.ng/vectors/mag.js
+  var mag2 = (v) => Math.sqrt(magSq2(v));
+
+  // node_modules/@thi.ng/vectors/major.js
+  var { abs: abs3 } = Math;
+  var major2 = (a59) => max2id(abs3(a59[0]), abs3(a59[1]));
+  var major3 = (a59) => max3id(abs3(a59[0]), abs3(a59[1]), abs3(a59[2]));
+  var major4 = (a59) => max4id(abs3(a59[0]), abs3(a59[1]), abs3(a59[2]), abs3(a59[3]));
+  var major = vop(
+    0,
+    (a59) => {
+      let id = -1;
+      let max = -Infinity;
+      for (let i = a59.length; i-- > 0; ) {
+        const x = abs3(a59[i]);
+        if (x > max) {
+          max = x;
+          id = i;
+        }
+      }
+      return id;
+    },
+    major2,
+    major3,
+    major4
+  );
+
+  // node_modules/@thi.ng/vectors/max.js
+  var [a35, b35, c35, d35] = defOpVV(Math.max);
+  var max2 = b35;
+
+  // node_modules/@thi.ng/vectors/min.js
+  var [a36, b36, c36, d36] = defOpVV(Math.min);
+  var min2 = b36;
+
+  // node_modules/@thi.ng/vectors/minor.js
+  var { abs: abs4 } = Math;
+  var minor2 = (a59) => min2id(abs4(a59[0]), abs4(a59[1]));
+  var minor3 = (a59) => min3id(abs4(a59[0]), abs4(a59[1]), abs4(a59[2]));
+  var minor4 = (a59) => min4id(abs4(a59[0]), abs4(a59[1]), abs4(a59[2]), abs4(a59[3]));
+  var minor = vop(
+    0,
+    (a59) => {
+      let id = -1;
+      let min = Infinity;
+      for (let i = a59.length; i-- > 0; ) {
+        const x = abs4(a59[i]);
+        if (x < min) {
+          min = x;
+          id = i;
+        }
+      }
+      return id;
+    },
+    minor2,
+    minor3,
+    minor4
+  );
+
+  // node_modules/@thi.ng/vectors/mix.js
+  var [a37, b37, c37, d37] = defOpVVV($mix);
+  var mix2 = b37;
+
+  // node_modules/@thi.ng/vectors/mod.js
+  var [a38, b38, c38, d38] = defOpVV(mod);
+  var mod2 = b38;
+
+  // node_modules/@thi.ng/vectors/modn.js
+  var [a39, b39, c39, d39] = defOpVN(mod);
+  var modN2 = b39;
+
+  // node_modules/@thi.ng/vectors/msub.js
+  var [a40, b40, c40, d40] = defOpVVV($msub);
+  var msub2 = b40;
+
+  // node_modules/@thi.ng/vectors/msubn.js
+  var [a41, b41, c41, d41] = defOpVNV($msub);
+  var msubN2 = b41;
+
+  // node_modules/@thi.ng/vectors/mul.js
+  var [a42, b42, c42, d42] = defOpVV($mul);
+  var mul2 = b42;
+
+  // node_modules/@thi.ng/vectors/neq.js
+  var [a43, b43, c43, d43] = defOpVVNew((a210, b210) => a210 !== b210);
+  var neq2 = b43;
+
+  // node_modules/@thi.ng/vectors/normalize.js
+  var $2 = (magSq5, mulN5, set5) => (out, v, n = 1) => {
+    !out && (out = v);
+    const m = Math.sqrt(magSq5(v));
+    return m >= EPS ? mulN5(out, v, n / m) : out !== v ? set5(out, v) : out;
+  };
+  var normalize = $2(magSq, mulN, set);
+  var normalize2 = $2(magSq2, mulN2, set2);
+  var normalize3 = $2(magSq3, mulN3, set3);
+  var normalize4 = $2(magSq4, mulN4, set4);
+
+  // node_modules/@thi.ng/vectors/pow.js
+  var [a44, b44, c44, d44] = defOpVV(Math.pow);
+  var pow2 = b44;
+
+  // node_modules/@thi.ng/vectors/pown.js
+  var [a45, b45, c45, d45] = defOpVN(Math.pow);
+  var powN2 = b45;
+
+  // node_modules/@thi.ng/vectors/radians.js
+  var [a46, b46, c46, d46] = defOpV(rad);
+  var radians2 = b46;
+
+  // node_modules/@thi.ng/random/arandom.js
+  var INV_MAX = 1 / 2 ** 32;
+  var ARandom = class {
+    float(norm2 = 1) {
+      return this.int() * INV_MAX * norm2;
+    }
+    probability(p) {
+      return this.float() < p;
+    }
+    norm(norm2 = 1) {
+      return (this.int() * INV_MAX - 0.5) * 2 * norm2;
+    }
+    normMinMax(min, max) {
+      const x = this.minmax(min, max);
+      return this.float() < 0.5 ? x : -x;
+    }
+    minmax(min, max) {
+      return this.float() * (max - min) + min;
+    }
+    minmaxInt(min, max) {
+      min |= 0;
+      const range = (max | 0) - min;
+      return range ? min + this.int() % range : min;
+    }
+    minmaxUint(min, max) {
+      min >>>= 0;
+      const range = (max >>> 0) - min;
+      return range ? min + this.int() % range : min;
+    }
+  };
+
+  // node_modules/@thi.ng/random/wrapped.js
+  var WrappedRandom = class extends ARandom {
+    constructor(rnd) {
+      super();
+      this.rnd = rnd;
+    }
+    float(norm2 = 1) {
+      return this.rnd() * norm2;
+    }
+    norm(norm2 = 1) {
+      return (this.rnd() - 0.5) * 2 * norm2;
+    }
+    int() {
+      return this.rnd() * 4294967296 >>> 0;
+    }
+  };
+
+  // node_modules/@thi.ng/random/system.js
+  var SYSTEM = new WrappedRandom(Math.random);
+
+  // node_modules/@thi.ng/random/distributions/normal.js
+  var normal = (rnd = SYSTEM, bias = 0, sigma = 1) => {
+    let a59;
+    let b59;
+    let r;
+    return () => {
+      if (a59 != null) {
+        b59 = a59;
+        a59 = null;
+      } else {
+        do {
+          a59 = rnd.norm();
+          b59 = rnd.norm();
+          r = a59 * a59 + b59 * b59;
+        } while (r > 1 || r === 0);
+      }
+      return bias + sigma * b59 * Math.sqrt(-2 * Math.log(r) / r);
+    };
+  };
+
+  // node_modules/@thi.ng/vectors/rand-distrib.js
+  var randDistrib2 = (a59, rnd = normal(), n = 1) => {
+    !a59 && (a59 = []);
+    a59[0] = rnd() * n;
+    a59[1] = rnd() * n;
+    return a59;
+  };
+  var randDistrib3 = (a59, rnd = normal(), n = 1) => {
+    !a59 && (a59 = []);
+    a59[0] = rnd() * n;
+    a59[1] = rnd() * n;
+    a59[2] = rnd() * n;
+    return a59;
+  };
+  var randDistrib4 = (a59, rnd = normal(), n = 1) => {
+    !a59 && (a59 = []);
+    a59[0] = rnd() * n;
+    a59[1] = rnd() * n;
+    a59[2] = rnd() * n;
+    a59[3] = rnd() * n;
+    return a59;
+  };
+  var randDistrib = vop(
+    0,
+    (a59, rnd = normal(), n = 1) => {
+      !a59 && (a59 = []);
+      for (let i = a59.length; i-- > 0; ) a59[i] = rnd() * n;
+      return a59;
+    },
+    randDistrib2,
+    randDistrib3,
+    randDistrib4
+  );
+
+  // node_modules/@thi.ng/errors/assert.js
+  var import_meta = {};
+  var AssertionError = defError(() => "Assertion failed");
+  var assert = (typeof process !== "undefined" && process.env !== void 0 ? true : import_meta.env ? import_meta.env.MODE !== "production" || !!import_meta.env.UMBRELLA_ASSERTS || !!import_meta.env.VITE_UMBRELLA_ASSERTS : true) ? (test, msg) => {
+    if (typeof test === "function" && !test() || !test) {
+      throw new AssertionError(
+        typeof msg === "function" ? msg() : msg
+      );
+    }
+  } : () => {
+  };
+
+  // node_modules/@thi.ng/random/weighted-random.js
+  var weightedRandom = (choices, weights, rnd = SYSTEM) => {
+    const n = choices.length;
+    assert(n > 0, "no choices given");
+    const opts = weights ? choices.map((x, i) => [weights[i] || 0, x]).sort((a59, b59) => b59[0] - a59[0]) : choices.map((x) => [1, x]);
+    const total = opts.reduce((acc, o) => acc + o[0], 0);
+    total <= 0 && console.warn("total weights <= 0");
+    return () => {
+      const r = rnd.float(total);
+      let sum = total;
+      for (let i = 0; i < n; i++) {
+        sum -= opts[i][0];
+        if (sum <= r) {
+          return opts[i][1];
+        }
+      }
+      return void 0;
+    };
+  };
+
+  // node_modules/@thi.ng/vectors/rand-minmax.js
+  var randMinMax2 = (o, a59, b59, rnd = SYSTEM) => {
+    !o && (o = a59);
+    o[0] = rnd.minmax(a59[0], b59[0]);
+    o[1] = rnd.minmax(a59[1], b59[1]);
+    return o;
+  };
+  var randMinMax = vop(
+    1,
+    (o, a59, b59, rnd = SYSTEM) => {
+      !o && (o = a59);
+      for (let i = a59.length; i-- > 0; ) o[i] = rnd.minmax(a59[i], b59[i]);
+      return o;
+    }
+  );
+
+  // node_modules/@thi.ng/vectors/random.js
+  var random2 = (a59, n = -1, m = 1, rnd = SYSTEM) => {
+    !a59 && (a59 = []);
+    a59[0] = rnd.minmax(n, m);
+    a59[1] = rnd.minmax(n, m);
+    return a59;
+  };
+
+  // node_modules/@thi.ng/vectors/rand-norm.js
+  var randNorm2 = (v, n = 1, rnd) => normalize2(null, random2(v, -1, 1, rnd), n);
+
+  // node_modules/@thi.ng/vectors/rand-normdistrib.js
+  var randNormDistrib2 = (v, n = 1, distrib) => normalize2(null, randDistrib2(v, distrib), n);
+
+  // node_modules/@thi.ng/vectors/round.js
+  var [a47, b47, c47, d47] = defOpVV(roundTo);
+  var round2 = b47;
+
+  // node_modules/@thi.ng/vectors/setn.js
+  var setN2 = (a59, n) => {
+    a59[0] = n;
+    a59[1] = n;
+    return a59;
+  };
+  var setN3 = (a59, n) => {
+    a59[0] = n;
+    a59[1] = n;
+    a59[2] = n;
+    return a59;
+  };
+  var setN4 = (a59, n) => {
+    a59[0] = n;
+    a59[1] = n;
+    a59[2] = n;
+    a59[3] = n;
+    return a59;
+  };
+  var setN = vop(
+    0,
+    (a59, n) => {
+      for (let i = a59.length; i-- > 0; ) a59[i] = n;
+      return a59;
+    },
+    setN2,
+    setN3,
+    setN4
+  );
+  var zeroes = (n) => Array(n).fill(0);
+  var ones = (n) => Array(n).fill(1);
+
+  // node_modules/@thi.ng/vectors/sign.js
+  var [a48, b48, c48, d48] = defOpV(Math.sign);
+  var sign2 = b48;
+
+  // node_modules/@thi.ng/vectors/sin.js
+  var [a49, b49, c49, d49] = defOpV(Math.sin);
+  var sin2 = b49;
+
+  // node_modules/@thi.ng/math/step.js
+  var step = (edge, x) => x < edge ? 0 : 1;
+  var smoothStep = (edge, edge2, x) => smoothStep01(clamp01((x - edge) / (edge2 - edge)));
+  var smoothStep01 = (x) => x * x * (3 - 2 * x);
+
+  // node_modules/@thi.ng/vectors/smoothstep.js
+  var [a50, b50, c50, d50] = defOpVVV(smoothStep, 1, false);
+  var smoothStep2 = b50;
+
+  // node_modules/@thi.ng/vectors/sqrt.js
+  var [a51, b51, c51, d51] = defOpV(Math.sqrt);
+  var sqrt2 = b51;
+
+  // node_modules/@thi.ng/vectors/step.js
+  var [a52, b52, c52, d52] = defOpVV(step, 1, false);
+  var step2 = b52;
+
+  // node_modules/@thi.ng/vectors/sub.js
+  var [a53, b53, c53, d53] = defOpVV($sub);
+  var sub2 = b53;
+
+  // node_modules/@thi.ng/vectors/subm.js
+  var [a54, b54, c54, d54] = defOpVVV($subm);
+  var subm2 = b54;
+
+  // node_modules/@thi.ng/vectors/submn.js
+  var [a55, b55, c55, d55] = defOpVVN($subm);
+  var submN2 = b55;
+
+  // node_modules/@thi.ng/vectors/subn.js
+  var [a56, b56, c56, d56] = defOpVN($sub);
+  var subN2 = b56;
+
+  // node_modules/@thi.ng/vectors/tan.js
+  var [a57, b57, c57, d57] = defOpV(Math.tan);
+  var tan2 = b57;
+
+  // node_modules/@thi.ng/vectors/trunc.js
+  var [a58, b58, c58, d58] = defOpV(Math.trunc);
+  var trunc2 = b58;
+
+  // node_modules/@thi.ng/vectors/vec2-api.js
+  var VEC2 = {
+    ZERO: ZERO2,
+    ONE: ONE2,
+    zeroes: () => zeroes(2),
+    ones: () => ones(2),
+    abs: abs2,
+    acos: acos2,
+    add: add2,
+    addN: addN2,
+    addm: addm2,
+    addmN: addmN2,
+    asin: asin2,
+    atan: atan_2,
+    atan2: atan2_2,
+    ceil: ceil2,
+    clamp: clamp2,
+    clampN: clampN2,
+    clamp01: clamp01_2,
+    cos: cos2,
+    degrees: degrees2,
+    dist: dist2,
+    distSq: distSq2,
+    div: div2,
+    divN: divN2,
+    dot: dot2,
+    eqDelta: eqDelta2,
+    equals: equals2,
+    exp: exp_2,
+    exp2: exp2_2,
+    fit: fit2,
+    fit01: fit01_2,
+    floor: floor2,
+    fmod: fmod2,
+    fract: fract2,
+    invSqrt: invSqrt2,
+    madd: madd2,
+    maddN: maddN2,
+    mag: mag2,
+    magSq: magSq2,
+    limit: limit2,
+    log: log_2,
+    log2: log2_2,
+    major: major2,
+    max: max2,
+    min: min2,
+    minor: minor2,
+    mix: mix2,
+    mixN: mixN2,
+    mod: mod2,
+    modN: modN2,
+    msub: msub2,
+    msubN: msubN2,
+    mul: mul2,
+    mulN: mulN2,
+    normalize: normalize2,
+    pow: pow2,
+    powN: powN2,
+    radians: radians2,
+    random: random2,
+    randomDistrib: randDistrib2,
+    randMinMax: randMinMax2,
+    randNorm: randNorm2,
+    randNormDistrib: randNormDistrib2,
+    round: round2,
+    set: set2,
+    setN: setN2,
+    sign: sign2,
+    sin: sin2,
+    smoothstep: smoothStep2,
+    sqrt: sqrt2,
+    step: step2,
+    sub: sub2,
+    subN: subN2,
+    subm: subm2,
+    submN: submN2,
+    tan: tan2,
+    trunc: trunc2,
+    eq: eq2,
+    neq: neq2,
+    gt: gt2,
+    gte: gte2,
+    lt: lt2,
+    lte: lte2
+  };
+
+  // node_modules/@thi.ng/boids/behaviors/update.js
+  var blendedBehaviorUpdate = (boid) => {
+    const {
+      api: { maddN, setN: setN5 },
+      behaviors,
+      force
+    } = boid;
+    setN5(force, 0);
+    let i, n, weight, behavior;
+    for (i = 0, n = behaviors.length; i < n; i++) {
+      behavior = behaviors[i];
+      weight = behavior.weight(boid);
+      if (weight !== 0) maddN(force, behavior.update(boid), weight, force);
+    }
+    return force;
+  };
+
+  // node_modules/@thi.ng/boids/region.js
+  var Radial = class {
+    constructor(dist, target, radius = Infinity) {
+      __publicField(this, "radius");
+      __publicField(this, "_r");
+      __publicField(this, "_items", []);
+      this.dist = dist;
+      this.target = target;
+      this.setRadius(radius);
+    }
+    deref() {
+      return this._items;
+    }
+    reset() {
+      this._items.length = 0;
+      return this;
+    }
+    setRadius(r) {
+      if (this.radius !== r) {
+        this.radius = Math.max(0, r);
+        this._r = this.dist.to(this.radius);
+      }
+      this._items.length = 0;
+      return this;
+    }
+    includesDistance(d59, eucledian = true) {
+      return (eucledian ? this.dist.to(d59) : d59) <= this._r;
+    }
+    includesPosition(pos) {
+      return this.dist.metric(this.target, pos) <= this._r;
+    }
+    consider(pos, val) {
+      const d59 = this.dist.metric(this.target, pos);
+      d59 <= this._r && this._items.push(val);
+      return d59;
+    }
+  };
+
+  // node_modules/@thi.ng/boids/boid.js
+  var Boid = class {
+    constructor(opts, api, distance, pos, vel) {
+      __publicField(this, "pos");
+      __publicField(this, "vel");
+      __publicField(this, "api");
+      __publicField(this, "accel");
+      __publicField(this, "behaviors");
+      __publicField(this, "region");
+      __publicField(this, "opts");
+      /**
+       * Pre-allocated vector for force accumulation, used by/for behavior
+       * updates.
+       */
+      __publicField(this, "force");
+      this.api = api;
+      this.opts = { maxForce: 1, ...opts };
+      this.accel = this.opts.accel;
+      this.behaviors = this.opts.behaviors;
+      const update = this.opts.update || blendedBehaviorUpdate;
+      const constrain = this.opts.constrain || identity;
+      const { add, limit: limit5, maddN } = api;
+      this.vel = defVector(
+        api,
+        vel,
+        (vel2) => limit5(vel2, add(vel2, vel2, update(this)), this.opts.maxSpeed)
+      );
+      this.pos = defVector(
+        api,
+        pos,
+        (pos2, dt) => constrain(maddN(pos2, this.vel.curr, dt, pos2), this)
+      );
+      this.region = new Radial(distance, pos, 1);
+      this.force = api.zeroes();
+    }
+    /**
+     * Integration step of the thi.ng/timestep update cycle. See
+     * [`ITimeStep`](https://docs.thi.ng/umbrella/timestep/interfaces/ITimeStep.html)
+     *
+     * @param dt
+     * @param ctx
+     */
+    integrate(dt, ctx) {
+      integrateAll(dt, ctx, this.vel, this.pos);
+    }
+    /**
+     * Interplation step of the thi.ng/timestep update cycle. See
+     * [`ITimeStep`](https://docs.thi.ng/umbrella/timestep/interfaces/ITimeStep.html)
+     *
+     * @param alpha
+     * @param ctx
+     */
+    interpolate(alpha, ctx) {
+      interpolateAll(alpha, ctx, this.vel, this.pos);
+    }
+    /**
+     * Queries the spatial index for other boids in the current region, or if
+     * `pos` is given also moves the search region to new position before
+     * querying.
+     *
+     * @remarks
+     * IMPORTANT: The returned array will always contain the current boid itself
+     * too. Filtering has been left out here for performance reasons and is left
+     * to downstream code.
+     *
+     * @param r
+     * @param pos
+     */
+    neighbors(r, pos) {
+      const region = this.region;
+      if (pos) region.target = pos;
+      region.setRadius(r);
+      return this.accel.queryNeighborhood(region).deref();
+    }
+    steerTowards(target, out = target) {
+      return this.limitForce(this.api.sub(out, target, this.pos.curr));
+    }
+    /**
+     * Mutably divides given `force` by `num` (if > 0) and limits result via
+     * {@link Boid.limitForce}.
+     *
+     * @param force
+     * @param num
+     */
+    averageForce(force, num) {
+      return this.limitForce(
+        num > 0 ? this.api.mulN(force, force, 1 / num) : force
+      );
+    }
+    /**
+     * If force > 0, computes: `limit(normalize(force, maxSpeed) - vel, maxForce)`.
+     * Otherwise, returns input as is.
+     *
+     * @param force
+     */
+    limitForce(force) {
+      const { limit: limit5, magSq: magSq5, msubN } = this.api;
+      const m = magSq5(force);
+      return m > 0 ? limit5(
+        force,
+        msubN(
+          force,
+          force,
+          this.opts.maxSpeed / Math.sqrt(m),
+          this.vel.curr
+        ),
+        this.opts.maxForce
+      ) : force;
+    }
+  };
+  var defBoid2 = (pos, vel, opts) => new Boid(opts, VEC2, DIST_SQ2, pos, vel);
+
+  // node_modules/@thi.ng/boids/constrain.js
+  var __wrap = (p, i, x, min, max) => {
+    if (x < min || x > max) {
+      p[i] = x < min ? x - min + max : x > max ? x - max + min : x;
+      return true;
+    }
+  };
+  var wrap2 = (min, max) => (p, boid) => {
+    if (__wrap(p, 0, p[0], min[0], max[0]) || __wrap(p, 1, p[1], min[1], max[1]))
+      boid.pos.reset(p);
+    return p;
+  };
+
+  // node_modules/@thi.ng/boids/flock.js
+  var defFlock = (accel, boids) => new Flock(accel, boids);
+  var Flock = class {
+    constructor(accel, boids = []) {
+      this.accel = accel;
+      this.boids = boids;
+    }
+    add(boid) {
+      this.boids.push(boid);
+    }
+    remove(boid) {
+      const idx = this.boids.indexOf(boid);
+      if (idx >= 0) this.boids.splice(idx, 1);
+    }
+    integrate(dt, ctx) {
+      this.accel.build(this.boids);
+      integrateAll(dt, ctx, ...this.boids);
+    }
+    interpolate(alpha, ctx) {
+      interpolateAll(alpha, ctx, ...this.boids);
+    }
+  };
+
+  // node_modules/@thi.ng/checks/is-number.js
+  var isNumber = (x) => typeof x === "number";
+
+  // node_modules/@thi.ng/boids/internal/ensure.js
+  var __ensureFn = (x) => isNumber(x) ? () => x : x;
+
+  // node_modules/@thi.ng/boids/behaviors/alignment.js
+  var alignment = (maxDist, weight = 1, amp) => {
+    const $maxDist = __ensureFn(maxDist);
+    const force = [];
+    return {
+      weight: __ensureFn(weight),
+      update: (boid) => {
+        const { add, maddN, setN: setN5 } = boid.api;
+        const neighbors = boid.neighbors($maxDist(boid), boid.pos.curr);
+        const num = neighbors.length;
+        let i, n;
+        setN5(force, 0);
+        for (i = 0; i < num; i++) {
+          n = neighbors[i];
+          if (n !== boid) {
+            amp ? maddN(force, n.vel.curr, amp(boid, n), force) : add(force, force, n.vel.curr);
+          }
+        }
+        return boid.averageForce(force, num - 1);
+      }
+    };
+  };
+
+  // node_modules/@thi.ng/boids/behaviors/cohesion.js
+  var cohesion = (maxDist, weight = 1, pred = () => true) => {
+    const $maxDist = __ensureFn(maxDist);
+    const centroid = [];
+    return {
+      weight: __ensureFn(weight),
+      update: (boid) => {
+        const { add, mulN: mulN5, setN: setN5 } = boid.api;
+        const neighbors = boid.neighbors($maxDist(boid), boid.pos.curr);
+        setN5(centroid, 0);
+        const num = neighbors.length;
+        let used = 0, i, n;
+        for (i = 0; i < num; i++) {
+          n = neighbors[i];
+          if (n !== boid && pred(boid, n)) {
+            add(centroid, centroid, n.pos.curr);
+            used++;
+          }
+        }
+        return used > 0 ? boid.steerTowards(mulN5(centroid, centroid, 1 / used)) : centroid;
+      }
+    };
+  };
+
+  // node_modules/@thi.ng/boids/behaviors/separation.js
+  var separation = (minDist, weight = 1, amp = () => 1) => {
+    const $minDist = __ensureFn(minDist);
+    const force = [];
+    const delta = [];
+    return {
+      weight: __ensureFn(weight),
+      update: (boid) => {
+        const { maddN, magSq: magSq5, setN: setN5, sub } = boid.api;
+        const pos = boid.pos.curr;
+        const neighbors = boid.neighbors($minDist(boid), pos);
+        const num = neighbors.length;
+        let n;
+        setN5(force, 0);
+        for (let i = 0; i < num; i++) {
+          n = neighbors[i];
+          if (n !== boid) {
+            sub(delta, pos, n.pos.curr);
+            maddN(
+              force,
+              delta,
+              amp(boid, n) / (magSq5(delta) + 1e-6),
+              force
+            );
+          }
+        }
+        return boid.averageForce(force, num - 1);
+      }
+    };
+  };
+
+  // node_modules/@thi.ng/vectors/hash.js
+  var imul = Math.imul;
+  var M1 = 3432918353;
+  var M3 = 3864292196;
+  var hash2 = (x, y) => (imul(x, M1) ^ imul(y, M3)) >>> 0;
+
+  // node_modules/@thi.ng/geom-accel/hash-grid.js
+  var AHashGrid = class {
+    constructor(key, cellSize, capacity, items) {
+      __publicField(this, "invSize");
+      __publicField(this, "tableSize");
+      __publicField(this, "keyFn");
+      __publicField(this, "indices");
+      __publicField(this, "entries");
+      __publicField(this, "items");
+      this.invSize = 1 / cellSize;
+      this.tableSize = capacity << 1;
+      this.indices = new Uint32Array(this.tableSize + 1);
+      this.entries = new Uint32Array(capacity);
+      this.keyFn = key;
+      items ? this.build(items) : this.items = [];
+    }
+    get length() {
+      return this.items.length;
+    }
+    clear() {
+      this.items = [];
+      this.indices.fill(0);
+      this.entries.fill(0);
+    }
+    /**
+     * Computes number of hash collisions and max cell occupancy.
+     */
+    stats() {
+      const { indices, items, keyFn } = this;
+      const bins = new Uint32Array(indices.length);
+      let max = 0;
+      let collisions = 0;
+      const numP = items.length;
+      for (let i = 0; i < numP; i++) {
+        const n = ++bins[this.hashPos(keyFn(items[i]))];
+        if (n > 1) collisions++;
+        max = Math.max(max, n);
+      }
+      return { collisions, max };
+    }
+    /**
+     * (Re)builds the hash grid from given items. All previous contents will be
+     * lost! `items` must be less than max. capacity configured via ctor.
+     *
+     * @param items
+     */
+    build(items) {
+      const { entries, indices, keyFn, tableSize } = this;
+      const num = items.length;
+      assert(items.length <= entries.length, `too many items`);
+      this.items = items;
+      indices.fill(0);
+      entries.fill(0);
+      for (let i = 0; i < num; i++) {
+        indices[this.hashPos(keyFn(items[i]))]++;
+      }
+      let prefixSum = 0;
+      for (let i = 0; i < tableSize; i++) {
+        prefixSum += indices[i];
+        indices[i] = prefixSum;
+      }
+      indices[tableSize] = prefixSum;
+      for (let i = 0; i < num; i++) {
+        entries[--indices[this.hashPos(keyFn(items[i]))]] = i;
+      }
+    }
+    /**
+     * Returns true if an item with given `key` vector has been indexed by the
+     * hash grid. The optional `equiv` predicate can be used to customize the
+     * key equality test (called for all items matching the `keys` hash).
+     *
+     * @remarks
+     * Default predicate is: [thi.ng/vectors
+     * equals()](https://docs.thi.ng/umbrella/vectors/functions/equals.html)
+     *
+     * @param key
+     * @param equiv
+     */
+    has(key, equiv = equals) {
+      const { entries, indices, items, keyFn } = this;
+      const h = this.hashPos(key);
+      for (let i = indices[h], j = indices[h + 1]; i < j; i++) {
+        if (equiv(keyFn(items[entries[i]]), key)) return true;
+      }
+      return false;
+    }
+    /**
+     * Returns array of all items (if any) which have been indexed using given
+     * lookup `key` AND which are passing the given `equiv` predicate (which can
+     * be used to customize the key equality test).
+     *
+     * @remarks
+     * Default predicate is: [thi.ng/vectors
+     * equals()](https://docs.thi.ng/umbrella/vectors/functions/equals.html)
+     *
+     * @param key
+     * @param equiv
+     */
+    get(key, equiv = equals) {
+      const { entries, indices, items, keyFn } = this;
+      const h = this.hashPos(key);
+      const res = [];
+      for (let i = indices[h], j = indices[h + 1]; i < j; i++) {
+        const val = items[entries[i]];
+        if (equiv(keyFn(val), key)) res.push(val);
+      }
+      return res;
+    }
+  };
+  var HashGrid2 = class _HashGrid2 extends AHashGrid {
+    empty() {
+      return new _HashGrid2(
+        this.keyFn,
+        1 / this.invSize,
+        this.entries.length
+      );
+    }
+    queryNeighborhood(neighborhood, opts = {}) {
+      const { entries, indices, items, keyFn, tableSize } = this;
+      const { xmin, xmax, ymin, ymax } = this.queryBounds(neighborhood, opts);
+      let x, y, i, j, h, val;
+      for (x = xmin; x <= xmax; x++) {
+        for (y = ymin; y <= ymax; y++) {
+          h = hash2(x, y) % tableSize;
+          for (i = indices[h], j = indices[h + 1]; i < j; i++) {
+            val = items[entries[i]];
+            neighborhood.consider(keyFn(val), val);
+          }
+        }
+      }
+      return neighborhood;
+    }
+    hasNeighborhood(neighborhood, opts = {}) {
+      const { entries, indices, items, keyFn, tableSize } = this;
+      const { xmin, xmax, ymin, ymax } = this.queryBounds(neighborhood, opts);
+      let x, y, i, j, h;
+      for (x = xmin; x <= xmax; x++) {
+        for (y = ymin; y <= ymax; y++) {
+          h = hash2(x, y) % tableSize;
+          for (i = indices[h], j = indices[h + 1]; i < j; i++) {
+            if (neighborhood.includesPosition(keyFn(items[entries[i]])))
+              return true;
+          }
+        }
+      }
+      return false;
+    }
+    hashPos(p) {
+      const s = this.invSize;
+      return hash2(p[0] * s, p[1] * s) % this.tableSize;
+    }
+    queryBounds(neighborhood, opts = {}) {
+      const { invSize } = this;
+      const [qx, qy] = neighborhood.target;
+      const r = opts.r ?? neighborhood.radius;
+      return {
+        xmin: (qx - r) * invSize | 0,
+        xmax: (qx + r) * invSize | 0,
+        ymin: (qy - r) * invSize | 0,
+        ymax: (qy + r) * invSize | 0
+      };
+    }
+  };
+
+  // src/art/components/ParticleSystem.ts
+  var WIDTH = window.innerWidth;
+  var HEIGHT = window.innerHeight;
+  var PAD = -60;
+  var BMIN = [PAD, PAD];
+  var BMAX = [WIDTH - PAD, HEIGHT - PAD];
+  var NUM = 2;
+  var ACCEL = new HashGrid2((b59) => b59.pos.prev, 64, NUM);
+  var OPTS = {
+    accel: ACCEL,
+    behaviors: [
+      separation(60, 1.5),
+      alignment(120, 0.7),
+      cohesion(140, 0.9)
+    ],
+    maxSpeed: 40,
+    constrain: wrap2(BMIN, BMAX)
+  };
+  var sim = defTimeStep();
+  var flock = defFlock(
+    ACCEL,
+    [...Array(NUM)].map(
+      (_, i) => defBoid2(
+        randMinMax2([], BMIN, BMAX),
+        randNorm2([], OPTS.maxSpeed),
+        {
+          ...OPTS,
+          maxSpeed: weightedRandom([20, 40, 70], [1, 4, 1])()
+        }
+      )
+    )
+  );
+  function stepBoids(time) {
+    sim.update(time, [flock]);
+  }
+  function getButterflyState() {
+    return flock.boids.map((b59) => ({
+      //@ts-ignore
+      id: b59.id,
+      x: b59.pos.value[0],
+      y: b59.pos.value[1],
+      vx: b59.vel.value[0],
+      vy: b59.vel.value[1]
+    }));
+  }
+
+  // src/art/components/Butterflies.tsx
   var import_jsx_runtime7 = __toESM(require_jsx_runtime());
   var SPRITE_CONFIGS = {
     blue: { rows: 6, cols: 1, width: 64, height: 64, direction: "left" },
     blue_small: { rows: 6, cols: 1, width: 32, height: 32, direction: "left" },
     green: { rows: 6, cols: 1, width: 64, height: 64, direction: "right" }
   };
-  var PerlinNoise = class {
-    constructor(seed) {
-      this.seed = seed;
-    }
-    noise(x) {
-      return Math.sin(x * 12.9898 + this.seed * 78.233) * 43758.5453 % 1;
-    }
-    smoothNoise(t) {
-      const i = Math.floor(t);
-      const f = t - i;
-      const n1 = this.noise(i);
-      const n2 = this.noise(i + 1);
-      return n1 * (1 - f) + n2 * f;
-    }
-  };
   function Butterflies() {
-    const [butterflies, setButterflies] = (0, import_react4.useState)([]);
-    const nextId = (0, import_react4.useRef)(0);
-    const lastPositions = (0, import_react4.useRef)({});
+    const [state, setState] = (0, import_react4.useState)(getButterflyState());
+    const [camera, setCamera] = (0, import_react4.useState)({ x: 0, y: 0 });
     (0, import_react4.useEffect)(() => {
-      const createButterfly = () => {
-        const keys = Object.keys(SPRITE_CONFIGS);
-        const sprite = keys[Math.floor(Math.random() * keys.length)];
-        const duration = 9e3 + Math.random() * 8e3;
-        const newButterfly = {
-          id: nextId.current++,
-          sprite,
-          duration,
-          startTime: Date.now(),
-          initialX: 20 + Math.random() * 60,
-          initialY: 20 + Math.random() * 60,
-          scale: 0.5 + Math.random() * 0.8,
-          noise: new PerlinNoise(Math.random() * 1e4)
-        };
-        setButterflies((prev) => [...prev.slice(-1), newButterfly]);
+      const onScroll = () => {
+        setCamera({
+          x: window.scrollX,
+          y: window.scrollY
+        });
       };
-      createButterfly();
-      const interval = setInterval(createButterfly, 9e3 + Math.random() * 5e3);
-      return () => clearInterval(interval);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      return () => window.removeEventListener("scroll", onScroll);
     }, []);
     (0, import_react4.useEffect)(() => {
-      const cleanup = setInterval(() => {
-        setButterflies(
-          (prev) => prev.filter((b) => Date.now() - b.startTime < b.duration)
-        );
-      }, 1);
-      return () => clearInterval(cleanup);
+      let frame;
+      const loop = (t) => {
+        stepBoids(t);
+        setState(getButterflyState());
+        frame = requestAnimationFrame(loop);
+      };
+      frame = requestAnimationFrame(loop);
+      return () => cancelAnimationFrame(frame);
     }, []);
     return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
       "div",
@@ -25729,53 +27709,37 @@
           overflow: "hidden",
           zIndex: 1
         },
-        children: butterflies.map((b) => {
-          const config = SPRITE_CONFIGS[b.sprite];
-          const elapsed = (Date.now() - b.startTime) / 1e3;
-          const nx = b.noise.smoothNoise(elapsed * 0.4);
-          const ny = b.noise.smoothNoise(elapsed * 0.4 + 100);
-          const xOffset = (nx - 0.5) * 40 + Math.sin(elapsed * 0.6 + b.id) * 12;
-          const yOffset = (ny - 0.5) * 40 + Math.cos(elapsed * 0.6 + b.id) * 12;
-          const x = b.initialX + xOffset;
-          const y = b.initialY + yOffset;
-          const last = lastPositions.current[b.id] || { x, y };
-          const dx = x - last.x;
-          lastPositions.current[b.id] = { x, y };
-          const movingLeft = dx < 0;
-          let shouldFlip = false;
-          if (config.direction === "left") {
-            shouldFlip = !movingLeft;
-          } else {
-            shouldFlip = movingLeft;
-          }
+        children: state.map((b59, i) => {
+          const spriteKey = i === 0 ? "blue" : "green";
+          const sprite = SPRITE_CONFIGS[spriteKey];
+          const movingLeft = b59.vx < 0;
+          const shouldFlip = sprite.direction === "left" ? !movingLeft : movingLeft;
           return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
             "div",
             {
               style: {
                 position: "absolute",
-                left: `${x}%`,
-                top: `${y}%`,
+                left: `${b59.x - camera.x}px`,
+                top: `${b59.y - camera.y}px`,
                 transform: `
-                scale(${b.scale})
-                scaleX(${shouldFlip ? -1 : 1})
-              `,
-                transition: "none",
-                opacity: 1
+                                scale(0.85)
+                                scaleX(${shouldFlip ? -1 : 1})
+                            `
               },
               children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
                 SpritePlayback,
                 {
-                  src: `assets/sprites/${b.sprite}.png`,
-                  rows: config.rows,
-                  cols: config.cols,
+                  src: `assets/sprites/${spriteKey}.png`,
+                  rows: sprite.rows,
+                  cols: sprite.cols,
                   fps: 24,
                   mode: "loop",
-                  width: config.width,
-                  height: config.height
+                  width: sprite.width,
+                  height: sprite.height
                 }
               )
             },
-            b.id
+            b59.id
           );
         })
       }
@@ -25811,11 +27775,11 @@
           return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(ArtGallery, {});
       }
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { style: { minHeight: "100vh", backgroundColor: "#ffffff", color: "#333" }, children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(import_jsx_runtime8.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { style: { minHeight: "100vh", backgroundColor: "#ffffff", color: "#333" }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Butterflies, {}),
       /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(ArtNav, { currentPage, onPageChange: handlePageChange }),
       renderCurrentPage()
-    ] });
+    ] }) });
   }
 
   // src/art/index.tsx
