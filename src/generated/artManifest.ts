@@ -13,7 +13,7 @@ export type ArtAsset = {
 
 export const artAssets: ArtAsset[] = [
   {
-    "src": "/assets/art_assets/OCT_10_2025_NEW_YORK.png",
+    "src": "/assets/art_assets/curation/OCT_10_2025_NEW_YORK.png",
     "slug": "oct_10_2025_new_york",
     "city": "New York",
     "date": "2025-10-10",
@@ -24,7 +24,7 @@ export const artAssets: ArtAsset[] = [
     "flags": []
   },
   {
-    "src": "/assets/art_assets/JULY_12_2025_LOS_ANGELES.png",
+    "src": "/assets/art_assets/curation/JULY_12_2025_LOS_ANGELES.png",
     "slug": "july_12_2025_los_angeles",
     "city": "Los Angeles",
     "date": "2025-07-12",
@@ -35,7 +35,7 @@ export const artAssets: ArtAsset[] = [
     "flags": []
   },
   {
-    "src": "/assets/art_assets/MAY_17_2025_LOS_ANGELES.png",
+    "src": "/assets/art_assets/curation/MAY_17_2025_LOS_ANGELES.png",
     "slug": "may_17_2025_los_angeles",
     "city": "Los Angeles",
     "date": "2025-05-17",
@@ -46,7 +46,7 @@ export const artAssets: ArtAsset[] = [
     "flags": []
   },
   {
-    "src": "/assets/art_assets/DEC_30_2024_LOS_ANGELES.png",
+    "src": "/assets/art_assets/curation/DEC_30_2024_LOS_ANGELES.png",
     "slug": "dec_30_2024_los_angeles",
     "city": "Los Angeles",
     "date": "2024-12-30",
@@ -57,18 +57,7 @@ export const artAssets: ArtAsset[] = [
     "flags": []
   },
   {
-    "src": "/assets/art_assets/NOV_14_2024_BOSTON.png",
-    "slug": "nov_14_2024_boston",
-    "city": "Boston",
-    "date": "2024-11-14",
-    "year": 2024,
-    "month": 11,
-    "day": 14,
-    "ext": "png",
-    "flags": []
-  },
-  {
-    "src": "/assets/art_assets/OCT_12_2024_NEW_YORK.png",
+    "src": "/assets/art_assets/curation/OCT_12_2024_NEW_YORK.png",
     "slug": "oct_12_2024_new_york",
     "city": "New York",
     "date": "2024-10-12",
@@ -79,7 +68,7 @@ export const artAssets: ArtAsset[] = [
     "flags": []
   },
   {
-    "src": "/assets/art_assets/AUG_10_2024_LOS_ANGELES.png",
+    "src": "/assets/art_assets/curation/AUG_10_2024_LOS_ANGELES.png",
     "slug": "aug_10_2024_los_angeles",
     "city": "Los Angeles",
     "date": "2024-08-10",
@@ -90,7 +79,7 @@ export const artAssets: ArtAsset[] = [
     "flags": []
   },
   {
-    "src": "/assets/art_assets/AUG_2_2024_LOS_ANGELES.png",
+    "src": "/assets/art_assets/curation/AUG_2_2024_LOS_ANGELES.png",
     "slug": "aug_2_2024_los_angeles",
     "city": "Los Angeles",
     "date": "2024-08-02",
@@ -101,7 +90,7 @@ export const artAssets: ArtAsset[] = [
     "flags": []
   },
   {
-    "src": "/assets/art_assets/JUN_16_2024_LOS_ANGELES.mp4",
+    "src": "/assets/art_assets/curation/JUN_16_2024_LOS_ANGELES.mp4",
     "slug": "jun_16_2024_los_angeles",
     "city": "Los Angeles",
     "date": "2024-06-16",
@@ -112,7 +101,7 @@ export const artAssets: ArtAsset[] = [
     "flags": []
   },
   {
-    "src": "/assets/art_assets/MAY_11_2024_NEW_YORK.png",
+    "src": "/assets/art_assets/curation/MAY_11_2024_NEW_YORK.png",
     "slug": "may_11_2024_new_york",
     "city": "New York",
     "date": "2024-05-11",
@@ -123,7 +112,7 @@ export const artAssets: ArtAsset[] = [
     "flags": []
   },
   {
-    "src": "/assets/art_assets/MAY_5_2024_NEW_YORK.png",
+    "src": "/assets/art_assets/curation/MAY_5_2024_NEW_YORK.png",
     "slug": "may_5_2024_new_york",
     "city": "New York",
     "date": "2024-05-05",
@@ -134,7 +123,7 @@ export const artAssets: ArtAsset[] = [
     "flags": []
   },
   {
-    "src": "/assets/art_assets/APRIL_13_2024_LOS_ANGELES.png",
+    "src": "/assets/art_assets/curation/APRIL_13_2024_LOS_ANGELES.png",
     "slug": "april_13_2024_los_angeles",
     "city": "Los Angeles",
     "date": "2024-04-13",
@@ -145,7 +134,7 @@ export const artAssets: ArtAsset[] = [
     "flags": []
   },
   {
-    "src": "/assets/art_assets/MARCH_9_2024_LOS_ANGELES.png",
+    "src": "/assets/art_assets/curation/MARCH_9_2024_LOS_ANGELES.png",
     "slug": "march_9_2024_los_angeles",
     "city": "Los Angeles",
     "date": "2024-03-09",
@@ -156,7 +145,7 @@ export const artAssets: ArtAsset[] = [
     "flags": []
   },
   {
-    "src": "/assets/art_assets/JAN_25_2024_LOS_ANGELES.png",
+    "src": "/assets/art_assets/curation/JAN_25_2024_LOS_ANGELES.png",
     "slug": "jan_25_2024_los_angeles",
     "city": "Los Angeles",
     "date": "2024-01-25",
@@ -167,7 +156,7 @@ export const artAssets: ArtAsset[] = [
     "flags": []
   },
   {
-    "src": "/assets/art_assets/JAN_1_2024_LOS_ANGELES.png",
+    "src": "/assets/art_assets/curation/JAN_1_2024_LOS_ANGELES.png",
     "slug": "jan_1_2024_los_angeles",
     "city": "Los Angeles",
     "date": "2024-01-01",
@@ -178,7 +167,7 @@ export const artAssets: ArtAsset[] = [
     "flags": []
   },
   {
-    "src": "/assets/art_assets/DEC_14_2023_LOS_ANGELES.png",
+    "src": "/assets/art_assets/curation/DEC_14_2023_LOS_ANGELES.png",
     "slug": "dec_14_2023_los_angeles",
     "city": "Los Angeles",
     "date": "2023-12-14",
@@ -189,7 +178,18 @@ export const artAssets: ArtAsset[] = [
     "flags": []
   },
   {
-    "src": "/assets/art_assets/NOV_4_2023_TOPANGA.jpg",
+    "src": "/assets/art_assets/curation/NOV_14_2023_BOSTON.png",
+    "slug": "nov_14_2023_boston",
+    "city": "Boston",
+    "date": "2023-11-14",
+    "year": 2023,
+    "month": 11,
+    "day": 14,
+    "ext": "png",
+    "flags": []
+  },
+  {
+    "src": "/assets/art_assets/curation/NOV_4_2023_TOPANGA.jpg",
     "slug": "nov_4_2023_topanga",
     "city": "Topanga",
     "date": "2023-11-04",

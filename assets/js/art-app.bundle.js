@@ -1085,7 +1085,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState5(initialState) {
+          function useState6(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1888,7 +1888,7 @@
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef3;
-          exports.useState = useState5;
+          exports.useState = useState6;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2384,9 +2384,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React5 = require_react();
+          var React6 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React5.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React6.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3993,7 +3993,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React5.Children.forEach(props.children, function(child) {
+                  React6.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -23589,7 +23589,7 @@
       if (true) {
         (function() {
           "use strict";
-          var React5 = require_react();
+          var React6 = require_react();
           var REACT_ELEMENT_TYPE = Symbol.for("react.element");
           var REACT_PORTAL_TYPE = Symbol.for("react.portal");
           var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
@@ -23615,7 +23615,7 @@
             }
             return null;
           }
-          var ReactSharedInternals = React5.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React6.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               {
@@ -24465,11 +24465,11 @@
               return jsxWithValidation(type, props, key, false);
             }
           }
-          var jsx9 = jsxWithValidationDynamic;
-          var jsxs6 = jsxWithValidationStatic;
+          var jsx10 = jsxWithValidationDynamic;
+          var jsxs7 = jsxWithValidationStatic;
           exports.Fragment = REACT_FRAGMENT_TYPE;
-          exports.jsx = jsx9;
-          exports.jsxs = jsxs6;
+          exports.jsx = jsx10;
+          exports.jsxs = jsxs7;
         })();
       }
     }
@@ -24488,11 +24488,11 @@
   });
 
   // src/art/index.tsx
-  var import_react5 = __toESM(require_react());
+  var import_react6 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // src/art/app.tsx
-  var import_react4 = __toESM(require_react());
+  var import_react5 = __toESM(require_react());
 
   // src/art/components/ArtNav.tsx
   var import_react2 = __toESM(require_react());
@@ -24845,7 +24845,7 @@
   // src/generated/artManifest.ts
   var artAssets = [
     {
-      "src": "/assets/art_assets/OCT_10_2025_NEW_YORK.png",
+      "src": "/assets/art_assets/curation/OCT_10_2025_NEW_YORK.png",
       "slug": "oct_10_2025_new_york",
       "city": "New York",
       "date": "2025-10-10",
@@ -24856,7 +24856,7 @@
       "flags": []
     },
     {
-      "src": "/assets/art_assets/JULY_12_2025_LOS_ANGELES.png",
+      "src": "/assets/art_assets/curation/JULY_12_2025_LOS_ANGELES.png",
       "slug": "july_12_2025_los_angeles",
       "city": "Los Angeles",
       "date": "2025-07-12",
@@ -24867,7 +24867,7 @@
       "flags": []
     },
     {
-      "src": "/assets/art_assets/MAY_17_2025_LOS_ANGELES.png",
+      "src": "/assets/art_assets/curation/MAY_17_2025_LOS_ANGELES.png",
       "slug": "may_17_2025_los_angeles",
       "city": "Los Angeles",
       "date": "2025-05-17",
@@ -24878,7 +24878,7 @@
       "flags": []
     },
     {
-      "src": "/assets/art_assets/DEC_30_2024_LOS_ANGELES.png",
+      "src": "/assets/art_assets/curation/DEC_30_2024_LOS_ANGELES.png",
       "slug": "dec_30_2024_los_angeles",
       "city": "Los Angeles",
       "date": "2024-12-30",
@@ -24889,18 +24889,7 @@
       "flags": []
     },
     {
-      "src": "/assets/art_assets/NOV_14_2024_BOSTON.png",
-      "slug": "nov_14_2024_boston",
-      "city": "Boston",
-      "date": "2024-11-14",
-      "year": 2024,
-      "month": 11,
-      "day": 14,
-      "ext": "png",
-      "flags": []
-    },
-    {
-      "src": "/assets/art_assets/OCT_12_2024_NEW_YORK.png",
+      "src": "/assets/art_assets/curation/OCT_12_2024_NEW_YORK.png",
       "slug": "oct_12_2024_new_york",
       "city": "New York",
       "date": "2024-10-12",
@@ -24911,7 +24900,7 @@
       "flags": []
     },
     {
-      "src": "/assets/art_assets/AUG_10_2024_LOS_ANGELES.png",
+      "src": "/assets/art_assets/curation/AUG_10_2024_LOS_ANGELES.png",
       "slug": "aug_10_2024_los_angeles",
       "city": "Los Angeles",
       "date": "2024-08-10",
@@ -24922,7 +24911,7 @@
       "flags": []
     },
     {
-      "src": "/assets/art_assets/AUG_2_2024_LOS_ANGELES.png",
+      "src": "/assets/art_assets/curation/AUG_2_2024_LOS_ANGELES.png",
       "slug": "aug_2_2024_los_angeles",
       "city": "Los Angeles",
       "date": "2024-08-02",
@@ -24933,7 +24922,7 @@
       "flags": []
     },
     {
-      "src": "/assets/art_assets/JUN_16_2024_LOS_ANGELES.mp4",
+      "src": "/assets/art_assets/curation/JUN_16_2024_LOS_ANGELES.mp4",
       "slug": "jun_16_2024_los_angeles",
       "city": "Los Angeles",
       "date": "2024-06-16",
@@ -24944,7 +24933,7 @@
       "flags": []
     },
     {
-      "src": "/assets/art_assets/MAY_11_2024_NEW_YORK.png",
+      "src": "/assets/art_assets/curation/MAY_11_2024_NEW_YORK.png",
       "slug": "may_11_2024_new_york",
       "city": "New York",
       "date": "2024-05-11",
@@ -24955,7 +24944,7 @@
       "flags": []
     },
     {
-      "src": "/assets/art_assets/MAY_5_2024_NEW_YORK.png",
+      "src": "/assets/art_assets/curation/MAY_5_2024_NEW_YORK.png",
       "slug": "may_5_2024_new_york",
       "city": "New York",
       "date": "2024-05-05",
@@ -24966,7 +24955,7 @@
       "flags": []
     },
     {
-      "src": "/assets/art_assets/APRIL_13_2024_LOS_ANGELES.png",
+      "src": "/assets/art_assets/curation/APRIL_13_2024_LOS_ANGELES.png",
       "slug": "april_13_2024_los_angeles",
       "city": "Los Angeles",
       "date": "2024-04-13",
@@ -24977,7 +24966,7 @@
       "flags": []
     },
     {
-      "src": "/assets/art_assets/MARCH_9_2024_LOS_ANGELES.png",
+      "src": "/assets/art_assets/curation/MARCH_9_2024_LOS_ANGELES.png",
       "slug": "march_9_2024_los_angeles",
       "city": "Los Angeles",
       "date": "2024-03-09",
@@ -24988,7 +24977,7 @@
       "flags": []
     },
     {
-      "src": "/assets/art_assets/JAN_25_2024_LOS_ANGELES.png",
+      "src": "/assets/art_assets/curation/JAN_25_2024_LOS_ANGELES.png",
       "slug": "jan_25_2024_los_angeles",
       "city": "Los Angeles",
       "date": "2024-01-25",
@@ -24999,7 +24988,7 @@
       "flags": []
     },
     {
-      "src": "/assets/art_assets/JAN_1_2024_LOS_ANGELES.png",
+      "src": "/assets/art_assets/curation/JAN_1_2024_LOS_ANGELES.png",
       "slug": "jan_1_2024_los_angeles",
       "city": "Los Angeles",
       "date": "2024-01-01",
@@ -25010,7 +24999,7 @@
       "flags": []
     },
     {
-      "src": "/assets/art_assets/DEC_14_2023_LOS_ANGELES.png",
+      "src": "/assets/art_assets/curation/DEC_14_2023_LOS_ANGELES.png",
       "slug": "dec_14_2023_los_angeles",
       "city": "Los Angeles",
       "date": "2023-12-14",
@@ -25021,7 +25010,18 @@
       "flags": []
     },
     {
-      "src": "/assets/art_assets/NOV_4_2023_TOPANGA.jpg",
+      "src": "/assets/art_assets/curation/NOV_14_2023_BOSTON.png",
+      "slug": "nov_14_2023_boston",
+      "city": "Boston",
+      "date": "2023-11-14",
+      "year": 2023,
+      "month": 11,
+      "day": 14,
+      "ext": "png",
+      "flags": []
+    },
+    {
+      "src": "/assets/art_assets/curation/NOV_4_2023_TOPANGA.jpg",
       "slug": "nov_4_2023_topanga",
       "city": "Topanga",
       "date": "2023-11-04",
@@ -25033,9 +25033,562 @@
     }
   ];
 
-  // src/art/components/ArtGallery.tsx
+  // src/art/components/ArtistNames.tsx
+  var import_react3 = __toESM(require_react());
+
+  // src/generated/artistsManifest.ts
+  var artistArray = [
+    {
+      "Artist": "05elantra",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "5.99",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "5000",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Androcided",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Ava Blank",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Beli",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Bente Violet",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Bifa01",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Blythe Bonnie",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Chou Chou",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "danielfromyesterday",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "emme",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "equip gloom",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Estuary Fragmentation",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Eve",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Faith Rawson",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "G.M.O",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Godboat",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Greystar",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Grump",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Harriet Brown",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "In Motion",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "INBIO",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Iris ipsum",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Jacob Wolf",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Jane Die",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Jellyeeee",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Joanni",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Jopenga",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Josh Reim",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Kunt Cobain",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Lil missfortune",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Lov\u012Bm",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Magic Candy",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Memory Saw",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Mirrored Fatality",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "M\xFCnki",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Namzanil",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "naomiash",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Nasanieru",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Nola Shade",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "p2p",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Phendetta",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Romeo Diablos",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Sadnoise",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Scout",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Sensor",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Shadow Mosez",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Slime Beach",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Smilegoth",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "SONNET",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "spok2god",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Strangejane",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "sunchoked",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Sylvian Flood",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Thinking Spell",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "TP2",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Violet Hannesena",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Vora",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "weepingwillowtree",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    },
+    {
+      "Artist": "Ymani",
+      "Instagram": "",
+      "Bandcamp": "",
+      "Notes": ""
+    }
+  ];
+
+  // src/art/components/ArtistNames.tsx
   var import_jsx_runtime4 = __toESM(require_jsx_runtime());
   var fadeInStyle = `
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .artist-name-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .artist-tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: '8px';
+    font-size: 0.85rem;
+    white-space: nowrap;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    pointer-events: none;
+  }
+
+  .artist-tooltip a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+
+  .artist-tooltip a:hover {
+    text-decoration: underline;
+  }
+`;
+  if (typeof document !== "undefined") {
+    const style = document.createElement("style");
+    style.textContent = fadeInStyle;
+    document.head.appendChild(style);
+  }
+  var SPRITE_OPTIONS = [
+    { name: "ice", path: "assets/sprites/ice.png", rows: 9, cols: 1 },
+    { name: "puddle_medium", path: "assets/sprites/puddle_medium.png", rows: 8, cols: 1 },
+    { name: "robber_splash", path: "assets/sprites/robber_splash.png", rows: 7, cols: 1 }
+  ];
+  function getRandomSprite() {
+    return SPRITE_OPTIONS[Math.floor(Math.random() * SPRITE_OPTIONS.length)];
+  }
+  function ArtistNames() {
+    const [hoveredArtist, setHoveredArtist] = (0, import_react3.useState)(null);
+    const [tooltipPos, setTooltipPos] = (0, import_react3.useState)({ x: 0, y: 0 });
+    const [spriteMap, setSpriteMap] = (0, import_react3.useState)({});
+    return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { style: { maxWidth: "1200px", margin: "0 auto", padding: "3rem 1rem" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h1", { style: { fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#333" }, children: "Featured Artists" }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("p", { style: { color: "#666", marginBottom: "2rem", fontSize: "1.1rem" }, children: [
+        "A curated collection of ",
+        artistArray.length,
+        " artists"
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { style: {
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))",
+        gap: "2rem 1rem"
+      }, children: artistArray.map((artist, index) => /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
+        "div",
+        {
+          style: {
+            position: "relative",
+            animation: `fadeIn 0.6s ease-out forwards`,
+            animationDelay: `${index * 0.05}s`
+          },
+          onMouseEnter: (e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            setTooltipPos({
+              x: rect.left + rect.width / 2,
+              y: rect.top - 10
+            });
+            setHoveredArtist(artist.Artist);
+            if (!spriteMap[artist.Artist]) {
+              setSpriteMap((prev) => ({
+                ...prev,
+                [artist.Artist]: getRandomSprite()
+              }));
+            }
+          },
+          onMouseLeave: () => setHoveredArtist(null),
+          children: [
+            hoveredArtist === artist.Artist && spriteMap[artist.Artist] && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+              "div",
+              {
+                style: {
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 0,
+                  opacity: 1,
+                  pointerEvents: "none"
+                }
+              }
+            ),
+            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+              "span",
+              {
+                style: {
+                  cursor: "pointer",
+                  color: "#333",
+                  fontSize: "0.95rem",
+                  fontWeight: "500",
+                  transition: "color 0.2s ease",
+                  position: "relative",
+                  zIndex: 1
+                },
+                onMouseEnter: (e) => {
+                  e.currentTarget.style.color = "#0066cc";
+                },
+                onMouseLeave: (e) => {
+                  e.currentTarget.style.color = "#333";
+                },
+                children: artist.Artist
+              }
+            ),
+            hoveredArtist === artist.Artist && (artist.Instagram || artist.Bandcamp || artist.Notes) && /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
+              "div",
+              {
+                style: {
+                  position: "fixed",
+                  left: `${tooltipPos.x}px`,
+                  top: `${tooltipPos.y}px`,
+                  transform: "translate(-50%, -100%)",
+                  backgroundColor: "#333",
+                  color: "#fff",
+                  padding: "0.75rem 1rem",
+                  borderRadius: "8px",
+                  fontSize: "0.85rem",
+                  whiteSpace: "nowrap",
+                  zIndex: 1e3,
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+                  pointerEvents: "none"
+                },
+                children: [
+                  artist.Instagram && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { style: { marginBottom: artist.Bandcamp ? "0.5rem" : 0 }, children: /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
+                    "a",
+                    {
+                      href: `https://instagram.com/${artist.Instagram}`,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      style: { color: "#a8dadc", textDecoration: "none" },
+                      children: [
+                        "@",
+                        artist.Instagram
+                      ]
+                    }
+                  ) }),
+                  artist.Bandcamp && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { style: { marginBottom: artist.Notes ? "0.5rem" : 0 }, children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+                    "a",
+                    {
+                      href: `https://bandcamp.com/search?q=${encodeURIComponent(artist.Bandcamp)}`,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                      style: { color: "#a8dadc", textDecoration: "none" },
+                      children: artist.Bandcamp
+                    }
+                  ) }),
+                  artist.Notes && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { style: { fontSize: "0.8rem", color: "#ccc" }, children: artist.Notes })
+                ]
+              }
+            )
+          ]
+        },
+        artist.Artist
+      )) })
+    ] });
+  }
+
+  // src/art/components/ArtGallery.tsx
+  var import_jsx_runtime5 = __toESM(require_jsx_runtime());
+  var fadeInStyle2 = `
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -25053,7 +25606,7 @@
 `;
   if (typeof document !== "undefined") {
     const style = document.createElement("style");
-    style.textContent = fadeInStyle;
+    style.textContent = fadeInStyle2;
     document.head.appendChild(style);
   }
   function ArtGallery() {
@@ -25063,25 +25616,27 @@
       if (!b.date) return -1;
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
-    return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { style: { maxWidth: "1200px", margin: "0 auto", padding: "3rem 1rem" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h1", { style: { fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#333" }, children: "Art Gallery" }),
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("p", { style: { color: "#666", marginBottom: "2rem", fontSize: "1.1rem" }, children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { style: { maxWidth: "1200px", margin: "0 auto", padding: "3rem 1rem" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h2", { children: "Web has worked with many artists in a diverse range of genres. Curation is an important part of there practice" }),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(ArtistNames, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h1", { style: { fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#333" }, children: "Art Gallery" }),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("p", { style: { color: "#666", marginBottom: "2rem", fontSize: "1.1rem" }, children: [
         "A collection of ",
         artAssets.length,
         " visual works"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { style: {
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { style: {
         display: "flex",
         flexDirection: "column",
         gap: "1.5rem"
-      }, children: sortedAssets.map((asset, index) => /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+      }, children: sortedAssets.map((asset, index) => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
         "div",
         {
           className: "art-card-fade-in",
           style: {
             animationDelay: `${index * 0.1}s`
           },
-          children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(ArtCard, { asset })
+          children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(ArtCard, { asset })
         },
         asset.slug
       )) })
@@ -25089,18 +25644,18 @@
   }
 
   // src/art/components/ArtWork.tsx
-  var import_jsx_runtime5 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime6 = __toESM(require_jsx_runtime());
   function ArtWork() {
-    return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { style: { maxWidth: "1200px", margin: "0 auto", padding: "3rem 1rem" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h1", { style: { fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#333" }, children: "Work" }),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("p", { style: { color: "#666", marginBottom: "2rem", fontSize: "1.1rem" }, children: "Coming soon..." }),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { style: {
+    return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { maxWidth: "1200px", margin: "0 auto", padding: "3rem 1rem" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h1", { style: { fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#333" }, children: "Work" }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { style: { color: "#666", marginBottom: "2rem", fontSize: "1.1rem" }, children: "Coming soon..." }),
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { style: {
         padding: "3rem",
         backgroundColor: "#f8f8f8",
         borderRadius: "12px",
         textAlign: "center",
         border: "2px dashed #ddd"
-      }, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("p", { style: {
+      }, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { style: {
         color: "#999",
         fontSize: "1.2rem",
         margin: 0
@@ -25109,8 +25664,8 @@
   }
 
   // src/art/components/Butterflies.tsx
-  var import_react3 = __toESM(require_react());
-  var import_jsx_runtime6 = __toESM(require_jsx_runtime());
+  var import_react4 = __toESM(require_react());
+  var import_jsx_runtime7 = __toESM(require_jsx_runtime());
   var SPRITE_CONFIGS = {
     blue: { rows: 6, cols: 1, width: 64, height: 64, direction: "left" },
     blue_small: { rows: 6, cols: 1, width: 32, height: 32, direction: "left" },
@@ -25132,10 +25687,10 @@
     }
   };
   function Butterflies() {
-    const [butterflies, setButterflies] = (0, import_react3.useState)([]);
-    const nextId = (0, import_react3.useRef)(0);
-    const lastPositions = (0, import_react3.useRef)({});
-    (0, import_react3.useEffect)(() => {
+    const [butterflies, setButterflies] = (0, import_react4.useState)([]);
+    const nextId = (0, import_react4.useRef)(0);
+    const lastPositions = (0, import_react4.useRef)({});
+    (0, import_react4.useEffect)(() => {
       const createButterfly = () => {
         const keys = Object.keys(SPRITE_CONFIGS);
         const sprite = keys[Math.floor(Math.random() * keys.length)];
@@ -25156,7 +25711,7 @@
       const interval = setInterval(createButterfly, 9e3 + Math.random() * 5e3);
       return () => clearInterval(interval);
     }, []);
-    (0, import_react3.useEffect)(() => {
+    (0, import_react4.useEffect)(() => {
       const cleanup = setInterval(() => {
         setButterflies(
           (prev) => prev.filter((b) => Date.now() - b.startTime < b.duration)
@@ -25164,7 +25719,7 @@
       }, 1);
       return () => clearInterval(cleanup);
     }, []);
-    return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
       "div",
       {
         style: {
@@ -25193,7 +25748,7 @@
           } else {
             shouldFlip = movingLeft;
           }
-          return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+          return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
             "div",
             {
               style: {
@@ -25207,7 +25762,7 @@
                 transition: "none",
                 opacity: 1
               },
-              children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+              children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
                 SpritePlayback,
                 {
                   src: `assets/sprites/${b.sprite}.png`,
@@ -25228,10 +25783,10 @@
   }
 
   // src/art/app.tsx
-  var import_jsx_runtime7 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime8 = __toESM(require_jsx_runtime());
   function App() {
-    const [currentPage, setCurrentPage] = (0, import_react4.useState)("curation");
-    (0, import_react4.useEffect)(() => {
+    const [currentPage, setCurrentPage] = (0, import_react5.useState)("curation");
+    (0, import_react5.useEffect)(() => {
       const handleHashChange = () => {
         const hash = window.location.hash.substring(1);
         if (hash === "work" || hash === "curation") {
@@ -25249,27 +25804,27 @@
     const renderCurrentPage = () => {
       switch (currentPage) {
         case "work":
-          return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(ArtWork, {});
+          return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(ArtWork, {});
         case "curation":
-          return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(ArtGallery, {});
+          return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(ArtGallery, {});
         default:
-          return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(ArtGallery, {});
+          return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(ArtGallery, {});
       }
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { minHeight: "100vh", backgroundColor: "#ffffff", color: "#333" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Butterflies, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(ArtNav, { currentPage, onPageChange: handlePageChange }),
+    return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { style: { minHeight: "100vh", backgroundColor: "#ffffff", color: "#333" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Butterflies, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(ArtNav, { currentPage, onPageChange: handlePageChange }),
       renderCurrentPage()
     ] });
   }
 
   // src/art/index.tsx
-  var import_jsx_runtime8 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime9 = __toESM(require_jsx_runtime());
   var root = import_client.default.createRoot(
     document.getElementById("art-app")
   );
   root.render(
-    /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(import_react5.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(App, {}) })
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(import_react6.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(App, {}) })
   );
 })();
 /*! Bundled license information:

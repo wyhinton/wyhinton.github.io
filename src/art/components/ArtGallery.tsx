@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ArtCard from './ArtCard';
 import { artAssets, ArtAsset } from "../../generated/artManifest";
+import ArtistNames from './ArtistNames';
 
 // CSS for fade-in animation
 const fadeInStyle = `
@@ -38,6 +39,8 @@ export default function ArtGallery() {
 
   return (
     <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '3rem 1rem' }}>
+      <h2>Web has worked with many artists in a diverse range of genres. Curation is an important part of there practice</h2>
+      <ArtistNames></ArtistNames>
       <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem', color: '#333' }}>
         Art Gallery
       </h1>
