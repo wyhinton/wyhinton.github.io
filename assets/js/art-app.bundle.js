@@ -297,8 +297,8 @@
             return refObject;
           }
           var isArrayImpl = Array.isArray;
-          function isArray(a2) {
-            return isArrayImpl(a2);
+          function isArray(a) {
+            return isArrayImpl(a);
           }
           function typeName(value) {
             {
@@ -312,7 +312,7 @@
               try {
                 testStringCoercion(value);
                 return false;
-              } catch (e2) {
+              } catch (e) {
                 return true;
               }
             }
@@ -390,7 +390,7 @@
                   var init = lazyComponent._init;
                   try {
                     return getComponentNameFromType(init(payload));
-                  } catch (x2) {
+                  } catch (x) {
                     return null;
                   }
                 }
@@ -544,8 +544,8 @@
               props.children = children;
             } else if (childrenLength > 1) {
               var childArray = Array(childrenLength);
-              for (var i2 = 0; i2 < childrenLength; i2++) {
-                childArray[i2] = arguments[i2 + 2];
+              for (var i = 0; i < childrenLength; i++) {
+                childArray[i] = arguments[i + 2];
               }
               {
                 if (Object.freeze) {
@@ -620,8 +620,8 @@
               props.children = children;
             } else if (childrenLength > 1) {
               var childArray = Array(childrenLength);
-              for (var i2 = 0; i2 < childrenLength; i2++) {
-                childArray[i2] = arguments[i2 + 2];
+              for (var i = 0; i < childrenLength; i++) {
+                childArray[i] = arguments[i + 2];
               }
               props.children = childArray;
             }
@@ -688,8 +688,8 @@
                 if (childKey != null) {
                   escapedChildKey = escapeUserProvidedKey(childKey) + "/";
                 }
-                mapIntoArray(mappedChild, array, escapedChildKey, "", function(c2) {
-                  return c2;
+                mapIntoArray(mappedChild, array, escapedChildKey, "", function(c) {
+                  return c;
                 });
               } else if (mappedChild != null) {
                 if (isValidElement(mappedChild)) {
@@ -719,9 +719,9 @@
             var subtreeCount = 0;
             var nextNamePrefix = nameSoFar === "" ? SEPARATOR : nameSoFar + SUBSEPARATOR;
             if (isArray(children)) {
-              for (var i2 = 0; i2 < children.length; i2++) {
-                child = children[i2];
-                nextName = nextNamePrefix + getElementKey(child, i2);
+              for (var i = 0; i < children.length; i++) {
+                child = children[i];
+                nextName = nextNamePrefix + getElementKey(child, i);
                 subtreeCount += mapIntoArray(child, array, escapedPrefix, nextName, callback);
               }
             } else {
@@ -763,11 +763,11 @@
             return result;
           }
           function countChildren(children) {
-            var n2 = 0;
+            var n = 0;
             mapChildren(children, function() {
-              n2++;
+              n++;
             });
-            return n2;
+            return n;
           }
           function forEachChildren(children, forEachFunc, forEachContext) {
             mapChildren(children, function() {
@@ -785,7 +785,7 @@
             }
             return children;
           }
-          function createContext2(defaultValue) {
+          function createContext(defaultValue) {
             var context = {
               $$typeof: REACT_CONTEXT_TYPE,
               // As a workaround to support multiple concurrent renderers, we categorize
@@ -1071,7 +1071,7 @@
             }
             return dispatcher;
           }
-          function useContext2(Context) {
+          function useContext(Context) {
             var dispatcher = resolveDispatcher();
             {
               if (Context._context !== void 0) {
@@ -1085,7 +1085,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState3(initialState) {
+          function useState4(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1121,7 +1121,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useImperativeHandle(ref, create, deps);
           }
-          function useDebugValue2(value, formatterFn) {
+          function useDebugValue(value, formatterFn) {
             {
               var dispatcher = resolveDispatcher();
               return dispatcher.useDebugValue(value, formatterFn);
@@ -1228,8 +1228,8 @@
               if (prefix === void 0) {
                 try {
                   throw Error();
-                } catch (x2) {
-                  var match = x2.stack.trim().match(/\n( *(at )?)/);
+                } catch (x) {
+                  var match = x.stack.trim().match(/\n( *(at )?)/);
                   prefix = match && match[1] || "";
                 }
               }
@@ -1242,12 +1242,12 @@
             var PossiblyWeakMap = typeof WeakMap === "function" ? WeakMap : Map;
             componentFrameCache = new PossiblyWeakMap();
           }
-          function describeNativeComponentFrame(fn2, construct) {
-            if (!fn2 || reentry) {
+          function describeNativeComponentFrame(fn, construct) {
+            if (!fn || reentry) {
               return "";
             }
             {
-              var frame = componentFrameCache.get(fn2);
+              var frame = componentFrameCache.get(fn);
               if (frame !== void 0) {
                 return frame;
               }
@@ -1275,54 +1275,54 @@
                 if (typeof Reflect === "object" && Reflect.construct) {
                   try {
                     Reflect.construct(Fake, []);
-                  } catch (x2) {
-                    control = x2;
+                  } catch (x) {
+                    control = x;
                   }
-                  Reflect.construct(fn2, [], Fake);
+                  Reflect.construct(fn, [], Fake);
                 } else {
                   try {
                     Fake.call();
-                  } catch (x2) {
-                    control = x2;
+                  } catch (x) {
+                    control = x;
                   }
-                  fn2.call(Fake.prototype);
+                  fn.call(Fake.prototype);
                 }
               } else {
                 try {
                   throw Error();
-                } catch (x2) {
-                  control = x2;
+                } catch (x) {
+                  control = x;
                 }
-                fn2();
+                fn();
               }
             } catch (sample) {
               if (sample && control && typeof sample.stack === "string") {
                 var sampleLines = sample.stack.split("\n");
                 var controlLines = control.stack.split("\n");
-                var s2 = sampleLines.length - 1;
-                var c2 = controlLines.length - 1;
-                while (s2 >= 1 && c2 >= 0 && sampleLines[s2] !== controlLines[c2]) {
-                  c2--;
+                var s = sampleLines.length - 1;
+                var c = controlLines.length - 1;
+                while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
+                  c--;
                 }
-                for (; s2 >= 1 && c2 >= 0; s2--, c2--) {
-                  if (sampleLines[s2] !== controlLines[c2]) {
-                    if (s2 !== 1 || c2 !== 1) {
+                for (; s >= 1 && c >= 0; s--, c--) {
+                  if (sampleLines[s] !== controlLines[c]) {
+                    if (s !== 1 || c !== 1) {
                       do {
-                        s2--;
-                        c2--;
-                        if (c2 < 0 || sampleLines[s2] !== controlLines[c2]) {
-                          var _frame = "\n" + sampleLines[s2].replace(" at new ", " at ");
-                          if (fn2.displayName && _frame.includes("<anonymous>")) {
-                            _frame = _frame.replace("<anonymous>", fn2.displayName);
+                        s--;
+                        c--;
+                        if (c < 0 || sampleLines[s] !== controlLines[c]) {
+                          var _frame = "\n" + sampleLines[s].replace(" at new ", " at ");
+                          if (fn.displayName && _frame.includes("<anonymous>")) {
+                            _frame = _frame.replace("<anonymous>", fn.displayName);
                           }
                           {
-                            if (typeof fn2 === "function") {
-                              componentFrameCache.set(fn2, _frame);
+                            if (typeof fn === "function") {
+                              componentFrameCache.set(fn, _frame);
                             }
                           }
                           return _frame;
                         }
-                      } while (s2 >= 1 && c2 >= 0);
+                      } while (s >= 1 && c >= 0);
                     }
                     break;
                   }
@@ -1336,18 +1336,18 @@
               }
               Error.prepareStackTrace = previousPrepareStackTrace;
             }
-            var name = fn2 ? fn2.displayName || fn2.name : "";
+            var name = fn ? fn.displayName || fn.name : "";
             var syntheticFrame = name ? describeBuiltInComponentFrame(name) : "";
             {
-              if (typeof fn2 === "function") {
-                componentFrameCache.set(fn2, syntheticFrame);
+              if (typeof fn === "function") {
+                componentFrameCache.set(fn, syntheticFrame);
               }
             }
             return syntheticFrame;
           }
-          function describeFunctionComponentFrame(fn2, source, ownerFn) {
+          function describeFunctionComponentFrame(fn, source, ownerFn) {
             {
-              return describeNativeComponentFrame(fn2, false);
+              return describeNativeComponentFrame(fn, false);
             }
           }
           function shouldConstruct(Component2) {
@@ -1384,7 +1384,7 @@
                   var init = lazyComponent._init;
                   try {
                     return describeUnknownElementTypeFrameInDEV(init(payload), source, ownerFn);
-                  } catch (x2) {
+                  } catch (x) {
                   }
                 }
               }
@@ -1509,8 +1509,8 @@
               return;
             }
             if (isArray(node)) {
-              for (var i2 = 0; i2 < node.length; i2++) {
-                var child = node[i2];
+              for (var i = 0; i < node.length; i++) {
+                var child = node[i];
                 if (isValidElement(child)) {
                   validateExplicitKey(child, parentType);
                 }
@@ -1566,8 +1566,8 @@
           function validateFragmentProps(fragment) {
             {
               var keys = Object.keys(fragment.props);
-              for (var i2 = 0; i2 < keys.length; i2++) {
-                var key = keys[i2];
+              for (var i = 0; i < keys.length; i++) {
+                var key = keys[i];
                 if (key !== "children" && key !== "key") {
                   setCurrentlyValidatingElement$1(fragment);
                   error("Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.", key);
@@ -1615,8 +1615,8 @@
               return element;
             }
             if (validType) {
-              for (var i2 = 2; i2 < arguments.length; i2++) {
-                validateChildKeys(arguments[i2], type);
+              for (var i = 2; i < arguments.length; i++) {
+                validateChildKeys(arguments[i], type);
               }
             }
             if (type === REACT_FRAGMENT_TYPE) {
@@ -1650,8 +1650,8 @@
           }
           function cloneElementWithValidation(element, props, children) {
             var newElement = cloneElement.apply(this, arguments);
-            for (var i2 = 2; i2 < arguments.length; i2++) {
-              validateChildKeys(arguments[i2], newElement.type);
+            for (var i = 2; i < arguments.length; i++) {
+              validateChildKeys(arguments[i], newElement.type);
             }
             validatePropTypes(newElement);
             return newElement;
@@ -1828,17 +1828,17 @@
             {
               if (!isFlushing) {
                 isFlushing = true;
-                var i2 = 0;
+                var i = 0;
                 try {
-                  for (; i2 < queue.length; i2++) {
-                    var callback = queue[i2];
+                  for (; i < queue.length; i++) {
+                    var callback = queue[i];
                     do {
                       callback = callback(true);
                     } while (callback !== null);
                   }
                   queue.length = 0;
                 } catch (error2) {
-                  queue = queue.slice(i2 + 1);
+                  queue = queue.slice(i + 1);
                   throw error2;
                 } finally {
                   isFlushing = false;
@@ -1866,7 +1866,7 @@
           exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals;
           exports.act = act;
           exports.cloneElement = cloneElement$1;
-          exports.createContext = createContext2;
+          exports.createContext = createContext;
           exports.createElement = createElement$1;
           exports.createFactory = createFactory;
           exports.createRef = createRef;
@@ -1877,8 +1877,8 @@
           exports.startTransition = startTransition;
           exports.unstable_act = act;
           exports.useCallback = useCallback;
-          exports.useContext = useContext2;
-          exports.useDebugValue = useDebugValue2;
+          exports.useContext = useContext;
+          exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
           exports.useEffect = useEffect3;
           exports.useId = useId;
@@ -1888,7 +1888,7 @@
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef2;
-          exports.useState = useState3;
+          exports.useState = useState4;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -1945,8 +1945,8 @@
             }
             return first;
           }
-          function siftUp(heap, node, i2) {
-            var index = i2;
+          function siftUp(heap, node, i) {
+            var index = i;
             while (index > 0) {
               var parentIndex = index - 1 >>> 1;
               var parent = heap[parentIndex];
@@ -1959,8 +1959,8 @@
               }
             }
           }
-          function siftDown(heap, node, i2) {
-            var index = i2;
+          function siftDown(heap, node, i) {
+            var index = i;
             var length = heap.length;
             var halfLength = length >>> 1;
             while (index < halfLength) {
@@ -1987,9 +1987,9 @@
               }
             }
           }
-          function compare(a2, b2) {
-            var diff = a2.sortIndex - b2.sortIndex;
-            return diff !== 0 ? diff : a2.id - b2.id;
+          function compare(a, b) {
+            var diff = a.sortIndex - b.sortIndex;
+            return diff !== 0 ? diff : a.id - b.id;
           }
           var ImmediatePriority = 1;
           var UserBlockingPriority = 2;
@@ -2435,7 +2435,7 @@
           var HostPortal = 4;
           var HostComponent = 5;
           var HostText = 6;
-          var Fragment = 7;
+          var Fragment2 = 7;
           var Mode = 8;
           var ContextConsumer = 9;
           var ContextProvider = 10;
@@ -2485,8 +2485,8 @@
                 possibleRegistrationNames.ondblclick = registrationName;
               }
             }
-            for (var i2 = 0; i2 < dependencies.length; i2++) {
-              allNativeEvents.add(dependencies[i2]);
+            for (var i = 0; i < dependencies.length; i++) {
+              allNativeEvents.add(dependencies[i]);
             }
           }
           var canUseDOM = !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
@@ -2503,7 +2503,7 @@
               try {
                 testStringCoercion(value);
                 return false;
-              } catch (e2) {
+              } catch (e) {
                 return true;
               }
             }
@@ -3295,8 +3295,8 @@
               if (prefix === void 0) {
                 try {
                   throw Error();
-                } catch (x2) {
-                  var match = x2.stack.trim().match(/\n( *(at )?)/);
+                } catch (x) {
+                  var match = x.stack.trim().match(/\n( *(at )?)/);
                   prefix = match && match[1] || "";
                 }
               }
@@ -3309,12 +3309,12 @@
             var PossiblyWeakMap = typeof WeakMap === "function" ? WeakMap : Map;
             componentFrameCache = new PossiblyWeakMap();
           }
-          function describeNativeComponentFrame(fn2, construct) {
-            if (!fn2 || reentry) {
+          function describeNativeComponentFrame(fn, construct) {
+            if (!fn || reentry) {
               return "";
             }
             {
-              var frame = componentFrameCache.get(fn2);
+              var frame = componentFrameCache.get(fn);
               if (frame !== void 0) {
                 return frame;
               }
@@ -3342,54 +3342,54 @@
                 if (typeof Reflect === "object" && Reflect.construct) {
                   try {
                     Reflect.construct(Fake, []);
-                  } catch (x2) {
-                    control = x2;
+                  } catch (x) {
+                    control = x;
                   }
-                  Reflect.construct(fn2, [], Fake);
+                  Reflect.construct(fn, [], Fake);
                 } else {
                   try {
                     Fake.call();
-                  } catch (x2) {
-                    control = x2;
+                  } catch (x) {
+                    control = x;
                   }
-                  fn2.call(Fake.prototype);
+                  fn.call(Fake.prototype);
                 }
               } else {
                 try {
                   throw Error();
-                } catch (x2) {
-                  control = x2;
+                } catch (x) {
+                  control = x;
                 }
-                fn2();
+                fn();
               }
             } catch (sample) {
               if (sample && control && typeof sample.stack === "string") {
                 var sampleLines = sample.stack.split("\n");
                 var controlLines = control.stack.split("\n");
-                var s2 = sampleLines.length - 1;
-                var c2 = controlLines.length - 1;
-                while (s2 >= 1 && c2 >= 0 && sampleLines[s2] !== controlLines[c2]) {
-                  c2--;
+                var s = sampleLines.length - 1;
+                var c = controlLines.length - 1;
+                while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
+                  c--;
                 }
-                for (; s2 >= 1 && c2 >= 0; s2--, c2--) {
-                  if (sampleLines[s2] !== controlLines[c2]) {
-                    if (s2 !== 1 || c2 !== 1) {
+                for (; s >= 1 && c >= 0; s--, c--) {
+                  if (sampleLines[s] !== controlLines[c]) {
+                    if (s !== 1 || c !== 1) {
                       do {
-                        s2--;
-                        c2--;
-                        if (c2 < 0 || sampleLines[s2] !== controlLines[c2]) {
-                          var _frame = "\n" + sampleLines[s2].replace(" at new ", " at ");
-                          if (fn2.displayName && _frame.includes("<anonymous>")) {
-                            _frame = _frame.replace("<anonymous>", fn2.displayName);
+                        s--;
+                        c--;
+                        if (c < 0 || sampleLines[s] !== controlLines[c]) {
+                          var _frame = "\n" + sampleLines[s].replace(" at new ", " at ");
+                          if (fn.displayName && _frame.includes("<anonymous>")) {
+                            _frame = _frame.replace("<anonymous>", fn.displayName);
                           }
                           {
-                            if (typeof fn2 === "function") {
-                              componentFrameCache.set(fn2, _frame);
+                            if (typeof fn === "function") {
+                              componentFrameCache.set(fn, _frame);
                             }
                           }
                           return _frame;
                         }
-                      } while (s2 >= 1 && c2 >= 0);
+                      } while (s >= 1 && c >= 0);
                     }
                     break;
                   }
@@ -3403,11 +3403,11 @@
               }
               Error.prepareStackTrace = previousPrepareStackTrace;
             }
-            var name = fn2 ? fn2.displayName || fn2.name : "";
+            var name = fn ? fn.displayName || fn.name : "";
             var syntheticFrame = name ? describeBuiltInComponentFrame(name) : "";
             {
-              if (typeof fn2 === "function") {
-                componentFrameCache.set(fn2, syntheticFrame);
+              if (typeof fn === "function") {
+                componentFrameCache.set(fn, syntheticFrame);
               }
             }
             return syntheticFrame;
@@ -3417,9 +3417,9 @@
               return describeNativeComponentFrame(ctor, true);
             }
           }
-          function describeFunctionComponentFrame(fn2, source, ownerFn) {
+          function describeFunctionComponentFrame(fn, source, ownerFn) {
             {
-              return describeNativeComponentFrame(fn2, false);
+              return describeNativeComponentFrame(fn, false);
             }
           }
           function shouldConstruct(Component) {
@@ -3456,7 +3456,7 @@
                   var init = lazyComponent._init;
                   try {
                     return describeUnknownElementTypeFrameInDEV(init(payload), source, ownerFn);
-                  } catch (x2) {
+                  } catch (x) {
                   }
                 }
               }
@@ -3496,8 +3496,8 @@
                 node = node.return;
               } while (node);
               return info;
-            } catch (x2) {
-              return "\nError generating stack: " + x2.message + "\n" + x2.stack;
+            } catch (x) {
+              return "\nError generating stack: " + x.message + "\n" + x.stack;
             }
           }
           function getWrappedName(outerType, innerType, wrapperName) {
@@ -3562,7 +3562,7 @@
                   var init = lazyComponent._init;
                   try {
                     return getComponentNameFromType(init(payload));
-                  } catch (x2) {
+                  } catch (x) {
                     return null;
                   }
                 }
@@ -3592,7 +3592,7 @@
                 return "DehydratedFragment";
               case ForwardRef:
                 return getWrappedName$1(type, type.render, "ForwardRef");
-              case Fragment:
+              case Fragment2:
                 return "Fragment";
               case HostComponent:
                 return type;
@@ -3756,18 +3756,18 @@
             if (node.hasOwnProperty(valueField) || typeof descriptor === "undefined" || typeof descriptor.get !== "function" || typeof descriptor.set !== "function") {
               return;
             }
-            var get3 = descriptor.get, set3 = descriptor.set;
+            var get2 = descriptor.get, set2 = descriptor.set;
             Object.defineProperty(node, valueField, {
               configurable: true,
               get: function() {
-                return get3.call(this);
+                return get2.call(this);
               },
               set: function(value) {
                 {
                   checkFormFieldValueStringCoercion(value);
                 }
                 currentValue = "" + value;
-                set3.call(this, value);
+                set2.call(this, value);
               }
             });
             Object.defineProperty(node, valueField, {
@@ -3819,7 +3819,7 @@
             }
             try {
               return doc.activeElement || doc.body;
-            } catch (e2) {
+            } catch (e) {
               return doc.body;
             }
           }
@@ -3960,8 +3960,8 @@
                 checkAttributeStringCoercion(name, "name");
               }
               var group = queryRoot.querySelectorAll("input[name=" + JSON.stringify("" + name) + '][type="radio"]');
-              for (var i2 = 0; i2 < group.length; i2++) {
-                var otherNode = group[i2];
+              for (var i = 0; i < group.length; i++) {
+                var otherNode = group[i];
                 if (otherNode === rootNode || otherNode.form !== rootNode.form) {
                   continue;
                 }
@@ -4024,8 +4024,8 @@
             }
           }
           var isArrayImpl = Array.isArray;
-          function isArray(a2) {
-            return isArrayImpl(a2);
+          function isArray(a) {
+            return isArrayImpl(a);
           }
           var didWarnValueDefaultValue$1;
           {
@@ -4042,8 +4042,8 @@
           function checkSelectPropTypes(props) {
             {
               checkControlledValueProps("select", props);
-              for (var i2 = 0; i2 < valuePropNames.length; i2++) {
-                var propName = valuePropNames[i2];
+              for (var i = 0; i < valuePropNames.length; i++) {
+                var propName = valuePropNames[i];
                 if (props[propName] == null) {
                   continue;
                 }
@@ -4061,8 +4061,8 @@
             if (multiple) {
               var selectedValues = propValue;
               var selectedValue = {};
-              for (var i2 = 0; i2 < selectedValues.length; i2++) {
-                selectedValue["$" + selectedValues[i2]] = true;
+              for (var i = 0; i < selectedValues.length; i++) {
+                selectedValue["$" + selectedValues[i]] = true;
               }
               for (var _i = 0; _i < options2.length; _i++) {
                 var selected = selectedValue.hasOwnProperty("$" + options2[_i].value);
@@ -4425,7 +4425,7 @@
             var warnedForNaNValue = false;
             var warnedForInfinityValue = false;
             var camelize = function(string) {
-              return string.replace(hyphenPattern, function(_2, character) {
+              return string.replace(hyphenPattern, function(_, character) {
                 return character.toUpperCase();
               });
             };
@@ -4538,8 +4538,8 @@
             var expanded = {};
             for (var key in styles) {
               var longhands = shorthandToLonghand[key] || [key];
-              for (var i2 = 0; i2 < longhands.length; i2++) {
-                expanded[longhands[i2]] = key;
+              for (var i = 0; i < longhands.length; i++) {
+                expanded[longhands[i]] = key;
               }
             }
             return expanded;
@@ -5465,13 +5465,13 @@
             restoreQueue = null;
             restoreStateOfTarget(target);
             if (queuedTargets) {
-              for (var i2 = 0; i2 < queuedTargets.length; i2++) {
-                restoreStateOfTarget(queuedTargets[i2]);
+              for (var i = 0; i < queuedTargets.length; i++) {
+                restoreStateOfTarget(queuedTargets[i]);
               }
             }
           }
-          var batchedUpdatesImpl = function(fn2, bookkeeping) {
-            return fn2(bookkeeping);
+          var batchedUpdatesImpl = function(fn, bookkeeping) {
+            return fn(bookkeeping);
           };
           var flushSyncImpl = function() {
           };
@@ -5483,13 +5483,13 @@
               restoreStateIfNeeded();
             }
           }
-          function batchedUpdates(fn2, a2, b2) {
+          function batchedUpdates(fn, a, b) {
             if (isInsideEventHandler) {
-              return fn2(a2, b2);
+              return fn(a, b);
             }
             isInsideEventHandler = true;
             try {
-              return batchedUpdatesImpl(fn2, a2, b2);
+              return batchedUpdatesImpl(fn, a, b);
             } finally {
               isInsideEventHandler = false;
               finishEventHandler();
@@ -5549,11 +5549,11 @@
               });
               window.addEventListener("test", options, options);
               window.removeEventListener("test", options, options);
-            } catch (e2) {
+            } catch (e) {
               passiveBrowserEventsSupported = false;
             }
           }
-          function invokeGuardedCallbackProd(name, func, context, a2, b2, c2, d2, e2, f2) {
+          function invokeGuardedCallbackProd(name, func, context, a, b, c, d, e, f) {
             var funcArgs = Array.prototype.slice.call(arguments, 3);
             try {
               func.apply(context, funcArgs);
@@ -5565,7 +5565,7 @@
           {
             if (typeof window !== "undefined" && typeof window.dispatchEvent === "function" && typeof document !== "undefined" && typeof document.createEvent === "function") {
               var fakeNode = document.createElement("react");
-              invokeGuardedCallbackImpl = function invokeGuardedCallbackDev(name, func, context, a2, b2, c2, d2, e2, f2) {
+              invokeGuardedCallbackImpl = function invokeGuardedCallbackDev(name, func, context, a, b, c, d, e, f) {
                 if (typeof document === "undefined" || document === null) {
                   throw new Error("The `document` global was defined when React was initialized, but is not defined anymore. This can happen in a test environment if a component schedules an update from an asynchronous callback, but the test has already finished running. To solve this, you can either unmount the component at the end of your test (and ensure that any asynchronous operations get canceled in `componentWillUnmount`), or you can change the test itself to be asynchronous.");
                 }
@@ -5640,12 +5640,12 @@
               caughtError = error2;
             }
           };
-          function invokeGuardedCallback(name, func, context, a2, b2, c2, d2, e2, f2) {
+          function invokeGuardedCallback(name, func, context, a, b, c, d, e, f) {
             hasError = false;
             caughtError = null;
             invokeGuardedCallbackImpl$1.apply(reporter, arguments);
           }
-          function invokeGuardedCallbackAndCatchFirstError(name, func, context, a2, b2, c2, d2, e2, f2) {
+          function invokeGuardedCallbackAndCatchFirstError(name, func, context, a, b, c, d, e, f) {
             invokeGuardedCallback.apply(this, arguments);
             if (hasError) {
               var error2 = clearCaughtError();
@@ -5676,13 +5676,13 @@
               throw new Error("clearCaughtError was called but no error was captured. This error is likely caused by a bug in React. Please file an issue.");
             }
           }
-          function get2(key) {
+          function get(key) {
             return key._reactInternals;
           }
           function has(key) {
             return key._reactInternals !== void 0;
           }
-          function set2(key, value) {
+          function set(key, value) {
             key._reactInternals = value;
           }
           var NoFlags = (
@@ -5851,7 +5851,7 @@
                 instance._warnedAboutRefsInRender = true;
               }
             }
-            var fiber = get2(component);
+            var fiber = get(component);
             if (!fiber) {
               return false;
             }
@@ -5874,10 +5874,10 @@
               }
               return fiber;
             }
-            var a2 = fiber;
-            var b2 = alternate;
+            var a = fiber;
+            var b = alternate;
             while (true) {
-              var parentA = a2.return;
+              var parentA = a.return;
               if (parentA === null) {
                 break;
               }
@@ -5885,7 +5885,7 @@
               if (parentB === null) {
                 var nextParent = parentA.return;
                 if (nextParent !== null) {
-                  a2 = b2 = nextParent;
+                  a = b = nextParent;
                   continue;
                 }
                 break;
@@ -5893,11 +5893,11 @@
               if (parentA.child === parentB.child) {
                 var child = parentA.child;
                 while (child) {
-                  if (child === a2) {
+                  if (child === a) {
                     assertIsMounted(parentA);
                     return fiber;
                   }
-                  if (child === b2) {
+                  if (child === b) {
                     assertIsMounted(parentA);
                     return alternate;
                   }
@@ -5905,23 +5905,23 @@
                 }
                 throw new Error("Unable to find node on an unmounted component.");
               }
-              if (a2.return !== b2.return) {
-                a2 = parentA;
-                b2 = parentB;
+              if (a.return !== b.return) {
+                a = parentA;
+                b = parentB;
               } else {
                 var didFindChild = false;
                 var _child = parentA.child;
                 while (_child) {
-                  if (_child === a2) {
+                  if (_child === a) {
                     didFindChild = true;
-                    a2 = parentA;
-                    b2 = parentB;
+                    a = parentA;
+                    b = parentB;
                     break;
                   }
-                  if (_child === b2) {
+                  if (_child === b) {
                     didFindChild = true;
-                    b2 = parentA;
-                    a2 = parentB;
+                    b = parentA;
+                    a = parentB;
                     break;
                   }
                   _child = _child.sibling;
@@ -5929,16 +5929,16 @@
                 if (!didFindChild) {
                   _child = parentB.child;
                   while (_child) {
-                    if (_child === a2) {
+                    if (_child === a) {
                       didFindChild = true;
-                      a2 = parentB;
-                      b2 = parentA;
+                      a = parentB;
+                      b = parentA;
                       break;
                     }
-                    if (_child === b2) {
+                    if (_child === b) {
                       didFindChild = true;
-                      b2 = parentB;
-                      a2 = parentA;
+                      b = parentB;
+                      a = parentA;
                       break;
                     }
                     _child = _child.sibling;
@@ -5948,14 +5948,14 @@
                   }
                 }
               }
-              if (a2.alternate !== b2) {
+              if (a.alternate !== b) {
                 throw new Error("Return fibers should always be each others' alternates. This error is likely caused by a bug in React. Please file an issue.");
               }
             }
-            if (a2.tag !== HostRoot) {
+            if (a.tag !== HostRoot) {
               throw new Error("Unable to find node on an unmounted component.");
             }
-            if (a2.stateNode.current === a2) {
+            if (a.stateNode.current === a) {
               return fiber;
             }
             return alternate;
@@ -6355,8 +6355,8 @@
           var clz32 = Math.clz32 ? Math.clz32 : clz32Fallback;
           var log = Math.log;
           var LN2 = Math.LN2;
-          function clz32Fallback(x2) {
-            var asUint = x2 >>> 0;
+          function clz32Fallback(x) {
+            var asUint = x >>> 0;
             if (asUint === 0) {
               return 32;
             }
@@ -6812,30 +6812,30 @@
           function laneToIndex(lane) {
             return pickArbitraryLaneIndex(lane);
           }
-          function includesSomeLane(a2, b2) {
-            return (a2 & b2) !== NoLanes;
+          function includesSomeLane(a, b) {
+            return (a & b) !== NoLanes;
           }
-          function isSubsetOfLanes(set3, subset) {
-            return (set3 & subset) === subset;
+          function isSubsetOfLanes(set2, subset) {
+            return (set2 & subset) === subset;
           }
-          function mergeLanes(a2, b2) {
-            return a2 | b2;
+          function mergeLanes(a, b) {
+            return a | b;
           }
-          function removeLanes(set3, subset) {
-            return set3 & ~subset;
+          function removeLanes(set2, subset) {
+            return set2 & ~subset;
           }
-          function intersectLanes(a2, b2) {
-            return a2 & b2;
+          function intersectLanes(a, b) {
+            return a & b;
           }
           function laneToLanes(lane) {
             return lane;
           }
-          function higherPriorityLane(a2, b2) {
-            return a2 !== NoLane && a2 < b2 ? a2 : b2;
+          function higherPriorityLane(a, b) {
+            return a !== NoLane && a < b ? a : b;
           }
           function createLaneMap(initial) {
             var laneMap = [];
-            for (var i2 = 0; i2 < TotalLanes; i2++) {
+            for (var i = 0; i < TotalLanes; i++) {
               laneMap.push(initial);
             }
             return laneMap;
@@ -6999,23 +6999,23 @@
           function setCurrentUpdatePriority(newPriority) {
             currentUpdatePriority = newPriority;
           }
-          function runWithPriority(priority, fn2) {
+          function runWithPriority(priority, fn) {
             var previousPriority = currentUpdatePriority;
             try {
               currentUpdatePriority = priority;
-              return fn2();
+              return fn();
             } finally {
               currentUpdatePriority = previousPriority;
             }
           }
-          function higherEventPriority(a2, b2) {
-            return a2 !== 0 && a2 < b2 ? a2 : b2;
+          function higherEventPriority(a, b) {
+            return a !== 0 && a < b ? a : b;
           }
-          function lowerEventPriority(a2, b2) {
-            return a2 === 0 || a2 > b2 ? a2 : b2;
+          function lowerEventPriority(a, b) {
+            return a === 0 || a > b ? a : b;
           }
-          function isHigherEventPriority(a2, b2) {
-            return a2 !== 0 && a2 < b2;
+          function isHigherEventPriority(a, b) {
+            return a !== 0 && a < b;
           }
           function lanesToEventPriority(lanes) {
             var lane = getHighestPriorityLane(lanes);
@@ -7035,27 +7035,27 @@
             return currentState.isDehydrated;
           }
           var _attemptSynchronousHydration;
-          function setAttemptSynchronousHydration(fn2) {
-            _attemptSynchronousHydration = fn2;
+          function setAttemptSynchronousHydration(fn) {
+            _attemptSynchronousHydration = fn;
           }
           function attemptSynchronousHydration(fiber) {
             _attemptSynchronousHydration(fiber);
           }
           var attemptContinuousHydration;
-          function setAttemptContinuousHydration(fn2) {
-            attemptContinuousHydration = fn2;
+          function setAttemptContinuousHydration(fn) {
+            attemptContinuousHydration = fn;
           }
           var attemptHydrationAtCurrentPriority;
-          function setAttemptHydrationAtCurrentPriority(fn2) {
-            attemptHydrationAtCurrentPriority = fn2;
+          function setAttemptHydrationAtCurrentPriority(fn) {
+            attemptHydrationAtCurrentPriority = fn;
           }
           var getCurrentUpdatePriority$1;
-          function setGetCurrentUpdatePriority(fn2) {
-            getCurrentUpdatePriority$1 = fn2;
+          function setGetCurrentUpdatePriority(fn) {
+            getCurrentUpdatePriority$1 = fn;
           }
           var attemptHydrationAtPriority;
-          function setAttemptHydrationAtPriority(fn2) {
-            attemptHydrationAtPriority = fn2;
+          function setAttemptHydrationAtPriority(fn) {
+            attemptHydrationAtPriority = fn;
           }
           var hasScheduledReplayAttempt = false;
           var queuedDiscreteEvents = [];
@@ -7219,14 +7219,14 @@
               target,
               priority: updatePriority
             };
-            var i2 = 0;
-            for (; i2 < queuedExplicitHydrationTargets.length; i2++) {
-              if (!isHigherEventPriority(updatePriority, queuedExplicitHydrationTargets[i2].priority)) {
+            var i = 0;
+            for (; i < queuedExplicitHydrationTargets.length; i++) {
+              if (!isHigherEventPriority(updatePriority, queuedExplicitHydrationTargets[i].priority)) {
                 break;
               }
             }
-            queuedExplicitHydrationTargets.splice(i2, 0, queuedTarget);
-            if (i2 === 0) {
+            queuedExplicitHydrationTargets.splice(i, 0, queuedTarget);
+            if (i === 0) {
               attemptExplicitHydrationTarget(queuedTarget);
             }
           }
@@ -7289,8 +7289,8 @@
           function retryIfBlockedOn(unblocked) {
             if (queuedDiscreteEvents.length > 0) {
               scheduleCallbackIfUnblocked(queuedDiscreteEvents[0], unblocked);
-              for (var i2 = 1; i2 < queuedDiscreteEvents.length; i2++) {
-                var queuedEvent = queuedDiscreteEvents[i2];
+              for (var i = 1; i < queuedDiscreteEvents.length; i++) {
+                var queuedEvent = queuedDiscreteEvents[i];
                 if (queuedEvent.blockedOn === unblocked) {
                   queuedEvent.blockedOn = null;
                 }
@@ -8395,8 +8395,8 @@
             }
             accumulateEnterLeaveTwoPhaseListeners(dispatchQueue, leave, enter, from, to);
           }
-          function is(x2, y2) {
-            return x2 === y2 && (x2 !== 0 || 1 / x2 === 1 / y2) || x2 !== x2 && y2 !== y2;
+          function is(x, y) {
+            return x === y && (x !== 0 || 1 / x === 1 / y) || x !== x && y !== y;
           }
           var objectIs = typeof Object.is === "function" ? Object.is : is;
           function shallowEqual(objA, objB) {
@@ -8411,8 +8411,8 @@
             if (keysA.length !== keysB.length) {
               return false;
             }
-            for (var i2 = 0; i2 < keysA.length; i2++) {
-              var currentKey = keysA[i2];
+            for (var i = 0; i < keysA.length; i++) {
+              var currentKey = keysA[i];
               if (!hasOwnProperty.call(objB, currentKey) || !objectIs(objA[currentKey], objB[currentKey])) {
                 return false;
               }
@@ -8462,7 +8462,7 @@
             try {
               anchorNode.nodeType;
               focusNode.nodeType;
-            } catch (e2) {
+            } catch (e) {
               return null;
             }
             return getModernOffsetsFromPoints(outerNode, anchorNode, anchorOffset, focusNode, focusOffset);
@@ -8628,8 +8628,8 @@
               if (typeof priorFocusedElem.focus === "function") {
                 priorFocusedElem.focus();
               }
-              for (var i2 = 0; i2 < ancestors.length; i2++) {
-                var info = ancestors[i2];
+              for (var i = 0; i < ancestors.length; i++) {
+                var info = ancestors[i];
                 info.element.scrollLeft = info.left;
                 info.element.scrollTop = info.top;
               }
@@ -8807,8 +8807,8 @@
             registerTwoPhaseEvent(reactName, [domEventName]);
           }
           function registerSimpleEvents() {
-            for (var i2 = 0; i2 < simpleEventPluginEvents.length; i2++) {
-              var eventName = simpleEventPluginEvents[i2];
+            for (var i = 0; i < simpleEventPluginEvents.length; i++) {
+              var eventName = simpleEventPluginEvents[i];
               var domEventName = eventName.toLowerCase();
               var capitalizedEvent = eventName[0].toUpperCase() + eventName.slice(1);
               registerSimpleEvent(domEventName, "on" + capitalizedEvent);
@@ -8956,8 +8956,8 @@
           function processDispatchQueueItemsInOrder(event, dispatchListeners, inCapturePhase) {
             var previousInstance;
             if (inCapturePhase) {
-              for (var i2 = dispatchListeners.length - 1; i2 >= 0; i2--) {
-                var _dispatchListeners$i = dispatchListeners[i2], instance = _dispatchListeners$i.instance, currentTarget = _dispatchListeners$i.currentTarget, listener = _dispatchListeners$i.listener;
+              for (var i = dispatchListeners.length - 1; i >= 0; i--) {
+                var _dispatchListeners$i = dispatchListeners[i], instance = _dispatchListeners$i.instance, currentTarget = _dispatchListeners$i.currentTarget, listener = _dispatchListeners$i.listener;
                 if (instance !== previousInstance && event.isPropagationStopped()) {
                   return;
                 }
@@ -8977,8 +8977,8 @@
           }
           function processDispatchQueue(dispatchQueue, eventSystemFlags) {
             var inCapturePhase = (eventSystemFlags & IS_CAPTURE_PHASE) !== 0;
-            for (var i2 = 0; i2 < dispatchQueue.length; i2++) {
-              var _dispatchQueue$i = dispatchQueue[i2], event = _dispatchQueue$i.event, listeners = _dispatchQueue$i.listeners;
+            for (var i = 0; i < dispatchQueue.length; i++) {
+              var _dispatchQueue$i = dispatchQueue[i], event = _dispatchQueue$i.event, listeners = _dispatchQueue$i.listeners;
               processDispatchQueueItemsInOrder(event, listeners, inCapturePhase);
             }
             rethrowCaughtError();
@@ -9403,9 +9403,9 @@
             }
           }
           function updateDOMProperties(domElement, updatePayload, wasCustomComponentTag, isCustomComponentTag) {
-            for (var i2 = 0; i2 < updatePayload.length; i2 += 2) {
-              var propKey = updatePayload[i2];
-              var propValue = updatePayload[i2 + 1];
+            for (var i = 0; i < updatePayload.length; i += 2) {
+              var propKey = updatePayload[i];
+              var propValue = updatePayload[i + 1];
               if (propKey === STYLE) {
                 setValueForStyles(domElement, propValue);
               } else if (propKey === DANGEROUSLY_SET_INNER_HTML) {
@@ -9488,8 +9488,8 @@
                 break;
               case "video":
               case "audio":
-                for (var i2 = 0; i2 < mediaEventTypes.length; i2++) {
-                  listenToNonDelegatedEvent(mediaEventTypes[i2], domElement);
+                for (var i = 0; i < mediaEventTypes.length; i++) {
+                  listenToNonDelegatedEvent(mediaEventTypes[i], domElement);
                 }
                 props = rawProps;
                 break;
@@ -9736,8 +9736,8 @@
                 break;
               case "video":
               case "audio":
-                for (var i2 = 0; i2 < mediaEventTypes.length; i2++) {
-                  listenToNonDelegatedEvent(mediaEventTypes[i2], domElement);
+                for (var i = 0; i < mediaEventTypes.length; i++) {
+                  listenToNonDelegatedEvent(mediaEventTypes[i], domElement);
                 }
                 break;
               case "source":
@@ -11061,14 +11061,14 @@
           function flushSyncCallbacks() {
             if (!isFlushingSyncQueue && syncQueue !== null) {
               isFlushingSyncQueue = true;
-              var i2 = 0;
+              var i = 0;
               var previousUpdatePriority = getCurrentUpdatePriority();
               try {
                 var isSync = true;
                 var queue = syncQueue;
                 setCurrentUpdatePriority(DiscreteEventPriority);
-                for (; i2 < queue.length; i2++) {
-                  var callback = queue[i2];
+                for (; i < queue.length; i++) {
+                  var callback = queue[i];
                   do {
                     callback = callback(isSync);
                   } while (callback !== null);
@@ -11077,7 +11077,7 @@
                 includesLegacySyncCallbacks = false;
               } catch (error2) {
                 if (syncQueue !== null) {
-                  syncQueue = syncQueue.slice(i2 + 1);
+                  syncQueue = syncQueue.slice(i + 1);
                 }
                 scheduleCallback(ImmediatePriority, flushSyncCallbacks);
                 throw error2;
@@ -11624,9 +11624,9 @@
               }
               return maybeStrictRoot;
             };
-            var setToSortedString = function(set3) {
+            var setToSortedString = function(set2) {
               var array = [];
-              set3.forEach(function(value) {
+              set2.forEach(function(value) {
                 array.push(value);
               });
               return array.sort().join(", ");
@@ -11940,10 +11940,10 @@
               return existingChildren;
             }
             function useFiber(fiber, pendingProps) {
-              var clone2 = createWorkInProgress(fiber, pendingProps);
-              clone2.index = 0;
-              clone2.sibling = null;
-              return clone2;
+              var clone = createWorkInProgress(fiber, pendingProps);
+              clone.index = 0;
+              clone.sibling = null;
+              return clone;
             }
             function placeChild(newFiber, lastPlacedIndex, newIndex) {
               newFiber.index = newIndex;
@@ -12021,7 +12021,7 @@
               }
             }
             function updateFragment2(returnFiber, current2, fragment, lanes, key) {
-              if (current2 === null || current2.tag !== Fragment) {
+              if (current2 === null || current2.tag !== Fragment2) {
                 var created = createFiberFromFragment(fragment, returnFiber.mode, lanes, key);
                 created.return = returnFiber;
                 return created;
@@ -12184,8 +12184,8 @@
             function reconcileChildrenArray(returnFiber, currentFirstChild, newChildren, lanes) {
               {
                 var knownKeys = null;
-                for (var i2 = 0; i2 < newChildren.length; i2++) {
-                  var child = newChildren[i2];
+                for (var i = 0; i < newChildren.length; i++) {
+                  var child = newChildren[i];
                   knownKeys = warnOnInvalidKey(child, knownKeys, returnFiber);
                 }
               }
@@ -12424,7 +12424,7 @@
                 if (child.key === key) {
                   var elementType = element.type;
                   if (elementType === REACT_FRAGMENT_TYPE) {
-                    if (child.tag === Fragment) {
+                    if (child.tag === Fragment2) {
                       deleteRemainingChildren(returnFiber, child.sibling);
                       var existing = useFiber(child, element.props.children);
                       existing.return = returnFiber;
@@ -12768,8 +12768,8 @@
           }
           function finishQueueingConcurrentUpdates() {
             if (concurrentQueues !== null) {
-              for (var i2 = 0; i2 < concurrentQueues.length; i2++) {
-                var queue = concurrentQueues[i2];
+              for (var i = 0; i < concurrentQueues.length; i++) {
+                var queue = concurrentQueues[i];
                 var lastInterleavedUpdate = queue.interleaved;
                 if (lastInterleavedUpdate !== null) {
                   queue.interleaved = null;
@@ -12889,14 +12889,14 @@
             var queue = workInProgress2.updateQueue;
             var currentQueue = current2.updateQueue;
             if (queue === currentQueue) {
-              var clone2 = {
+              var clone = {
                 baseState: currentQueue.baseState,
                 firstBaseUpdate: currentQueue.firstBaseUpdate,
                 lastBaseUpdate: currentQueue.lastBaseUpdate,
                 shared: currentQueue.shared,
                 effects: currentQueue.effects
               };
-              workInProgress2.updateQueue = clone2;
+              workInProgress2.updateQueue = clone;
             }
           }
           function createUpdate(eventTime, lane) {
@@ -12962,7 +12962,7 @@
                 if (firstBaseUpdate !== null) {
                   var update = firstBaseUpdate;
                   do {
-                    var clone2 = {
+                    var clone = {
                       eventTime: update.eventTime,
                       lane: update.lane,
                       tag: update.tag,
@@ -12971,10 +12971,10 @@
                       next: null
                     };
                     if (newLast === null) {
-                      newFirst = newLast = clone2;
+                      newFirst = newLast = clone;
                     } else {
-                      newLast.next = clone2;
-                      newLast = clone2;
+                      newLast.next = clone;
+                      newLast = clone;
                     }
                     update = update.next;
                   } while (update !== null);
@@ -13113,7 +13113,7 @@
                 var updateLane = update.lane;
                 var updateEventTime = update.eventTime;
                 if (!isSubsetOfLanes(renderLanes2, updateLane)) {
-                  var clone2 = {
+                  var clone = {
                     eventTime: updateEventTime,
                     lane: updateLane,
                     tag: update.tag,
@@ -13122,10 +13122,10 @@
                     next: null
                   };
                   if (newLastBaseUpdate === null) {
-                    newFirstBaseUpdate = newLastBaseUpdate = clone2;
+                    newFirstBaseUpdate = newLastBaseUpdate = clone;
                     newBaseState = newState;
                   } else {
-                    newLastBaseUpdate = newLastBaseUpdate.next = clone2;
+                    newLastBaseUpdate = newLastBaseUpdate.next = clone;
                   }
                   newLanes = mergeLanes(newLanes, updateLane);
                 } else {
@@ -13212,8 +13212,8 @@
             var effects = finishedQueue.effects;
             finishedQueue.effects = null;
             if (effects !== null) {
-              for (var i2 = 0; i2 < effects.length; i2++) {
-                var effect = effects[i2];
+              for (var i = 0; i < effects.length; i++) {
+                var effect = effects[i];
                 var callback = effect.callback;
                 if (callback !== null) {
                   effect.callback = null;
@@ -13226,11 +13226,11 @@
           var contextStackCursor$1 = createCursor(NO_CONTEXT);
           var contextFiberStackCursor = createCursor(NO_CONTEXT);
           var rootInstanceStackCursor = createCursor(NO_CONTEXT);
-          function requiredContext(c2) {
-            if (c2 === NO_CONTEXT) {
+          function requiredContext(c) {
+            if (c === NO_CONTEXT) {
               throw new Error("Expected host context to exist. This error is likely caused by a bug in React. Please file an issue.");
             }
-            return c2;
+            return c;
           }
           function getRootHostContainer() {
             var rootInstance = requiredContext(rootInstanceStackCursor.current);
@@ -13365,8 +13365,8 @@
           );
           var workInProgressSources = [];
           function resetWorkInProgressVersions() {
-            for (var i2 = 0; i2 < workInProgressSources.length; i2++) {
-              var mutableSource = workInProgressSources[i2];
+            for (var i = 0; i < workInProgressSources.length; i++) {
+              var mutableSource = workInProgressSources[i];
               {
                 mutableSource._workInProgressVersionPrimary = null;
               }
@@ -13437,10 +13437,10 @@
                 if (hookTypesDev !== null) {
                   var table = "";
                   var secondColumnStart = 30;
-                  for (var i2 = 0; i2 <= hookTypesUpdateIndexDev; i2++) {
-                    var oldHookName = hookTypesDev[i2];
-                    var newHookName = i2 === hookTypesUpdateIndexDev ? currentHookName : oldHookName;
-                    var row = i2 + 1 + ". " + oldHookName;
+                  for (var i = 0; i <= hookTypesUpdateIndexDev; i++) {
+                    var oldHookName = hookTypesDev[i];
+                    var newHookName = i === hookTypesUpdateIndexDev ? currentHookName : oldHookName;
+                    var row = i + 1 + ". " + oldHookName;
                     while (row.length < secondColumnStart) {
                       row += " ";
                     }
@@ -13472,8 +13472,8 @@
                 error("The final argument passed to %s changed size between renders. The order and size of this array must remain constant.\n\nPrevious: %s\nIncoming: %s", currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + nextDeps.join(", ") + "]");
               }
             }
-            for (var i2 = 0; i2 < prevDeps.length && i2 < nextDeps.length; i2++) {
-              if (objectIs(nextDeps[i2], prevDeps[i2])) {
+            for (var i = 0; i < prevDeps.length && i < nextDeps.length; i++) {
+              if (objectIs(nextDeps[i], prevDeps[i])) {
                 continue;
               }
               return false;
@@ -13654,8 +13654,8 @@
               stores: null
             };
           }
-          function basicStateReducer(state, action3) {
-            return typeof action3 === "function" ? action3(state) : action3;
+          function basicStateReducer(state, action) {
+            return typeof action === "function" ? action(state) : action;
           }
           function mountReducer(reducer, initialArg, init) {
             var hook = mountWorkInProgressHook();
@@ -13713,7 +13713,7 @@
               do {
                 var updateLane = update.lane;
                 if (!isSubsetOfLanes(renderLanes, updateLane)) {
-                  var clone2 = {
+                  var clone = {
                     lane: updateLane,
                     action: update.action,
                     hasEagerState: update.hasEagerState,
@@ -13721,10 +13721,10 @@
                     next: null
                   };
                   if (newBaseQueueLast === null) {
-                    newBaseQueueFirst = newBaseQueueLast = clone2;
+                    newBaseQueueFirst = newBaseQueueLast = clone;
                     newBaseState = newState;
                   } else {
-                    newBaseQueueLast = newBaseQueueLast.next = clone2;
+                    newBaseQueueLast = newBaseQueueLast.next = clone;
                   }
                   currentlyRenderingFiber$1.lanes = mergeLanes(currentlyRenderingFiber$1.lanes, updateLane);
                   markSkippedUpdateLanes(updateLane);
@@ -13745,8 +13745,8 @@
                   if (update.hasEagerState) {
                     newState = update.eagerState;
                   } else {
-                    var action3 = update.action;
-                    newState = reducer(newState, action3);
+                    var action = update.action;
+                    newState = reducer(newState, action);
                   }
                 }
                 update = update.next;
@@ -13794,8 +13794,8 @@
               var firstRenderPhaseUpdate = lastRenderPhaseUpdate.next;
               var update = firstRenderPhaseUpdate;
               do {
-                var action3 = update.action;
-                newState = reducer(newState, action3);
+                var action = update.action;
+                newState = reducer(newState, action);
                 update = update.next;
               } while (update !== firstRenderPhaseUpdate);
               if (!objectIs(newState, hook.memoizedState)) {
@@ -14283,7 +14283,7 @@
             var id = hook.memoizedState;
             return id;
           }
-          function dispatchReducerAction(fiber, queue, action3) {
+          function dispatchReducerAction(fiber, queue, action) {
             {
               if (typeof arguments[3] === "function") {
                 error("State updates from the useState() and useReducer() Hooks don't support the second callback argument. To execute a side effect after rendering, declare it in the component body with useEffect().");
@@ -14292,7 +14292,7 @@
             var lane = requestUpdateLane(fiber);
             var update = {
               lane,
-              action: action3,
+              action,
               hasEagerState: false,
               eagerState: null,
               next: null
@@ -14309,7 +14309,7 @@
             }
             markUpdateInDevTools(fiber, lane);
           }
-          function dispatchSetState(fiber, queue, action3) {
+          function dispatchSetState(fiber, queue, action) {
             {
               if (typeof arguments[3] === "function") {
                 error("State updates from the useState() and useReducer() Hooks don't support the second callback argument. To execute a side effect after rendering, declare it in the component body with useEffect().");
@@ -14318,7 +14318,7 @@
             var lane = requestUpdateLane(fiber);
             var update = {
               lane,
-              action: action3,
+              action,
               hasEagerState: false,
               eagerState: null,
               next: null
@@ -14337,7 +14337,7 @@
                   }
                   try {
                     var currentState = queue.lastRenderedState;
-                    var eagerState = lastRenderedReducer(currentState, action3);
+                    var eagerState = lastRenderedReducer(currentState, action);
                     update.hasEagerState = true;
                     update.eagerState = eagerState;
                     if (objectIs(eagerState, currentState)) {
@@ -14385,7 +14385,7 @@
               markRootEntangled(root3, newQueueLanes);
             }
           }
-          function markUpdateInDevTools(fiber, lane, action3) {
+          function markUpdateInDevTools(fiber, lane, action) {
             {
               markStateUpdateScheduled(fiber, lane);
             }
@@ -15406,7 +15406,7 @@
           var classComponentUpdater = {
             isMounted,
             enqueueSetState: function(inst, payload, callback) {
-              var fiber = get2(inst);
+              var fiber = get(inst);
               var eventTime = requestEventTime();
               var lane = requestUpdateLane(fiber);
               var update = createUpdate(eventTime, lane);
@@ -15427,7 +15427,7 @@
               }
             },
             enqueueReplaceState: function(inst, payload, callback) {
-              var fiber = get2(inst);
+              var fiber = get(inst);
               var eventTime = requestEventTime();
               var lane = requestUpdateLane(fiber);
               var update = createUpdate(eventTime, lane);
@@ -15449,7 +15449,7 @@
               }
             },
             enqueueForceUpdate: function(inst, callback) {
-              var fiber = get2(inst);
+              var fiber = get(inst);
               var eventTime = requestEventTime();
               var lane = requestUpdateLane(fiber);
               var update = createUpdate(eventTime, lane);
@@ -15589,7 +15589,7 @@
           function adoptClassInstance(workInProgress2, instance) {
             instance.updater = classComponentUpdater;
             workInProgress2.stateNode = instance;
-            set2(instance, workInProgress2);
+            set(instance, workInProgress2);
             {
               instance._reactInternalInstance = fakeInternalInstance;
             }
@@ -15988,9 +15988,9 @@
               } else {
                 console["error"](error2);
               }
-            } catch (e2) {
+            } catch (e) {
               setTimeout(function() {
-                throw e2;
+                throw e;
               });
             }
           }
@@ -16385,7 +16385,7 @@
                   var init = lazyComponent._init;
                   try {
                     outerMemoType = init(payload);
-                  } catch (x2) {
+                  } catch (x) {
                     outerMemoType = null;
                   }
                   var outerPropTypes = outerMemoType && outerMemoType.propTypes;
@@ -17436,8 +17436,8 @@
             {
               if ((revealOrder === "forwards" || revealOrder === "backwards") && children !== void 0 && children !== null && children !== false) {
                 if (isArray(children)) {
-                  for (var i2 = 0; i2 < children.length; i2++) {
-                    if (!validateSuspenseListNestedChild(children[i2], i2)) {
+                  for (var i = 0; i < children.length; i++) {
+                    if (!validateSuspenseListNestedChild(children[i], i)) {
                       return;
                     }
                   }
@@ -17900,7 +17900,7 @@
                 var _resolvedProps2 = workInProgress2.elementType === type ? _unresolvedProps2 : resolveDefaultProps(type, _unresolvedProps2);
                 return updateForwardRef(current2, workInProgress2, type, _resolvedProps2, renderLanes2);
               }
-              case Fragment:
+              case Fragment2:
                 return updateFragment(current2, workInProgress2, renderLanes2);
               case Mode:
                 return updateMode(current2, workInProgress2, renderLanes2);
@@ -18172,7 +18172,7 @@
               case SimpleMemoComponent:
               case FunctionComponent:
               case ForwardRef:
-              case Fragment:
+              case Fragment2:
               case Mode:
               case Profiler:
               case ContextConsumer:
@@ -19625,8 +19625,8 @@
           function recursivelyTraverseMutationEffects(root3, parentFiber, lanes) {
             var deletions = parentFiber.deletions;
             if (deletions !== null) {
-              for (var i2 = 0; i2 < deletions.length; i2++) {
-                var childToDelete = deletions[i2];
+              for (var i = 0; i < deletions.length; i++) {
+                var childToDelete = deletions[i];
                 try {
                   commitDeletionEffects(root3, parentFiber, childToDelete);
                 } catch (error2) {
@@ -20132,8 +20132,8 @@
               if ((nextEffect.flags & ChildDeletion) !== NoFlags) {
                 var deletions = fiber.deletions;
                 if (deletions !== null) {
-                  for (var i2 = 0; i2 < deletions.length; i2++) {
-                    var fiberToDelete = deletions[i2];
+                  for (var i = 0; i < deletions.length; i++) {
+                    var fiberToDelete = deletions[i];
                     nextEffect = fiberToDelete;
                     commitPassiveUnmountEffectsInsideOfDeletedTree_begin(fiberToDelete, fiber);
                   }
@@ -20778,8 +20778,8 @@
                 if (updateQueue !== null) {
                   var checks = updateQueue.stores;
                   if (checks !== null) {
-                    for (var i2 = 0; i2 < checks.length; i2++) {
-                      var check = checks[i2];
+                    for (var i = 0; i < checks.length; i++) {
+                      var check = checks[i];
                       var getSnapshot = check.getSnapshot;
                       var renderedValue = check.value;
                       try {
@@ -20866,11 +20866,11 @@
               }
             }
           }
-          function batchedUpdates$1(fn2, a2) {
+          function batchedUpdates$1(fn, a) {
             var prevExecutionContext = executionContext;
             executionContext |= BatchedContext;
             try {
-              return fn2(a2);
+              return fn(a);
             } finally {
               executionContext = prevExecutionContext;
               if (executionContext === NoContext && // Treat `act` as if it's inside `batchedUpdates`, even in legacy mode.
@@ -20880,13 +20880,13 @@
               }
             }
           }
-          function discreteUpdates(fn2, a2, b2, c2, d2) {
+          function discreteUpdates(fn, a, b, c, d) {
             var previousPriority = getCurrentUpdatePriority();
             var prevTransition = ReactCurrentBatchConfig$3.transition;
             try {
               ReactCurrentBatchConfig$3.transition = null;
               setCurrentUpdatePriority(DiscreteEventPriority);
-              return fn2(a2, b2, c2, d2);
+              return fn(a, b, c, d);
             } finally {
               setCurrentUpdatePriority(previousPriority);
               ReactCurrentBatchConfig$3.transition = prevTransition;
@@ -20895,7 +20895,7 @@
               }
             }
           }
-          function flushSync(fn2) {
+          function flushSync(fn) {
             if (rootWithPendingPassiveEffects !== null && rootWithPendingPassiveEffects.tag === LegacyRoot && (executionContext & (RenderContext | CommitContext)) === NoContext) {
               flushPassiveEffects();
             }
@@ -20906,8 +20906,8 @@
             try {
               ReactCurrentBatchConfig$3.transition = null;
               setCurrentUpdatePriority(DiscreteEventPriority);
-              if (fn2) {
-                return fn2();
+              if (fn) {
+                return fn();
               } else {
                 return void 0;
               }
@@ -21356,8 +21356,8 @@
             ensureRootIsScheduled(root3, now());
             if (recoverableErrors !== null) {
               var onRecoverableError = root3.onRecoverableError;
-              for (var i2 = 0; i2 < recoverableErrors.length; i2++) {
-                var recoverableError = recoverableErrors[i2];
+              for (var i = 0; i < recoverableErrors.length; i++) {
+                var recoverableError = recoverableErrors[i];
                 var componentStack = recoverableError.stack;
                 var digest = recoverableError.digest;
                 onRecoverableError(recoverableError.value, {
@@ -21451,8 +21451,8 @@
             {
               var profilerEffects = pendingPassiveProfilerEffects;
               pendingPassiveProfilerEffects = [];
-              for (var i2 = 0; i2 < profilerEffects.length; i2++) {
-                var _fiber = profilerEffects[i2];
+              for (var i = 0; i < profilerEffects.length; i++) {
+                var _fiber = profilerEffects[i];
                 commitPassiveEffectDurations(root3, _fiber);
               }
             }
@@ -22135,7 +22135,7 @@
               var nonExtensibleObject = Object.preventExtensions({});
               /* @__PURE__ */ new Map([[nonExtensibleObject, null]]);
               /* @__PURE__ */ new Set([nonExtensibleObject]);
-            } catch (e2) {
+            } catch (e) {
               hasBadMapPolyfill = true;
             }
           }
@@ -22433,7 +22433,7 @@
             return fiber;
           }
           function createFiberFromFragment(elements, mode, lanes, key) {
-            var fiber = createFiber(Fragment, elements, key, mode);
+            var fiber = createFiber(Fragment2, elements, key, mode);
             fiber.lanes = lanes;
             return fiber;
           }
@@ -22634,7 +22634,7 @@
             if (!parentComponent) {
               return emptyContextObject;
             }
-            var fiber = get2(parentComponent);
+            var fiber = get(parentComponent);
             var parentContext = findCurrentUnmaskedContext(fiber);
             if (fiber.tag === ClassComponent) {
               var Component = fiber.type;
@@ -22646,7 +22646,7 @@
           }
           function findHostInstanceWithWarning(component, methodName) {
             {
-              var fiber = get2(component);
+              var fiber = get(component);
               if (fiber === void 0) {
                 if (typeof component.render === "function") {
                   throw new Error("Unable to find node on an unmounted component.");
@@ -22889,8 +22889,8 @@
                 warn("copyWithRename() expects paths of the same length");
                 return;
               } else {
-                for (var i2 = 0; i2 < newPath.length - 1; i2++) {
-                  if (oldPath[i2] !== newPath[i2]) {
+                for (var i = 0; i < newPath.length - 1; i++) {
+                  if (oldPath[i] !== newPath[i]) {
                     warn("copyWithRename() expects paths to be the same except for the deepest key");
                     return;
                   }
@@ -23180,8 +23180,8 @@
             markContainerAsRoot(root3.current, container);
             listenToAllSupportedEvents(container);
             if (mutableSources) {
-              for (var i2 = 0; i2 < mutableSources.length; i2++) {
-                var mutableSource = mutableSources[i2];
+              for (var i = 0; i < mutableSources.length; i++) {
+                var mutableSource = mutableSources[i];
                 registerMutableSourceForHydration(root3, mutableSource);
               }
             }
@@ -23494,13 +23494,13 @@
             }
             return hydrateRoot(container, initialChildren, options2);
           }
-          function flushSync$1(fn2) {
+          function flushSync$1(fn) {
             {
               if (isAlreadyRendering()) {
                 error("flushSync was called from inside a lifecycle method. React cannot flush when React is already rendering. Consider moving this call to a scheduler task or micro task.");
               }
             }
-            return flushSync(fn2);
+            return flushSync(fn);
           }
           var foundDevTools = injectIntoDevTools({
             findFiberByHostInstance: getClosestInstanceFromNode,
@@ -23560,236 +23560,25 @@
         exports.createRoot = m.createRoot;
         exports.hydrateRoot = m.hydrateRoot;
       } else {
-        i2 = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
-        exports.createRoot = function(c2, o2) {
-          i2.usingClientEntryPoint = true;
+        i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        exports.createRoot = function(c, o) {
+          i.usingClientEntryPoint = true;
           try {
-            return m.createRoot(c2, o2);
+            return m.createRoot(c, o);
           } finally {
-            i2.usingClientEntryPoint = false;
+            i.usingClientEntryPoint = false;
           }
         };
-        exports.hydrateRoot = function(c2, h2, o2) {
-          i2.usingClientEntryPoint = true;
+        exports.hydrateRoot = function(c, h, o) {
+          i.usingClientEntryPoint = true;
           try {
-            return m.hydrateRoot(c2, h2, o2);
+            return m.hydrateRoot(c, h, o);
           } finally {
-            i2.usingClientEntryPoint = false;
+            i.usingClientEntryPoint = false;
           }
         };
       }
-      var i2;
-    }
-  });
-
-  // node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js
-  var require_use_sync_external_store_shim_development = __commonJS({
-    "node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js"(exports) {
-      "use strict";
-      (function() {
-        function is(x2, y2) {
-          return x2 === y2 && (0 !== x2 || 1 / x2 === 1 / y2) || x2 !== x2 && y2 !== y2;
-        }
-        function useSyncExternalStore$2(subscribe, getSnapshot) {
-          didWarnOld18Alpha || void 0 === React4.startTransition || (didWarnOld18Alpha = true, console.error(
-            "You are using an outdated, pre-release alpha of React 18 that does not support useSyncExternalStore. The use-sync-external-store shim will not work correctly. Upgrade to a newer pre-release."
-          ));
-          var value = getSnapshot();
-          if (!didWarnUncachedGetSnapshot) {
-            var cachedValue = getSnapshot();
-            objectIs(value, cachedValue) || (console.error(
-              "The result of getSnapshot should be cached to avoid an infinite loop"
-            ), didWarnUncachedGetSnapshot = true);
-          }
-          cachedValue = useState3({
-            inst: { value, getSnapshot }
-          });
-          var inst = cachedValue[0].inst, forceUpdate = cachedValue[1];
-          useLayoutEffect(
-            function() {
-              inst.value = value;
-              inst.getSnapshot = getSnapshot;
-              checkIfSnapshotChanged(inst) && forceUpdate({ inst });
-            },
-            [subscribe, value, getSnapshot]
-          );
-          useEffect3(
-            function() {
-              checkIfSnapshotChanged(inst) && forceUpdate({ inst });
-              return subscribe(function() {
-                checkIfSnapshotChanged(inst) && forceUpdate({ inst });
-              });
-            },
-            [subscribe]
-          );
-          useDebugValue2(value);
-          return value;
-        }
-        function checkIfSnapshotChanged(inst) {
-          var latestGetSnapshot = inst.getSnapshot;
-          inst = inst.value;
-          try {
-            var nextValue = latestGetSnapshot();
-            return !objectIs(inst, nextValue);
-          } catch (error) {
-            return true;
-          }
-        }
-        function useSyncExternalStore$1(subscribe, getSnapshot) {
-          return getSnapshot();
-        }
-        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var React4 = require_react(), objectIs = "function" === typeof Object.is ? Object.is : is, useState3 = React4.useState, useEffect3 = React4.useEffect, useLayoutEffect = React4.useLayoutEffect, useDebugValue2 = React4.useDebugValue, didWarnOld18Alpha = false, didWarnUncachedGetSnapshot = false, shim = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? useSyncExternalStore$1 : useSyncExternalStore$2;
-        exports.useSyncExternalStore = void 0 !== React4.useSyncExternalStore ? React4.useSyncExternalStore : shim;
-        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
-      })();
-    }
-  });
-
-  // node_modules/use-sync-external-store/shim/index.js
-  var require_shim = __commonJS({
-    "node_modules/use-sync-external-store/shim/index.js"(exports, module) {
-      "use strict";
-      if (false) {
-        module.exports = null;
-      } else {
-        module.exports = require_use_sync_external_store_shim_development();
-      }
-    }
-  });
-
-  // node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js
-  var require_with_selector_development = __commonJS({
-    "node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js"(exports) {
-      "use strict";
-      (function() {
-        function is(x2, y2) {
-          return x2 === y2 && (0 !== x2 || 1 / x2 === 1 / y2) || x2 !== x2 && y2 !== y2;
-        }
-        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var React4 = require_react(), shim = require_shim(), objectIs = "function" === typeof Object.is ? Object.is : is, useSyncExternalStore = shim.useSyncExternalStore, useRef2 = React4.useRef, useEffect3 = React4.useEffect, useMemo = React4.useMemo, useDebugValue2 = React4.useDebugValue;
-        exports.useSyncExternalStoreWithSelector = function(subscribe, getSnapshot, getServerSnapshot, selector, isEqual) {
-          var instRef = useRef2(null);
-          if (null === instRef.current) {
-            var inst = { hasValue: false, value: null };
-            instRef.current = inst;
-          } else inst = instRef.current;
-          instRef = useMemo(
-            function() {
-              function memoizedSelector(nextSnapshot) {
-                if (!hasMemo) {
-                  hasMemo = true;
-                  memoizedSnapshot = nextSnapshot;
-                  nextSnapshot = selector(nextSnapshot);
-                  if (void 0 !== isEqual && inst.hasValue) {
-                    var currentSelection = inst.value;
-                    if (isEqual(currentSelection, nextSnapshot))
-                      return memoizedSelection = currentSelection;
-                  }
-                  return memoizedSelection = nextSnapshot;
-                }
-                currentSelection = memoizedSelection;
-                if (objectIs(memoizedSnapshot, nextSnapshot))
-                  return currentSelection;
-                var nextSelection = selector(nextSnapshot);
-                if (void 0 !== isEqual && isEqual(currentSelection, nextSelection))
-                  return memoizedSnapshot = nextSnapshot, currentSelection;
-                memoizedSnapshot = nextSnapshot;
-                return memoizedSelection = nextSelection;
-              }
-              var hasMemo = false, memoizedSnapshot, memoizedSelection, maybeGetServerSnapshot = void 0 === getServerSnapshot ? null : getServerSnapshot;
-              return [
-                function() {
-                  return memoizedSelector(getSnapshot());
-                },
-                null === maybeGetServerSnapshot ? void 0 : function() {
-                  return memoizedSelector(maybeGetServerSnapshot());
-                }
-              ];
-            },
-            [getSnapshot, getServerSnapshot, selector, isEqual]
-          );
-          var value = useSyncExternalStore(subscribe, instRef[0], instRef[1]);
-          useEffect3(
-            function() {
-              inst.hasValue = true;
-              inst.value = value;
-            },
-            [value]
-          );
-          useDebugValue2(value);
-          return value;
-        };
-        "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
-      })();
-    }
-  });
-
-  // node_modules/use-sync-external-store/shim/with-selector.js
-  var require_with_selector = __commonJS({
-    "node_modules/use-sync-external-store/shim/with-selector.js"(exports, module) {
-      "use strict";
-      if (false) {
-        module.exports = null;
-      } else {
-        module.exports = require_with_selector_development();
-      }
-    }
-  });
-
-  // node_modules/fast-deep-equal/es6/index.js
-  var require_es6 = __commonJS({
-    "node_modules/fast-deep-equal/es6/index.js"(exports, module) {
-      "use strict";
-      module.exports = function equal2(a2, b2) {
-        if (a2 === b2) return true;
-        if (a2 && b2 && typeof a2 == "object" && typeof b2 == "object") {
-          if (a2.constructor !== b2.constructor) return false;
-          var length, i2, keys;
-          if (Array.isArray(a2)) {
-            length = a2.length;
-            if (length != b2.length) return false;
-            for (i2 = length; i2-- !== 0; )
-              if (!equal2(a2[i2], b2[i2])) return false;
-            return true;
-          }
-          if (a2 instanceof Map && b2 instanceof Map) {
-            if (a2.size !== b2.size) return false;
-            for (i2 of a2.entries())
-              if (!b2.has(i2[0])) return false;
-            for (i2 of a2.entries())
-              if (!equal2(i2[1], b2.get(i2[0]))) return false;
-            return true;
-          }
-          if (a2 instanceof Set && b2 instanceof Set) {
-            if (a2.size !== b2.size) return false;
-            for (i2 of a2.entries())
-              if (!b2.has(i2[0])) return false;
-            return true;
-          }
-          if (ArrayBuffer.isView(a2) && ArrayBuffer.isView(b2)) {
-            length = a2.length;
-            if (length != b2.length) return false;
-            for (i2 = length; i2-- !== 0; )
-              if (a2[i2] !== b2[i2]) return false;
-            return true;
-          }
-          if (a2.constructor === RegExp) return a2.source === b2.source && a2.flags === b2.flags;
-          if (a2.valueOf !== Object.prototype.valueOf) return a2.valueOf() === b2.valueOf();
-          if (a2.toString !== Object.prototype.toString) return a2.toString() === b2.toString();
-          keys = Object.keys(a2);
-          length = keys.length;
-          if (length !== Object.keys(b2).length) return false;
-          for (i2 = length; i2-- !== 0; )
-            if (!Object.prototype.hasOwnProperty.call(b2, keys[i2])) return false;
-          for (i2 = length; i2-- !== 0; ) {
-            var key = keys[i2];
-            if (!equal2(a2[key], b2[key])) return false;
-          }
-          return true;
-        }
-        return a2 !== a2 && b2 !== b2;
-      };
+      var i;
     }
   });
 
@@ -23941,7 +23730,7 @@
                   var init = lazyComponent._init;
                   try {
                     return getComponentNameFromType(init(payload));
-                  } catch (x2) {
+                  } catch (x) {
                     return null;
                   }
                 }
@@ -24035,8 +23824,8 @@
               if (prefix === void 0) {
                 try {
                   throw Error();
-                } catch (x2) {
-                  var match = x2.stack.trim().match(/\n( *(at )?)/);
+                } catch (x) {
+                  var match = x.stack.trim().match(/\n( *(at )?)/);
                   prefix = match && match[1] || "";
                 }
               }
@@ -24049,12 +23838,12 @@
             var PossiblyWeakMap = typeof WeakMap === "function" ? WeakMap : Map;
             componentFrameCache = new PossiblyWeakMap();
           }
-          function describeNativeComponentFrame(fn2, construct) {
-            if (!fn2 || reentry) {
+          function describeNativeComponentFrame(fn, construct) {
+            if (!fn || reentry) {
               return "";
             }
             {
-              var frame = componentFrameCache.get(fn2);
+              var frame = componentFrameCache.get(fn);
               if (frame !== void 0) {
                 return frame;
               }
@@ -24082,54 +23871,54 @@
                 if (typeof Reflect === "object" && Reflect.construct) {
                   try {
                     Reflect.construct(Fake, []);
-                  } catch (x2) {
-                    control = x2;
+                  } catch (x) {
+                    control = x;
                   }
-                  Reflect.construct(fn2, [], Fake);
+                  Reflect.construct(fn, [], Fake);
                 } else {
                   try {
                     Fake.call();
-                  } catch (x2) {
-                    control = x2;
+                  } catch (x) {
+                    control = x;
                   }
-                  fn2.call(Fake.prototype);
+                  fn.call(Fake.prototype);
                 }
               } else {
                 try {
                   throw Error();
-                } catch (x2) {
-                  control = x2;
+                } catch (x) {
+                  control = x;
                 }
-                fn2();
+                fn();
               }
             } catch (sample) {
               if (sample && control && typeof sample.stack === "string") {
                 var sampleLines = sample.stack.split("\n");
                 var controlLines = control.stack.split("\n");
-                var s2 = sampleLines.length - 1;
-                var c2 = controlLines.length - 1;
-                while (s2 >= 1 && c2 >= 0 && sampleLines[s2] !== controlLines[c2]) {
-                  c2--;
+                var s = sampleLines.length - 1;
+                var c = controlLines.length - 1;
+                while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
+                  c--;
                 }
-                for (; s2 >= 1 && c2 >= 0; s2--, c2--) {
-                  if (sampleLines[s2] !== controlLines[c2]) {
-                    if (s2 !== 1 || c2 !== 1) {
+                for (; s >= 1 && c >= 0; s--, c--) {
+                  if (sampleLines[s] !== controlLines[c]) {
+                    if (s !== 1 || c !== 1) {
                       do {
-                        s2--;
-                        c2--;
-                        if (c2 < 0 || sampleLines[s2] !== controlLines[c2]) {
-                          var _frame = "\n" + sampleLines[s2].replace(" at new ", " at ");
-                          if (fn2.displayName && _frame.includes("<anonymous>")) {
-                            _frame = _frame.replace("<anonymous>", fn2.displayName);
+                        s--;
+                        c--;
+                        if (c < 0 || sampleLines[s] !== controlLines[c]) {
+                          var _frame = "\n" + sampleLines[s].replace(" at new ", " at ");
+                          if (fn.displayName && _frame.includes("<anonymous>")) {
+                            _frame = _frame.replace("<anonymous>", fn.displayName);
                           }
                           {
-                            if (typeof fn2 === "function") {
-                              componentFrameCache.set(fn2, _frame);
+                            if (typeof fn === "function") {
+                              componentFrameCache.set(fn, _frame);
                             }
                           }
                           return _frame;
                         }
-                      } while (s2 >= 1 && c2 >= 0);
+                      } while (s >= 1 && c >= 0);
                     }
                     break;
                   }
@@ -24143,18 +23932,18 @@
               }
               Error.prepareStackTrace = previousPrepareStackTrace;
             }
-            var name = fn2 ? fn2.displayName || fn2.name : "";
+            var name = fn ? fn.displayName || fn.name : "";
             var syntheticFrame = name ? describeBuiltInComponentFrame(name) : "";
             {
-              if (typeof fn2 === "function") {
-                componentFrameCache.set(fn2, syntheticFrame);
+              if (typeof fn === "function") {
+                componentFrameCache.set(fn, syntheticFrame);
               }
             }
             return syntheticFrame;
           }
-          function describeFunctionComponentFrame(fn2, source, ownerFn) {
+          function describeFunctionComponentFrame(fn, source, ownerFn) {
             {
-              return describeNativeComponentFrame(fn2, false);
+              return describeNativeComponentFrame(fn, false);
             }
           }
           function shouldConstruct(Component) {
@@ -24191,7 +23980,7 @@
                   var init = lazyComponent._init;
                   try {
                     return describeUnknownElementTypeFrameInDEV(init(payload), source, ownerFn);
-                  } catch (x2) {
+                  } catch (x) {
                   }
                 }
               }
@@ -24244,8 +24033,8 @@
             }
           }
           var isArrayImpl = Array.isArray;
-          function isArray(a2) {
-            return isArrayImpl(a2);
+          function isArray(a) {
+            return isArrayImpl(a);
           }
           function typeName(value) {
             {
@@ -24259,7 +24048,7 @@
               try {
                 testStringCoercion(value);
                 return false;
-              } catch (e2) {
+              } catch (e) {
                 return true;
               }
             }
@@ -24519,8 +24308,8 @@
                 return;
               }
               if (isArray(node)) {
-                for (var i2 = 0; i2 < node.length; i2++) {
-                  var child = node[i2];
+                for (var i = 0; i < node.length; i++) {
+                  var child = node[i];
                   if (isValidElement(child)) {
                     validateExplicitKey(child, parentType);
                   }
@@ -24577,8 +24366,8 @@
           function validateFragmentProps(fragment) {
             {
               var keys = Object.keys(fragment.props);
-              for (var i2 = 0; i2 < keys.length; i2++) {
-                var key = keys[i2];
+              for (var i = 0; i < keys.length; i++) {
+                var key = keys[i];
                 if (key !== "children" && key !== "key") {
                   setCurrentlyValidatingElement$1(fragment);
                   error("Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.", key);
@@ -24630,8 +24419,8 @@
                 if (children !== void 0) {
                   if (isStaticChildren) {
                     if (isArray(children)) {
-                      for (var i2 = 0; i2 < children.length; i2++) {
-                        validateChildKeys(children[i2], type);
+                      for (var i = 0; i < children.length; i++) {
+                        validateChildKeys(children[i], type);
                       }
                       if (Object.freeze) {
                         Object.freeze(children);
@@ -24647,8 +24436,8 @@
               {
                 if (hasOwnProperty.call(props, "key")) {
                   var componentName = getComponentNameFromType(type);
-                  var keys = Object.keys(props).filter(function(k2) {
-                    return k2 !== "key";
+                  var keys = Object.keys(props).filter(function(k) {
+                    return k !== "key";
                   });
                   var beforeExample = keys.length > 0 ? "{key: someKey, " + keys.join(": ..., ") + ": ...}" : "{key: someKey}";
                   if (!didWarnAboutKeySpread[componentName + beforeExample]) {
@@ -24676,11 +24465,11 @@
               return jsxWithValidation(type, props, key, false);
             }
           }
-          var jsx5 = jsxWithValidationDynamic;
-          var jsxs3 = jsxWithValidationStatic;
+          var jsx8 = jsxWithValidationDynamic;
+          var jsxs6 = jsxWithValidationStatic;
           exports.Fragment = REACT_FRAGMENT_TYPE;
-          exports.jsx = jsx5;
-          exports.jsxs = jsxs3;
+          exports.jsx = jsx8;
+          exports.jsxs = jsxs6;
         })();
       }
     }
@@ -24699,1994 +24488,340 @@
   });
 
   // src/art/index.tsx
-  var import_react3 = __toESM(require_react());
+  var import_react4 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
-  // node_modules/easy-peasy/dist/index.js
-  var import_with_selector = __toESM(require_with_selector());
-  var import_react = __toESM(require_react());
+  // src/art/app.tsx
+  var import_react3 = __toESM(require_react());
 
-  // node_modules/@babel/runtime/helpers/esm/typeof.js
-  function _typeof(o2) {
-    "@babel/helpers - typeof";
-    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o3) {
-      return typeof o3;
-    } : function(o3) {
-      return o3 && "function" == typeof Symbol && o3.constructor === Symbol && o3 !== Symbol.prototype ? "symbol" : typeof o3;
-    }, _typeof(o2);
-  }
-
-  // node_modules/@babel/runtime/helpers/esm/toPrimitive.js
-  function toPrimitive(t2, r2) {
-    if ("object" != _typeof(t2) || !t2) return t2;
-    var e2 = t2[Symbol.toPrimitive];
-    if (void 0 !== e2) {
-      var i2 = e2.call(t2, r2 || "default");
-      if ("object" != _typeof(i2)) return i2;
-      throw new TypeError("@@toPrimitive must return a primitive value.");
-    }
-    return ("string" === r2 ? String : Number)(t2);
-  }
-
-  // node_modules/@babel/runtime/helpers/esm/toPropertyKey.js
-  function toPropertyKey(t2) {
-    var i2 = toPrimitive(t2, "string");
-    return "symbol" == _typeof(i2) ? i2 : i2 + "";
-  }
-
-  // node_modules/@babel/runtime/helpers/esm/defineProperty.js
-  function _defineProperty(e2, r2, t2) {
-    return (r2 = toPropertyKey(r2)) in e2 ? Object.defineProperty(e2, r2, {
-      value: t2,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    }) : e2[r2] = t2, e2;
-  }
-
-  // node_modules/@babel/runtime/helpers/esm/objectSpread2.js
-  function ownKeys(e2, r2) {
-    var t2 = Object.keys(e2);
-    if (Object.getOwnPropertySymbols) {
-      var o2 = Object.getOwnPropertySymbols(e2);
-      r2 && (o2 = o2.filter(function(r3) {
-        return Object.getOwnPropertyDescriptor(e2, r3).enumerable;
-      })), t2.push.apply(t2, o2);
-    }
-    return t2;
-  }
-  function _objectSpread2(e2) {
-    for (var r2 = 1; r2 < arguments.length; r2++) {
-      var t2 = null != arguments[r2] ? arguments[r2] : {};
-      r2 % 2 ? ownKeys(Object(t2), true).forEach(function(r3) {
-        _defineProperty(e2, r3, t2[r3]);
-      }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e2, Object.getOwnPropertyDescriptors(t2)) : ownKeys(Object(t2)).forEach(function(r3) {
-        Object.defineProperty(e2, r3, Object.getOwnPropertyDescriptor(t2, r3));
-      });
-    }
-    return e2;
-  }
-
-  // node_modules/redux/dist/redux.mjs
-  var $$observable = /* @__PURE__ */ (() => typeof Symbol === "function" && Symbol.observable || "@@observable")();
-  var symbol_observable_default = $$observable;
-  var randomString = () => Math.random().toString(36).substring(7).split("").join(".");
-  var ActionTypes = {
-    INIT: `@@redux/INIT${/* @__PURE__ */ randomString()}`,
-    REPLACE: `@@redux/REPLACE${/* @__PURE__ */ randomString()}`,
-    PROBE_UNKNOWN_ACTION: () => `@@redux/PROBE_UNKNOWN_ACTION${randomString()}`
-  };
-  var actionTypes_default = ActionTypes;
-  function isPlainObject(obj) {
-    if (typeof obj !== "object" || obj === null)
-      return false;
-    let proto = obj;
-    while (Object.getPrototypeOf(proto) !== null) {
-      proto = Object.getPrototypeOf(proto);
-    }
-    return Object.getPrototypeOf(obj) === proto || Object.getPrototypeOf(obj) === null;
-  }
-  function miniKindOf(val) {
-    if (val === void 0)
-      return "undefined";
-    if (val === null)
-      return "null";
-    const type = typeof val;
-    switch (type) {
-      case "boolean":
-      case "string":
-      case "number":
-      case "symbol":
-      case "function": {
-        return type;
-      }
-    }
-    if (Array.isArray(val))
-      return "array";
-    if (isDate(val))
-      return "date";
-    if (isError(val))
-      return "error";
-    const constructorName = ctorName(val);
-    switch (constructorName) {
-      case "Symbol":
-      case "Promise":
-      case "WeakMap":
-      case "WeakSet":
-      case "Map":
-      case "Set":
-        return constructorName;
-    }
-    return Object.prototype.toString.call(val).slice(8, -1).toLowerCase().replace(/\s/g, "");
-  }
-  function ctorName(val) {
-    return typeof val.constructor === "function" ? val.constructor.name : null;
-  }
-  function isError(val) {
-    return val instanceof Error || typeof val.message === "string" && val.constructor && typeof val.constructor.stackTraceLimit === "number";
-  }
-  function isDate(val) {
-    if (val instanceof Date)
-      return true;
-    return typeof val.toDateString === "function" && typeof val.getDate === "function" && typeof val.setDate === "function";
-  }
-  function kindOf(val) {
-    let typeOfVal = typeof val;
-    if (true) {
-      typeOfVal = miniKindOf(val);
-    }
-    return typeOfVal;
-  }
-  function createStore(reducer, preloadedState, enhancer) {
-    if (typeof reducer !== "function") {
-      throw new Error(false ? formatProdErrorMessage(2) : `Expected the root reducer to be a function. Instead, received: '${kindOf(reducer)}'`);
-    }
-    if (typeof preloadedState === "function" && typeof enhancer === "function" || typeof enhancer === "function" && typeof arguments[3] === "function") {
-      throw new Error(false ? formatProdErrorMessage(0) : "It looks like you are passing several store enhancers to createStore(). This is not supported. Instead, compose them together to a single function. See https://redux.js.org/tutorials/fundamentals/part-4-store#creating-a-store-with-enhancers for an example.");
-    }
-    if (typeof preloadedState === "function" && typeof enhancer === "undefined") {
-      enhancer = preloadedState;
-      preloadedState = void 0;
-    }
-    if (typeof enhancer !== "undefined") {
-      if (typeof enhancer !== "function") {
-        throw new Error(false ? formatProdErrorMessage(1) : `Expected the enhancer to be a function. Instead, received: '${kindOf(enhancer)}'`);
-      }
-      return enhancer(createStore)(reducer, preloadedState);
-    }
-    let currentReducer = reducer;
-    let currentState = preloadedState;
-    let currentListeners = /* @__PURE__ */ new Map();
-    let nextListeners = currentListeners;
-    let listenerIdCounter = 0;
-    let isDispatching = false;
-    function ensureCanMutateNextListeners() {
-      if (nextListeners === currentListeners) {
-        nextListeners = /* @__PURE__ */ new Map();
-        currentListeners.forEach((listener, key) => {
-          nextListeners.set(key, listener);
-        });
-      }
-    }
-    function getState() {
-      if (isDispatching) {
-        throw new Error(false ? formatProdErrorMessage(3) : "You may not call store.getState() while the reducer is executing. The reducer has already received the state as an argument. Pass it down from the top reducer instead of reading it from the store.");
-      }
-      return currentState;
-    }
-    function subscribe(listener) {
-      if (typeof listener !== "function") {
-        throw new Error(false ? formatProdErrorMessage(4) : `Expected the listener to be a function. Instead, received: '${kindOf(listener)}'`);
-      }
-      if (isDispatching) {
-        throw new Error(false ? formatProdErrorMessage(5) : "You may not call store.subscribe() while the reducer is executing. If you would like to be notified after the store has been updated, subscribe from a component and invoke store.getState() in the callback to access the latest state. See https://redux.js.org/api/store#subscribelistener for more details.");
-      }
-      let isSubscribed = true;
-      ensureCanMutateNextListeners();
-      const listenerId = listenerIdCounter++;
-      nextListeners.set(listenerId, listener);
-      return function unsubscribe() {
-        if (!isSubscribed) {
-          return;
-        }
-        if (isDispatching) {
-          throw new Error(false ? formatProdErrorMessage(6) : "You may not unsubscribe from a store listener while the reducer is executing. See https://redux.js.org/api/store#subscribelistener for more details.");
-        }
-        isSubscribed = false;
-        ensureCanMutateNextListeners();
-        nextListeners.delete(listenerId);
-        currentListeners = null;
-      };
-    }
-    function dispatch(action3) {
-      if (!isPlainObject(action3)) {
-        throw new Error(false ? formatProdErrorMessage(7) : `Actions must be plain objects. Instead, the actual type was: '${kindOf(action3)}'. You may need to add middleware to your store setup to handle dispatching other values, such as 'redux-thunk' to handle dispatching functions. See https://redux.js.org/tutorials/fundamentals/part-4-store#middleware and https://redux.js.org/tutorials/fundamentals/part-6-async-logic#using-the-redux-thunk-middleware for examples.`);
-      }
-      if (typeof action3.type === "undefined") {
-        throw new Error(false ? formatProdErrorMessage(8) : 'Actions may not have an undefined "type" property. You may have misspelled an action type string constant.');
-      }
-      if (typeof action3.type !== "string") {
-        throw new Error(false ? formatProdErrorMessage(17) : `Action "type" property must be a string. Instead, the actual type was: '${kindOf(action3.type)}'. Value was: '${action3.type}' (stringified)`);
-      }
-      if (isDispatching) {
-        throw new Error(false ? formatProdErrorMessage(9) : "Reducers may not dispatch actions.");
-      }
-      try {
-        isDispatching = true;
-        currentState = currentReducer(currentState, action3);
-      } finally {
-        isDispatching = false;
-      }
-      const listeners = currentListeners = nextListeners;
-      listeners.forEach((listener) => {
-        listener();
-      });
-      return action3;
-    }
-    function replaceReducer(nextReducer) {
-      if (typeof nextReducer !== "function") {
-        throw new Error(false ? formatProdErrorMessage(10) : `Expected the nextReducer to be a function. Instead, received: '${kindOf(nextReducer)}`);
-      }
-      currentReducer = nextReducer;
-      dispatch({
-        type: actionTypes_default.REPLACE
-      });
-    }
-    function observable() {
-      const outerSubscribe = subscribe;
-      return {
-        /**
-         * The minimal observable subscription method.
-         * @param observer Any object that can be used as an observer.
-         * The observer object should have a `next` method.
-         * @returns An object with an `unsubscribe` method that can
-         * be used to unsubscribe the observable from the store, and prevent further
-         * emission of values from the observable.
-         */
-        subscribe(observer) {
-          if (typeof observer !== "object" || observer === null) {
-            throw new Error(false ? formatProdErrorMessage(11) : `Expected the observer to be an object. Instead, received: '${kindOf(observer)}'`);
-          }
-          function observeState() {
-            const observerAsObserver = observer;
-            if (observerAsObserver.next) {
-              observerAsObserver.next(getState());
-            }
-          }
-          observeState();
-          const unsubscribe = outerSubscribe(observeState);
-          return {
-            unsubscribe
-          };
-        },
-        [symbol_observable_default]() {
-          return this;
-        }
-      };
-    }
-    dispatch({
-      type: actionTypes_default.INIT
-    });
-    const store2 = {
-      dispatch,
-      subscribe,
-      getState,
-      replaceReducer,
-      [symbol_observable_default]: observable
-    };
-    return store2;
-  }
-  function legacy_createStore(reducer, preloadedState, enhancer) {
-    return createStore(reducer, preloadedState, enhancer);
-  }
-  function compose(...funcs) {
-    if (funcs.length === 0) {
-      return (arg) => arg;
-    }
-    if (funcs.length === 1) {
-      return funcs[0];
-    }
-    return funcs.reduce((a2, b2) => (...args) => a2(b2(...args)));
-  }
-  function applyMiddleware(...middlewares) {
-    return (createStore22) => (reducer, preloadedState) => {
-      const store2 = createStore22(reducer, preloadedState);
-      let dispatch = () => {
-        throw new Error(false ? formatProdErrorMessage(15) : "Dispatching while constructing your middleware is not allowed. Other middleware would not be applied to this dispatch.");
-      };
-      const middlewareAPI = {
-        getState: store2.getState,
-        dispatch: (action3, ...args) => dispatch(action3, ...args)
-      };
-      const chain = middlewares.map((middleware) => middleware(middlewareAPI));
-      dispatch = compose(...chain)(store2.dispatch);
-      return {
-        ...store2,
-        dispatch
-      };
-    };
-  }
-
-  // node_modules/redux-thunk/dist/redux-thunk.mjs
-  function createThunkMiddleware(extraArgument) {
-    const middleware = ({ dispatch, getState }) => (next) => (action3) => {
-      if (typeof action3 === "function") {
-        return action3(dispatch, getState, extraArgument);
-      }
-      return next(action3);
-    };
-    return middleware;
-  }
-  var thunk = createThunkMiddleware();
-
-  // node_modules/immer/dist/immer.esm.mjs
-  function n(n2) {
-    for (var r2 = arguments.length, t2 = Array(r2 > 1 ? r2 - 1 : 0), e2 = 1; e2 < r2; e2++) t2[e2 - 1] = arguments[e2];
-    if (true) {
-      var i2 = Y[n2], o2 = i2 ? "function" == typeof i2 ? i2.apply(null, t2) : i2 : "unknown error nr: " + n2;
-      throw Error("[Immer] " + o2);
-    }
-    throw Error("[Immer] minified error nr: " + n2 + (t2.length ? " " + t2.map((function(n3) {
-      return "'" + n3 + "'";
-    })).join(",") : "") + ". Find the full error at: https://bit.ly/3cXEKWf");
-  }
-  function r(n2) {
-    return !!n2 && !!n2[Q];
-  }
-  function t(n2) {
-    var r2;
-    return !!n2 && ((function(n3) {
-      if (!n3 || "object" != typeof n3) return false;
-      var r3 = Object.getPrototypeOf(n3);
-      if (null === r3) return true;
-      var t2 = Object.hasOwnProperty.call(r3, "constructor") && r3.constructor;
-      return t2 === Object || "function" == typeof t2 && Function.toString.call(t2) === Z;
-    })(n2) || Array.isArray(n2) || !!n2[L] || !!(null === (r2 = n2.constructor) || void 0 === r2 ? void 0 : r2[L]) || s(n2) || v(n2));
-  }
-  function e(t2) {
-    return r(t2) || n(23, t2), t2[Q].t;
-  }
-  function i(n2, r2, t2) {
-    void 0 === t2 && (t2 = false), 0 === o(n2) ? (t2 ? Object.keys : nn)(n2).forEach((function(e2) {
-      t2 && "symbol" == typeof e2 || r2(e2, n2[e2], n2);
-    })) : n2.forEach((function(t3, e2) {
-      return r2(e2, t3, n2);
-    }));
-  }
-  function o(n2) {
-    var r2 = n2[Q];
-    return r2 ? r2.i > 3 ? r2.i - 4 : r2.i : Array.isArray(n2) ? 1 : s(n2) ? 2 : v(n2) ? 3 : 0;
-  }
-  function u(n2, r2) {
-    return 2 === o(n2) ? n2.has(r2) : Object.prototype.hasOwnProperty.call(n2, r2);
-  }
-  function a(n2, r2) {
-    return 2 === o(n2) ? n2.get(r2) : n2[r2];
-  }
-  function f(n2, r2, t2) {
-    var e2 = o(n2);
-    2 === e2 ? n2.set(r2, t2) : 3 === e2 ? n2.add(t2) : n2[r2] = t2;
-  }
-  function c(n2, r2) {
-    return n2 === r2 ? 0 !== n2 || 1 / n2 == 1 / r2 : n2 != n2 && r2 != r2;
-  }
-  function s(n2) {
-    return X && n2 instanceof Map;
-  }
-  function v(n2) {
-    return q && n2 instanceof Set;
-  }
-  function p(n2) {
-    return n2.o || n2.t;
-  }
-  function l(n2) {
-    if (Array.isArray(n2)) return Array.prototype.slice.call(n2);
-    var r2 = rn(n2);
-    delete r2[Q];
-    for (var t2 = nn(r2), e2 = 0; e2 < t2.length; e2++) {
-      var i2 = t2[e2], o2 = r2[i2];
-      false === o2.writable && (o2.writable = true, o2.configurable = true), (o2.get || o2.set) && (r2[i2] = { configurable: true, writable: true, enumerable: o2.enumerable, value: n2[i2] });
-    }
-    return Object.create(Object.getPrototypeOf(n2), r2);
-  }
-  function d(n2, e2) {
-    return void 0 === e2 && (e2 = false), y(n2) || r(n2) || !t(n2) || (o(n2) > 1 && (n2.set = n2.add = n2.clear = n2.delete = h), Object.freeze(n2), e2 && i(n2, (function(n3, r2) {
-      return d(r2, true);
-    }), true)), n2;
-  }
-  function h() {
-    n(2);
-  }
-  function y(n2) {
-    return null == n2 || "object" != typeof n2 || Object.isFrozen(n2);
-  }
-  function b(r2) {
-    var t2 = tn[r2];
-    return t2 || n(18, r2), t2;
-  }
-  function _() {
-    return U || n(0), U;
-  }
-  function j(n2, r2) {
-    r2 && (b("Patches"), n2.u = [], n2.s = [], n2.v = r2);
-  }
-  function g(n2) {
-    O(n2), n2.p.forEach(S), n2.p = null;
-  }
-  function O(n2) {
-    n2 === U && (U = n2.l);
-  }
-  function w(n2) {
-    return U = { p: [], l: U, h: n2, m: true, _: 0 };
-  }
-  function S(n2) {
-    var r2 = n2[Q];
-    0 === r2.i || 1 === r2.i ? r2.j() : r2.g = true;
-  }
-  function P(r2, e2) {
-    e2._ = e2.p.length;
-    var i2 = e2.p[0], o2 = void 0 !== r2 && r2 !== i2;
-    return e2.h.O || b("ES5").S(e2, r2, o2), o2 ? (i2[Q].P && (g(e2), n(4)), t(r2) && (r2 = M(e2, r2), e2.l || x(e2, r2)), e2.u && b("Patches").M(i2[Q].t, r2, e2.u, e2.s)) : r2 = M(e2, i2, []), g(e2), e2.u && e2.v(e2.u, e2.s), r2 !== H ? r2 : void 0;
-  }
-  function M(n2, r2, t2) {
-    if (y(r2)) return r2;
-    var e2 = r2[Q];
-    if (!e2) return i(r2, (function(i2, o3) {
-      return A(n2, e2, r2, i2, o3, t2);
-    }), true), r2;
-    if (e2.A !== n2) return r2;
-    if (!e2.P) return x(n2, e2.t, true), e2.t;
-    if (!e2.I) {
-      e2.I = true, e2.A._--;
-      var o2 = 4 === e2.i || 5 === e2.i ? e2.o = l(e2.k) : e2.o, u2 = o2, a2 = false;
-      3 === e2.i && (u2 = new Set(o2), o2.clear(), a2 = true), i(u2, (function(r3, i2) {
-        return A(n2, e2, o2, r3, i2, t2, a2);
-      })), x(n2, o2, false), t2 && n2.u && b("Patches").N(e2, t2, n2.u, n2.s);
-    }
-    return e2.o;
-  }
-  function A(e2, i2, o2, a2, c2, s2, v2) {
-    if (c2 === o2 && n(5), r(c2)) {
-      var p2 = M(e2, c2, s2 && i2 && 3 !== i2.i && !u(i2.R, a2) ? s2.concat(a2) : void 0);
-      if (f(o2, a2, p2), !r(p2)) return;
-      e2.m = false;
-    } else v2 && o2.add(c2);
-    if (t(c2) && !y(c2)) {
-      if (!e2.h.D && e2._ < 1) return;
-      M(e2, c2), i2 && i2.A.l || x(e2, c2);
-    }
-  }
-  function x(n2, r2, t2) {
-    void 0 === t2 && (t2 = false), !n2.l && n2.h.D && n2.m && d(r2, t2);
-  }
-  function z(n2, r2) {
-    var t2 = n2[Q];
-    return (t2 ? p(t2) : n2)[r2];
-  }
-  function I(n2, r2) {
-    if (r2 in n2) for (var t2 = Object.getPrototypeOf(n2); t2; ) {
-      var e2 = Object.getOwnPropertyDescriptor(t2, r2);
-      if (e2) return e2;
-      t2 = Object.getPrototypeOf(t2);
-    }
-  }
-  function k(n2) {
-    n2.P || (n2.P = true, n2.l && k(n2.l));
-  }
-  function E(n2) {
-    n2.o || (n2.o = l(n2.t));
-  }
-  function N(n2, r2, t2) {
-    var e2 = s(r2) ? b("MapSet").F(r2, t2) : v(r2) ? b("MapSet").T(r2, t2) : n2.O ? (function(n3, r3) {
-      var t3 = Array.isArray(n3), e3 = { i: t3 ? 1 : 0, A: r3 ? r3.A : _(), P: false, I: false, R: {}, l: r3, t: n3, k: null, o: null, j: null, C: false }, i2 = e3, o2 = en;
-      t3 && (i2 = [e3], o2 = on);
-      var u2 = Proxy.revocable(i2, o2), a2 = u2.revoke, f2 = u2.proxy;
-      return e3.k = f2, e3.j = a2, f2;
-    })(r2, t2) : b("ES5").J(r2, t2);
-    return (t2 ? t2.A : _()).p.push(e2), e2;
-  }
-  function R(e2) {
-    return r(e2) || n(22, e2), (function n2(r2) {
-      if (!t(r2)) return r2;
-      var e3, u2 = r2[Q], c2 = o(r2);
-      if (u2) {
-        if (!u2.P && (u2.i < 4 || !b("ES5").K(u2))) return u2.t;
-        u2.I = true, e3 = D(r2, c2), u2.I = false;
-      } else e3 = D(r2, c2);
-      return i(e3, (function(r3, t2) {
-        u2 && a(u2.t, r3) === t2 || f(e3, r3, n2(t2));
-      })), 3 === c2 ? new Set(e3) : e3;
-    })(e2);
-  }
-  function D(n2, r2) {
-    switch (r2) {
-      case 2:
-        return new Map(n2);
-      case 3:
-        return Array.from(n2);
-    }
-    return l(n2);
-  }
-  var G;
-  var U;
-  var W = "undefined" != typeof Symbol && "symbol" == typeof Symbol("x");
-  var X = "undefined" != typeof Map;
-  var q = "undefined" != typeof Set;
-  var B = "undefined" != typeof Proxy && void 0 !== Proxy.revocable && "undefined" != typeof Reflect;
-  var H = W ? Symbol.for("immer-nothing") : ((G = {})["immer-nothing"] = true, G);
-  var L = W ? Symbol.for("immer-draftable") : "__$immer_draftable";
-  var Q = W ? Symbol.for("immer-state") : "__$immer_state";
-  var Y = { 0: "Illegal state", 1: "Immer drafts cannot have computed properties", 2: "This object has been frozen and should not be mutated", 3: function(n2) {
-    return "Cannot use a proxy that has been revoked. Did you pass an object from inside an immer function to an async process? " + n2;
-  }, 4: "An immer producer returned a new value *and* modified its draft. Either return a new value *or* modify the draft.", 5: "Immer forbids circular references", 6: "The first or second argument to `produce` must be a function", 7: "The third argument to `produce` must be a function or undefined", 8: "First argument to `createDraft` must be a plain object, an array, or an immerable object", 9: "First argument to `finishDraft` must be a draft returned by `createDraft`", 10: "The given draft is already finalized", 11: "Object.defineProperty() cannot be used on an Immer draft", 12: "Object.setPrototypeOf() cannot be used on an Immer draft", 13: "Immer only supports deleting array indices", 14: "Immer only supports setting array indices and the 'length' property", 15: function(n2) {
-    return "Cannot apply patch, path doesn't resolve: " + n2;
-  }, 16: 'Sets cannot have "replace" patches.', 17: function(n2) {
-    return "Unsupported patch operation: " + n2;
-  }, 18: function(n2) {
-    return "The plugin for '" + n2 + "' has not been loaded into Immer. To enable the plugin, import and call `enable" + n2 + "()` when initializing your application.";
-  }, 20: "Cannot use proxies if Proxy, Proxy.revocable or Reflect are not available", 21: function(n2) {
-    return "produce can only be called on things that are draftable: plain objects, arrays, Map, Set or classes that are marked with '[immerable]: true'. Got '" + n2 + "'";
-  }, 22: function(n2) {
-    return "'current' expects a draft, got: " + n2;
-  }, 23: function(n2) {
-    return "'original' expects a draft, got: " + n2;
-  }, 24: "Patching reserved attributes like __proto__, prototype and constructor is not allowed" };
-  var Z = "" + Object.prototype.constructor;
-  var nn = "undefined" != typeof Reflect && Reflect.ownKeys ? Reflect.ownKeys : void 0 !== Object.getOwnPropertySymbols ? function(n2) {
-    return Object.getOwnPropertyNames(n2).concat(Object.getOwnPropertySymbols(n2));
-  } : Object.getOwnPropertyNames;
-  var rn = Object.getOwnPropertyDescriptors || function(n2) {
-    var r2 = {};
-    return nn(n2).forEach((function(t2) {
-      r2[t2] = Object.getOwnPropertyDescriptor(n2, t2);
-    })), r2;
-  };
-  var tn = {};
-  var en = { get: function(n2, r2) {
-    if (r2 === Q) return n2;
-    var e2 = p(n2);
-    if (!u(e2, r2)) return (function(n3, r3, t2) {
-      var e3, i3 = I(r3, t2);
-      return i3 ? "value" in i3 ? i3.value : null === (e3 = i3.get) || void 0 === e3 ? void 0 : e3.call(n3.k) : void 0;
-    })(n2, e2, r2);
-    var i2 = e2[r2];
-    return n2.I || !t(i2) ? i2 : i2 === z(n2.t, r2) ? (E(n2), n2.o[r2] = N(n2.A.h, i2, n2)) : i2;
-  }, has: function(n2, r2) {
-    return r2 in p(n2);
-  }, ownKeys: function(n2) {
-    return Reflect.ownKeys(p(n2));
-  }, set: function(n2, r2, t2) {
-    var e2 = I(p(n2), r2);
-    if (null == e2 ? void 0 : e2.set) return e2.set.call(n2.k, t2), true;
-    if (!n2.P) {
-      var i2 = z(p(n2), r2), o2 = null == i2 ? void 0 : i2[Q];
-      if (o2 && o2.t === t2) return n2.o[r2] = t2, n2.R[r2] = false, true;
-      if (c(t2, i2) && (void 0 !== t2 || u(n2.t, r2))) return true;
-      E(n2), k(n2);
-    }
-    return n2.o[r2] === t2 && (void 0 !== t2 || r2 in n2.o) || Number.isNaN(t2) && Number.isNaN(n2.o[r2]) || (n2.o[r2] = t2, n2.R[r2] = true), true;
-  }, deleteProperty: function(n2, r2) {
-    return void 0 !== z(n2.t, r2) || r2 in n2.t ? (n2.R[r2] = false, E(n2), k(n2)) : delete n2.R[r2], n2.o && delete n2.o[r2], true;
-  }, getOwnPropertyDescriptor: function(n2, r2) {
-    var t2 = p(n2), e2 = Reflect.getOwnPropertyDescriptor(t2, r2);
-    return e2 ? { writable: true, configurable: 1 !== n2.i || "length" !== r2, enumerable: e2.enumerable, value: t2[r2] } : e2;
-  }, defineProperty: function() {
-    n(11);
-  }, getPrototypeOf: function(n2) {
-    return Object.getPrototypeOf(n2.t);
-  }, setPrototypeOf: function() {
-    n(12);
-  } };
-  var on = {};
-  i(en, (function(n2, r2) {
-    on[n2] = function() {
-      return arguments[0] = arguments[0][0], r2.apply(this, arguments);
-    };
-  })), on.deleteProperty = function(r2, t2) {
-    return isNaN(parseInt(t2)) && n(13), on.set.call(this, r2, t2, void 0);
-  }, on.set = function(r2, t2, e2) {
-    return "length" !== t2 && isNaN(parseInt(t2)) && n(14), en.set.call(this, r2[0], t2, e2, r2[0]);
-  };
-  var un = (function() {
-    function e2(r2) {
-      var e3 = this;
-      this.O = B, this.D = true, this.produce = function(r3, i3, o2) {
-        if ("function" == typeof r3 && "function" != typeof i3) {
-          var u2 = i3;
-          i3 = r3;
-          var a2 = e3;
-          return function(n2) {
-            var r4 = this;
-            void 0 === n2 && (n2 = u2);
-            for (var t2 = arguments.length, e4 = Array(t2 > 1 ? t2 - 1 : 0), o3 = 1; o3 < t2; o3++) e4[o3 - 1] = arguments[o3];
-            return a2.produce(n2, (function(n3) {
-              var t3;
-              return (t3 = i3).call.apply(t3, [r4, n3].concat(e4));
-            }));
-          };
-        }
-        var f2;
-        if ("function" != typeof i3 && n(6), void 0 !== o2 && "function" != typeof o2 && n(7), t(r3)) {
-          var c2 = w(e3), s2 = N(e3, r3, void 0), v2 = true;
-          try {
-            f2 = i3(s2), v2 = false;
-          } finally {
-            v2 ? g(c2) : O(c2);
-          }
-          return "undefined" != typeof Promise && f2 instanceof Promise ? f2.then((function(n2) {
-            return j(c2, o2), P(n2, c2);
-          }), (function(n2) {
-            throw g(c2), n2;
-          })) : (j(c2, o2), P(f2, c2));
-        }
-        if (!r3 || "object" != typeof r3) {
-          if (void 0 === (f2 = i3(r3)) && (f2 = r3), f2 === H && (f2 = void 0), e3.D && d(f2, true), o2) {
-            var p2 = [], l2 = [];
-            b("Patches").M(r3, f2, p2, l2), o2(p2, l2);
-          }
-          return f2;
-        }
-        n(21, r3);
-      }, this.produceWithPatches = function(n2, r3) {
-        if ("function" == typeof n2) return function(r4) {
-          for (var t3 = arguments.length, i4 = Array(t3 > 1 ? t3 - 1 : 0), o3 = 1; o3 < t3; o3++) i4[o3 - 1] = arguments[o3];
-          return e3.produceWithPatches(r4, (function(r5) {
-            return n2.apply(void 0, [r5].concat(i4));
-          }));
-        };
-        var t2, i3, o2 = e3.produce(n2, r3, (function(n3, r4) {
-          t2 = n3, i3 = r4;
-        }));
-        return "undefined" != typeof Promise && o2 instanceof Promise ? o2.then((function(n3) {
-          return [n3, t2, i3];
-        })) : [o2, t2, i3];
-      }, "boolean" == typeof (null == r2 ? void 0 : r2.useProxies) && this.setUseProxies(r2.useProxies), "boolean" == typeof (null == r2 ? void 0 : r2.autoFreeze) && this.setAutoFreeze(r2.autoFreeze);
-    }
-    var i2 = e2.prototype;
-    return i2.createDraft = function(e3) {
-      t(e3) || n(8), r(e3) && (e3 = R(e3));
-      var i3 = w(this), o2 = N(this, e3, void 0);
-      return o2[Q].C = true, O(i3), o2;
-    }, i2.finishDraft = function(r2, t2) {
-      var e3 = r2 && r2[Q];
-      e3 && e3.C || n(9), e3.I && n(10);
-      var i3 = e3.A;
-      return j(i3, t2), P(void 0, i3);
-    }, i2.setAutoFreeze = function(n2) {
-      this.D = n2;
-    }, i2.setUseProxies = function(r2) {
-      r2 && !B && n(20), this.O = r2;
-    }, i2.applyPatches = function(n2, t2) {
-      var e3;
-      for (e3 = t2.length - 1; e3 >= 0; e3--) {
-        var i3 = t2[e3];
-        if (0 === i3.path.length && "replace" === i3.op) {
-          n2 = i3.value;
-          break;
-        }
-      }
-      e3 > -1 && (t2 = t2.slice(e3 + 1));
-      var o2 = b("Patches").$;
-      return r(n2) ? o2(n2, t2) : this.produce(n2, (function(n3) {
-        return o2(n3, t2);
-      }));
-    }, e2;
-  })();
-  var an = new un();
-  var fn = an.produce;
-  var cn = an.produceWithPatches.bind(an);
-  var sn = an.setAutoFreeze.bind(an);
-  var vn = an.setUseProxies.bind(an);
-  var pn = an.applyPatches.bind(an);
-  var ln = an.createDraft.bind(an);
-  var dn = an.finishDraft.bind(an);
-
-  // node_modules/easy-peasy/dist/index.js
-  var import_es6 = __toESM(require_es6());
-  var StoreContext = (0, import_react.createContext)();
-  var useNotInitialized = function useNotInitialized2() {
-    throw new Error("uSES not initialized!");
-  };
-  var useSyncExternalStoreWithSelector = useNotInitialized;
-  var initializeUseStoreState = function initializeUseStoreState2(fn2) {
-    useSyncExternalStoreWithSelector = fn2;
-  };
-  var refEquality = function refEquality2(a2, b2) {
-    return a2 === b2;
-  };
-  function createStoreStateHook(Context) {
-    return function useStoreState3(mapState, equalityFn) {
-      if (equalityFn === void 0) {
-        equalityFn = refEquality;
-      }
-      if (true) {
-        if (!mapState) {
-          throw new Error("You must pass a selector to useStoreState");
-        }
-        if (typeof mapState !== "function") {
-          throw new Error("You must pass a function as a selector to useStoreState");
-        }
-        if (typeof equalityFn !== "function") {
-          throw new Error("You must pass a function as an equality function to useStoreState");
-        }
-      }
-      var store2 = (0, import_react.useContext)(Context);
-      var selectedState = useSyncExternalStoreWithSelector(
-        store2.subscribe,
-        store2.getState,
-        store2.getState,
-        // getServerSnapshot = getState
-        mapState,
-        equalityFn
-      );
-      (0, import_react.useDebugValue)(selectedState);
-      return selectedState;
-    };
-  }
-  var useStoreState = createStoreStateHook(StoreContext);
-  function createStoreActionsHook(Context) {
-    return function useStoreActions3(mapActions) {
-      var store2 = (0, import_react.useContext)(Context);
-      return mapActions(store2.getActions());
-    };
-  }
-  var useStoreActions = createStoreActionsHook(StoreContext);
-  function createStoreDispatchHook(Context) {
-    return function useStoreDispatch3() {
-      var store2 = (0, import_react.useContext)(Context);
-      return store2.dispatch;
-    };
-  }
-  var useStoreDispatch = createStoreDispatchHook(StoreContext);
-  function useStore() {
-    return (0, import_react.useContext)(StoreContext);
-  }
-  function createStoreRehydratedHook(Context) {
-    return function useStoreRehydrated2() {
-      var store2 = (0, import_react.useContext)(Context);
-      var _useState = (0, import_react.useState)(false), rehydrated = _useState[0], setRehydrated = _useState[1];
-      (0, import_react.useEffect)(function() {
-        store2.persist.resolveRehydration().then(function() {
-          return setRehydrated(true);
-        });
-      }, []);
-      return rehydrated;
-    };
-  }
-  var useStoreRehydrated = createStoreRehydratedHook(StoreContext);
-  function createTypedHooks() {
-    return {
-      useStoreActions,
-      useStoreDispatch,
-      useStoreState,
-      useStoreRehydrated,
-      useStore
-    };
-  }
-  var actionSymbol = "$_a";
-  var actionOnSymbol = "$_aO";
-  var computedSymbol = "$_c";
-  var effectOnSymbol = "$_e";
-  var persistSymbol = "$_p";
-  var reducerSymbol = "$_r";
-  var thunkOnSymbol = "$_tO";
-  var thunkSymbol = "$_t";
-  var action = function action2(fn2, config) {
-    var _ref2;
-    return _ref2 = {}, _ref2[actionSymbol] = true, _ref2.fn = fn2, _ref2.config = config, _ref2;
-  };
-  var defaultStateResolvers = [function(state) {
-    return state;
-  }];
-  var computed = function computed2(fnOrStateResolvers, fn2) {
-    var _ref4;
-    if (typeof fn2 === "function") {
-      var _ref3;
-      return _ref3 = {}, _ref3[computedSymbol] = true, _ref3.fn = fn2, _ref3.stateResolvers = fnOrStateResolvers, _ref3;
-    }
-    return _ref4 = {}, _ref4[computedSymbol] = true, _ref4.fn = fnOrStateResolvers, _ref4.stateResolvers = defaultStateResolvers, _ref4;
-  };
-  var easyPeasyImmer;
-  function isPlainObject2(obj) {
-    if (typeof obj !== "object" || obj === null) return false;
-    var proto = obj;
-    while (Object.getPrototypeOf(proto) !== null) {
-      proto = Object.getPrototypeOf(proto);
-    }
-    return Object.getPrototypeOf(obj) === proto;
-  }
-  function clone(source) {
-    function recursiveClone(current) {
-      var next = Object.keys(current).reduce(function(acc, key) {
-        if (Object.getOwnPropertyDescriptor(current, key).get == null) {
-          acc[key] = current[key];
-        }
-        return acc;
-      }, {});
-      Object.keys(next).forEach(function(key) {
-        if (isPlainObject2(next[key])) {
-          next[key] = recursiveClone(next[key]);
-        }
-      });
-      return next;
-    }
-    return recursiveClone(source);
-  }
-  function isPromise(x2) {
-    return x2 != null && typeof x2 === "object" && typeof x2.then === "function";
-  }
-  function get(path, target) {
-    return path.reduce(function(acc, cur) {
-      return isPlainObject2(acc) ? acc[cur] : void 0;
-    }, target);
-  }
-  function newify(currentPath, currentState, finalValue) {
-    if (currentPath.length === 0) {
-      return finalValue;
-    }
-    var newState = _objectSpread2({}, currentState);
-    var key = currentPath[0];
-    if (currentPath.length === 1) {
-      newState[key] = finalValue;
-    } else {
-      newState[key] = newify(currentPath.slice(1), newState[key], finalValue);
-    }
-    return newState;
-  }
-  function set(path, target, value) {
-    if (path.length === 0) {
-      if (typeof value === "object") {
-        Object.keys(target).forEach(function(key) {
-          delete target[key];
-        });
-        Object.keys(value).forEach(function(key) {
-          target[key] = value[key];
-        });
-      }
-      return;
-    }
-    path.reduce(function(acc, cur, idx) {
-      if (idx + 1 === path.length) {
-        acc[cur] = value;
-      } else {
-        acc[cur] = acc[cur] || {};
-      }
-      return acc[cur];
-    }, target);
-  }
-  function createSimpleProduce(disableImmer) {
-    if (disableImmer === void 0) {
-      disableImmer = false;
-    }
-    return function simpleProduce(path, state, fn2, config) {
-      if (config && "immer" in config ? (config == null ? void 0 : config.immer) === false : disableImmer) {
-        var _current = get(path, state);
-        var next = fn2(_current);
-        if (_current !== next) {
-          return newify(path, state, next);
-        }
-        return state;
-      }
-      if (!easyPeasyImmer) {
-        easyPeasyImmer = new un({
-          // We need to ensure that we disable proxies if they aren't available
-          // on the environment. Users need to ensure that they use the enableES5
-          // feature of immer.
-          useProxies: typeof Proxy !== "undefined" && typeof Proxy.revocable !== "undefined" && typeof Reflect !== "undefined",
-          // Autofreezing breaks easy-peasy, we need a mixed version of immutability
-          // and mutability in order to apply updates to our computed properties
-          autoFreeze: false
-        });
-      }
-      if (path.length === 0) {
-        var _draft = easyPeasyImmer.createDraft(state);
-        var _result = fn2(_draft);
-        if (_result) {
-          return r(_result) ? easyPeasyImmer.finishDraft(_result) : _result;
-        }
-        return easyPeasyImmer.finishDraft(_draft);
-      }
-      var parentPath = path.slice(0, path.length - 1);
-      var draft = easyPeasyImmer.createDraft(state);
-      var parent = get(parentPath, state);
-      var current = get(path, draft);
-      var result = fn2(current);
-      if (result) {
-        parent[path[path.length - 1]] = result;
-      }
-      return easyPeasyImmer.finishDraft(draft);
-    };
-  }
-  var pReduce = function pReduce2(iterable, reducer, initialValue) {
-    return new Promise(function(resolve, reject) {
-      var iterator = iterable[Symbol.iterator]();
-      var index = 0;
-      var next = function next2(total) {
-        var element = iterator.next();
-        if (element.done) {
-          resolve(total);
-          return;
-        }
-        Promise.all([total, element.value]).then(function(value) {
-          return (
-            // eslint-disable-next-line no-plusplus
-            next2(reducer(value[0], value[1], index++))
-          );
-        }).catch(function(err) {
-          return reject(err);
-        });
-      };
-      next(initialValue);
-    });
-  };
-  var pSeries = function pSeries2(tasks) {
-    var results = [];
-    return pReduce(tasks, function(_2, task) {
-      return task().then(function(value) {
-        results.push(value);
-      });
-    }).then(function() {
-      return results;
-    });
-  };
-  function areInputsEqual(newInputs, lastInputs) {
-    if (newInputs.length !== lastInputs.length) {
-      return false;
-    }
-    for (var i2 = 0; i2 < newInputs.length; i2 += 1) {
-      if (newInputs[i2] !== lastInputs[i2]) {
-        return false;
-      }
-    }
-    return true;
-  }
-  var logEventListenerError = function logEventListenerError2(type, err) {
-    console.log("Error in " + type);
-    console.log(err);
-  };
-  var handleEventDispatchErrors = function handleEventDispatchErrors2(type, dispatcher) {
-    return function() {
-      try {
-        var result = dispatcher.apply(void 0, arguments);
-        if (isPromise(result)) {
-          result.catch(function(err) {
-            logEventListenerError(type, err);
-          });
-        }
-      } catch (err) {
-        logEventListenerError(type, err);
-      }
-    };
-  };
-  function createReducer(disableImmer, _aRD, _cR, _cP) {
-    var simpleProduce = createSimpleProduce(disableImmer);
-    var runActionReducerAtPath = function runActionReducerAtPath2(state, action3, actionReducer, path, config) {
-      return simpleProduce(path, state, function(draft) {
-        return actionReducer(draft, action3.payload);
-      }, config);
-    };
-    var reducerForActions = function reducerForActions2(state, action3) {
-      var actionReducer = _aRD[action3.type];
-      if (actionReducer) {
-        return runActionReducerAtPath(state, action3, actionReducer, actionReducer.def.meta.parent, actionReducer.def.config);
-      }
-      return state;
-    };
-    var reducerForCustomReducers = function reducerForCustomReducers2(state, action3) {
-      return _cR.reduce(function(acc, _ref) {
-        var parentPath = _ref.parentPath, key = _ref.key, reducer = _ref.reducer, config = _ref.config;
-        return simpleProduce(parentPath, acc, function(draft) {
-          draft[key] = reducer(r(draft[key]) ? e(draft[key]) : draft[key], action3);
-          return draft;
-        }, config);
-      }, state);
-    };
-    var rootReducer = function rootReducer2(state, action3) {
-      var stateAfterActions = reducerForActions(state, action3);
-      var next = _cR.length > 0 ? reducerForCustomReducers(stateAfterActions, action3) : stateAfterActions;
-      if (state !== next) {
-        _cP.forEach(function(_ref2) {
-          var parentPath = _ref2.parentPath, bindComputedProperty = _ref2.bindComputedProperty;
-          var parentState = get(parentPath, next);
-          if (parentState != null) bindComputedProperty(parentState, next);
-        });
-      }
-      return next;
-    };
-    return rootReducer;
-  }
-  var migrate = function migrate2(data, migrations) {
-    var _data$_migrationVersi;
-    sn(false);
-    var version = (_data$_migrationVersi = data._migrationVersion) != null ? _data$_migrationVersi : 0;
-    var toVersion = migrations.migrationVersion;
-    if (typeof version !== "number" || typeof toVersion !== "number") {
-      throw new Error("No migration version found");
-    }
-    while (version < toVersion) {
-      var nextVersion = version + 1;
-      var migrator = migrations[nextVersion];
-      if (!migrator) {
-        throw new Error("No migrator found for `migrationVersion` " + nextVersion);
-      }
-      data = fn(data, migrator);
-      data._migrationVersion = nextVersion;
-      version = data._migrationVersion;
-    }
-    sn(true);
-    return data;
-  };
-  var noopStorage = {
-    getItem: function getItem() {
-      return void 0;
-    },
-    setItem: function setItem() {
-      return void 0;
-    },
-    removeItem: function removeItem() {
-      return void 0;
-    }
-  };
-  var getBrowserStorage = function getBrowserStorage2(storageName) {
-    var storageCache;
-    return function() {
-      if (!storageCache) {
-        try {
-          if (typeof window !== "undefined" && typeof window[storageName] !== "undefined") {
-            storageCache = window[storageName];
-          }
-        } catch (_2) {
-        }
-        if (!storageCache) {
-          storageCache = noopStorage;
-        }
-      }
-      return storageCache;
-    };
-  };
-  var localStorage = getBrowserStorage("localStorage");
-  var sessionStorage = getBrowserStorage("sessionStorage");
-  function createStorageWrapper(storage, transformers, migrations) {
-    if (transformers === void 0) {
-      transformers = [];
-    }
-    if (migrations === void 0) {
-      migrations = {};
-    }
-    if (storage == null) {
-      storage = sessionStorage();
-    }
-    if (typeof storage === "string") {
-      if (storage === "localStorage") {
-        storage = localStorage();
-      } else if (storage === "sessionStorage") {
-        storage = sessionStorage();
-      } else {
-        if (true) {
-          console.warn("Invalid storage provider");
-        }
-        storage = noopStorage;
-      }
-    }
-    var outTransformers = [].concat(transformers).reverse();
-    var serialize = function serialize2(data) {
-      if (transformers.length > 0 && data != null && typeof data === "object") {
-        Object.keys(data).forEach(function(key) {
-          data[key] = transformers.reduce(function(acc, cur) {
-            return cur.in(acc, key, data);
-          }, data[key]);
-        });
-      }
-      return storage === localStorage() || storage === sessionStorage() ? JSON.stringify({
-        data
-      }) : data;
-    };
-    var deserialize = function deserialize2(data) {
-      var storageData = storage === localStorage() || storage === sessionStorage() ? JSON.parse(data).data : data;
-      var hasMigrations = Object.keys(migrations).length > 0;
-      var result = hasMigrations ? migrate(storageData, migrations) : storageData;
-      if (outTransformers.length > 0 && result != null && typeof result === "object") {
-        Object.keys(result).forEach(function(key) {
-          result[key] = outTransformers.reduce(function(acc, cur) {
-            return cur.out(acc, key, result);
-          }, result[key]);
-        });
-      }
-      return result;
-    };
-    var isAsync = isPromise(storage.getItem("_"));
-    return {
-      getItem: function getItem2(key) {
-        if (isAsync) {
-          return storage.getItem(key).then(function(wrapped2) {
-            return wrapped2 != null ? deserialize(wrapped2) : void 0;
-          });
-        }
-        var wrapped = storage.getItem(key);
-        return wrapped != null ? deserialize(wrapped) : void 0;
-      },
-      setItem: function setItem2(key, data) {
-        return storage.setItem(key, serialize(data));
-      },
-      removeItem: function removeItem2(key) {
-        return storage.removeItem(key);
-      }
-    };
-  }
-  function extractPersistConfig(path, persistdef) {
-    if (persistdef === void 0) {
-      persistdef = {};
-    }
-    return {
-      path,
-      config: {
-        allow: persistdef.allow || [],
-        deny: persistdef.deny || [],
-        mergeStrategy: persistdef.mergeStrategy || "mergeDeep",
-        storage: createStorageWrapper(persistdef.storage, persistdef.transformers, persistdef.migrations)
-      }
-    };
-  }
-  function resolvePersistTargets(target, allow, deny) {
-    var targets = Object.keys(target);
-    if (allow.length > 0) {
-      targets = targets.reduce(function(acc, cur) {
-        if (allow.findIndex(function(x2) {
-          return x2 === cur;
-        }) !== -1) {
-          return [].concat(acc, [cur]);
-        }
-        return acc;
-      }, []);
-    }
-    if (deny.length > 0) {
-      targets = targets.reduce(function(acc, cur) {
-        if (deny.findIndex(function(x2) {
-          return x2 === cur;
-        }) !== -1) {
-          return acc;
-        }
-        return [].concat(acc, [cur]);
-      }, []);
-    }
-    return targets;
-  }
-  function createPersistenceClearer(persistKey, _r) {
-    return function() {
-      if (_r._i._persistenceConfig.length === 0) {
-        return Promise.resolve();
-      }
-      return pSeries(_r._i._persistenceConfig.map(function(_ref) {
-        var path = _ref.path, config = _ref.config;
-        return function() {
-          return Promise.resolve(config.storage.removeItem(persistKey(path)));
-        };
-      }));
-    };
-  }
-  function createPersistor(persistKey, _r) {
-    var persistPromise = Promise.resolve();
-    var isPersisting = false;
-    var nextPersistOperation;
-    var timingMethod = typeof window === "undefined" ? function(fn2) {
-      return fn2();
-    } : window.requestIdleCallback != null ? (
-      // We need to wrap requestIdleCallback, because it doesn't work without
-      // a second parameter on iOS with ReactNative
-      function(fn2) {
-        return window.requestIdleCallback(fn2, {
-          timeout: 0
-        });
-      }
-    ) : window.requestAnimationFrame;
-    var persist = function persist2(nextState) {
-      if (_r._i._persistenceConfig.length === 0) {
-        return;
-      }
-      var operation = function operation2() {
-        isPersisting = true;
-        persistPromise = new Promise(function(resolve) {
-          timingMethod(function() {
-            pSeries(_r._i._persistenceConfig.map(function(_ref2) {
-              var path = _ref2.path, config = _ref2.config;
-              return function() {
-                var storage = config.storage, allow = config.allow, deny = config.deny;
-                var persistRootState = clone(get(path, nextState));
-                var persistTargets = resolvePersistTargets(persistRootState, allow, deny);
-                var stateToPersist = {};
-                persistTargets.map(function(key) {
-                  var targetPath = [].concat(path, [key]);
-                  var rawValue = get(targetPath, nextState);
-                  var value = isPlainObject2(rawValue) ? clone(rawValue) : rawValue;
-                  stateToPersist[key] = value;
-                });
-                return Promise.resolve(storage.setItem(persistKey(path), stateToPersist));
-              };
-            })).finally(function() {
-              isPersisting = false;
-              if (nextPersistOperation) {
-                var next = nextPersistOperation;
-                nextPersistOperation = null;
-                next();
-              } else {
-                resolve();
-              }
-            });
-          });
-        });
-      };
-      if (isPersisting) {
-        nextPersistOperation = operation;
-      } else {
-        operation();
-      }
-    };
-    return {
-      persist,
-      clear: createPersistenceClearer(persistKey, _r),
-      flush: function flush() {
-        if (nextPersistOperation) {
-          nextPersistOperation();
-        }
-        return persistPromise;
-      }
-    };
-  }
-  function createPersistMiddleware(persistor, _r) {
-    return function(_ref3) {
-      var getState = _ref3.getState;
-      return function(next) {
-        return function(action3) {
-          var state = next(action3);
-          if (action3 && action3.type !== "@action.ePRS" && _r._i._persistenceConfig.length > 0) {
-            persistor.persist(getState());
-          }
-          return state;
-        };
-      };
-    };
-  }
-  function rehydrateStateFromPersistIfNeeded(persistKey, replaceState, _r, root2) {
-    if (_r._i._persistenceConfig.length === 0) {
-      return Promise.resolve();
-    }
-    var state = clone(_r._i._dS);
-    var rehydrating = false;
-    return pSeries(_r._i._persistenceConfig.map(function(persistInstance) {
-      return function() {
-        var path = persistInstance.path, config = persistInstance.config;
-        var mergeStrategy = config.mergeStrategy, storage = config.storage;
-        if (root2 && (path.length < 1 || path[0] !== root2)) {
-          return Promise.resolve();
-        }
-        var hasDataModelChanged = function hasDataModelChanged2(dataModel, rehydratingModelData) {
-          return dataModel != null && rehydratingModelData != null && (typeof dataModel !== typeof rehydratingModelData || Array.isArray(dataModel) && !Array.isArray(rehydratingModelData));
-        };
-        var applyRehydrationStrategy = function applyRehydrationStrategy2(persistedState) {
-          if (mergeStrategy === "overwrite") {
-            set(path, state, persistedState);
-          } else if (mergeStrategy === "mergeShallow") {
-            var targetState = get(path, state);
-            Object.keys(persistedState).forEach(function(key) {
-              if (hasDataModelChanged(targetState[key], persistedState[key])) ;
-              else {
-                targetState[key] = persistedState[key];
-              }
-            });
-          } else if (mergeStrategy === "mergeDeep") {
-            var _targetState = get(path, state);
-            var setAt = function setAt2(currentTargetState, currentPersistedState) {
-              Object.keys(currentPersistedState).forEach(function(key) {
-                if (hasDataModelChanged(currentTargetState[key], currentPersistedState[key])) ;
-                else if (isPlainObject2(currentPersistedState[key])) {
-                  currentTargetState[key] = currentTargetState[key] || {};
-                  setAt2(currentTargetState[key], currentPersistedState[key]);
-                } else {
-                  currentTargetState[key] = currentPersistedState[key];
-                }
-              });
-            };
-            setAt(_targetState, persistedState);
-          }
-        };
-        var rehydate = function rehydate2(persistedState) {
-          if (persistedState != null) {
-            applyRehydrationStrategy(persistedState);
-            rehydrating = true;
-          }
-        };
-        var getItemResult = storage.getItem(persistKey(path));
-        if (isPromise(getItemResult)) {
-          return getItemResult.then(rehydate);
-        }
-        return Promise.resolve(rehydate(getItemResult));
-      };
-    })).then(function() {
-      if (rehydrating) {
-        replaceState(state);
-      }
-    });
-  }
-  function createActionCreator(def, _r) {
-    function actionCreator(payload) {
-      var action3 = {
-        type: def.meta.type,
-        payload,
-        config: def.config
-      };
-      if (def[actionOnSymbol] && def.meta.resolvedTargets) {
-        payload.resolvedTargets = [].concat(def.meta.resolvedTargets);
-      }
-      return _r.dispatch(action3);
-    }
-    actionCreator.type = def.meta.type;
-    return actionCreator;
-  }
-  function createThunkHandler(def, _r, injections, _aC) {
-    return function(payload, fail) {
-      var helpers = {
-        dispatch: _r.dispatch,
-        fail,
-        getState: function getState() {
-          return get(def.meta.parent, _r.getState());
-        },
-        getStoreActions: function getStoreActions() {
-          return _aC;
-        },
-        getStoreState: _r.getState,
-        injections,
-        meta: {
-          key: def.meta.actionName,
-          parent: def.meta.parent,
-          path: def.meta.path
-        }
-      };
-      if (def[thunkOnSymbol] && def.meta.resolvedTargets) {
-        payload.resolvedTargets = [].concat(def.meta.resolvedTargets);
-      }
-      return def.fn(get(def.meta.parent, _aC), payload, helpers);
-    };
-  }
-  function createThunkActionsCreator(def, _r) {
-    var actionCreator = function actionCreator2(payload) {
-      var dispatchStart = handleEventDispatchErrors(def.meta.startType, function() {
-        return _r.dispatch({
-          type: def.meta.startType,
-          payload
-        });
-      });
-      var dispatchFail = handleEventDispatchErrors(def.meta.failType, function(err) {
-        return _r.dispatch({
-          type: def.meta.failType,
-          payload,
-          error: err
-        });
-      });
-      var dispatchSuccess = handleEventDispatchErrors(def.meta.successType, function(result2) {
-        return _r.dispatch({
-          type: def.meta.successType,
-          payload,
-          result: result2
-        });
-      });
-      dispatchStart();
-      var failure = null;
-      var fail = function fail2(_failure) {
-        failure = _failure || new Error();
-      };
-      var result = _r.dispatch(function() {
-        return def.thunkHandler(payload, fail);
-      });
-      if (isPromise(result)) {
-        return result.then(function(resolved) {
-          if (failure) {
-            dispatchFail(failure);
-          } else {
-            dispatchSuccess(resolved);
-          }
-          return resolved;
-        });
-      }
-      if (failure) {
-        dispatchFail(failure);
-      } else {
-        dispatchSuccess(result);
-      }
-      return result;
-    };
-    actionCreator.type = def.meta.type;
-    actionCreator.successType = def.meta.successType;
-    actionCreator.failType = def.meta.failType;
-    actionCreator.startType = def.meta.startType;
-    return actionCreator;
-  }
-  function createListenerMiddleware(_r) {
-    return function() {
-      return function(next) {
-        return function(action3) {
-          var result = next(action3);
-          if (action3 && _r._i._lAM[action3.type] && _r._i._lAM[action3.type].length > 0) {
-            var sourceAction = _r._i._aCD[action3.type];
-            _r._i._lAM[action3.type].forEach(function(actionCreator) {
-              actionCreator({
-                type: sourceAction ? sourceAction.def.meta.type : action3.type,
-                payload: action3.payload,
-                error: action3.error,
-                result: action3.result
-              });
-            });
-          }
-          return result;
-        };
-      };
-    };
-  }
-  function bindListenerdefs(listenerdefs, _aC, _aCD, _lAM) {
-    listenerdefs.forEach(function(def) {
-      var targets = def.targetResolver(get(def.meta.parent, _aC), _aC);
-      var targetTypes = (Array.isArray(targets) ? targets : [targets]).reduce(function(acc, target) {
-        if (typeof target === "function" && target.def.meta.type && _aCD[target.def.meta.type]) {
-          if (target.def.meta.successType) {
-            acc.push(target.def.meta.successType);
-          } else {
-            acc.push(target.def.meta.type);
-          }
-        } else if (typeof target === "string") {
-          acc.push(target);
-        }
-        return acc;
-      }, []);
-      def.meta.resolvedTargets = targetTypes;
-      targetTypes.forEach(function(targetType) {
-        var listenerReg = _lAM[targetType] || [];
-        listenerReg.push(_aCD[def.meta.type]);
-        _lAM[targetType] = listenerReg;
-      });
-    });
-  }
-  function createComputedPropertyBinder(key, def, _r) {
-    var hasRunOnce = false;
-    var prevInputs = [];
-    var prevValue;
-    var prevStoreState;
-    var performingEqualityCheck = false;
-    var areEqual = function areEqual2(a2, b2) {
-      performingEqualityCheck = true;
-      var result = (0, import_es6.default)(a2, b2);
-      performingEqualityCheck = false;
-      return result;
-    };
-    return function createComputedProperty(parentState, storeState) {
-      Object.defineProperty(parentState, key, {
-        configurable: true,
-        enumerable: true,
-        get: function get2() {
-          if (performingEqualityCheck) {
-            return prevValue;
-          }
-          var inputs = def.stateResolvers.map(function(resolver) {
-            return resolver(parentState, storeState);
-          });
-          if (hasRunOnce && (storeState === prevStoreState && areInputsEqual(inputs, prevInputs) || // We don't want computed properties resolved every time an action
-          // is handled by the reducer. They need to remain lazy, only being
-          // computed when used by a component or getState call;
-          _r._i._cS.isInReducer && // This is to account for strange errors that may occur via immer;
-          new Error().stack.match(/shallowCopy/gi) !== null)) {
-            return prevValue;
-          }
-          var newValue = def.fn.apply(def, inputs);
-          if (!areEqual(newValue, prevValue)) {
-            prevValue = newValue;
-          }
-          prevInputs = inputs;
-          prevStoreState = storeState;
-          hasRunOnce = true;
-          return prevValue;
-        }
-      });
-    };
-  }
-  function createComputedPropertiesMiddleware(_r) {
-    return function() {
-      return function(next) {
-        return function(action3) {
-          _r._i._cS.isInReducer = true;
-          var result = next(action3);
-          _r._i._cS.isInReducer = false;
-          return result;
-        };
-      };
-    };
-  }
-  function createEffectsMiddleware(_r) {
-    return function(store2) {
-      return function(next) {
-        return function(action3) {
-          if (_r._i._e.length === 0) {
-            return next(action3);
-          }
-          var prevState = store2.getState();
-          var result = next(action3);
-          var nextState = store2.getState();
-          if (prevState !== nextState) {
-            _r._i._e.forEach(function(def) {
-              var prevLocal = get(def.meta.parent, prevState);
-              var nextLocal = get(def.meta.parent, nextState);
-              var prevDependencies = def.dependencyResolvers.map(function(resolver) {
-                return resolver(prevLocal, prevState);
-              });
-              var nextDependencies = def.dependencyResolvers.map(function(resolver) {
-                return resolver(nextLocal, nextState);
-              });
-              var hasChanged = prevDependencies.some(function(dependency, idx) {
-                return dependency !== nextDependencies[idx];
-              });
-              if (hasChanged) {
-                def.actionCreator(prevDependencies, nextDependencies, action3);
-              }
-            });
-          }
-          return result;
-        };
-      };
-    };
-  }
-  var logEffectError = function logEffectError2(err) {
-    console.error(err);
-  };
-  function createEffectHandler(def, _r, injections, _aC) {
-    var dispose;
-    return function(change) {
-      var helpers = {
-        dispatch: _r.dispatch,
-        getState: function getState() {
-          return get(def.meta.parent, _r.getState());
-        },
-        getStoreActions: function getStoreActions() {
-          return _aC;
-        },
-        getStoreState: _r.getState,
-        injections,
-        meta: {
-          key: def.meta.actionName,
-          parent: def.meta.parent,
-          path: def.meta.path
-        }
-      };
-      if (dispose !== void 0) {
-        var disposeResult = dispose();
-        dispose = void 0;
-        if (isPromise(disposeResult)) {
-          disposeResult.catch(logEffectError);
-        }
-      }
-      var actions = get(def.meta.parent, _aC);
-      var effectResult = def.fn(actions, change, helpers);
-      if (isPromise(effectResult)) {
-        return effectResult.then(function(resolved) {
-          if (typeof resolved === "function") {
-            if (true) {
-              console.warn("[easy-peasy] Effect is asynchronously resolving a dispose fn.");
-            }
-          }
-        });
-      }
-      if (typeof effectResult === "function") {
-        dispose = effectResult;
-      }
-      return void 0;
-    };
-  }
-  function createEffectActionsCreator(def, _r, effectHandler) {
-    var actionCreator = function actionCreator2(previousDependencies, nextDependencies, action3) {
-      var change = {
-        prev: previousDependencies,
-        current: nextDependencies,
-        action: action3
-      };
-      var dispatchStart = handleEventDispatchErrors(def.meta.startType, function() {
-        return _r.dispatch({
-          type: def.meta.startType,
-          change
-        });
-      });
-      var dispatchSuccess = handleEventDispatchErrors(def.meta.successType, function() {
-        return _r.dispatch({
-          type: def.meta.successType,
-          change
-        });
-      });
-      dispatchStart();
-      try {
-        var result = _r.dispatch(function() {
-          return effectHandler(change);
-        });
-        if (isPromise(result)) {
-          return result.then(function(resolved) {
-            dispatchSuccess(resolved);
-            return resolved;
-          }, logEffectError);
-        }
-        dispatchSuccess(result);
-        return result;
-      } catch (err) {
-        logEffectError(err);
-      }
-      return void 0;
-    };
-    actionCreator.type = def.meta.type;
-    actionCreator.startType = def.meta.startType;
-    actionCreator.successType = def.meta.successType;
-    actionCreator.failType = def.meta.failType;
-    return actionCreator;
-  }
-  function extractDataFromModel(model, initialState, injections, _r) {
-    var _dS = initialState;
-    var _aCD = {};
-    var _aC = {};
-    var _aRD = {};
-    var _cP = [];
-    var _cR = [];
-    var _e = [];
-    var _lAC = {};
-    var _lAM = {};
-    var listenerdefs = [];
-    var _persistenceConfig = [];
-    var _cS = {
-      isInReducer: false
-    };
-    var recursiveExtractFromModel = function recursiveExtractFromModel2(current, parentPath) {
-      return Object.keys(current).forEach(function(key) {
-        var value = current[key];
-        var path = [].concat(parentPath, [key]);
-        var meta = {
-          parent: parentPath,
-          path,
-          key
-        };
-        var handleValueAsState = function handleValueAsState2() {
-          var initialParentRef = get(parentPath, initialState);
-          if (initialParentRef && key in initialParentRef) {
-            set(path, _dS, initialParentRef[key]);
-          } else {
-            set(path, _dS, value);
-          }
-        };
-        if (key === persistSymbol) {
-          _persistenceConfig.push(extractPersistConfig(parentPath, value));
-          return;
-        }
-        if (value != null && typeof value === "object") {
-          if (value[actionSymbol] || value[actionOnSymbol]) {
-            var def = _objectSpread2({}, value);
-            var category = def[actionSymbol] ? "@action" : "@actionOn";
-            def.meta = {
-              actionName: meta.key,
-              category,
-              type: category + "." + meta.path.join("."),
-              parent: meta.parent,
-              path: meta.path
-            };
-            def.actionCreator = createActionCreator(def, _r);
-            def.actionCreator.def = def;
-            def.fn.def = def;
-            _aCD[def.meta.type] = def.actionCreator;
-            _aRD[def.meta.type] = def.fn;
-            if (meta.key !== "ePRS") {
-              if (def[actionOnSymbol]) {
-                listenerdefs.push(def);
-                set(path, _lAC, def.actionCreator);
-              } else {
-                set(path, _aC, def.actionCreator);
-              }
-            }
-          } else if (value[thunkSymbol] || value[thunkOnSymbol]) {
-            var _def = _objectSpread2({}, value);
-            var _category = _def[thunkSymbol] ? "@thunk" : "@thunkOn";
-            var type = _category + "." + meta.path.join(".");
-            _def.meta = {
-              actionName: meta.key,
-              parent: meta.parent,
-              path: meta.path,
-              type,
-              startType: type + "(start)",
-              successType: type + "(success)",
-              failType: type + "(fail)"
-            };
-            _def.thunkHandler = createThunkHandler(_def, _r, injections, _aC);
-            _def.actionCreator = createThunkActionsCreator(_def, _r);
-            _def.actionCreator.def = _def;
-            _aCD[_def.meta.type] = _def.actionCreator;
-            if (_def[thunkOnSymbol]) {
-              listenerdefs.push(_def);
-              set(path, _lAC, _def.actionCreator);
-            } else {
-              set(path, _aC, _def.actionCreator);
-            }
-          } else if (value[computedSymbol]) {
-            var parent = get(parentPath, _dS);
-            var bindComputedProperty = createComputedPropertyBinder(key, value, _r);
-            bindComputedProperty(parent, _dS);
-            _cP.push({
-              key,
-              parentPath,
-              bindComputedProperty
-            });
-          } else if (value[reducerSymbol]) {
-            _cR.push({
-              key,
-              parentPath,
-              reducer: value.fn,
-              config: value.config
-            });
-          } else if (value[effectOnSymbol]) {
-            var _def2 = _objectSpread2({}, value);
-            var _type = "@effectOn." + meta.path.join(".");
-            _def2.meta = {
-              type: _type,
-              actionName: meta.key,
-              parent: meta.parent,
-              path: meta.path,
-              startType: _type + "(start)",
-              successType: _type + "(success)",
-              failType: _type + "(fail)"
-            };
-            var effectHandler = createEffectHandler(_def2, _r, injections, _aC);
-            var actionCreator = createEffectActionsCreator(_def2, _r, effectHandler);
-            _def2.actionCreator = actionCreator;
-            _e.push(_def2);
-          } else if (isPlainObject2(value)) {
-            var existing = get(path, _dS);
-            if (existing == null) {
-              set(path, _dS, {});
-            }
-            recursiveExtractFromModel2(value, path);
-          } else {
-            handleValueAsState();
-          }
-        } else {
-          handleValueAsState();
-        }
-      });
-    };
-    _persistenceConfig = _persistenceConfig.sort(function(a2, b2) {
-      var aPath = a2.path.join(".");
-      var bPath = b2.path.join(".");
-      if (aPath < bPath) {
-        return -1;
-      }
-      if (aPath > bPath) {
-        return 1;
-      }
-      return 0;
-    });
-    recursiveExtractFromModel(model, []);
-    bindListenerdefs(listenerdefs, _aC, _aCD, _lAM);
-    return {
-      _aCD,
-      _aC,
-      _aRD,
-      _cP,
-      _cR,
-      _cS,
-      _dS,
-      _e,
-      _lAC,
-      _lAM,
-      _persistenceConfig
-    };
-  }
-  function createStore2(model, options) {
-    if (options === void 0) {
-      options = {};
-    }
-    var modelClone = clone(model);
-    var _options = options, compose$1 = _options.compose, _options$devTools = _options.devTools, devTools = _options$devTools === void 0 ? true : _options$devTools, _options$disableImmer = _options.disableImmer, disableImmer = _options$disableImmer === void 0 ? false : _options$disableImmer, _options$enhancers = _options.enhancers, enhancers = _options$enhancers === void 0 ? [] : _options$enhancers, _options$initialState = _options.initialState, initialState = _options$initialState === void 0 ? void 0 : _options$initialState, _options$injections = _options.injections, injections = _options$injections === void 0 ? {} : _options$injections, _options$middleware = _options.middleware, middleware = _options$middleware === void 0 ? [] : _options$middleware, _options$mockActions = _options.mockActions, mockActions = _options$mockActions === void 0 ? false : _options$mockActions, _options$name = _options.name, storeName = _options$name === void 0 ? "EasyPeasyStore" : _options$name, _options$version = _options.version, version = _options$version === void 0 ? 0 : _options$version, _options$reducerEnhan = _options.reducerEnhancer, reducerEnhancer = _options$reducerEnhan === void 0 ? function(rootReducer) {
-      return rootReducer;
-    } : _options$reducerEnhan;
-    var bindReplaceState = function bindReplaceState2(modelDef) {
-      return _objectSpread2(_objectSpread2({}, modelDef), {}, {
-        ePRS: action(function(_2, payload) {
-          return payload;
-        })
-      });
-    };
-    var _r = {};
-    var modeldef = bindReplaceState(modelClone);
-    var mockedActions = [];
-    var persistKey = function persistKey2(targetPath) {
-      return "[" + storeName + "][" + version + "]" + (targetPath.length > 0 ? "[" + targetPath.join(".") + "]" : "");
-    };
-    var persistor = createPersistor(persistKey, _r);
-    var persistMiddleware = createPersistMiddleware(persistor, _r);
-    var replaceState = function replaceState2(nextState) {
-      return _r._i._aCD["@action.ePRS"](nextState);
-    };
-    var bindStoreInternals = function bindStoreInternals2(state) {
-      if (state === void 0) {
-        state = {};
-      }
-      var data = extractDataFromModel(modeldef, state, injections, _r);
-      _r._i = _objectSpread2(_objectSpread2({}, data), {}, {
-        reducer: reducerEnhancer(createReducer(disableImmer, data._aRD, data._cR, data._cP))
-      });
-    };
-    var mockActionsMiddleware = function mockActionsMiddleware2() {
-      return function() {
-        return function(action3) {
-          if (action3 != null) {
-            mockedActions.push(action3);
-          }
-          return void 0;
-        };
-      };
-    };
-    var devToolConfig = devTools === true ? {} : devTools;
-    var composeEnhancers = compose$1 || (devTools && typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(_objectSpread2({
-      name: storeName
-    }, devToolConfig)) : compose);
-    bindStoreInternals(initialState || {});
-    var easyPeasyMiddleware = [createComputedPropertiesMiddleware(_r)].concat(middleware, [thunk, createListenerMiddleware(_r), createEffectsMiddleware(_r), persistMiddleware]);
-    if (mockActions) {
-      easyPeasyMiddleware.push(mockActionsMiddleware);
-    }
-    var store2 = legacy_createStore(_r._i.reducer, _r._i._dS, composeEnhancers.apply(void 0, [applyMiddleware.apply(void 0, easyPeasyMiddleware)].concat(enhancers)));
-    store2.subscribe(function() {
-      _r._i._cS.isInReducer = false;
-    });
-    _r.dispatch = store2.dispatch;
-    _r.getState = store2.getState;
-    var bindActionCreators = function bindActionCreators2() {
-      Object.keys(store2.dispatch).forEach(function(actionsKey) {
-        delete store2.dispatch[actionsKey];
-      });
-      Object.keys(_r._i._aC).forEach(function(key) {
-        store2.dispatch[key] = _r._i._aC[key];
-      });
-    };
-    bindActionCreators();
-    var rebindStore = function rebindStore2(removeKey) {
-      var currentState = store2.getState();
-      if (removeKey) {
-        delete currentState[removeKey];
-      }
-      bindStoreInternals(currentState);
-      store2.replaceReducer(_r._i.reducer);
-      replaceState(_r._i._dS);
-      bindActionCreators();
-    };
-    var _resolveRehydration = rehydrateStateFromPersistIfNeeded(persistKey, replaceState, _r);
-    return Object.assign(store2, {
-      addModel: function addModel(key, modelForKey) {
-        if (modeldef[key] && true) {
-          store2.removeModel(key);
-        }
-        modeldef[key] = modelForKey;
-        rebindStore();
-        var addModelRehydration = rehydrateStateFromPersistIfNeeded(persistKey, replaceState, _r, key);
-        return {
-          resolveRehydration: function resolveRehydration() {
-            return addModelRehydration;
-          }
-        };
-      },
-      clearMockedActions: function clearMockedActions() {
-        mockedActions = [];
-      },
-      getActions: function getActions() {
-        return _r._i._aC;
-      },
-      getListeners: function getListeners() {
-        return _r._i._lAC;
-      },
-      getMockedActions: function getMockedActions() {
-        return [].concat(mockedActions);
-      },
-      persist: {
-        clear: persistor.clear,
-        flush: persistor.flush,
-        resolveRehydration: function resolveRehydration() {
-          return _resolveRehydration;
-        }
-      },
-      reconfigure: function reconfigure(newModel) {
-        modeldef = bindReplaceState(newModel);
-        rebindStore();
-      },
-      removeModel: function removeModel(key) {
-        if (!modeldef[key]) {
-          return;
-        }
-        delete modeldef[key];
-        rebindStore(key);
-      }
-    });
-  }
-  function StoreProvider(_ref) {
-    var children = _ref.children, store2 = _ref.store;
-    return /* @__PURE__ */ import_react.default.createElement(StoreContext.Provider, {
-      value: store2,
-      children
-    });
-  }
-  initializeUseStoreState(import_with_selector.useSyncExternalStoreWithSelector);
-
-  // src/art/store/models/artModel.ts
-  var artModel = {
-    pieces: [],
-    selectedPiece: null,
-    addPiece: action((state, payload) => {
-      state.pieces.push(payload);
-    }),
-    removePiece: action((state, payload) => {
-      state.pieces = state.pieces.filter((piece) => piece.id !== payload);
-    }),
-    selectPiece: action((state, payload) => {
-      state.selectedPiece = payload;
-    }),
-    getPiecesByTag: computed((state) => (tag) => {
-      return state.pieces.filter((piece) => piece.tags.includes(tag));
-    })
-  };
-
-  // src/art/store/store.ts
-  var store = createStore2({
-    art: artModel
-  });
-  var typedHooks = createTypedHooks();
-  var useStoreActions2 = typedHooks.useStoreActions;
-  var useStoreDispatch2 = typedHooks.useStoreDispatch;
-  var useStoreState2 = typedHooks.useStoreState;
-
-  // src/art/components/ArtGallery.tsx
+  // src/art/components/ArtNav.tsx
   var import_react2 = __toESM(require_react());
 
-  // src/art/components/ArtCard.tsx
+  // src/art/components/SpritePlayback.tsx
+  var import_react = __toESM(require_react());
   var import_jsx_runtime = __toESM(require_jsx_runtime());
-  function ArtCard({ piece }) {
-    const selectPiece = useStoreActions2((actions) => actions.art.selectPiece);
-    const removePiece = useStoreActions2((actions) => actions.art.removePiece);
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+  function SpritePlayback({
+    src,
+    rows,
+    cols,
+    fps = 12,
+    mode = "loop",
+    autoPlay = true,
+    loop = true,
+    startFrame = 0,
+    width,
+    height
+  }) {
+    const totalFrames = rows * cols;
+    const [frame, setFrame] = (0, import_react.useState)(startFrame);
+    const [playing, setPlaying] = (0, import_react.useState)(autoPlay);
+    const rafRef = (0, import_react.useRef)();
+    const lastTimeRef = (0, import_react.useRef)(0);
+    const directionRef = (0, import_react.useRef)(mode === "reverse" ? -1 : 1);
+    (0, import_react.useEffect)(() => {
+      if (!playing) {
+        cancelAnimation();
+        return;
+      }
+      directionRef.current = mode === "reverse" ? -1 : 1;
+      lastTimeRef.current = performance.now();
+      const tick = (now) => {
+        const delta = now - lastTimeRef.current;
+        const interval = 1e3 / fps;
+        if (delta >= interval) {
+          lastTimeRef.current = now;
+          setFrame((prev) => {
+            let next = prev + directionRef.current;
+            if (mode === "ping-pong") {
+              if (next >= totalFrames) {
+                directionRef.current = -1;
+                next = totalFrames - 2;
+              }
+              if (next < 0) {
+                directionRef.current = 1;
+                next = 1;
+              }
+            } else if (mode === "reverse") {
+              if (next < 0) {
+                if (!loop) return 0;
+                next = totalFrames - 1;
+              }
+            } else {
+              if (next >= totalFrames) {
+                if (!loop) return totalFrames - 1;
+                next = 0;
+              }
+            }
+            return next;
+          });
+        }
+        rafRef.current = requestAnimationFrame(tick);
+      };
+      rafRef.current = requestAnimationFrame(tick);
+      return cancelAnimation;
+    }, [playing, fps, mode, loop, totalFrames]);
+    const cancelAnimation = () => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
+    const col = frame % cols;
+    const row = Math.floor(frame / cols);
+    const backgroundPosition = `
+    ${col / (cols - 1 || 1) * 100}% 
+    ${row / (rows - 1 || 1) * 100}%
+  `;
+    const absoluteSrc = src.startsWith("/") ? src : `/${src}`;
+    const style = {
+      backgroundImage: `url(${absoluteSrc})`,
+      backgroundRepeat: "no-repeat",
+      backgroundSize: `${cols * 100}% ${rows * 100}%`,
+      backgroundPosition,
+      width,
+      height,
+      imageRendering: "pixelated"
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      "div",
+      {
+        style,
+        onClick: () => setPlaying((p) => !p)
+      }
+    );
+  }
+
+  // src/art/components/ArtNav.tsx
+  var import_jsx_runtime2 = __toESM(require_jsx_runtime());
+  function ArtNav({ currentPage, onPageChange }) {
+    const [videoLoaded, setVideoLoaded] = (0, import_react2.useState)(false);
+    const navStyle = {
+      display: "flex",
+      justifyContent: "center",
+      gap: "2rem",
+      padding: "2rem 0",
+      borderBottom: "1px solid #e5e5e5",
+      marginBottom: "2rem"
+    };
+    const buttonStyle = {
+      background: "none",
+      border: "none",
+      fontSize: "1.5rem",
+      fontWeight: "500",
+      cursor: "pointer",
+      padding: "0.5rem 1rem",
+      borderRadius: "8px",
+      transition: "all 0.2s ease",
+      color: "#666"
+    };
+    const activeButtonStyle = {
+      ...buttonStyle,
+      color: "#333",
+      backgroundColor: "#f0f0f0",
+      fontWeight: "600"
+    };
+    const buttonContainerStyle = {
+      position: "relative",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    };
+    const spriteStyle = {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      zIndex: 0,
+      opacity: 0.3
+    };
+    const activeButtonStyleWithSprite = {
+      ...activeButtonStyle,
+      position: "relative",
+      zIndex: 1,
+      backgroundColor: "transparent"
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_jsx_runtime2.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { style: {
+        display: "flex",
+        justifyContent: "center",
+        padding: "2rem 1rem 1rem 1rem",
+        position: "relative",
+        alignItems: "center",
+        justifyItems: "center",
+        width: "100%"
+      }, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { style: { maxWidth: "800px" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+          "img",
+          {
+            src: "/assets/LOGO_ART_NAME/logo_art_name.png",
+            alt: "Art Logo",
+            style: {
+              maxWidth: "-webkit-fill-available",
+              height: "auto",
+              objectFit: "contain",
+              display: videoLoaded ? "none" : "block"
+            }
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+          "video",
+          {
+            src: "/assets/LOGO_ART_NAME/NAME_VIDEO_LOOP.mp4",
+            autoPlay: true,
+            loop: true,
+            muted: true,
+            playsInline: true,
+            style: {
+              maxWidth: "-webkit-fill-available",
+              height: "auto",
+              objectFit: "contain",
+              display: videoLoaded ? "block" : "none"
+            },
+            onCanPlayThrough: () => setVideoLoaded(true),
+            onError: () => {
+              console.log("Video failed to load, keeping PNG fallback");
+            }
+          }
+        )
+      ] }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("nav", { style: navStyle, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { style: buttonContainerStyle, children: [
+          currentPage === "work" && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { style: spriteStyle, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+            SpritePlayback,
+            {
+              src: "assets/sprites/ef_ta_liquid016_16.png",
+              rows: 4,
+              cols: 4,
+              fps: 24,
+              mode: "ping-pong",
+              width: 64,
+              height: 64
+            }
+          ) }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+            "button",
+            {
+              style: currentPage === "work" ? activeButtonStyleWithSprite : buttonStyle,
+              onClick: () => onPageChange("work"),
+              onMouseEnter: (e) => {
+                if (currentPage !== "work") {
+                  e.currentTarget.style.backgroundColor = "#f8f8f8";
+                }
+              },
+              onMouseLeave: (e) => {
+                if (currentPage !== "work") {
+                  e.currentTarget.style.backgroundColor = "transparent";
+                }
+              },
+              children: "Work"
+            }
+          )
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { style: buttonContainerStyle, children: [
+          currentPage === "curation" && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { style: spriteStyle, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+            SpritePlayback,
+            {
+              src: "assets/sprites/ef_ta_liquid016_16.png",
+              rows: 4,
+              cols: 4,
+              fps: 24,
+              mode: "ping-pong",
+              width: 64,
+              height: 64
+            }
+          ) }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+            "button",
+            {
+              style: currentPage === "curation" ? activeButtonStyleWithSprite : buttonStyle,
+              onClick: () => onPageChange("curation"),
+              onMouseEnter: (e) => {
+                if (currentPage !== "curation") {
+                  e.currentTarget.style.backgroundColor = "#f8f8f8";
+                }
+              },
+              onMouseLeave: (e) => {
+                if (currentPage !== "curation") {
+                  e.currentTarget.style.backgroundColor = "transparent";
+                }
+              },
+              children: "Curation"
+            }
+          )
+        ] })
+      ] })
+    ] });
+  }
+
+  // src/art/components/ArtCard.tsx
+  var import_jsx_runtime3 = __toESM(require_jsx_runtime());
+  function ArtCard({ asset }) {
+    const getDisplayTitle = () => {
+      if (asset.date && asset.city) {
+        const date = new Date(asset.date);
+        return `${date.toLocaleDateString()} - ${asset.city}`;
+      }
+      return asset.slug.replace(/_/g, " ").toUpperCase();
+    };
+    const getDescription = () => {
+      const parts = [];
+      if (asset.city) parts.push(asset.city);
+      if (asset.date) parts.push(new Date(asset.date).toLocaleDateString());
+      if (asset.flags.length > 0) parts.push(asset.flags.join(", "));
+      return parts.length > 0 ? parts.join(" \u2022 ") : "Art piece";
+    };
+    const getTags = () => {
+      const tags = [];
+      if (asset.city) tags.push(asset.city.toLowerCase());
+      if (asset.year) tags.push(asset.year.toString());
+      if (asset.ext) tags.push(asset.ext.toUpperCase());
+      if (asset.flags.length > 0) tags.push(...asset.flags.map((f) => f.toLowerCase()));
+      return tags;
+    };
+    const isVideo = ["mp4", "webm", "mov"].includes(asset.ext.toLowerCase());
+    return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
       "div",
       {
         style: {
           backgroundColor: "#ffffff",
-          borderRadius: "8px",
           overflow: "hidden",
           border: "1px solid #e9ecef",
-          boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
           transition: "box-shadow 0.2s, border-color 0.2s"
         },
-        onMouseOver: (e2) => {
-          e2.currentTarget.style.borderColor = "#69ff5e";
-          e2.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
-        },
-        onMouseOut: (e2) => {
-          e2.currentTarget.style.borderColor = "#e9ecef";
-          e2.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.1)";
-        },
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-            "img",
+          isVideo ? /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+            "video",
             {
-              src: piece.imageUrl,
-              alt: piece.title,
+              controls: false,
+              autoPlay: true,
+              muted: true,
+              loop: true,
               style: {
                 width: "100%",
-                height: "192px",
+                objectFit: "cover",
+                backgroundColor: "#000"
+              },
+              children: [
+                /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("source", { src: asset.src, type: `video/${asset.ext}` }),
+                "Your browser does not support the video tag."
+              ]
+            }
+          ) : /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+            "img",
+            {
+              src: asset.src,
+              alt: getDisplayTitle(),
+              style: {
+                width: "100%",
                 objectFit: "cover",
                 cursor: "pointer",
                 transition: "opacity 0.2s"
-              },
-              onClick: () => selectPiece(piece),
-              onMouseOver: (e2) => e2.target.style.opacity = "0.8",
-              onMouseOut: (e2) => e2.target.style.opacity = "1"
+              }
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { padding: "1rem" }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { style: { fontSize: "1.25rem", fontWeight: "600", marginBottom: "0.5rem", color: "#333" }, children: piece.title }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { style: { color: "#666", fontSize: "0.9rem", marginBottom: "1rem", lineHeight: "1.4" }, children: piece.description }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: { display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1rem" }, children: piece.tags.map((tag) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { style: { padding: "1rem" }, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("h3", { style: { fontSize: "1.25rem", fontWeight: "600", marginBottom: "0.5rem", color: "#333" }, children: getDisplayTitle() }),
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { style: { color: "#666", fontSize: "0.9rem", marginBottom: "1rem", lineHeight: "1.4" }, children: getDescription() }),
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { style: { display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1rem" }, children: getTags().map((tag) => /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
               "span",
               {
                 style: {
@@ -26700,294 +24835,290 @@
                 children: tag
               },
               tag
-            )) }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", gap: "0.5rem" }, children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-                "button",
-                {
-                  onClick: () => selectPiece(piece),
-                  style: {
-                    flex: "1",
-                    padding: "0.5rem 1rem",
-                    backgroundColor: "#69ff5e",
-                    color: "#000",
-                    fontWeight: "600",
-                    borderRadius: "6px",
-                    border: "none",
-                    cursor: "pointer",
-                    fontSize: "0.875rem"
-                  },
-                  children: "View"
-                }
-              ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-                "button",
-                {
-                  onClick: () => removePiece(piece.id),
-                  style: {
-                    padding: "0.5rem 1rem",
-                    backgroundColor: "#dc3545",
-                    color: "#fff",
-                    fontWeight: "600",
-                    borderRadius: "6px",
-                    border: "none",
-                    cursor: "pointer",
-                    fontSize: "0.875rem"
-                  },
-                  children: "Delete"
-                }
-              )
-            ] })
+            )) })
           ] })
         ]
       }
     );
   }
 
+  // src/generated/artManifest.ts
+  var artAssets = [
+    {
+      "src": "/assets/art_assets/OCT_10_2025_NEW_YORK.png",
+      "slug": "oct_10_2025_new_york",
+      "city": "New York",
+      "date": "2025-10-10",
+      "year": 2025,
+      "month": 10,
+      "day": 10,
+      "ext": "png",
+      "flags": []
+    },
+    {
+      "src": "/assets/art_assets/JULY_12_2025_LOS_ANGELES.png",
+      "slug": "july_12_2025_los_angeles",
+      "city": "Los Angeles",
+      "date": "2025-07-12",
+      "year": 2025,
+      "month": 7,
+      "day": 12,
+      "ext": "png",
+      "flags": []
+    },
+    {
+      "src": "/assets/art_assets/MAY_17_2025_LOS_ANGELES.png",
+      "slug": "may_17_2025_los_angeles",
+      "city": "Los Angeles",
+      "date": "2025-05-17",
+      "year": 2025,
+      "month": 5,
+      "day": 17,
+      "ext": "png",
+      "flags": []
+    },
+    {
+      "src": "/assets/art_assets/DEC_30_2024_LOS_ANGELES.png",
+      "slug": "dec_30_2024_los_angeles",
+      "city": "Los Angeles",
+      "date": "2024-12-30",
+      "year": 2024,
+      "month": 12,
+      "day": 30,
+      "ext": "png",
+      "flags": []
+    },
+    {
+      "src": "/assets/art_assets/NOV_14_2024_BOSTON.png",
+      "slug": "nov_14_2024_boston",
+      "city": "Boston",
+      "date": "2024-11-14",
+      "year": 2024,
+      "month": 11,
+      "day": 14,
+      "ext": "png",
+      "flags": []
+    },
+    {
+      "src": "/assets/art_assets/OCT_12_2024_NEW_YORK.png",
+      "slug": "oct_12_2024_new_york",
+      "city": "New York",
+      "date": "2024-10-12",
+      "year": 2024,
+      "month": 10,
+      "day": 12,
+      "ext": "png",
+      "flags": []
+    },
+    {
+      "src": "/assets/art_assets/AUG_10_2024_LOS_ANGELES.png",
+      "slug": "aug_10_2024_los_angeles",
+      "city": "Los Angeles",
+      "date": "2024-08-10",
+      "year": 2024,
+      "month": 8,
+      "day": 10,
+      "ext": "png",
+      "flags": []
+    },
+    {
+      "src": "/assets/art_assets/AUG_2_2024_LOS_ANGELES.png",
+      "slug": "aug_2_2024_los_angeles",
+      "city": "Los Angeles",
+      "date": "2024-08-02",
+      "year": 2024,
+      "month": 8,
+      "day": 2,
+      "ext": "png",
+      "flags": []
+    },
+    {
+      "src": "/assets/art_assets/JUN_16_2024_LOS_ANGELES.mp4",
+      "slug": "jun_16_2024_los_angeles",
+      "city": "Los Angeles",
+      "date": "2024-06-16",
+      "year": 2024,
+      "month": 6,
+      "day": 16,
+      "ext": "mp4",
+      "flags": []
+    },
+    {
+      "src": "/assets/art_assets/MAY_11_2024_NEW_YORK.png",
+      "slug": "may_11_2024_new_york",
+      "city": "New York",
+      "date": "2024-05-11",
+      "year": 2024,
+      "month": 5,
+      "day": 11,
+      "ext": "png",
+      "flags": []
+    },
+    {
+      "src": "/assets/art_assets/MAY_5_2024_NEW_YORK.png",
+      "slug": "may_5_2024_new_york",
+      "city": "New York",
+      "date": "2024-05-05",
+      "year": 2024,
+      "month": 5,
+      "day": 5,
+      "ext": "png",
+      "flags": []
+    },
+    {
+      "src": "/assets/art_assets/APRIL_13_2024_LOS_ANGELES.png",
+      "slug": "april_13_2024_los_angeles",
+      "city": "Los Angeles",
+      "date": "2024-04-13",
+      "year": 2024,
+      "month": 4,
+      "day": 13,
+      "ext": "png",
+      "flags": []
+    },
+    {
+      "src": "/assets/art_assets/MARCH_9_2024_LOS_ANGELES.png",
+      "slug": "march_9_2024_los_angeles",
+      "city": "Los Angeles",
+      "date": "2024-03-09",
+      "year": 2024,
+      "month": 3,
+      "day": 9,
+      "ext": "png",
+      "flags": []
+    },
+    {
+      "src": "/assets/art_assets/JAN_25_2024_LOS_ANGELES.png",
+      "slug": "jan_25_2024_los_angeles",
+      "city": "Los Angeles",
+      "date": "2024-01-25",
+      "year": 2024,
+      "month": 1,
+      "day": 25,
+      "ext": "png",
+      "flags": []
+    },
+    {
+      "src": "/assets/art_assets/JAN_1_2024_LOS_ANGELES.png",
+      "slug": "jan_1_2024_los_angeles",
+      "city": "Los Angeles",
+      "date": "2024-01-01",
+      "year": 2024,
+      "month": 1,
+      "day": 1,
+      "ext": "png",
+      "flags": []
+    },
+    {
+      "src": "/assets/art_assets/DEC_14_2023_LOS_ANGELES.png",
+      "slug": "dec_14_2023_los_angeles",
+      "city": "Los Angeles",
+      "date": "2023-12-14",
+      "year": 2023,
+      "month": 12,
+      "day": 14,
+      "ext": "png",
+      "flags": []
+    },
+    {
+      "src": "/assets/art_assets/NOV_4_2023_TOPANGA.jpg",
+      "slug": "nov_4_2023_topanga",
+      "city": "Topanga",
+      "date": "2023-11-04",
+      "year": 2023,
+      "month": 11,
+      "day": 4,
+      "ext": "jpg",
+      "flags": []
+    }
+  ];
+
   // src/art/components/ArtGallery.tsx
-  var import_jsx_runtime2 = __toESM(require_jsx_runtime());
-  var import_meta = {};
+  var import_jsx_runtime4 = __toESM(require_jsx_runtime());
   function ArtGallery() {
-    const pieces = useStoreState2((state) => state.art.pieces);
-    const addPiece = useStoreActions2((actions) => actions.art.addPiece);
-    const [showForm, setShowForm] = (0, import_react2.useState)(false);
-    const [loading, setLoading] = (0, import_react2.useState)(true);
-    (0, import_react2.useEffect)(() => {
-      const loadArtFiles = async () => {
-        try {
-          const modules = import_meta.glob("/assets/art/*.{png,jpg,jpeg,gif,webp,mp4,webm,mov}", {
-            eager: true,
-            as: "url"
-          });
-          Object.entries(modules).forEach(([path, url]) => {
-            const filename = path.split("/").pop() || "";
-            const nameWithoutExt = filename.replace(/\.[^/.]+$/, "");
-            const parts = nameWithoutExt.split("_");
-            let title = nameWithoutExt.replace(/_/g, " ");
-            let tags = ["art"];
-            if (parts.length >= 4) {
-              const month = parts[0];
-              const day = parts[1];
-              const year = parts[2];
-              const location = parts.slice(3).join(" ");
-              title = `${month} ${day}, ${year} - ${location}`;
-              tags = ["art", location.toLowerCase(), year];
-            }
-            const existingPiece = pieces.find((p2) => p2.imageUrl === url || p2.title === title);
-            if (!existingPiece) {
-              const artPiece = {
-                id: `auto-${Date.now()}-${Math.random()}`,
-                title,
-                description: `Artwork from ${title}`,
-                imageUrl: url,
-                tags
-              };
-              addPiece(artPiece);
-            }
-          });
-          setLoading(false);
-        } catch (error) {
-          console.error("Failed to load art files:", error);
-          setLoading(false);
-        }
-      };
-      if (pieces.length === 0) {
-        loadArtFiles();
-      } else {
-        setLoading(false);
-      }
-    }, [pieces.length, addPiece]);
-    const handleAddPiece = (piece) => {
-      addPiece(piece);
-      setShowForm(false);
-    };
-    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { style: { maxWidth: "1200px", margin: "0 auto", padding: "3rem 1rem" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h1", { style: { fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#333" }, children: "Art Gallery" }),
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { style: { color: "#666", marginBottom: "2rem", fontSize: "1.1rem" }, children: "A collection of visual works" }),
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
-        "button",
-        {
-          onClick: () => setShowForm(!showForm),
-          style: {
-            marginBottom: "2rem",
-            padding: "0.75rem 1.5rem",
-            backgroundColor: "#69ff5e",
-            color: "#000",
-            fontWeight: "600",
-            border: "none",
-            borderRadius: "6px",
-            cursor: "pointer",
-            fontSize: "1rem",
-            transition: "background-color 0.2s"
-          },
-          onMouseOver: (e2) => e2.target.style.backgroundColor = "#5ce653",
-          onMouseOut: (e2) => e2.target.style.backgroundColor = "#69ff5e",
-          children: showForm ? "Cancel" : "Add Piece"
-        }
-      ),
-      showForm && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
-        AddPieceForm,
-        {
-          onAdd: handleAddPiece,
-          onCancel: () => setShowForm(false)
-        }
-      ),
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { style: {
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    const sortedAssets = [...artAssets].sort((a, b) => {
+      if (!a.date && !b.date) return 0;
+      if (!a.date) return 1;
+      if (!b.date) return -1;
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+    return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { style: { maxWidth: "1200px", margin: "0 auto", padding: "3rem 1rem" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h1", { style: { fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#333" }, children: "Art Gallery" }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("p", { style: { color: "#666", marginBottom: "2rem", fontSize: "1.1rem" }, children: [
+        "A collection of ",
+        artAssets.length,
+        " visual works"
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { style: {
+        display: "flex",
+        flexDirection: "column",
         gap: "1.5rem"
-      }, children: pieces.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { style: { gridColumn: "1 / -1", textAlign: "center", padding: "3rem 0" }, children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { style: { color: "#666", fontSize: "1.1rem" }, children: "No art pieces yet. Add one to get started!" }) }) : pieces.map((piece) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ArtCard, { piece }, piece.id)) })
+      }, children: sortedAssets.map((asset) => /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(ArtCard, { asset }, asset.slug)) })
     ] });
   }
-  function AddPieceForm({ onAdd, onCancel }) {
-    const [formData, setFormData] = (0, import_react2.useState)({
-      title: "",
-      description: "",
-      imageUrl: "",
-      tags: ""
-    });
-    const inputStyle = {
-      width: "100%",
-      marginBottom: "1rem",
-      padding: "0.75rem",
-      backgroundColor: "#ffffff",
-      color: "#333",
-      borderRadius: "6px",
-      border: "1px solid #ddd",
-      fontSize: "1rem",
-      outline: "none"
-    };
-    const handleChange = (e2) => {
-      setFormData({
-        ...formData,
-        [e2.target.name]: e2.target.value
-      });
-    };
-    const handleSubmit = (e2) => {
-      e2.preventDefault();
-      onAdd({
-        id: Date.now().toString(),
-        title: formData.title,
-        description: formData.description,
-        imageUrl: formData.imageUrl,
-        tags: formData.tags.split(",").map((tag) => tag.trim())
-      });
-      setFormData({ title: "", description: "", imageUrl: "", tags: "" });
-    };
-    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
-      "form",
-      {
-        onSubmit: handleSubmit,
-        style: {
-          backgroundColor: "#f8f9fa",
-          padding: "1.5rem",
-          borderRadius: "8px",
-          marginBottom: "2rem",
-          border: "1px solid #e9ecef",
-          boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
-        },
-        children: [
-          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
-            "input",
-            {
-              type: "text",
-              name: "title",
-              placeholder: "Title",
-              value: formData.title,
-              onChange: handleChange,
-              required: true,
-              style: inputStyle
-            }
-          ),
-          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
-            "textarea",
-            {
-              name: "description",
-              placeholder: "Description",
-              value: formData.description,
-              onChange: handleChange,
-              required: true,
-              style: inputStyle
-            }
-          ),
-          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
-            "input",
-            {
-              type: "url",
-              name: "imageUrl",
-              placeholder: "Image URL",
-              value: formData.imageUrl,
-              onChange: handleChange,
-              required: true,
-              style: inputStyle
-            }
-          ),
-          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
-            "input",
-            {
-              type: "text",
-              name: "tags",
-              placeholder: "Tags (comma-separated)",
-              value: formData.tags,
-              onChange: handleChange,
-              style: inputStyle
-            }
-          ),
-          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { style: { display: "flex", gap: "1rem" }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
-              "button",
-              {
-                type: "submit",
-                style: {
-                  padding: "0.75rem 1.5rem",
-                  backgroundColor: "#69ff5e",
-                  color: "#000",
-                  fontWeight: "600",
-                  borderRadius: "6px",
-                  border: "none",
-                  cursor: "pointer",
-                  fontSize: "1rem"
-                },
-                children: "Add Piece"
-              }
-            ),
-            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
-              "button",
-              {
-                type: "button",
-                onClick: onCancel,
-                style: {
-                  padding: "0.75rem 1.5rem",
-                  backgroundColor: "#6c757d",
-                  color: "#fff",
-                  fontWeight: "600",
-                  borderRadius: "6px",
-                  border: "none",
-                  cursor: "pointer",
-                  fontSize: "1rem"
-                },
-                children: "Cancel"
-              }
-            )
-          ] })
-        ]
-      }
-    );
+
+  // src/art/components/ArtWork.tsx
+  var import_jsx_runtime5 = __toESM(require_jsx_runtime());
+  function ArtWork() {
+    return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { style: { maxWidth: "1200px", margin: "0 auto", padding: "3rem 1rem" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h1", { style: { fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#333" }, children: "Work" }),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("p", { style: { color: "#666", marginBottom: "2rem", fontSize: "1.1rem" }, children: "Coming soon..." }),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { style: {
+        padding: "3rem",
+        backgroundColor: "#f8f8f8",
+        borderRadius: "12px",
+        textAlign: "center",
+        border: "2px dashed #ddd"
+      }, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("p", { style: {
+        color: "#999",
+        fontSize: "1.2rem",
+        margin: 0
+      }, children: "This section is under development" }) })
+    ] });
   }
 
   // src/art/app.tsx
-  var import_jsx_runtime3 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime6 = __toESM(require_jsx_runtime());
   function App() {
-    return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(StoreProvider, { store, children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { style: { minHeight: "100vh", backgroundColor: "#ffffff", color: "#333" }, children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(ArtGallery, {}) }) });
+    const [currentPage, setCurrentPage] = (0, import_react3.useState)("curation");
+    (0, import_react3.useEffect)(() => {
+      const handleHashChange = () => {
+        const hash = window.location.hash.substring(1);
+        if (hash === "work" || hash === "curation") {
+          setCurrentPage(hash);
+        }
+      };
+      handleHashChange();
+      window.addEventListener("hashchange", handleHashChange);
+      return () => window.removeEventListener("hashchange", handleHashChange);
+    }, []);
+    const handlePageChange = (page) => {
+      setCurrentPage(page);
+      window.location.hash = page;
+    };
+    const renderCurrentPage = () => {
+      switch (currentPage) {
+        case "work":
+          return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ArtWork, {});
+        case "curation":
+          return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ArtGallery, {});
+        default:
+          return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ArtGallery, {});
+      }
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { minHeight: "100vh", backgroundColor: "#ffffff", color: "#333" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ArtNav, { currentPage, onPageChange: handlePageChange }),
+      renderCurrentPage()
+    ] });
   }
 
   // src/art/index.tsx
-  var import_jsx_runtime4 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime7 = __toESM(require_jsx_runtime());
   var root = import_client.default.createRoot(
     document.getElementById("art-app")
   );
   root.render(
-    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(import_react3.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(App, {}) })
+    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(import_react4.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(App, {}) })
   );
 })();
 /*! Bundled license information:
@@ -27036,28 +25167,6 @@ react-dom/cjs/react-dom.development.js:
    * @return {boolean} True if the event is supported.
    * @internal
    * @license Modernizr 3.0.0pre (Custom Build) | MIT
-   *)
-
-use-sync-external-store/cjs/use-sync-external-store-shim.development.js:
-  (**
-   * @license React
-   * use-sync-external-store-shim.development.js
-   *
-   * Copyright (c) Meta Platforms, Inc. and affiliates.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE file in the root directory of this source tree.
-   *)
-
-use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js:
-  (**
-   * @license React
-   * use-sync-external-store-shim/with-selector.development.js
-   *
-   * Copyright (c) Meta Platforms, Inc. and affiliates.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE file in the root directory of this source tree.
    *)
 
 react/cjs/react-jsx-runtime.development.js:
