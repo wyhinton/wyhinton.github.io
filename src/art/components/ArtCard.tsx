@@ -45,6 +45,7 @@ export default function ArtCard({ asset }: ArtCardProps) {
       border: '1px solid #e9ecef',
       transition: 'box-shadow 0.2s, border-color 0.2s'
     }}
+    className="art-card"
   >
       {isVideo ? (
         <video

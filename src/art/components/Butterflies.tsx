@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import SpritePlayback from "./SpritePlayback";
+import ParticleControls from "./ParticleControls";
 import {
     stepBoids,
-    getButterflyState
+    getButterflyState,
+    updateAttractPath
 } from "./ParticleSystem";
+import { PolylineOverlay } from "./PolylineOverlay";
 
 const SPRITE_CONFIGS = {
     blue: { rows: 6, cols: 1, width: 64, height: 64, direction: "left" },
@@ -11,9 +14,13 @@ const SPRITE_CONFIGS = {
     green: { rows: 6, cols: 1, width: 64, height: 64, direction: "right" }
 };
 
+// Debug flag to show particle centers
+const SHOW_PARTICLE_CENTER = true;
+
 export default function Butterflies() {
     const [state, setState] = useState(getButterflyState());
     const [camera, setCamera] = useState({ x: 0, y: 0 });
+    const [controlsVisible, setControlsVisible] = useState(false);
 
     // Track scroll to simulate camera
     useEffect(() => {
@@ -39,52 +46,145 @@ export default function Butterflies() {
         return () => cancelAnimationFrame(frame);
     }, []);
 
+    // Keyboard shortcut to toggle controls (Ctrl+Shift+P)
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'P') {
+                e.preventDefault();
+                setControlsVisible(!controlsVisible);
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [controlsVisible]);
+
+    const ref = useRef<HTMLDivElement>(null);
+    const [polyline, setPolyline] = useState<[number, number][]>([]);
+    
+    // Update polyline based on art-card element position
+    useEffect(() => {
+        const updatePolyline = () => {
+            const artCardPolyline = getArtCardPolyline();
+            if (artCardPolyline) {
+                setPolyline(artCardPolyline);
+                // Also update the particle system's attract path
+                updateAttractPath(artCardPolyline);
+            }
+        };
+
+        // Initial update
+        updatePolyline();
+
+        // Update on scroll and resize
+        const handleUpdate = () => {
+            updatePolyline();
+        };
+
+        window.addEventListener("scroll", handleUpdate, { passive: true });
+        window.addEventListener("resize", handleUpdate, { passive: true });
+        
+        // Also update periodically in case DOM changes
+        const interval = setInterval(updatePolyline, 1000);
+
+        return () => {
+            window.removeEventListener("scroll", handleUpdate);
+            window.removeEventListener("resize", handleUpdate);
+            clearInterval(interval);
+        };
+    }, []);
+
+
+    function getArtCardPolyline(): [number, number][] | null {
+        const el = document.getElementsByClassName("art-card")[0] as HTMLElement;
+        if (!el) return null;
+
+        const rect = el.getBoundingClientRect();
+
+        const topLeft: [number, number] = [rect.left, rect.top];
+        const topRight: [number, number] = [rect.right, rect.top];
+
+        // topRight[1]-= 200;
+        // topLeft[1]-= 200;
+
+        return [topLeft, topRight];
+    }
+
     return (
-        <div
-            style={{
-                position: "fixed",
-                inset: 0,
-                pointerEvents: "none",
-                overflow: "hidden",
-                zIndex: 1
-            }}
-        >
-            {state.map((b, i) => {
-                const spriteKey = i === 0 ? "blue" : "green";
-                const sprite = SPRITE_CONFIGS[spriteKey];
+        <>
 
-                const movingLeft = b.vx < 0;
+            <div
+                style={{
+                    position: "fixed",
+                    inset: 0,
+                    pointerEvents: "none",
+                    overflow: "hidden",
+                    zIndex: 1
+                }}
+            >
+                <PolylineOverlay points={polyline} />
+                {state.map((b, i) => {
+                    // Cycle through available sprite types
+                    const spriteKeys = ["blue", "blue_small", "green"] as const;
+                    const spriteKey = spriteKeys[i % spriteKeys.length];
+                    const sprite = SPRITE_CONFIGS[spriteKey];
 
-                const shouldFlip =
-                    sprite.direction === "left"
-                        ? !movingLeft
-                        : movingLeft;
+                    const movingLeft = b.vx < 0;
 
-                return (
-                    <div
-                        key={b.id}
-                        style={{
-                            position: "absolute",
-                            left: `${b.x - camera.x}px`,
-                            top: `${b.y - camera.y}px`,
-                            transform: `
-                                scale(0.85)
-                                scaleX(${shouldFlip ? -1 : 1})
-                            `
-                        }}
-                    >
-                        <SpritePlayback
-                            src={`assets/sprites/${spriteKey}.png`}
-                            rows={sprite.rows}
-                            cols={sprite.cols}
-                            fps={24}
-                            mode="loop"
-                            width={sprite.width}
-                            height={sprite.height}
-                        />
-                    </div>
-                );
-            })}
-        </div>
+                    const shouldFlip =
+                        sprite.direction === "left"
+                            ? !movingLeft
+                            : movingLeft;
+
+                    return (
+                        <div
+                            key={b.id}
+                            style={{
+                                position: "absolute",
+                                left: `${b.x - camera.x}px`,
+                                top: `${b.y - camera.y}px`,
+                                transform: `
+                                    scale(0.85)
+                                    scaleX(${shouldFlip ? -1 : 1})
+                                `
+                            }}
+                        >
+                            <SpritePlayback
+                                src={`assets/sprites/${spriteKey}.png`}
+                                rows={sprite.rows}
+                                cols={sprite.cols}
+                                fps={24}
+                                mode="loop"
+                                width={sprite.width}
+                                height={sprite.height}
+                            />
+                            
+                            {/* Particle Center Debug Dot */}
+                            {SHOW_PARTICLE_CENTER && (
+                                <div
+                                    style={{
+                                        position: "absolute",
+                                        left: "50%",
+                                        top: "50%",
+                                        width: "4px",
+                                        height: "4px",
+                                        backgroundColor: "red",
+                                        borderRadius: "50%",
+                                        transform: "translate(-50%, -50%)",
+                                        pointerEvents: "none",
+                                        zIndex: 10
+                                    }}
+                                />
+                            )}
+                        </div>
+                    );
+                })}
+            </div>
+            
+            <ParticleControls
+                isVisible={controlsVisible}
+                onToggle={() => setControlsVisible(!controlsVisible)}
+            />
+        </>
     );
 }

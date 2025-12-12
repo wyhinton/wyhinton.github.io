@@ -1087,7 +1087,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState6(initialState) {
+          function useState7(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1095,11 +1095,11 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useReducer(reducer, initialArg, init);
           }
-          function useRef2(initialValue) {
+          function useRef3(initialValue) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect4(create, deps) {
+          function useEffect5(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1882,15 +1882,15 @@
           exports.useContext = useContext;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect4;
+          exports.useEffect = useEffect5;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
           exports.useLayoutEffect = useLayoutEffect;
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
-          exports.useRef = useRef2;
-          exports.useState = useState6;
+          exports.useRef = useRef3;
+          exports.useState = useState7;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2386,9 +2386,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React6 = require_react();
+          var React7 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React6.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React7.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -2437,7 +2437,7 @@
           var HostPortal = 4;
           var HostComponent = 5;
           var HostText = 6;
-          var Fragment3 = 7;
+          var Fragment5 = 7;
           var Mode = 8;
           var ContextConsumer = 9;
           var ContextProvider = 10;
@@ -3594,7 +3594,7 @@
                 return "DehydratedFragment";
               case ForwardRef:
                 return getWrappedName$1(type, type.render, "ForwardRef");
-              case Fragment3:
+              case Fragment5:
                 return "Fragment";
               case HostComponent:
                 return type;
@@ -3995,7 +3995,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React6.Children.forEach(props.children, function(child) {
+                  React7.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -12023,7 +12023,7 @@
               }
             }
             function updateFragment2(returnFiber, current2, fragment, lanes, key) {
-              if (current2 === null || current2.tag !== Fragment3) {
+              if (current2 === null || current2.tag !== Fragment5) {
                 var created = createFiberFromFragment(fragment, returnFiber.mode, lanes, key);
                 created.return = returnFiber;
                 return created;
@@ -12426,7 +12426,7 @@
                 if (child.key === key) {
                   var elementType = element.type;
                   if (elementType === REACT_FRAGMENT_TYPE) {
-                    if (child.tag === Fragment3) {
+                    if (child.tag === Fragment5) {
                       deleteRemainingChildren(returnFiber, child.sibling);
                       var existing = useFiber(child, element.props.children);
                       existing.return = returnFiber;
@@ -17902,7 +17902,7 @@
                 var _resolvedProps2 = workInProgress2.elementType === type ? _unresolvedProps2 : resolveDefaultProps(type, _unresolvedProps2);
                 return updateForwardRef(current2, workInProgress2, type, _resolvedProps2, renderLanes2);
               }
-              case Fragment3:
+              case Fragment5:
                 return updateFragment(current2, workInProgress2, renderLanes2);
               case Mode:
                 return updateMode(current2, workInProgress2, renderLanes2);
@@ -18174,7 +18174,7 @@
               case SimpleMemoComponent:
               case FunctionComponent:
               case ForwardRef:
-              case Fragment3:
+              case Fragment5:
               case Mode:
               case Profiler:
               case ContextConsumer:
@@ -22435,7 +22435,7 @@
             return fiber;
           }
           function createFiberFromFragment(elements, mode, lanes, key) {
-            var fiber = createFiber(Fragment3, elements, key, mode);
+            var fiber = createFiber(Fragment5, elements, key, mode);
             fiber.lanes = lanes;
             return fiber;
           }
@@ -23591,7 +23591,7 @@
       if (true) {
         (function() {
           "use strict";
-          var React6 = require_react();
+          var React7 = require_react();
           var REACT_ELEMENT_TYPE = Symbol.for("react.element");
           var REACT_PORTAL_TYPE = Symbol.for("react.portal");
           var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
@@ -23617,7 +23617,7 @@
             }
             return null;
           }
-          var ReactSharedInternals = React6.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React7.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               {
@@ -24467,11 +24467,11 @@
               return jsxWithValidation(type, props, key, false);
             }
           }
-          var jsx10 = jsxWithValidationDynamic;
-          var jsxs7 = jsxWithValidationStatic;
+          var jsx12 = jsxWithValidationDynamic;
+          var jsxs9 = jsxWithValidationStatic;
           exports.Fragment = REACT_FRAGMENT_TYPE;
-          exports.jsx = jsx10;
-          exports.jsxs = jsxs7;
+          exports.jsx = jsx12;
+          exports.jsxs = jsxs9;
         })();
       }
     }
@@ -24490,11 +24490,11 @@
   });
 
   // src/art/index.tsx
-  var import_react6 = __toESM(require_react());
+  var import_react7 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // src/art/app.tsx
-  var import_react5 = __toESM(require_react());
+  var import_react6 = __toESM(require_react());
 
   // src/art/components/ArtNav.tsx
   var import_react2 = __toESM(require_react());
@@ -24789,6 +24789,7 @@
           border: "1px solid #e9ecef",
           transition: "box-shadow 0.2s, border-color 0.2s"
         },
+        className: "art-card",
         children: [
           isVideo ? /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
             "video",
@@ -25666,6 +25667,9 @@
   }
 
   // src/art/components/Butterflies.tsx
+  var import_react5 = __toESM(require_react());
+
+  // src/art/components/ParticleControls.tsx
   var import_react4 = __toESM(require_react());
 
   // node_modules/@thi.ng/api/fn.js
@@ -25917,6 +25921,7 @@
 
   // node_modules/@thi.ng/vectors/mixn.js
   var [a, b, c, d] = defOpVVN($mix);
+  var mixN = a;
   var mixN2 = b;
 
   // node_modules/@thi.ng/vectors/set.js
@@ -27058,6 +27063,7 @@
 
   // node_modules/@thi.ng/vectors/sub.js
   var [a53, b53, c53, d53] = defOpVV($sub);
+  var sub = a53;
   var sub2 = b53;
 
   // node_modules/@thi.ng/vectors/subm.js
@@ -27398,6 +27404,68 @@
     };
   };
 
+  // node_modules/@thi.ng/vectors/empty.js
+  var empty = (v) => implementsFunction(v, "empty") ? v.empty() : zeroes(v.length);
+
+  // node_modules/@thi.ng/geom-closest-point/line.js
+  var closestT = (p, a59, b59) => {
+    const d59 = sub([], b59, a59);
+    const l = magSq(d59);
+    return l > 1e-6 ? dot(sub([], p, a59), d59) / l : void 0;
+  };
+  var closestPointSegment = (p, a59, b59, out, insideOnly = false, eps = 0) => {
+    const t = closestT(p, a59, b59);
+    if (t !== void 0 && (!insideOnly || t >= eps && t <= 1 - eps)) {
+      out = out || empty(p);
+      return t <= 0 ? set(out, a59) : t >= 1 ? set(out, b59) : mixN(out, a59, b59, t);
+    }
+  };
+  var closestPointPolyline = (p, pts, closed = false, out = []) => {
+    if (!pts.length) return;
+    const tmp = [];
+    const n = pts.length - 1;
+    let minD = Infinity, i, j;
+    if (closed) {
+      i = n;
+      j = 0;
+    } else {
+      i = 0;
+      j = 1;
+    }
+    for (; j <= n; i = j, j++) {
+      if (closestPointSegment(p, pts[i], pts[j], tmp)) {
+        const d59 = distSq(p, tmp);
+        if (d59 < minD) {
+          minD = d59;
+          set(out, tmp);
+        }
+      }
+    }
+    return minD < Infinity ? out : void 0;
+  };
+
+  // node_modules/@thi.ng/boids/behaviors/attraction.js
+  var attractPolyline = (points, closed, lookahead = 1, weight = 1) => {
+    const closest = [];
+    const pos = [];
+    return {
+      weight: __ensureFn(weight),
+      update: (boid) => {
+        const { add, normalize: normalize5 } = boid.api;
+        return closestPointPolyline(
+          lookahead !== 0 ? add(
+            pos,
+            normalize5(pos, boid.vel.curr, lookahead),
+            boid.pos.curr
+          ) : boid.pos.curr,
+          points,
+          closed,
+          closest
+        ) ? boid.steerTowards(closest) : boid.api.ZERO;
+      }
+    };
+  };
+
   // node_modules/@thi.ng/boids/behaviors/cohesion.js
   var cohesion = (maxDist, weight = 1, pred = () => true) => {
     const $maxDist = __ensureFn(maxDist);
@@ -27430,7 +27498,7 @@
     return {
       weight: __ensureFn(weight),
       update: (boid) => {
-        const { maddN, magSq: magSq5, setN: setN5, sub } = boid.api;
+        const { maddN, magSq: magSq5, setN: setN5, sub: sub3 } = boid.api;
         const pos = boid.pos.curr;
         const neighbors = boid.neighbors($minDist(boid), pos);
         const num = neighbors.length;
@@ -27439,7 +27507,7 @@
         for (let i = 0; i < num; i++) {
           n = neighbors[i];
           if (n !== boid) {
-            sub(delta, pos, n.pos.curr);
+            sub3(delta, pos, n.pos.curr);
             maddN(
               force,
               delta,
@@ -27624,39 +27692,146 @@
   };
 
   // src/art/components/ParticleSystem.ts
+  function landOnPolylineBehavior(polyline, threshold = 20, closed = false) {
+    const poly = polyline.map(([x, y]) => [x, y]);
+    return {
+      weight(boid) {
+        return boid.landed ? 0 : 1;
+      },
+      update(boid) {
+        if (boid.landed) {
+          return [0, 0];
+        }
+        const point = closestPointPolyline(
+          boid.pos.value,
+          poly,
+          closed
+        );
+        if (!point) return [0, 0];
+        const dx = boid.pos.value[0] - point[0];
+        const dy = boid.pos.value[1] - point[1];
+        const distSq5 = dx * dx + dy * dy;
+        if (distSq5 <= threshold * threshold) {
+          boid.landed = true;
+          boid.pos.value[0] = point[0];
+          boid.pos.value[1] = point[1];
+          return [0, 0];
+        }
+        return [0, 0];
+      }
+    };
+  }
   var WIDTH = window.innerWidth;
-  var HEIGHT = window.innerHeight;
-  var PAD = -60;
+  var HEIGHT = document.body.scrollHeight;
+  var PAD = 0;
   var BMIN = [PAD, PAD];
   var BMAX = [WIDTH - PAD, HEIGHT - PAD];
-  var NUM = 2;
-  var ACCEL = new HashGrid2((b59) => b59.pos.prev, 64, NUM);
-  var OPTS = {
-    accel: ACCEL,
-    behaviors: [
-      separation(60, 1.5),
-      alignment(120, 0.7),
-      cohesion(140, 0.9)
-    ],
+  var MAX_BOIDS = 10;
+  var ACCEL = new HashGrid2((b59) => b59.pos.prev, 64, MAX_BOIDS);
+  var defaultParams = {
+    separationRadius: 60,
+    separationWeight: 1.5,
+    alignmentRadius: 120,
+    alignmentWeight: 0.7,
+    cohesionRadius: 140,
+    cohesionWeight: 0.9,
     maxSpeed: 40,
-    constrain: wrap2(BMIN, BMAX)
+    numBoids: 2,
+    attractWeight: 0.5,
+    attractLookahead: 1,
+    attractClosed: false
   };
+  var currentParams = { ...defaultParams };
+  var attractPath = [
+    [100, 100],
+    [200, 300],
+    [400, 200],
+    [600, 400]
+  ];
+  function createOpts() {
+    return {
+      accel: ACCEL,
+      behaviors: [
+        separation(currentParams.separationRadius, currentParams.separationWeight),
+        alignment(currentParams.alignmentRadius, currentParams.alignmentWeight),
+        cohesion(currentParams.cohesionRadius, currentParams.cohesionWeight),
+        attractPolyline(
+          attractPath,
+          // your array of Vec2 points
+          currentParams.attractClosed,
+          // whether the path is closed (polygon)
+          currentParams.attractLookahead,
+          // lookahead (index offset when following the path)
+          currentParams.attractWeight
+          // weight of attraction force
+        ),
+        landOnPolylineBehavior(attractPath, 20)
+      ],
+      maxSpeed: currentParams.maxSpeed,
+      constrain: wrap2(BMIN, BMAX)
+    };
+  }
   var sim = defTimeStep();
   var flock = defFlock(
     ACCEL,
-    [...Array(NUM)].map(
+    [...Array(currentParams.numBoids)].map(
       (_, i) => defBoid2(
         randMinMax2([], BMIN, BMAX),
-        randNorm2([], OPTS.maxSpeed),
+        randNorm2([], currentParams.maxSpeed),
         {
-          ...OPTS,
+          ...createOpts(),
           maxSpeed: weightedRandom([20, 40, 70], [1, 4, 1])()
         }
       )
     )
   );
+  function updateParams(newParams) {
+    currentParams = { ...currentParams, ...newParams };
+    const newOpts = createOpts();
+    flock.boids.forEach((boid) => {
+      boid.behaviors = newOpts.behaviors;
+    });
+    if (newParams.numBoids && newParams.numBoids !== flock.boids.length || newParams.maxSpeed !== void 0) {
+      recreateFlock(currentParams.numBoids);
+    }
+  }
+  function recreateFlock(numBoids) {
+    flock.boids.length = 0;
+    ACCEL.clear();
+    for (let i = 0; i < numBoids; i++) {
+      const boid = defBoid2(
+        randMinMax2([], BMIN, BMAX),
+        randNorm2([], currentParams.maxSpeed),
+        {
+          ...createOpts(),
+          maxSpeed: weightedRandom([20, 40, 70], [1, 4, 1])()
+        }
+      );
+      flock.boids.push(boid);
+    }
+  }
+  function getCurrentParams() {
+    return { ...currentParams };
+  }
+  function updateAttractPath(newPath) {
+    attractPath = newPath;
+    const newOpts = createOpts();
+    flock.boids.forEach((boid) => {
+      boid.behaviors = newOpts.behaviors;
+    });
+  }
+  function getCurrentAttractPath() {
+    return [...attractPath];
+  }
   function stepBoids(time) {
     sim.update(time, [flock]);
+    for (const b59 of flock.boids) {
+      console.log(b59.landed);
+      if (b59.landed) {
+        b59.vel.value[0] = 0;
+        b59.vel.value[1] = 0;
+      }
+    }
   }
   function getButterflyState() {
     return flock.boids.map((b59) => ({
@@ -27669,17 +27844,485 @@
     }));
   }
 
-  // src/art/components/Butterflies.tsx
+  // src/art/components/ParticleControls.tsx
   var import_jsx_runtime7 = __toESM(require_jsx_runtime());
+  var Slider = ({ label, value, min, max, step: step3, onChange }) => {
+    return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { marginBottom: "12px" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("label", { style: {
+        display: "block",
+        fontSize: "12px",
+        fontWeight: "bold",
+        marginBottom: "4px",
+        color: "#333"
+      }, children: [
+        label,
+        ": ",
+        value.toFixed(1)
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+        "input",
+        {
+          type: "range",
+          min,
+          max,
+          step: step3,
+          value,
+          onChange: (e) => onChange(parseFloat(e.target.value)),
+          style: {
+            width: "100%",
+            height: "6px",
+            borderRadius: "3px",
+            background: "#ddd",
+            outline: "none",
+            cursor: "pointer"
+          }
+        }
+      )
+    ] });
+  };
+  function ParticleControls({ isVisible, onToggle }) {
+    const [params, setParams] = (0, import_react4.useState)(getCurrentParams());
+    const [worldDimensions, setWorldDimensions] = (0, import_react4.useState)({
+      width: window.innerWidth,
+      height: document.body.scrollHeight
+    });
+    const [attractPath2, setAttractPath] = (0, import_react4.useState)([]);
+    (0, import_react4.useEffect)(() => {
+      const updateDisplayInfo = () => {
+        setWorldDimensions({
+          width: Math.max(
+            document.body.scrollWidth,
+            document.body.offsetWidth,
+            document.documentElement.clientWidth,
+            document.documentElement.scrollWidth,
+            document.documentElement.offsetWidth
+          ),
+          height: Math.max(
+            document.body.scrollHeight,
+            document.body.offsetHeight,
+            document.documentElement.clientHeight,
+            document.documentElement.scrollHeight,
+            document.documentElement.offsetHeight
+          )
+        });
+        setAttractPath(getCurrentAttractPath());
+      };
+      updateDisplayInfo();
+      const interval = setInterval(updateDisplayInfo, 1e3);
+      return () => clearInterval(interval);
+    }, []);
+    const handleParamChange = (key, value) => {
+      const newParams = { ...params, [key]: value };
+      setParams(newParams);
+      updateParams({ [key]: value });
+    };
+    const resetParams = () => {
+      setParams(defaultParams);
+      updateParams(defaultParams);
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(import_jsx_runtime7.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+        "button",
+        {
+          onClick: onToggle,
+          style: {
+            position: "fixed",
+            top: "20px",
+            right: "20px",
+            zIndex: 1e3,
+            padding: "10px 15px",
+            backgroundColor: "#007acc",
+            color: "white",
+            border: "none",
+            borderRadius: "6px",
+            cursor: "pointer",
+            fontSize: "14px",
+            fontWeight: "bold",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.2)"
+          },
+          children: isVisible ? "Hide Controls" : "Show Controls"
+        }
+      ),
+      isVisible && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
+        "div",
+        {
+          style: {
+            position: "fixed",
+            top: "70px",
+            right: "20px",
+            width: "600px",
+            // Increased width for two columns
+            maxHeight: "calc(100vh - 100px)",
+            overflowY: "auto",
+            backgroundColor: "rgba(255, 255, 255, 0.95)",
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+            padding: "16px",
+            zIndex: 1e3,
+            boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+            fontFamily: "Arial, sans-serif"
+          },
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("h3", { style: {
+              margin: "0 0 16px 0",
+              fontSize: "16px",
+              color: "#333",
+              borderBottom: "2px solid #007acc",
+              paddingBottom: "8px"
+            }, children: "Particle System Controls" }),
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { display: "flex", gap: "20px" }, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { flex: 1 }, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+                  Slider,
+                  {
+                    label: "Number of Boids",
+                    value: params.numBoids,
+                    min: 1,
+                    max: 10,
+                    step: 1,
+                    onChange: (value) => handleParamChange("numBoids", value)
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+                  Slider,
+                  {
+                    label: "Max Speed",
+                    value: params.maxSpeed,
+                    min: 10,
+                    max: 100,
+                    step: 5,
+                    onChange: (value) => handleParamChange("maxSpeed", value)
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("h4", { style: {
+                  margin: "20px 0 12px 0",
+                  fontSize: "14px",
+                  color: "#555",
+                  borderBottom: "1px solid #ddd",
+                  paddingBottom: "4px"
+                }, children: "Separation Behavior" }),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+                  Slider,
+                  {
+                    label: "Separation Radius",
+                    value: params.separationRadius,
+                    min: 20,
+                    max: 200,
+                    step: 10,
+                    onChange: (value) => handleParamChange("separationRadius", value)
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+                  Slider,
+                  {
+                    label: "Separation Weight",
+                    value: params.separationWeight,
+                    min: 0,
+                    max: 3,
+                    step: 0.1,
+                    onChange: (value) => handleParamChange("separationWeight", value)
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("h4", { style: {
+                  margin: "20px 0 12px 0",
+                  fontSize: "14px",
+                  color: "#555",
+                  borderBottom: "1px solid #ddd",
+                  paddingBottom: "4px"
+                }, children: "Alignment Behavior" }),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+                  Slider,
+                  {
+                    label: "Alignment Radius",
+                    value: params.alignmentRadius,
+                    min: 50,
+                    max: 300,
+                    step: 10,
+                    onChange: (value) => handleParamChange("alignmentRadius", value)
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+                  Slider,
+                  {
+                    label: "Alignment Weight",
+                    value: params.alignmentWeight,
+                    min: 0,
+                    max: 2,
+                    step: 0.1,
+                    onChange: (value) => handleParamChange("alignmentWeight", value)
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("h4", { style: {
+                  margin: "20px 0 12px 0",
+                  fontSize: "14px",
+                  color: "#555",
+                  borderBottom: "1px solid #ddd",
+                  paddingBottom: "4px"
+                }, children: "Cohesion Behavior" }),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+                  Slider,
+                  {
+                    label: "Cohesion Radius",
+                    value: params.cohesionRadius,
+                    min: 50,
+                    max: 300,
+                    step: 10,
+                    onChange: (value) => handleParamChange("cohesionRadius", value)
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+                  Slider,
+                  {
+                    label: "Cohesion Weight",
+                    value: params.cohesionWeight,
+                    min: 0,
+                    max: 2,
+                    step: 0.1,
+                    onChange: (value) => handleParamChange("cohesionWeight", value)
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("h4", { style: {
+                  margin: "20px 0 12px 0",
+                  fontSize: "14px",
+                  color: "#555",
+                  borderBottom: "1px solid #ddd",
+                  paddingBottom: "4px"
+                }, children: "Attract Path Behavior" }),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+                  Slider,
+                  {
+                    label: "Attract Weight",
+                    value: params.attractWeight,
+                    min: 0,
+                    max: 2,
+                    step: 0.1,
+                    onChange: (value) => handleParamChange("attractWeight", value)
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+                  Slider,
+                  {
+                    label: "Attract Lookahead",
+                    value: params.attractLookahead,
+                    min: 0,
+                    max: 5,
+                    step: 1,
+                    onChange: (value) => handleParamChange("attractLookahead", value)
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { marginBottom: "12px" }, children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("label", { style: {
+                    display: "block",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    marginBottom: "4px",
+                    color: "#333"
+                  }, children: [
+                    "Closed Path: ",
+                    params.attractClosed ? "Yes" : "No"
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+                    "input",
+                    {
+                      type: "checkbox",
+                      checked: params.attractClosed,
+                      onChange: (e) => handleParamChange("attractClosed", e.target.checked),
+                      style: {
+                        cursor: "pointer",
+                        transform: "scale(1.2)"
+                      }
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+                  "button",
+                  {
+                    onClick: resetParams,
+                    style: {
+                      width: "100%",
+                      padding: "10px",
+                      marginTop: "16px",
+                      backgroundColor: "#dc3545",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                      fontWeight: "bold"
+                    },
+                    children: "Reset to Defaults"
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: {
+                flex: 1,
+                borderLeft: "1px solid #ddd",
+                paddingLeft: "20px"
+              }, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("h4", { style: {
+                  margin: "0 0 16px 0",
+                  fontSize: "14px",
+                  color: "#555",
+                  borderBottom: "1px solid #ddd",
+                  paddingBottom: "4px"
+                }, children: "World Constraints" }),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: {
+                  marginBottom: "16px",
+                  padding: "12px",
+                  backgroundColor: "#f8f9fa",
+                  borderRadius: "4px",
+                  border: "1px solid #e9ecef"
+                }, children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { style: {
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    color: "#495057",
+                    marginBottom: "8px"
+                  }, children: "Document Dimensions:" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { fontSize: "11px", color: "#666", marginBottom: "4px" }, children: [
+                    "Width: ",
+                    worldDimensions.width.toLocaleString(),
+                    "px"
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { fontSize: "11px", color: "#666", marginBottom: "4px" }, children: [
+                    "Height: ",
+                    worldDimensions.height.toLocaleString(),
+                    "px"
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { fontSize: "11px", color: "#666", marginTop: "8px" }, children: [
+                    "Viewport: ",
+                    window.innerWidth,
+                    " \xD7 ",
+                    window.innerHeight,
+                    "px"
+                  ] })
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("h4", { style: {
+                  margin: "0 0 16px 0",
+                  fontSize: "14px",
+                  color: "#555",
+                  borderBottom: "1px solid #ddd",
+                  paddingBottom: "4px"
+                }, children: "Current Attract Path" }),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: {
+                  padding: "12px",
+                  backgroundColor: "#f8f9fa",
+                  borderRadius: "4px",
+                  border: "1px solid #e9ecef",
+                  maxHeight: "200px",
+                  overflowY: "auto"
+                }, children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: {
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    color: "#495057",
+                    marginBottom: "8px"
+                  }, children: [
+                    "Path Points (",
+                    attractPath2.length,
+                    "):"
+                  ] }),
+                  attractPath2.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { style: { fontSize: "11px", color: "#666", fontStyle: "italic" }, children: "No attract path detected" }) : attractPath2.map((point, index) => /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: {
+                    fontSize: "10px",
+                    color: "#666",
+                    fontFamily: "monospace",
+                    marginBottom: "2px"
+                  }, children: [
+                    "[",
+                    index,
+                    "] (",
+                    Math.round(point[0]),
+                    ", ",
+                    Math.round(point[1]),
+                    ")"
+                  ] }, index)),
+                  attractPath2.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: {
+                    marginTop: "12px",
+                    paddingTop: "8px",
+                    borderTop: "1px solid #dee2e6"
+                  }, children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { style: {
+                      fontSize: "11px",
+                      color: "#495057",
+                      fontWeight: "bold",
+                      marginBottom: "4px"
+                    }, children: "Path Stats:" }),
+                    /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { fontSize: "10px", color: "#666", marginBottom: "2px" }, children: [
+                      "Start: (",
+                      Math.round(attractPath2[0][0]),
+                      ", ",
+                      Math.round(attractPath2[0][1]),
+                      ")"
+                    ] }),
+                    /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { fontSize: "10px", color: "#666", marginBottom: "2px" }, children: [
+                      "End: (",
+                      Math.round(attractPath2[attractPath2.length - 1][0]),
+                      ", ",
+                      Math.round(attractPath2[attractPath2.length - 1][1]),
+                      ")"
+                    ] }),
+                    /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { fontSize: "10px", color: "#666" }, children: [
+                      "Length: ",
+                      Math.round(Math.sqrt(
+                        Math.pow(attractPath2[attractPath2.length - 1][0] - attractPath2[0][0], 2) + Math.pow(attractPath2[attractPath2.length - 1][1] - attractPath2[0][1], 2)
+                      )),
+                      "px"
+                    ] })
+                  ] })
+                ] })
+              ] })
+            ] })
+          ]
+        }
+      )
+    ] });
+  }
+
+  // src/art/components/PolylineOverlay.tsx
+  var import_jsx_runtime8 = __toESM(require_jsx_runtime());
+  function PolylineOverlay({
+    points,
+    stroke = "#ff00ff",
+    strokeWidth = 2
+  }) {
+    const path = points.map((p) => `${p[0]},${p[1] - 250}`).join(" ");
+    return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+      "svg",
+      {
+        style: {
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          pointerEvents: "none"
+        },
+        children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+          "polyline",
+          {
+            points: path,
+            fill: "none",
+            stroke,
+            strokeWidth
+          }
+        )
+      }
+    );
+  }
+
+  // src/art/components/Butterflies.tsx
+  var import_jsx_runtime9 = __toESM(require_jsx_runtime());
   var SPRITE_CONFIGS = {
     blue: { rows: 6, cols: 1, width: 64, height: 64, direction: "left" },
     blue_small: { rows: 6, cols: 1, width: 32, height: 32, direction: "left" },
     green: { rows: 6, cols: 1, width: 64, height: 64, direction: "right" }
   };
+  var SHOW_PARTICLE_CENTER = true;
   function Butterflies() {
-    const [state, setState] = (0, import_react4.useState)(getButterflyState());
-    const [camera, setCamera] = (0, import_react4.useState)({ x: 0, y: 0 });
-    (0, import_react4.useEffect)(() => {
+    const [state, setState] = (0, import_react5.useState)(getButterflyState());
+    const [camera, setCamera] = (0, import_react5.useState)({ x: 0, y: 0 });
+    const [controlsVisible, setControlsVisible] = (0, import_react5.useState)(false);
+    (0, import_react5.useEffect)(() => {
       const onScroll = () => {
         setCamera({
           x: window.scrollX,
@@ -27689,7 +28332,7 @@
       window.addEventListener("scroll", onScroll, { passive: true });
       return () => window.removeEventListener("scroll", onScroll);
     }, []);
-    (0, import_react4.useEffect)(() => {
+    (0, import_react5.useEffect)(() => {
       let frame;
       const loop = (t) => {
         stepBoids(t);
@@ -27699,58 +28342,131 @@
       frame = requestAnimationFrame(loop);
       return () => cancelAnimationFrame(frame);
     }, []);
-    return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
-      "div",
-      {
-        style: {
-          position: "fixed",
-          inset: 0,
-          pointerEvents: "none",
-          overflow: "hidden",
-          zIndex: 1
-        },
-        children: state.map((b59, i) => {
-          const spriteKey = i === 0 ? "blue" : "green";
-          const sprite = SPRITE_CONFIGS[spriteKey];
-          const movingLeft = b59.vx < 0;
-          const shouldFlip = sprite.direction === "left" ? !movingLeft : movingLeft;
-          return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
-            "div",
-            {
-              style: {
-                position: "absolute",
-                left: `${b59.x - camera.x}px`,
-                top: `${b59.y - camera.y}px`,
-                transform: `
-                                scale(0.85)
-                                scaleX(${shouldFlip ? -1 : 1})
-                            `
-              },
-              children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
-                SpritePlayback,
+    (0, import_react5.useEffect)(() => {
+      const handleKeyDown = (e) => {
+        if (e.ctrlKey && e.shiftKey && e.key === "P") {
+          e.preventDefault();
+          setControlsVisible(!controlsVisible);
+        }
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [controlsVisible]);
+    const ref = (0, import_react5.useRef)(null);
+    const [polyline, setPolyline] = (0, import_react5.useState)([]);
+    (0, import_react5.useEffect)(() => {
+      const updatePolyline = () => {
+        const artCardPolyline = getArtCardPolyline();
+        if (artCardPolyline) {
+          setPolyline(artCardPolyline);
+          updateAttractPath(artCardPolyline);
+        }
+      };
+      updatePolyline();
+      const handleUpdate = () => {
+        updatePolyline();
+      };
+      window.addEventListener("scroll", handleUpdate, { passive: true });
+      window.addEventListener("resize", handleUpdate, { passive: true });
+      const interval = setInterval(updatePolyline, 1e3);
+      return () => {
+        window.removeEventListener("scroll", handleUpdate);
+        window.removeEventListener("resize", handleUpdate);
+        clearInterval(interval);
+      };
+    }, []);
+    function getArtCardPolyline() {
+      const el = document.getElementsByClassName("art-card")[0];
+      if (!el) return null;
+      const rect = el.getBoundingClientRect();
+      const topLeft = [rect.left, rect.top];
+      const topRight = [rect.right, rect.top];
+      return [topLeft, topRight];
+    }
+    return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(import_jsx_runtime9.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(
+        "div",
+        {
+          style: {
+            position: "fixed",
+            inset: 0,
+            pointerEvents: "none",
+            overflow: "hidden",
+            zIndex: 1
+          },
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(PolylineOverlay, { points: polyline }),
+            state.map((b59, i) => {
+              const spriteKeys = ["blue", "blue_small", "green"];
+              const spriteKey = spriteKeys[i % spriteKeys.length];
+              const sprite = SPRITE_CONFIGS[spriteKey];
+              const movingLeft = b59.vx < 0;
+              const shouldFlip = sprite.direction === "left" ? !movingLeft : movingLeft;
+              return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(
+                "div",
                 {
-                  src: `assets/sprites/${spriteKey}.png`,
-                  rows: sprite.rows,
-                  cols: sprite.cols,
-                  fps: 24,
-                  mode: "loop",
-                  width: sprite.width,
-                  height: sprite.height
-                }
-              )
-            },
-            b59.id
-          );
-        })
-      }
-    );
+                  style: {
+                    position: "absolute",
+                    left: `${b59.x - camera.x}px`,
+                    top: `${b59.y - camera.y}px`,
+                    transform: `
+                                    scale(0.85)
+                                    scaleX(${shouldFlip ? -1 : 1})
+                                `
+                  },
+                  children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+                      SpritePlayback,
+                      {
+                        src: `assets/sprites/${spriteKey}.png`,
+                        rows: sprite.rows,
+                        cols: sprite.cols,
+                        fps: 24,
+                        mode: "loop",
+                        width: sprite.width,
+                        height: sprite.height
+                      }
+                    ),
+                    SHOW_PARTICLE_CENTER && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+                      "div",
+                      {
+                        style: {
+                          position: "absolute",
+                          left: "50%",
+                          top: "50%",
+                          width: "4px",
+                          height: "4px",
+                          backgroundColor: "red",
+                          borderRadius: "50%",
+                          transform: "translate(-50%, -50%)",
+                          pointerEvents: "none",
+                          zIndex: 10
+                        }
+                      }
+                    )
+                  ]
+                },
+                b59.id
+              );
+            })
+          ]
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+        ParticleControls,
+        {
+          isVisible: controlsVisible,
+          onToggle: () => setControlsVisible(!controlsVisible)
+        }
+      )
+    ] });
   }
 
   // src/art/app.tsx
-  var import_jsx_runtime8 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime10 = __toESM(require_jsx_runtime());
   function App() {
-    const [currentPage, setCurrentPage] = (0, import_react5.useState)("curation");
-    (0, import_react5.useEffect)(() => {
+    const [currentPage, setCurrentPage] = (0, import_react6.useState)("curation");
+    (0, import_react6.useEffect)(() => {
       const handleHashChange = () => {
         const hash = window.location.hash.substring(1);
         if (hash === "work" || hash === "curation") {
@@ -27768,27 +28484,27 @@
     const renderCurrentPage = () => {
       switch (currentPage) {
         case "work":
-          return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(ArtWork, {});
+          return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ArtWork, {});
         case "curation":
-          return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(ArtGallery, {});
+          return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ArtGallery, {});
         default:
-          return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(ArtGallery, {});
+          return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ArtGallery, {});
       }
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(import_jsx_runtime8.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { style: { minHeight: "100vh", backgroundColor: "#ffffff", color: "#333" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Butterflies, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(ArtNav, { currentPage, onPageChange: handlePageChange }),
+    return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_jsx_runtime10.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { style: { minHeight: "100vh", backgroundColor: "#ffffff", color: "#333" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Butterflies, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ArtNav, { currentPage, onPageChange: handlePageChange }),
       renderCurrentPage()
     ] }) });
   }
 
   // src/art/index.tsx
-  var import_jsx_runtime9 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime11 = __toESM(require_jsx_runtime());
   var root = import_client.default.createRoot(
     document.getElementById("art-app")
   );
   root.render(
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(import_react6.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(App, {}) })
+    /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(import_react7.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(App, {}) })
   );
 })();
 /*! Bundled license information:
