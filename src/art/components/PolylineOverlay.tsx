@@ -8,7 +8,8 @@ export function PolylineOverlay({
     stroke?: string;
     strokeWidth?: number;
 }) {
-    const path = points.map((p) => `${p[0]},${p[1] - 250}`).join(" ");
+    // const path = points.map((p) => `${p[0]},${p[1]}`).join(" ");
+    const path = points.map((p) => `${p[0]},${p[1] + 25}`).join(" ");
 
     return (
         <svg
@@ -17,8 +18,9 @@ export function PolylineOverlay({
                 top: 0,
                 left: 0,
                 width: "100vw",
-                height: "100vh",
+                height: `${document.body.scrollHeight}px`,
                 pointerEvents: "none",
+                zIndex: 100,
             }}
         >
             <polyline

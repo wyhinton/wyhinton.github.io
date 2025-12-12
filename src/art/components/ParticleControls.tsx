@@ -4,7 +4,9 @@ import {
     defaultParams, 
     updateParams, 
     getCurrentParams,
-    getCurrentAttractPath
+    getCurrentAttractPath,
+    getBoidDetails,
+    resetLandedState
 } from "./ParticleSystem";
 
 interface SliderProps {
@@ -60,6 +62,7 @@ export default function ParticleControls({ isVisible, onToggle }: ParticleContro
         height: document.body.scrollHeight 
     });
     const [attractPath, setAttractPath] = useState<[number, number][]>([]);
+    const [boidDetails, setBoidDetails] = useState<any>(null);
 
     // Update world dimensions and attract path periodically
     useEffect(() => {
@@ -81,6 +84,7 @@ export default function ParticleControls({ isVisible, onToggle }: ParticleContro
                 )
             });
             setAttractPath(getCurrentAttractPath());
+            setBoidDetails(getBoidDetails(0)); // Get details for particle[0]
         };
 
         updateDisplayInfo();
@@ -174,7 +178,7 @@ export default function ParticleControls({ isVisible, onToggle }: ParticleContro
                         label="Max Speed"
                         value={params.maxSpeed}
                         min={10}
-                        max={100}
+                        max={200}
                         step={5}
                         onChange={(value) => handleParamChange("maxSpeed", value)}
                     />
@@ -291,6 +295,24 @@ export default function ParticleControls({ isVisible, onToggle }: ParticleContro
                         onChange={(value) => handleParamChange("attractLookahead", value)}
                     />
 
+                    <Slider
+                        label="Landing Threshold"
+                        value={params.landingThreshold}
+                        min={1}
+                        max={20000}
+                        step={1}
+                        onChange={(value) => handleParamChange("landingThreshold", value)}
+                    />
+
+                    <Slider
+                        label="Vertical Offset"
+                        value={params.verticalOffset}
+                        min={-50}
+                        max={50}
+                        step={1}
+                        onChange={(value) => handleParamChange("verticalOffset", value)}
+                    />
+
                     <div style={{ marginBottom: "12px" }}>
                         <label style={{ 
                             display: "block", 
@@ -312,12 +334,51 @@ export default function ParticleControls({ isVisible, onToggle }: ParticleContro
                         />
                     </div>
 
+                    <div style={{ marginBottom: "12px" }}>
+                        <label style={{ 
+                            display: "block", 
+                            fontSize: "12px", 
+                            fontWeight: "bold",
+                            marginBottom: "4px",
+                            color: "#333"
+                        }}>
+                            Show Particle Center: {params.showParticleCenter ? "Yes" : "No"}
+                        </label>
+                        <input
+                            type="checkbox"
+                            checked={params.showParticleCenter}
+                            onChange={(e) => handleParamChange("showParticleCenter", e.target.checked)}
+                            style={{
+                                cursor: "pointer",
+                                transform: "scale(1.2)"
+                            }}
+                        />
+                    </div>
+
+                            <button
+                                onClick={resetLandedState}
+                                style={{
+                                    width: "100%",
+                                    padding: "10px",
+                                    marginTop: "16px",
+                                    backgroundColor: "#28a745",
+                                    color: "white",
+                                    border: "none",
+                                    borderRadius: "4px",
+                                    cursor: "pointer",
+                                    fontSize: "14px",
+                                    fontWeight: "bold"
+                                }}
+                            >
+                                Reset Landed State
+                            </button>
+
                             <button
                                 onClick={resetParams}
                                 style={{
                                     width: "100%",
                                     padding: "10px",
-                                    marginTop: "16px",
+                                    marginTop: "8px",
                                     backgroundColor: "#dc3545",
                                     color: "white",
                                     border: "none",
@@ -442,6 +503,131 @@ export default function ParticleControls({ isVisible, onToggle }: ParticleContro
                                                 Math.pow(attractPath[attractPath.length - 1][1] - attractPath[0][1], 2)
                                             ))}px
                                         </div>
+                                    </div>
+                                )}
+                            </div>
+
+                            <h4 style={{ 
+                                margin: "16px 0 16px 0", 
+                                fontSize: "14px", 
+                                color: "#555",
+                                borderBottom: "1px solid #ddd",
+                                paddingBottom: "4px"
+                            }}>
+                                Particle[0] Details
+                            </h4>
+
+                            <div style={{ 
+                                padding: "12px", 
+                                backgroundColor: "#f8f9fa",
+                                borderRadius: "4px",
+                                border: "1px solid #e9ecef"
+                            }}>
+                                {boidDetails ? (
+                                    <>
+                                        <div style={{ 
+                                            fontSize: "12px", 
+                                            fontWeight: "bold", 
+                                            color: "#495057",
+                                            marginBottom: "8px"
+                                        }}>
+                                            Basic Info:
+                                        </div>
+                                        <div style={{ fontSize: "10px", color: "#666", marginBottom: "2px" }}>
+                                            ID: {boidDetails.id}
+                                        </div>
+                                        <div style={{ fontSize: "10px", color: "#666", marginBottom: "2px" }}>
+                                            Landed: {boidDetails.landed ? "Yes" : "No"}
+                                        </div>
+                                        <div style={{ fontSize: "10px", color: "#666", marginBottom: "8px" }}>
+                                            Max Speed: {boidDetails.maxSpeed?.toFixed(1)}
+                                        </div>
+
+                                        <div style={{ 
+                                            fontSize: "12px", 
+                                            fontWeight: "bold", 
+                                            color: "#495057",
+                                            marginBottom: "4px",
+                                            paddingTop: "8px",
+                                            borderTop: "1px solid #dee2e6"
+                                        }}>
+                                            Position:
+                                        </div>
+                                        <div style={{ fontSize: "10px", color: "#666", marginBottom: "2px" }}>
+                                            X: {boidDetails.position.x.toFixed(1)}
+                                        </div>
+                                        <div style={{ fontSize: "10px", color: "#666", marginBottom: "8px" }}>
+                                            Y: {boidDetails.position.y.toFixed(1)}
+                                        </div>
+
+                                        <div style={{ 
+                                            fontSize: "12px", 
+                                            fontWeight: "bold", 
+                                            color: "#495057",
+                                            marginBottom: "4px",
+                                            paddingTop: "8px",
+                                            borderTop: "1px solid #dee2e6"
+                                        }}>
+                                            Velocity:
+                                        </div>
+                                        <div style={{ fontSize: "10px", color: "#666", marginBottom: "2px" }}>
+                                            X: {boidDetails.velocity.x.toFixed(2)}
+                                        </div>
+                                        <div style={{ fontSize: "10px", color: "#666", marginBottom: "2px" }}>
+                                            Y: {boidDetails.velocity.y.toFixed(2)}
+                                        </div>
+                                        <div style={{ fontSize: "10px", color: "#666", marginBottom: "8px" }}>
+                                            Magnitude: {boidDetails.velocity.magnitude.toFixed(2)}
+                                        </div>
+
+                                        <div style={{ 
+                                            fontSize: "12px", 
+                                            fontWeight: "bold", 
+                                            color: "#495057",
+                                            marginBottom: "4px",
+                                            paddingTop: "8px",
+                                            borderTop: "1px solid #dee2e6"
+                                        }}>
+                                            Acceleration:
+                                        </div>
+                                        <div style={{ fontSize: "10px", color: "#666", marginBottom: "2px" }}>
+                                            X: {boidDetails.acceleration.x.toFixed(4)}
+                                        </div>
+                                        <div style={{ fontSize: "10px", color: "#666", marginBottom: "2px" }}>
+                                            Y: {boidDetails.acceleration.y.toFixed(4)}
+                                        </div>
+                                        <div style={{ fontSize: "10px", color: "#666", marginBottom: "8px" }}>
+                                            Magnitude: {boidDetails.acceleration.magnitude.toFixed(4)}
+                                        </div>
+
+                                        <div style={{ 
+                                            fontSize: "12px", 
+                                            fontWeight: "bold", 
+                                            color: "#495057",
+                                            marginBottom: "4px",
+                                            paddingTop: "8px",
+                                            borderTop: "1px solid #dee2e6"
+                                        }}>
+                                            Behaviors:
+                                        </div>
+                                        <div style={{ fontSize: "10px", color: "#666", marginBottom: "4px" }}>
+                                            Count: {boidDetails.behaviors.count}
+                                        </div>
+                                        {boidDetails.behaviors.names.map((name: string, index: number) => (
+                                            <div key={index} style={{ 
+                                                fontSize: "9px", 
+                                                color: "#666",
+                                                fontFamily: "monospace",
+                                                marginBottom: "1px",
+                                                paddingLeft: "8px"
+                                            }}>
+                                                [{index}] {name}
+                                            </div>
+                                        ))}
+                                    </>
+                                ) : (
+                                    <div style={{ fontSize: "11px", color: "#666", fontStyle: "italic" }}>
+                                        No boid data available
                                     </div>
                                 )}
                             </div>

@@ -42,10 +42,10 @@ export default function ArtGallery() {
       <h2>Web has worked with many artists in a diverse range of genres. Curation is an important part of there practice</h2>
       <ArtistNames></ArtistNames>
       <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem', color: '#333' }}>
-        Art Gallery
+        Archive
       </h1>
       <p style={{ color: '#666', marginBottom: '2rem', fontSize: '1.1rem' }}>
-        A collection of {artAssets.length} visual works
+        {/* A collection of {artAssets.length} visual works */}
       </p>
 
       <div style={{

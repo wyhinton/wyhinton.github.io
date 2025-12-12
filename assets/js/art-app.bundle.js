@@ -25467,12 +25467,8 @@
     const [tooltipPos, setTooltipPos] = (0, import_react3.useState)({ x: 0, y: 0 });
     const [spriteMap, setSpriteMap] = (0, import_react3.useState)({});
     return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { style: { maxWidth: "1200px", margin: "0 auto", padding: "3rem 1rem" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h1", { style: { fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#333" }, children: "Featured Artists" }),
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("p", { style: { color: "#666", marginBottom: "2rem", fontSize: "1.1rem" }, children: [
-        "A curated collection of ",
-        artistArray.length,
-        " artists"
-      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h1", { style: { fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#333" }, children: "Artists" }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("p", { style: { color: "#666", marginBottom: "2rem", fontSize: "1.1rem" } }),
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { style: {
         display: "grid",
         gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))",
@@ -25622,12 +25618,8 @@
     return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { style: { maxWidth: "1200px", margin: "0 auto", padding: "3rem 1rem" }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h2", { children: "Web has worked with many artists in a diverse range of genres. Curation is an important part of there practice" }),
       /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(ArtistNames, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h1", { style: { fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#333" }, children: "Art Gallery" }),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("p", { style: { color: "#666", marginBottom: "2rem", fontSize: "1.1rem" }, children: [
-        "A collection of ",
-        artAssets.length,
-        " visual works"
-      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h1", { style: { fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#333" }, children: "Archive" }),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("p", { style: { color: "#666", marginBottom: "2rem", fontSize: "1.1rem" } }),
       /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { style: {
         display: "flex",
         flexDirection: "column",
@@ -27339,19 +27331,6 @@
   };
   var defBoid2 = (pos, vel, opts) => new Boid(opts, VEC2, DIST_SQ2, pos, vel);
 
-  // node_modules/@thi.ng/boids/constrain.js
-  var __wrap = (p, i, x, min, max) => {
-    if (x < min || x > max) {
-      p[i] = x < min ? x - min + max : x > max ? x - max + min : x;
-      return true;
-    }
-  };
-  var wrap2 = (min, max) => (p, boid) => {
-    if (__wrap(p, 0, p[0], min[0], max[0]) || __wrap(p, 1, p[1], min[1], max[1]))
-      boid.pos.reset(p);
-    return p;
-  };
-
   // node_modules/@thi.ng/boids/flock.js
   var defFlock = (accel, boids) => new Flock(accel, boids);
   var Flock = class {
@@ -27380,29 +27359,6 @@
 
   // node_modules/@thi.ng/boids/internal/ensure.js
   var __ensureFn = (x) => isNumber(x) ? () => x : x;
-
-  // node_modules/@thi.ng/boids/behaviors/alignment.js
-  var alignment = (maxDist, weight = 1, amp) => {
-    const $maxDist = __ensureFn(maxDist);
-    const force = [];
-    return {
-      weight: __ensureFn(weight),
-      update: (boid) => {
-        const { add, maddN, setN: setN5 } = boid.api;
-        const neighbors = boid.neighbors($maxDist(boid), boid.pos.curr);
-        const num = neighbors.length;
-        let i, n;
-        setN5(force, 0);
-        for (i = 0; i < num; i++) {
-          n = neighbors[i];
-          if (n !== boid) {
-            amp ? maddN(force, n.vel.curr, amp(boid, n), force) : add(force, force, n.vel.curr);
-          }
-        }
-        return boid.averageForce(force, num - 1);
-      }
-    };
-  };
 
   // node_modules/@thi.ng/vectors/empty.js
   var empty = (v) => implementsFunction(v, "empty") ? v.empty() : zeroes(v.length);
@@ -27462,61 +27418,6 @@
           closed,
           closest
         ) ? boid.steerTowards(closest) : boid.api.ZERO;
-      }
-    };
-  };
-
-  // node_modules/@thi.ng/boids/behaviors/cohesion.js
-  var cohesion = (maxDist, weight = 1, pred = () => true) => {
-    const $maxDist = __ensureFn(maxDist);
-    const centroid = [];
-    return {
-      weight: __ensureFn(weight),
-      update: (boid) => {
-        const { add, mulN: mulN5, setN: setN5 } = boid.api;
-        const neighbors = boid.neighbors($maxDist(boid), boid.pos.curr);
-        setN5(centroid, 0);
-        const num = neighbors.length;
-        let used = 0, i, n;
-        for (i = 0; i < num; i++) {
-          n = neighbors[i];
-          if (n !== boid && pred(boid, n)) {
-            add(centroid, centroid, n.pos.curr);
-            used++;
-          }
-        }
-        return used > 0 ? boid.steerTowards(mulN5(centroid, centroid, 1 / used)) : centroid;
-      }
-    };
-  };
-
-  // node_modules/@thi.ng/boids/behaviors/separation.js
-  var separation = (minDist, weight = 1, amp = () => 1) => {
-    const $minDist = __ensureFn(minDist);
-    const force = [];
-    const delta = [];
-    return {
-      weight: __ensureFn(weight),
-      update: (boid) => {
-        const { maddN, magSq: magSq5, setN: setN5, sub: sub3 } = boid.api;
-        const pos = boid.pos.curr;
-        const neighbors = boid.neighbors($minDist(boid), pos);
-        const num = neighbors.length;
-        let n;
-        setN5(force, 0);
-        for (let i = 0; i < num; i++) {
-          n = neighbors[i];
-          if (n !== boid) {
-            sub3(delta, pos, n.pos.curr);
-            maddN(
-              force,
-              delta,
-              amp(boid, n) / (magSq5(delta) + 1e-6),
-              force
-            );
-          }
-        }
-        return boid.averageForce(force, num - 1);
       }
     };
   };
@@ -27705,23 +27606,29 @@
         const point = closestPointPolyline(
           boid.pos.value,
           poly,
-          closed
+          false
         );
         if (!point) return [0, 0];
         const dx = boid.pos.value[0] - point[0];
         const dy = boid.pos.value[1] - point[1];
         const distSq5 = dx * dx + dy * dy;
-        if (distSq5 <= threshold * threshold) {
+        console.log(distSq5);
+        console.log(boid.pos.value);
+        console.log(distSq5 <= threshold);
+        console.log(`Thresh: ${threshold}`);
+        if (distSq5 <= threshold) {
           boid.landed = true;
           boid.pos.value[0] = point[0];
           boid.pos.value[1] = point[1];
           return [0, 0];
+        } else {
+          boid.landed = false;
         }
         return [0, 0];
       }
     };
   }
-  var WIDTH = window.innerWidth;
+  var WIDTH = window.innerWidth + 1e3;
   var HEIGHT = document.body.scrollHeight;
   var PAD = 0;
   var BMIN = [PAD, PAD];
@@ -27735,11 +27642,14 @@
     alignmentWeight: 0.7,
     cohesionRadius: 140,
     cohesionWeight: 0.9,
-    maxSpeed: 40,
-    numBoids: 2,
+    maxSpeed: 100,
+    numBoids: 1,
     attractWeight: 0.5,
     attractLookahead: 1,
-    attractClosed: false
+    attractClosed: false,
+    landingThreshold: 100,
+    verticalOffset: 25,
+    showParticleCenter: true
   };
   var currentParams = { ...defaultParams };
   var attractPath = [
@@ -27748,27 +27658,55 @@
     [400, 200],
     [600, 400]
   ];
+  function wrapBehavior(behavior) {
+    return {
+      weight(boid) {
+        return boid.landed ? 0 : behavior.weight(boid);
+      },
+      update(boid) {
+        return boid.landed ? [0, 0] : behavior.update(boid);
+      }
+    };
+  }
   function createOpts() {
     return {
       accel: ACCEL,
       behaviors: [
-        separation(currentParams.separationRadius, currentParams.separationWeight),
-        alignment(currentParams.alignmentRadius, currentParams.alignmentWeight),
-        cohesion(currentParams.cohesionRadius, currentParams.cohesionWeight),
-        attractPolyline(
-          attractPath,
-          // your array of Vec2 points
-          currentParams.attractClosed,
-          // whether the path is closed (polygon)
-          currentParams.attractLookahead,
-          // lookahead (index offset when following the path)
-          currentParams.attractWeight
-          // weight of attraction force
+        // wrapBehavior(
+        //     separation(
+        //         currentParams.separationRadius,
+        //         currentParams.separationWeight
+        //     )
+        // ),
+        // wrapBehavior(
+        //     alignment(
+        //         currentParams.alignmentRadius,
+        //         currentParams.alignmentWeight
+        //     )
+        // ),
+        // wrapBehavior(
+        //     cohesion(
+        //         currentParams.cohesionRadius,
+        //         currentParams.cohesionWeight
+        //     )
+        // ),
+        wrapBehavior(
+          attractPolyline(
+            attractPath,
+            // Vec array
+            currentParams.attractClosed,
+            // closed?
+            currentParams.attractLookahead,
+            // lookahead
+            currentParams.attractWeight
+            // weight
+          )
         ),
-        landOnPolylineBehavior(attractPath, 20)
+        // Landing behavior MUST NOT be wrapped — it needs to run even when landed
+        landOnPolylineBehavior(attractPath, currentParams.landingThreshold)
       ],
-      maxSpeed: currentParams.maxSpeed,
-      constrain: wrap2(BMIN, BMAX)
+      maxSpeed: currentParams.maxSpeed
+      // constrain: wrap2(BMIN, BMAX),
     };
   }
   var sim = defTimeStep();
@@ -27807,6 +27745,7 @@
           maxSpeed: weightedRandom([20, 40, 70], [1, 4, 1])()
         }
       );
+      boid.landed = false;
       flock.boids.push(boid);
     }
   }
@@ -27823,6 +27762,18 @@
   function getCurrentAttractPath() {
     return [...attractPath];
   }
+  function resetLandedState() {
+    flock.boids.forEach((boid) => {
+      boid.landed = false;
+      boid.opts.maxSpeed = currentParams.maxSpeed;
+    });
+  }
+  function getCurrentVerticalOffset() {
+    return currentParams.verticalOffset;
+  }
+  function getShowParticleCenter() {
+    return currentParams.showParticleCenter;
+  }
   function stepBoids(time) {
     sim.update(time, [flock]);
     for (const b59 of flock.boids) {
@@ -27830,6 +27781,8 @@
       if (b59.landed) {
         b59.vel.value[0] = 0;
         b59.vel.value[1] = 0;
+        b59.opts.maxSpeed = 0;
+      } else {
       }
     }
   }
@@ -27842,6 +27795,34 @@
       vx: b59.vel.value[0],
       vy: b59.vel.value[1]
     }));
+  }
+  function getBoidDetails(index = 0) {
+    if (index >= flock.boids.length) return null;
+    const boid = flock.boids[index];
+    return {
+      index,
+      id: boid.id || index,
+      position: {
+        x: boid.pos.value[0],
+        y: boid.pos.value[1]
+      },
+      velocity: {
+        x: boid.vel.value[0],
+        y: boid.vel.value[1],
+        magnitude: Math.sqrt(boid.vel.value[0] ** 2 + boid.vel.value[1] ** 2)
+      },
+      acceleration: {
+        x: boid.accel.value?.[0] || 0,
+        y: boid.accel.value?.[1] || 0,
+        magnitude: Math.sqrt((boid.accel.value?.[0] || 0) ** 2 + (boid.accel.value?.[1] || 0) ** 2)
+      },
+      behaviors: {
+        count: boid.behaviors.length,
+        names: boid.behaviors.map((b59) => b59.constructor?.name || "Unknown")
+      },
+      landed: boid.landed || false,
+      maxSpeed: boid.opts.maxSpeed
+    };
   }
 
   // src/art/components/ParticleControls.tsx
@@ -27887,6 +27868,7 @@
       height: document.body.scrollHeight
     });
     const [attractPath2, setAttractPath] = (0, import_react4.useState)([]);
+    const [boidDetails, setBoidDetails] = (0, import_react4.useState)(null);
     (0, import_react4.useEffect)(() => {
       const updateDisplayInfo = () => {
         setWorldDimensions({
@@ -27906,6 +27888,7 @@
           )
         });
         setAttractPath(getCurrentAttractPath());
+        setBoidDetails(getBoidDetails(0));
       };
       updateDisplayInfo();
       const interval = setInterval(updateDisplayInfo, 1e3);
@@ -27989,7 +27972,7 @@
                     label: "Max Speed",
                     value: params.maxSpeed,
                     min: 10,
-                    max: 100,
+                    max: 200,
                     step: 5,
                     onChange: (value) => handleParamChange("maxSpeed", value)
                   }
@@ -28110,6 +28093,28 @@
                     onChange: (value) => handleParamChange("attractLookahead", value)
                   }
                 ),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+                  Slider,
+                  {
+                    label: "Landing Threshold",
+                    value: params.landingThreshold,
+                    min: 1,
+                    max: 2e4,
+                    step: 1,
+                    onChange: (value) => handleParamChange("landingThreshold", value)
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+                  Slider,
+                  {
+                    label: "Vertical Offset",
+                    value: params.verticalOffset,
+                    min: -50,
+                    max: 50,
+                    step: 1,
+                    onChange: (value) => handleParamChange("verticalOffset", value)
+                  }
+                ),
                 /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { marginBottom: "12px" }, children: [
                   /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("label", { style: {
                     display: "block",
@@ -28134,6 +28139,49 @@
                     }
                   )
                 ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { marginBottom: "12px" }, children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("label", { style: {
+                    display: "block",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    marginBottom: "4px",
+                    color: "#333"
+                  }, children: [
+                    "Show Particle Center: ",
+                    params.showParticleCenter ? "Yes" : "No"
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+                    "input",
+                    {
+                      type: "checkbox",
+                      checked: params.showParticleCenter,
+                      onChange: (e) => handleParamChange("showParticleCenter", e.target.checked),
+                      style: {
+                        cursor: "pointer",
+                        transform: "scale(1.2)"
+                      }
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+                  "button",
+                  {
+                    onClick: resetLandedState,
+                    style: {
+                      width: "100%",
+                      padding: "10px",
+                      marginTop: "16px",
+                      backgroundColor: "#28a745",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                      fontWeight: "bold"
+                    },
+                    children: "Reset Landed State"
+                  }
+                ),
                 /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
                   "button",
                   {
@@ -28141,7 +28189,7 @@
                     style: {
                       width: "100%",
                       padding: "10px",
-                      marginTop: "16px",
+                      marginTop: "8px",
                       backgroundColor: "#dc3545",
                       color: "white",
                       border: "none",
@@ -28269,7 +28317,119 @@
                       "px"
                     ] })
                   ] })
-                ] })
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("h4", { style: {
+                  margin: "16px 0 16px 0",
+                  fontSize: "14px",
+                  color: "#555",
+                  borderBottom: "1px solid #ddd",
+                  paddingBottom: "4px"
+                }, children: "Particle[0] Details" }),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { style: {
+                  padding: "12px",
+                  backgroundColor: "#f8f9fa",
+                  borderRadius: "4px",
+                  border: "1px solid #e9ecef"
+                }, children: boidDetails ? /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(import_jsx_runtime7.Fragment, { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { style: {
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    color: "#495057",
+                    marginBottom: "8px"
+                  }, children: "Basic Info:" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { fontSize: "10px", color: "#666", marginBottom: "2px" }, children: [
+                    "ID: ",
+                    boidDetails.id
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { fontSize: "10px", color: "#666", marginBottom: "2px" }, children: [
+                    "Landed: ",
+                    boidDetails.landed ? "Yes" : "No"
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { fontSize: "10px", color: "#666", marginBottom: "8px" }, children: [
+                    "Max Speed: ",
+                    boidDetails.maxSpeed?.toFixed(1)
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { style: {
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    color: "#495057",
+                    marginBottom: "4px",
+                    paddingTop: "8px",
+                    borderTop: "1px solid #dee2e6"
+                  }, children: "Position:" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { fontSize: "10px", color: "#666", marginBottom: "2px" }, children: [
+                    "X: ",
+                    boidDetails.position.x.toFixed(1)
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { fontSize: "10px", color: "#666", marginBottom: "8px" }, children: [
+                    "Y: ",
+                    boidDetails.position.y.toFixed(1)
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { style: {
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    color: "#495057",
+                    marginBottom: "4px",
+                    paddingTop: "8px",
+                    borderTop: "1px solid #dee2e6"
+                  }, children: "Velocity:" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { fontSize: "10px", color: "#666", marginBottom: "2px" }, children: [
+                    "X: ",
+                    boidDetails.velocity.x.toFixed(2)
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { fontSize: "10px", color: "#666", marginBottom: "2px" }, children: [
+                    "Y: ",
+                    boidDetails.velocity.y.toFixed(2)
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { fontSize: "10px", color: "#666", marginBottom: "8px" }, children: [
+                    "Magnitude: ",
+                    boidDetails.velocity.magnitude.toFixed(2)
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { style: {
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    color: "#495057",
+                    marginBottom: "4px",
+                    paddingTop: "8px",
+                    borderTop: "1px solid #dee2e6"
+                  }, children: "Acceleration:" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { fontSize: "10px", color: "#666", marginBottom: "2px" }, children: [
+                    "X: ",
+                    boidDetails.acceleration.x.toFixed(4)
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { fontSize: "10px", color: "#666", marginBottom: "2px" }, children: [
+                    "Y: ",
+                    boidDetails.acceleration.y.toFixed(4)
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { fontSize: "10px", color: "#666", marginBottom: "8px" }, children: [
+                    "Magnitude: ",
+                    boidDetails.acceleration.magnitude.toFixed(4)
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { style: {
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    color: "#495057",
+                    marginBottom: "4px",
+                    paddingTop: "8px",
+                    borderTop: "1px solid #dee2e6"
+                  }, children: "Behaviors:" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { fontSize: "10px", color: "#666", marginBottom: "4px" }, children: [
+                    "Count: ",
+                    boidDetails.behaviors.count
+                  ] }),
+                  boidDetails.behaviors.names.map((name, index) => /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: {
+                    fontSize: "9px",
+                    color: "#666",
+                    fontFamily: "monospace",
+                    marginBottom: "1px",
+                    paddingLeft: "8px"
+                  }, children: [
+                    "[",
+                    index,
+                    "] ",
+                    name
+                  ] }, index))
+                ] }) : /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { style: { fontSize: "11px", color: "#666", fontStyle: "italic" }, children: "No boid data available" }) })
               ] })
             ] })
           ]
@@ -28285,7 +28445,7 @@
     stroke = "#ff00ff",
     strokeWidth = 2
   }) {
-    const path = points.map((p) => `${p[0]},${p[1] - 250}`).join(" ");
+    const path = points.map((p) => `${p[0]},${p[1] + 25}`).join(" ");
     return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
       "svg",
       {
@@ -28294,8 +28454,9 @@
           top: 0,
           left: 0,
           width: "100vw",
-          height: "100vh",
-          pointerEvents: "none"
+          height: `${document.body.scrollHeight}px`,
+          pointerEvents: "none",
+          zIndex: 100
         },
         children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
           "polyline",
@@ -28317,17 +28478,12 @@
     blue_small: { rows: 6, cols: 1, width: 32, height: 32, direction: "left" },
     green: { rows: 6, cols: 1, width: 64, height: 64, direction: "right" }
   };
-  var SHOW_PARTICLE_CENTER = true;
   function Butterflies() {
     const [state, setState] = (0, import_react5.useState)(getButterflyState());
     const [camera, setCamera] = (0, import_react5.useState)({ x: 0, y: 0 });
     const [controlsVisible, setControlsVisible] = (0, import_react5.useState)(false);
     (0, import_react5.useEffect)(() => {
       const onScroll = () => {
-        setCamera({
-          x: window.scrollX,
-          y: window.scrollY
-        });
       };
       window.addEventListener("scroll", onScroll, { passive: true });
       return () => window.removeEventListener("scroll", onScroll);
@@ -28379,77 +28535,81 @@
       const el = document.getElementsByClassName("art-card")[0];
       if (!el) return null;
       const rect = el.getBoundingClientRect();
-      const topLeft = [rect.left, rect.top];
-      const topRight = [rect.right, rect.top];
+      const scrollX = window.scrollX || window.pageXOffset;
+      const scrollY = window.scrollY || window.pageYOffset;
+      let topLeft = [rect.left + scrollX, rect.top + scrollY];
+      let topRight = [rect.right + scrollX, rect.top + scrollY];
+      const verticalOffset = getCurrentVerticalOffset();
+      topLeft[1] -= verticalOffset;
+      topRight[1] -= verticalOffset;
       return [topLeft, topRight];
     }
     return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(import_jsx_runtime9.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(PolylineOverlay, { points: polyline }),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
         "div",
         {
           style: {
-            position: "fixed",
+            position: "absolute",
             inset: 0,
             pointerEvents: "none",
             overflow: "hidden",
-            zIndex: 1
+            zIndex: 1,
+            height: `${document.body.scrollHeight}px`
           },
-          children: [
-            /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(PolylineOverlay, { points: polyline }),
-            state.map((b59, i) => {
-              const spriteKeys = ["blue", "blue_small", "green"];
-              const spriteKey = spriteKeys[i % spriteKeys.length];
-              const sprite = SPRITE_CONFIGS[spriteKey];
-              const movingLeft = b59.vx < 0;
-              const shouldFlip = sprite.direction === "left" ? !movingLeft : movingLeft;
-              return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(
-                "div",
-                {
-                  style: {
-                    position: "absolute",
-                    left: `${b59.x - camera.x}px`,
-                    top: `${b59.y - camera.y}px`,
-                    transform: `
+          children: state.map((b59, i) => {
+            const spriteKeys = ["blue", "blue_small", "green"];
+            const spriteKey = spriteKeys[i % spriteKeys.length];
+            const sprite = SPRITE_CONFIGS[spriteKey];
+            const movingLeft = b59.vx < 0;
+            const shouldFlip = sprite.direction === "left" ? !movingLeft : movingLeft;
+            return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(
+              "div",
+              {
+                style: {
+                  position: "absolute",
+                  left: `${b59.x - camera.x}px`,
+                  top: `${b59.y - camera.y}px`,
+                  transform: `
                                     scale(0.85)
                                     scaleX(${shouldFlip ? -1 : 1})
                                 `
-                  },
-                  children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
-                      SpritePlayback,
-                      {
-                        src: `assets/sprites/${spriteKey}.png`,
-                        rows: sprite.rows,
-                        cols: sprite.cols,
-                        fps: 24,
-                        mode: "loop",
-                        width: sprite.width,
-                        height: sprite.height
-                      }
-                    ),
-                    SHOW_PARTICLE_CENTER && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
-                      "div",
-                      {
-                        style: {
-                          position: "absolute",
-                          left: "50%",
-                          top: "50%",
-                          width: "4px",
-                          height: "4px",
-                          backgroundColor: "red",
-                          borderRadius: "50%",
-                          transform: "translate(-50%, -50%)",
-                          pointerEvents: "none",
-                          zIndex: 10
-                        }
-                      }
-                    )
-                  ]
                 },
-                b59.id
-              );
-            })
-          ]
+                children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+                    SpritePlayback,
+                    {
+                      src: `assets/sprites/${spriteKey}.png`,
+                      rows: sprite.rows,
+                      cols: sprite.cols,
+                      fps: 24,
+                      mode: "loop",
+                      width: sprite.width,
+                      height: sprite.height
+                    }
+                  ),
+                  getShowParticleCenter() && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+                    "div",
+                    {
+                      style: {
+                        position: "absolute",
+                        left: "50%",
+                        top: "50%",
+                        width: "4px",
+                        height: "4px",
+                        backgroundColor: "red",
+                        borderRadius: "50%",
+                        transform: "translate(-50%, -50%)",
+                        pointerEvents: "none",
+                        zIndex: 10
+                      }
+                    }
+                  )
+                ]
+              },
+              b59.id
+            );
+          })
         }
       ),
       /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(

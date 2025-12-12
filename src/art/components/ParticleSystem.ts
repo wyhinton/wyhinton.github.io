@@ -18,29 +18,10 @@ import { randMinMax2, randNorm2, ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { weightedRandom } from "@thi.ng/random";
 import { closestPointPolyline, distToLine } from "@thi.ng/geom-closest-point";
 
-
-function toReadonlyVecs(points: [number, number][]): ReadonlyVec[] {
-    return points.map(([x, y]) => [x, y]);
-}
-
 export interface ButterflyBoid extends Boid {
     id: number;
     landed?: boolean;
 }
-
-function getPolylineDistanceInfo(
-    boid: ButterflyBoid,
-    poly: [number, number][]
-) {
-    // closestPointPolyline returns:
-    // {
-    //   point: [x, y],  // closest point ON the polyline
-    //   dist: number,   // Euclidean distance from boid to that point
-    //   index: number   // segment index (optional)
-    // }
-    return closestPointPolyline(boid.pos.value, poly as ReadonlyArray<Vec>);
-}
-
 
 // Converts your tuple polyline to thi.ng Vec[] (number[][])
 const toVecs = (pts: [number, number][]): Vec[] =>
@@ -71,7 +52,7 @@ export function landOnPolylineBehavior(
             const point = closestPointPolyline(
                 boid.pos.value as ReadonlyVec,
                 poly,
-                closed
+                false,
             );
             if (!point) return [0, 0];
 
@@ -79,8 +60,12 @@ export function landOnPolylineBehavior(
             const dx = boid.pos.value[0] - point[0];
             const dy = boid.pos.value[1] - point[1];
             const distSq = dx * dx + dy * dy;
-
-            if (distSq <= threshold * threshold) {
+            console.log(distSq)
+            console.log(boid.pos.value)
+            console.log(distSq <= threshold)
+            console.log(`Thresh: ${threshold}`)
+            if (distSq <= threshold) {
+            // if (distSq <= threshold * threshold) {
                 // Mark boid as landed
                 boid.landed = true;
 
@@ -89,6 +74,8 @@ export function landOnPolylineBehavior(
                 boid.pos.value[1] = point[1];
 
                 return [0, 0]; // no steering force
+            } else {
+                boid.landed = false;
             }
 
             // No steering force from this behavior until threshold reached
@@ -97,7 +84,7 @@ export function landOnPolylineBehavior(
     };
 }
 // ------ WORLD CONSTANTS ------
-const WIDTH = window.innerWidth;
+const WIDTH = window.innerWidth+1000;
 const HEIGHT = document.body.scrollHeight;
 
 // Expand bounds slightly so wrapping doesn’t instantly flip direction
@@ -125,6 +112,9 @@ export interface ParticleParams {
     attractWeight: number;
     attractLookahead: number;
     attractClosed: boolean;
+    landingThreshold: number;
+    verticalOffset: number;
+    showParticleCenter: boolean;
 }
 
 export const defaultParams: ParticleParams = {
@@ -134,11 +124,14 @@ export const defaultParams: ParticleParams = {
     alignmentWeight: 0.7,
     cohesionRadius: 140,
     cohesionWeight: 0.9,
-    maxSpeed: 40,
-    numBoids: 2,
+    maxSpeed: 100,
+    numBoids: 1,
     attractWeight: 0.5,
     attractLookahead: 1,
     attractClosed: false,
+    landingThreshold: 100,
+    verticalOffset: 25,
+    showParticleCenter: true,
 };
 
 let currentParams = { ...defaultParams };
@@ -166,19 +159,41 @@ function createOpts(): BoidOpts {
     return {
         accel: ACCEL,
         behaviors: [
-            separation(currentParams.separationRadius, currentParams.separationWeight),
-            alignment(currentParams.alignmentRadius, currentParams.alignmentWeight),
-            cohesion(currentParams.cohesionRadius, currentParams.cohesionWeight),
-            attractPolyline(
-                attractPath,                    // your array of Vec2 points
-                currentParams.attractClosed,    // whether the path is closed (polygon)
-                currentParams.attractLookahead, // lookahead (index offset when following the path)
-                currentParams.attractWeight     // weight of attraction force
+            // wrapBehavior(
+            //     separation(
+            //         currentParams.separationRadius,
+            //         currentParams.separationWeight
+            //     )
+            // ),
+
+            // wrapBehavior(
+            //     alignment(
+            //         currentParams.alignmentRadius,
+            //         currentParams.alignmentWeight
+            //     )
+            // ),
+
+            // wrapBehavior(
+            //     cohesion(
+            //         currentParams.cohesionRadius,
+            //         currentParams.cohesionWeight
+            //     )
+            // ),
+
+            wrapBehavior(
+                attractPolyline(
+                    attractPath,                    // Vec array
+                    currentParams.attractClosed,    // closed?
+                    currentParams.attractLookahead, // lookahead
+                    currentParams.attractWeight     // weight
+                )
             ),
-            landOnPolylineBehavior(attractPath, 20),
+
+            // Landing behavior MUST NOT be wrapped — it needs to run even when landed
+            landOnPolylineBehavior(attractPath, currentParams.landingThreshold)
         ],
         maxSpeed: currentParams.maxSpeed,
-        constrain: wrap2(BMIN, BMAX),
+        // constrain: wrap2(BMIN, BMAX),
     };
 }
 
@@ -232,8 +247,11 @@ function recreateFlock(numBoids: number) {
                 maxSpeed: weightedRandom([20, 40, 70], [1, 4, 1])(),
             }
         );
+        //@ts-ignore
+        boid.landed = false;
         flock.boids.push(boid);
     }
+    
 }
 
 // Function to get current parameters
@@ -257,6 +275,25 @@ export function getCurrentAttractPath(): [number, number][] {
     return [...attractPath];
 }
 
+// Function to reset landed state for all boids
+export function resetLandedState() {
+    flock.boids.forEach(boid => {
+        //@ts-ignore
+        boid.landed = false;
+        boid.opts.maxSpeed = currentParams.maxSpeed;
+    });
+}
+
+// Function to get current vertical offset
+export function getCurrentVerticalOffset(): number {
+    return currentParams.verticalOffset;
+}
+
+// Function to get current show particle center setting
+export function getShowParticleCenter(): boolean {
+    return currentParams.showParticleCenter;
+}
+
 // Wrapper around simulation update
 export function stepBoids(time: number) {
     sim.update(time, [flock]);
@@ -267,8 +304,14 @@ export function stepBoids(time: number) {
         console.log(b.landed)
         //@ts-ignore
         if (b.landed) {
+            // b.opts.accel = IBoidAccel
+            // b.opts.behaviors=[];
             b.vel.value[0] = 0;
             b.vel.value[1] = 0;
+            // b.limitForce([0,0])
+            b.opts.maxSpeed = 0;
+        } else {
+            // b.opts.maxSpeed = 1;
         }
     }
 }
@@ -282,4 +325,35 @@ export function getButterflyState() {
         vx: b.vel.value[0],
         vy: b.vel.value[1],
     }));
+}
+
+// Helper to get detailed information about a specific boid
+export function getBoidDetails(index: number = 0) {
+    if (index >= flock.boids.length) return null;
+    
+    const boid = flock.boids[index] as ButterflyBoid;
+    return {
+        index,
+        id: (boid as any).id || index,
+        position: {
+            x: boid.pos.value[0],
+            y: boid.pos.value[1]
+        },
+        velocity: {
+            x: boid.vel.value[0],
+            y: boid.vel.value[1],
+            magnitude: Math.sqrt(boid.vel.value[0] ** 2 + boid.vel.value[1] ** 2)
+        },
+        acceleration: {
+            x: (boid.accel as any).value?.[0] || 0,
+            y: (boid.accel as any).value?.[1] || 0,
+            magnitude: Math.sqrt(((boid.accel as any).value?.[0] || 0) ** 2 + ((boid.accel as any).value?.[1] || 0) ** 2)
+        },
+        behaviors: {
+            count: boid.behaviors.length,
+            names: boid.behaviors.map((b: any) => b.constructor?.name || 'Unknown')
+        },
+        landed: boid.landed || false,
+        maxSpeed: boid.opts.maxSpeed
+    };
 }

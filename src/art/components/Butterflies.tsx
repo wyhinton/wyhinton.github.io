@@ -4,7 +4,9 @@ import ParticleControls from "./ParticleControls";
 import {
     stepBoids,
     getButterflyState,
-    updateAttractPath
+    updateAttractPath,
+    getCurrentVerticalOffset,
+    getShowParticleCenter
 } from "./ParticleSystem";
 import { PolylineOverlay } from "./PolylineOverlay";
 
@@ -14,8 +16,7 @@ const SPRITE_CONFIGS = {
     green: { rows: 6, cols: 1, width: 64, height: 64, direction: "right" }
 };
 
-// Debug flag to show particle centers
-const SHOW_PARTICLE_CENTER = true;
+// Removed hardcoded SHOW_PARTICLE_CENTER - now controlled dynamically
 
 export default function Butterflies() {
     const [state, setState] = useState(getButterflyState());
@@ -25,10 +26,10 @@ export default function Butterflies() {
     // Track scroll to simulate camera
     useEffect(() => {
         const onScroll = () => {
-            setCamera({
-                x: window.scrollX,
-                y: window.scrollY
-            });
+            // setCamera({
+            //     x: window.scrollX,
+            //     y: window.scrollY
+            // });
         };
         window.addEventListener("scroll", onScroll, { passive: true });
         return () => window.removeEventListener("scroll", onScroll);
@@ -95,34 +96,37 @@ export default function Butterflies() {
     }, []);
 
 
-    function getArtCardPolyline(): [number, number][] | null {
-        const el = document.getElementsByClassName("art-card")[0] as HTMLElement;
-        if (!el) return null;
+function getArtCardPolyline(): [number, number][] | null {
+    const el = document.getElementsByClassName("art-card")[0] as HTMLElement;
+    if (!el) return null;
 
-        const rect = el.getBoundingClientRect();
+    const rect = el.getBoundingClientRect();
+    const scrollX = window.scrollX || window.pageXOffset;
+    const scrollY = window.scrollY || window.pageYOffset;
 
-        const topLeft: [number, number] = [rect.left, rect.top];
-        const topRight: [number, number] = [rect.right, rect.top];
+    let topLeft: [number, number] = [rect.left + scrollX, rect.top + scrollY];
+    let topRight: [number, number] = [rect.right + scrollX, rect.top + scrollY];
 
-        // topRight[1]-= 200;
-        // topLeft[1]-= 200;
-
-        return [topLeft, topRight];
-    }
+    const verticalOffset = getCurrentVerticalOffset();
+    topLeft[1] -= verticalOffset;
+    topRight[1] -= verticalOffset;
+    return [topLeft, topRight];
+}
 
     return (
         <>
-
+                <PolylineOverlay points={polyline} />
             <div
                 style={{
-                    position: "fixed",
+                    position: "absolute",
                     inset: 0,
                     pointerEvents: "none",
                     overflow: "hidden",
-                    zIndex: 1
+                    zIndex: 1,
+                    height: `${document.body.scrollHeight}px`
                 }}
             >
-                <PolylineOverlay points={polyline} />
+
                 {state.map((b, i) => {
                     // Cycle through available sprite types
                     const spriteKeys = ["blue", "blue_small", "green"] as const;
@@ -160,7 +164,7 @@ export default function Butterflies() {
                             />
                             
                             {/* Particle Center Debug Dot */}
-                            {SHOW_PARTICLE_CENTER && (
+                            {getShowParticleCenter() && (
                                 <div
                                     style={{
                                         position: "absolute",
