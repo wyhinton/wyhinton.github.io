@@ -39,18 +39,19 @@ export default function ArtGallery() {
 
   return (
     <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '3rem 1rem' }}>
-      <h2>Web has worked with many artists in a diverse range of genres. Curation is an important part of there practice</h2>
-      <ArtistNames></ArtistNames>
+      <h2>Webb has worked with many artists in a diverse range of genres. They've organized in Los Angeles, New York, and Portland.
+         Curation is an important part of there practice</h2>
+      {/* <ArtistNames></ArtistNames> */}
       <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem', color: '#333' }}>
-        Art Gallery
+        Archive
       </h1>
       <p style={{ color: '#666', marginBottom: '2rem', fontSize: '1.1rem' }}>
-        A collection of {artAssets.length} visual works
+        {/* A collection of {artAssets.length} visual works */}
       </p>
 
       <div style={{
-        display: 'flex',
-        flexDirection: 'column',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
         gap: '1.5rem'
       }}>
         {sortedAssets.map((asset, index) => (

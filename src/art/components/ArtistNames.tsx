@@ -59,6 +59,7 @@ function getRandomSprite() {
   return SPRITE_OPTIONS[Math.floor(Math.random() * SPRITE_OPTIONS.length)];
 }
 
+
 export default function ArtistNames() {
   const [hoveredArtist, setHoveredArtist] = useState<string | null>(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
@@ -67,12 +68,11 @@ export default function ArtistNames() {
   return (
     <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '3rem 1rem' }}>
       <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem', color: '#333' }}>
-        Featured Artists
+        Artists
       </h1>
       <p style={{ color: '#666', marginBottom: '2rem', fontSize: '1.1rem' }}>
-        A curated collection of {artistArray.length} artists
+        {/* A curated collection of {artistArray.length} artists */}
       </p>
-
       {/* Artist Grid */}
       <div style={{
         display: 'grid',
