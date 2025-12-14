@@ -45,6 +45,7 @@ export default function ArtCard({ asset }: ArtCardProps) {
       border: '1px solid #e9ecef',
       transition: 'box-shadow 0.2s, border-color 0.2s'
     }}
+    className="art-card"
   >
       {isVideo ? (
         <video
@@ -81,7 +82,7 @@ export default function ArtCard({ asset }: ArtCardProps) {
         <p style={{ color: '#666', fontSize: '0.9rem', marginBottom: '1rem', lineHeight: '1.4' }}>
           {getDescription()}
         </p>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1rem' }}>
+        {/* <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1rem' }}>
           {getTags().map((tag) => (
             <span
               key={tag}
@@ -97,7 +98,7 @@ export default function ArtCard({ asset }: ArtCardProps) {
               {tag}
             </span>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );

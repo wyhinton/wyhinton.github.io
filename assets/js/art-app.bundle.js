@@ -1085,7 +1085,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState6(initialState) {
+          function useState4(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1093,11 +1093,11 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useReducer(reducer, initialArg, init);
           }
-          function useRef3(initialValue) {
+          function useRef2(initialValue) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect4(create, deps) {
+          function useEffect3(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1880,15 +1880,15 @@
           exports.useContext = useContext;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect4;
+          exports.useEffect = useEffect3;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
           exports.useLayoutEffect = useLayoutEffect;
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
-          exports.useRef = useRef3;
-          exports.useState = useState6;
+          exports.useRef = useRef2;
+          exports.useState = useState4;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2384,9 +2384,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React6 = require_react();
+          var React4 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React6.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React4.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -2435,7 +2435,7 @@
           var HostPortal = 4;
           var HostComponent = 5;
           var HostText = 6;
-          var Fragment2 = 7;
+          var Fragment3 = 7;
           var Mode = 8;
           var ContextConsumer = 9;
           var ContextProvider = 10;
@@ -3592,7 +3592,7 @@
                 return "DehydratedFragment";
               case ForwardRef:
                 return getWrappedName$1(type, type.render, "ForwardRef");
-              case Fragment2:
+              case Fragment3:
                 return "Fragment";
               case HostComponent:
                 return type;
@@ -3993,7 +3993,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React6.Children.forEach(props.children, function(child) {
+                  React4.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -12021,7 +12021,7 @@
               }
             }
             function updateFragment2(returnFiber, current2, fragment, lanes, key) {
-              if (current2 === null || current2.tag !== Fragment2) {
+              if (current2 === null || current2.tag !== Fragment3) {
                 var created = createFiberFromFragment(fragment, returnFiber.mode, lanes, key);
                 created.return = returnFiber;
                 return created;
@@ -12424,7 +12424,7 @@
                 if (child.key === key) {
                   var elementType = element.type;
                   if (elementType === REACT_FRAGMENT_TYPE) {
-                    if (child.tag === Fragment2) {
+                    if (child.tag === Fragment3) {
                       deleteRemainingChildren(returnFiber, child.sibling);
                       var existing = useFiber(child, element.props.children);
                       existing.return = returnFiber;
@@ -17900,7 +17900,7 @@
                 var _resolvedProps2 = workInProgress2.elementType === type ? _unresolvedProps2 : resolveDefaultProps(type, _unresolvedProps2);
                 return updateForwardRef(current2, workInProgress2, type, _resolvedProps2, renderLanes2);
               }
-              case Fragment2:
+              case Fragment3:
                 return updateFragment(current2, workInProgress2, renderLanes2);
               case Mode:
                 return updateMode(current2, workInProgress2, renderLanes2);
@@ -18172,7 +18172,7 @@
               case SimpleMemoComponent:
               case FunctionComponent:
               case ForwardRef:
-              case Fragment2:
+              case Fragment3:
               case Mode:
               case Profiler:
               case ContextConsumer:
@@ -22433,7 +22433,7 @@
             return fiber;
           }
           function createFiberFromFragment(elements, mode, lanes, key) {
-            var fiber = createFiber(Fragment2, elements, key, mode);
+            var fiber = createFiber(Fragment3, elements, key, mode);
             fiber.lanes = lanes;
             return fiber;
           }
@@ -23589,7 +23589,7 @@
       if (true) {
         (function() {
           "use strict";
-          var React6 = require_react();
+          var React4 = require_react();
           var REACT_ELEMENT_TYPE = Symbol.for("react.element");
           var REACT_PORTAL_TYPE = Symbol.for("react.portal");
           var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
@@ -23615,7 +23615,7 @@
             }
             return null;
           }
-          var ReactSharedInternals = React6.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React4.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               {
@@ -24465,11 +24465,11 @@
               return jsxWithValidation(type, props, key, false);
             }
           }
-          var jsx10 = jsxWithValidationDynamic;
-          var jsxs7 = jsxWithValidationStatic;
+          var jsx8 = jsxWithValidationDynamic;
+          var jsxs6 = jsxWithValidationStatic;
           exports.Fragment = REACT_FRAGMENT_TYPE;
-          exports.jsx = jsx10;
-          exports.jsxs = jsxs7;
+          exports.jsx = jsx8;
+          exports.jsxs = jsxs6;
         })();
       }
     }
@@ -24488,11 +24488,11 @@
   });
 
   // src/art/index.tsx
-  var import_react6 = __toESM(require_react());
+  var import_react4 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // src/art/app.tsx
-  var import_react5 = __toESM(require_react());
+  var import_react3 = __toESM(require_react());
 
   // src/art/components/ArtNav.tsx
   var import_react2 = __toESM(require_react());
@@ -24787,6 +24787,7 @@
           border: "1px solid #e9ecef",
           transition: "box-shadow 0.2s, border-color 0.2s"
         },
+        className: "art-card",
         children: [
           isVideo ? /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
             "video",
@@ -24820,22 +24821,7 @@
           ),
           /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { style: { padding: "1rem" }, children: [
             /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("h3", { style: { fontSize: "1.25rem", fontWeight: "600", marginBottom: "0.5rem", color: "#333" }, children: getDisplayTitle() }),
-            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { style: { color: "#666", fontSize: "0.9rem", marginBottom: "1rem", lineHeight: "1.4" }, children: getDescription() }),
-            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { style: { display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1rem" }, children: getTags().map((tag) => /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
-              "span",
-              {
-                style: {
-                  padding: "0.25rem 0.75rem",
-                  backgroundColor: "#f8f9fa",
-                  color: "#495057",
-                  fontSize: "0.75rem",
-                  borderRadius: "1rem",
-                  border: "1px solid #e9ecef"
-                },
-                children: tag
-              },
-              tag
-            )) })
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("p", { style: { color: "#666", fontSize: "0.9rem", marginBottom: "1rem", lineHeight: "1.4" }, children: getDescription() })
           ] })
         ]
       }
@@ -25033,562 +25019,9 @@
     }
   ];
 
-  // src/art/components/ArtistNames.tsx
-  var import_react3 = __toESM(require_react());
-
-  // src/generated/artistsManifest.ts
-  var artistArray = [
-    {
-      "Artist": "05elantra",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "5.99",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "5000",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Androcided",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Ava Blank",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Beli",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Bente Violet",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Bifa01",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Blythe Bonnie",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Chou Chou",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "danielfromyesterday",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "emme",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "equip gloom",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Estuary Fragmentation",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Eve",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Faith Rawson",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "G.M.O",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Godboat",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Greystar",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Grump",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Harriet Brown",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "In Motion",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "INBIO",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Iris ipsum",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Jacob Wolf",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Jane Die",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Jellyeeee",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Joanni",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Jopenga",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Josh Reim",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Kunt Cobain",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Lil missfortune",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Lov\u012Bm",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Magic Candy",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Memory Saw",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Mirrored Fatality",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "M\xFCnki",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Namzanil",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "naomiash",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Nasanieru",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Nola Shade",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "p2p",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Phendetta",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Romeo Diablos",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Sadnoise",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Scout",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Sensor",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Shadow Mosez",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Slime Beach",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Smilegoth",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "SONNET",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "spok2god",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Strangejane",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "sunchoked",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Sylvian Flood",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Thinking Spell",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "TP2",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Violet Hannesena",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Vora",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "weepingwillowtree",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    },
-    {
-      "Artist": "Ymani",
-      "Instagram": "",
-      "Bandcamp": "",
-      "Notes": ""
-    }
-  ];
-
-  // src/art/components/ArtistNames.tsx
+  // src/art/components/ArtGallery.tsx
   var import_jsx_runtime4 = __toESM(require_jsx_runtime());
   var fadeInStyle = `
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .artist-name-fade-in {
-    animation: fadeIn 0.6s ease-out forwards;
-  }
-
-  .artist-tooltip {
-    position: absolute;
-    background-color: #333;
-    color: #fff;
-    padding: 0.75rem 1rem;
-    border-radius: '8px';
-    font-size: 0.85rem;
-    white-space: nowrap;
-    z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    pointer-events: none;
-  }
-
-  .artist-tooltip a {
-    color: #0066cc;
-    text-decoration: none;
-  }
-
-  .artist-tooltip a:hover {
-    text-decoration: underline;
-  }
-`;
-  if (typeof document !== "undefined") {
-    const style = document.createElement("style");
-    style.textContent = fadeInStyle;
-    document.head.appendChild(style);
-  }
-  var SPRITE_OPTIONS = [
-    { name: "ice", path: "assets/sprites/ice.png", rows: 9, cols: 1 },
-    { name: "puddle_medium", path: "assets/sprites/puddle_medium.png", rows: 8, cols: 1 },
-    { name: "robber_splash", path: "assets/sprites/robber_splash.png", rows: 7, cols: 1 }
-  ];
-  function getRandomSprite() {
-    return SPRITE_OPTIONS[Math.floor(Math.random() * SPRITE_OPTIONS.length)];
-  }
-  function ArtistNames() {
-    const [hoveredArtist, setHoveredArtist] = (0, import_react3.useState)(null);
-    const [tooltipPos, setTooltipPos] = (0, import_react3.useState)({ x: 0, y: 0 });
-    const [spriteMap, setSpriteMap] = (0, import_react3.useState)({});
-    return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { style: { maxWidth: "1200px", margin: "0 auto", padding: "3rem 1rem" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h1", { style: { fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#333" }, children: "Featured Artists" }),
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("p", { style: { color: "#666", marginBottom: "2rem", fontSize: "1.1rem" }, children: [
-        "A curated collection of ",
-        artistArray.length,
-        " artists"
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { style: {
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))",
-        gap: "2rem 1rem"
-      }, children: artistArray.map((artist, index) => /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
-        "div",
-        {
-          style: {
-            position: "relative",
-            animation: `fadeIn 0.6s ease-out forwards`,
-            animationDelay: `${index * 0.05}s`
-          },
-          onMouseEnter: (e) => {
-            const rect = e.currentTarget.getBoundingClientRect();
-            setTooltipPos({
-              x: rect.left + rect.width / 2,
-              y: rect.top - 10
-            });
-            setHoveredArtist(artist.Artist);
-            if (!spriteMap[artist.Artist]) {
-              setSpriteMap((prev) => ({
-                ...prev,
-                [artist.Artist]: getRandomSprite()
-              }));
-            }
-          },
-          onMouseLeave: () => setHoveredArtist(null),
-          children: [
-            hoveredArtist === artist.Artist && spriteMap[artist.Artist] && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
-              "div",
-              {
-                style: {
-                  position: "absolute",
-                  left: "50%",
-                  top: "50%",
-                  transform: "translate(-50%, -50%)",
-                  zIndex: 0,
-                  opacity: 1,
-                  pointerEvents: "none"
-                }
-              }
-            ),
-            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
-              "span",
-              {
-                style: {
-                  cursor: "pointer",
-                  color: "#333",
-                  fontSize: "0.95rem",
-                  fontWeight: "500",
-                  transition: "color 0.2s ease",
-                  position: "relative",
-                  zIndex: 1
-                },
-                onMouseEnter: (e) => {
-                  e.currentTarget.style.color = "#0066cc";
-                },
-                onMouseLeave: (e) => {
-                  e.currentTarget.style.color = "#333";
-                },
-                children: artist.Artist
-              }
-            ),
-            hoveredArtist === artist.Artist && (artist.Instagram || artist.Bandcamp || artist.Notes) && /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
-              "div",
-              {
-                style: {
-                  position: "fixed",
-                  left: `${tooltipPos.x}px`,
-                  top: `${tooltipPos.y}px`,
-                  transform: "translate(-50%, -100%)",
-                  backgroundColor: "#333",
-                  color: "#fff",
-                  padding: "0.75rem 1rem",
-                  borderRadius: "8px",
-                  fontSize: "0.85rem",
-                  whiteSpace: "nowrap",
-                  zIndex: 1e3,
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
-                  pointerEvents: "none"
-                },
-                children: [
-                  artist.Instagram && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { style: { marginBottom: artist.Bandcamp ? "0.5rem" : 0 }, children: /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
-                    "a",
-                    {
-                      href: `https://instagram.com/${artist.Instagram}`,
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                      style: { color: "#a8dadc", textDecoration: "none" },
-                      children: [
-                        "@",
-                        artist.Instagram
-                      ]
-                    }
-                  ) }),
-                  artist.Bandcamp && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { style: { marginBottom: artist.Notes ? "0.5rem" : 0 }, children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
-                    "a",
-                    {
-                      href: `https://bandcamp.com/search?q=${encodeURIComponent(artist.Bandcamp)}`,
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                      style: { color: "#a8dadc", textDecoration: "none" },
-                      children: artist.Bandcamp
-                    }
-                  ) }),
-                  artist.Notes && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { style: { fontSize: "0.8rem", color: "#ccc" }, children: artist.Notes })
-                ]
-              }
-            )
-          ]
-        },
-        artist.Artist
-      )) })
-    ] });
-  }
-
-  // src/art/components/ArtGallery.tsx
-  var import_jsx_runtime5 = __toESM(require_jsx_runtime());
-  var fadeInStyle2 = `
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -25606,7 +25039,7 @@
 `;
   if (typeof document !== "undefined") {
     const style = document.createElement("style");
-    style.textContent = fadeInStyle2;
+    style.textContent = fadeInStyle;
     document.head.appendChild(style);
   }
   function ArtGallery() {
@@ -25616,177 +25049,144 @@
       if (!b.date) return -1;
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
-    return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { style: { maxWidth: "1200px", margin: "0 auto", padding: "3rem 1rem" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h2", { children: "Web has worked with many artists in a diverse range of genres. Curation is an important part of there practice" }),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(ArtistNames, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h1", { style: { fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#333" }, children: "Art Gallery" }),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("p", { style: { color: "#666", marginBottom: "2rem", fontSize: "1.1rem" }, children: [
-        "A collection of ",
-        artAssets.length,
-        " visual works"
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { style: {
-        display: "flex",
-        flexDirection: "column",
+    return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { style: { maxWidth: "1200px", margin: "0 auto", padding: "3rem 1rem" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h2", { children: "Webb has worked with many artists in a diverse range of genres. They've organized in Los Angeles, New York, and Portland. Curation is an important part of there practice" }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h1", { style: { fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#333" }, children: "Archive" }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("p", { style: { color: "#666", marginBottom: "2rem", fontSize: "1.1rem" } }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { style: {
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
         gap: "1.5rem"
-      }, children: sortedAssets.map((asset, index) => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+      }, children: sortedAssets.map((asset, index) => /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
         "div",
         {
           className: "art-card-fade-in",
           style: {
             animationDelay: `${index * 0.1}s`
           },
-          children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(ArtCard, { asset })
+          children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(ArtCard, { asset })
         },
         asset.slug
       )) })
     ] });
   }
 
+  // src/generated/workManifest.ts
+  var workProjects = [
+    {
+      "id": "archive",
+      "name": "Archive",
+      "slug": "archive",
+      "description": "",
+      "images": [
+        "/assets/art_assets/work/archive/20250829_WEBB.JPG",
+        "/assets/art_assets/work/archive/20250829_WEBB1.JPG",
+        "/assets/art_assets/work/archive/20250829_WEBB13.JPG",
+        "/assets/art_assets/work/archive/20250829_WEBB14.JPG",
+        "/assets/art_assets/work/archive/20250829_WEBB18.JPG",
+        "/assets/art_assets/work/archive/20250829_WEBB19.JPG",
+        "/assets/art_assets/work/archive/20250829_WEBB20.JPG",
+        "/assets/art_assets/work/archive/20250829_WEBB5.JPG",
+        "/assets/art_assets/work/archive/20250829_WEBB9.JPG",
+        "/assets/art_assets/work/archive/SLINGSHOT_PIC_IMG_7974.JPG",
+        "/assets/art_assets/work/archive/SLINGSHOT_PIC_IMG_7978.JPG"
+      ],
+      "imageCount": 11,
+      "folderPath": "/assets/art_assets/work/archive"
+    },
+    {
+      "id": "cars",
+      "name": "Cars",
+      "slug": "cars",
+      "description": "",
+      "images": [
+        "/assets/art_assets/work/cars/20250829_WEBB.JPG",
+        "/assets/art_assets/work/cars/20250829_WEBB1.JPG",
+        "/assets/art_assets/work/cars/20250829_WEBB5.JPG"
+      ],
+      "imageCount": 3,
+      "folderPath": "/assets/art_assets/work/cars"
+    },
+    {
+      "id": "performance",
+      "name": "Performance",
+      "slug": "performance",
+      "description": "",
+      "images": [
+        "/assets/art_assets/work/performance/SLINGSHOT_PIC_IMG_7974.JPG",
+        "/assets/art_assets/work/performance/SLINGSHOT_PIC_IMG_7978.JPG"
+      ],
+      "imageCount": 2,
+      "folderPath": "/assets/art_assets/work/performance"
+    }
+  ];
+
   // src/art/components/ArtWork.tsx
-  var import_jsx_runtime6 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime5 = __toESM(require_jsx_runtime());
   function ArtWork() {
-    return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { maxWidth: "1200px", margin: "0 auto", padding: "3rem 1rem" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h1", { style: { fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#333" }, children: "Work" }),
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { style: { color: "#666", marginBottom: "2rem", fontSize: "1.1rem" }, children: "Coming soon..." }),
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { style: {
-        padding: "3rem",
-        backgroundColor: "#f8f8f8",
-        borderRadius: "12px",
-        textAlign: "center",
-        border: "2px dashed #ddd"
-      }, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { style: {
-        color: "#999",
-        fontSize: "1.2rem",
-        margin: 0
-      }, children: "This section is under development" }) })
+    return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { style: { maxWidth: "1200px", margin: "0 auto", padding: "3rem 1rem" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h1", { style: { fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#333" }, children: "Work" }),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("p", { style: { color: "#666", marginBottom: "4rem", fontSize: "1.1rem" }, children: "A collection of my professional and creative projects" }),
+      workProjects.map((project) => /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { style: { marginBottom: "5rem" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h2", { style: {
+          fontSize: "2.5rem",
+          fontWeight: "bold",
+          marginBottom: "1rem",
+          color: "#333"
+        }, children: project.name }),
+        project.description && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("p", { style: {
+          color: "#666",
+          marginBottom: "2rem",
+          fontSize: "1.1rem",
+          lineHeight: "1.6",
+          maxWidth: "800px"
+        }, children: project.description }),
+        project.images.length > 0 ? /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { style: {
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+          gap: "1.5rem",
+          marginBottom: "2rem"
+        }, children: project.images.map((image, index) => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
+          "img",
+          {
+            src: image,
+            alt: `${project.name} - Image ${index + 1}`,
+            style: {
+              width: "100%",
+              height: "auto",
+              borderRadius: "8px",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+              transition: "transform 0.2s ease, box-shadow 0.2s ease"
+            },
+            onMouseEnter: (e) => {
+              e.currentTarget.style.transform = "scale(1.02)";
+              e.currentTarget.style.boxShadow = "0 8px 25px rgba(0, 0, 0, 0.15)";
+            },
+            onMouseLeave: (e) => {
+              e.currentTarget.style.transform = "scale(1)";
+              e.currentTarget.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.1)";
+            }
+          },
+          index
+        )) }) : /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("p", { style: {
+          color: "#999",
+          fontSize: "1rem",
+          marginBottom: "2rem"
+        }, children: "No images available for this project" }),
+        workProjects.indexOf(project) < workProjects.length - 1 && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("hr", { style: {
+          border: "none",
+          borderTop: "1px solid #eee",
+          marginTop: "3rem"
+        } })
+      ] }, project.id))
     ] });
   }
 
-  // src/art/components/Butterflies.tsx
-  var import_react4 = __toESM(require_react());
-  var import_jsx_runtime7 = __toESM(require_jsx_runtime());
-  var SPRITE_CONFIGS = {
-    blue: { rows: 6, cols: 1, width: 64, height: 64, direction: "left" },
-    blue_small: { rows: 6, cols: 1, width: 32, height: 32, direction: "left" },
-    green: { rows: 6, cols: 1, width: 64, height: 64, direction: "right" }
-  };
-  var PerlinNoise = class {
-    constructor(seed) {
-      this.seed = seed;
-    }
-    noise(x) {
-      return Math.sin(x * 12.9898 + this.seed * 78.233) * 43758.5453 % 1;
-    }
-    smoothNoise(t) {
-      const i = Math.floor(t);
-      const f = t - i;
-      const n1 = this.noise(i);
-      const n2 = this.noise(i + 1);
-      return n1 * (1 - f) + n2 * f;
-    }
-  };
-  function Butterflies() {
-    const [butterflies, setButterflies] = (0, import_react4.useState)([]);
-    const nextId = (0, import_react4.useRef)(0);
-    const lastPositions = (0, import_react4.useRef)({});
-    (0, import_react4.useEffect)(() => {
-      const createButterfly = () => {
-        const keys = Object.keys(SPRITE_CONFIGS);
-        const sprite = keys[Math.floor(Math.random() * keys.length)];
-        const duration = 9e3 + Math.random() * 8e3;
-        const newButterfly = {
-          id: nextId.current++,
-          sprite,
-          duration,
-          startTime: Date.now(),
-          initialX: 20 + Math.random() * 60,
-          initialY: 20 + Math.random() * 60,
-          scale: 0.5 + Math.random() * 0.8,
-          noise: new PerlinNoise(Math.random() * 1e4)
-        };
-        setButterflies((prev) => [...prev.slice(-1), newButterfly]);
-      };
-      createButterfly();
-      const interval = setInterval(createButterfly, 9e3 + Math.random() * 5e3);
-      return () => clearInterval(interval);
-    }, []);
-    (0, import_react4.useEffect)(() => {
-      const cleanup = setInterval(() => {
-        setButterflies(
-          (prev) => prev.filter((b) => Date.now() - b.startTime < b.duration)
-        );
-      }, 1);
-      return () => clearInterval(cleanup);
-    }, []);
-    return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
-      "div",
-      {
-        style: {
-          position: "fixed",
-          inset: 0,
-          pointerEvents: "none",
-          overflow: "hidden",
-          zIndex: 1
-        },
-        children: butterflies.map((b) => {
-          const config = SPRITE_CONFIGS[b.sprite];
-          const elapsed = (Date.now() - b.startTime) / 1e3;
-          const nx = b.noise.smoothNoise(elapsed * 0.4);
-          const ny = b.noise.smoothNoise(elapsed * 0.4 + 100);
-          const xOffset = (nx - 0.5) * 40 + Math.sin(elapsed * 0.6 + b.id) * 12;
-          const yOffset = (ny - 0.5) * 40 + Math.cos(elapsed * 0.6 + b.id) * 12;
-          const x = b.initialX + xOffset;
-          const y = b.initialY + yOffset;
-          const last = lastPositions.current[b.id] || { x, y };
-          const dx = x - last.x;
-          lastPositions.current[b.id] = { x, y };
-          const movingLeft = dx < 0;
-          let shouldFlip = false;
-          if (config.direction === "left") {
-            shouldFlip = !movingLeft;
-          } else {
-            shouldFlip = movingLeft;
-          }
-          return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
-            "div",
-            {
-              style: {
-                position: "absolute",
-                left: `${x}%`,
-                top: `${y}%`,
-                transform: `
-                scale(${b.scale})
-                scaleX(${shouldFlip ? -1 : 1})
-              `,
-                transition: "none",
-                opacity: 1
-              },
-              children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
-                SpritePlayback,
-                {
-                  src: `assets/sprites/${b.sprite}.png`,
-                  rows: config.rows,
-                  cols: config.cols,
-                  fps: 24,
-                  mode: "loop",
-                  width: config.width,
-                  height: config.height
-                }
-              )
-            },
-            b.id
-          );
-        })
-      }
-    );
-  }
-
   // src/art/app.tsx
-  var import_jsx_runtime8 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime6 = __toESM(require_jsx_runtime());
   function App() {
-    const [currentPage, setCurrentPage] = (0, import_react5.useState)("curation");
-    (0, import_react5.useEffect)(() => {
+    const [currentPage, setCurrentPage] = (0, import_react3.useState)("curation");
+    (0, import_react3.useEffect)(() => {
       const handleHashChange = () => {
         const hash = window.location.hash.substring(1);
         if (hash === "work" || hash === "curation") {
@@ -25804,27 +25204,26 @@
     const renderCurrentPage = () => {
       switch (currentPage) {
         case "work":
-          return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(ArtWork, {});
+          return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ArtWork, {});
         case "curation":
-          return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(ArtGallery, {});
+          return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ArtGallery, {});
         default:
-          return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(ArtGallery, {});
+          return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ArtGallery, {});
       }
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { style: { minHeight: "100vh", backgroundColor: "#ffffff", color: "#333" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Butterflies, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(ArtNav, { currentPage, onPageChange: handlePageChange }),
+    return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(import_jsx_runtime6.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { minHeight: "100vh", backgroundColor: "#ffffff", color: "#333" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(ArtNav, { currentPage, onPageChange: handlePageChange }),
       renderCurrentPage()
-    ] });
+    ] }) });
   }
 
   // src/art/index.tsx
-  var import_jsx_runtime9 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime7 = __toESM(require_jsx_runtime());
   var root = import_client.default.createRoot(
     document.getElementById("art-app")
   );
   root.render(
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(import_react6.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(App, {}) })
+    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(import_react4.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(App, {}) })
   );
 })();
 /*! Bundled license information:
