@@ -46,7 +46,7 @@ export default function App() {
   return (
     <>
     <div style={{ minHeight: '100vh', backgroundColor: '#ffffff', color: '#333' }}>
-        <Butterflies />
+        {/* <Butterflies /> */}
       <ArtNav currentPage={currentPage} onPageChange={handlePageChange} />
       {renderCurrentPage()}
     </div>
