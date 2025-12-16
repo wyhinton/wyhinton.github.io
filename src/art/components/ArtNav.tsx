@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import SpritePlayback from './SpritePlayback';
 
 interface ArtNavProps {
-  currentPage: 'work' | 'curation';
-  onPageChange: (page: 'work' | 'curation') => void;
+  currentPage: 'home' | 'work' | 'curation';
+  onPageChange: (page: 'home' | 'work' | 'curation') => void;
 }
 
 export default function ArtNav({ currentPage, onPageChange }: ArtNavProps) {
@@ -12,7 +12,6 @@ export default function ArtNav({ currentPage, onPageChange }: ArtNavProps) {
     display: 'flex',
     justifyContent: 'center',
     gap: '2rem',
-    padding: '2rem 0',
     borderBottom: '1px solid #e5e5e5',
     marginBottom: '2rem'
   };
@@ -61,114 +60,117 @@ export default function ArtNav({ currentPage, onPageChange }: ArtNavProps) {
 
   return (
     <>
-      <div style={{
+      <nav style={{
         display: 'flex',
-        justifyContent: 'center',
-        padding: '2rem 1rem 1rem 1rem',
-        position: 'relative',
+        justifyContent: 'space-between',
         alignItems: 'center',
-        justifyItems: 'center',
-        width: "100%"
+        gap: '2rem',
+        borderBottom: '1px solid #e5e5e5',
       }}>
-        <div style={{maxWidth: '800px'}}>
-            {/* PNG fallback - shows until video loads */}
-            <img
-              src="/assets/LOGO_ART_NAME/logo_art_name.png"
-              alt="Art Logo"
-              style={{
-                maxWidth: '-webkit-fill-available',
-                height: 'auto',
-                objectFit: 'contain',
-                display: videoLoaded ? 'none' : 'block'
-              }}
-            />
-            
-            {/* Video element */}
-            <video
-              src="/assets/LOGO_ART_NAME/NAME_VIDEO_LOOP.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              style={{
-                maxWidth: '-webkit-fill-available',
-                height: 'auto',
-                objectFit: 'contain',
-                display: videoLoaded ? 'block' : 'none'
-              }}
-              onCanPlayThrough={() => setVideoLoaded(true)}
-              onError={() => {
-                console.log('Video failed to load, keeping PNG fallback');
-              }}
-            />
+        {/* Logo - Left */}
+        <div 
+          style={{maxWidth: '200px', flex: '0 0 auto', cursor: 'pointer'}}
+          onClick={() => onPageChange('home')}
+        >
+          {/* PNG fallback - shows until video loads */}
+          <img
+            src="/assets/LOGO_ART_NAME/logo_art_name.png"
+            alt="Art Logo"
+            style={{
+              maxWidth: '-webkit-fill-available',
+              height: 'auto',
+              objectFit: 'contain',
+              display: videoLoaded ? 'none' : 'block'
+            }}
+          />
+          
+          {/* Video element */}
+          {/* <video
+            src="/assets/LOGO_ART_NAME/NAME_VIDEO_LOOP.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              maxWidth: '-webkit-fill-available',
+              height: 'auto',
+              objectFit: 'contain',
+              display: videoLoaded ? 'block' : 'none'
+            }}
+            onCanPlayThrough={() => setVideoLoaded(true)}
+            onError={() => {
+              console.log('Video failed to load, keeping PNG fallback');
+            }}
+          /> */}
         </div>
-      </div>
 
-      <nav style={navStyle}>
-      <div style={buttonContainerStyle}>
-        {currentPage === 'work' && (
-          <div style={spriteStyle}>
-            <SpritePlayback
-              src="assets/sprites/ef_ta_liquid016_16.png"
-              rows={4}
-              cols={4}
-              fps={24}
-              mode="ping-pong"
-              width={64}
-              height={64}
-            />
+        {/* Navigation Buttons - Center */}
+        <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flex: 1, justifyContent: 'center' }}>
+          <div style={buttonContainerStyle}>
+            {currentPage === 'work' && (
+              <div style={spriteStyle}>
+                <SpritePlayback
+                  src="assets/sprites/ef_ta_liquid016_16.png"
+                  rows={4}
+                  cols={4}
+                  fps={24}
+                  mode="ping-pong"
+                  width={64}
+                  height={64}
+                />
+              </div>
+            )}
+            <button
+              style={currentPage === 'work' ? activeButtonStyleWithSprite : buttonStyle}
+              onClick={() => onPageChange('work')}
+              onMouseEnter={(e) => {
+                if (currentPage !== 'work') {
+                  e.currentTarget.style.backgroundColor = '#f8f8f8';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (currentPage !== 'work') {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }
+              }}
+            >
+              Work
+            </button>
           </div>
-        )}
-        <button
-          style={currentPage === 'work' ? activeButtonStyleWithSprite : buttonStyle}
-          onClick={() => onPageChange('work')}
-          onMouseEnter={(e) => {
-            if (currentPage !== 'work') {
-              e.currentTarget.style.backgroundColor = '#f8f8f8';
-            }
-          }}
-          onMouseLeave={(e) => {
-            if (currentPage !== 'work') {
-              e.currentTarget.style.backgroundColor = 'transparent';
-            }
-          }}
-        >
-          Work
-        </button>
-      </div>
 
-      <div style={buttonContainerStyle}>
-        {currentPage === 'curation' && (
-          <div style={spriteStyle}>
-            <SpritePlayback
-              src="assets/sprites/ef_ta_liquid016_16.png"
-              rows={4}
-              cols={4}
-              fps={24}
-              mode="ping-pong"
-              width={64}
-              height={64}
-            />
+          <div style={buttonContainerStyle}>
+            {currentPage === 'curation' && (
+              <div style={spriteStyle}>
+                <SpritePlayback
+                  src="assets/sprites/ef_ta_liquid016_16.png"
+                  rows={4}
+                  cols={4}
+                  fps={24}
+                  mode="ping-pong"
+                  width={64}
+                  height={64}
+                />
+              </div>
+            )}
+            <button
+              style={currentPage === 'curation' ? activeButtonStyleWithSprite : buttonStyle}
+              onClick={() => onPageChange('curation')}
+              onMouseEnter={(e) => {
+                if (currentPage !== 'curation') {
+                  e.currentTarget.style.backgroundColor = '#f8f8f8';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (currentPage !== 'curation') {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }
+              }}
+            >
+              Curation
+            </button>
           </div>
-        )}
-        <button
-          style={currentPage === 'curation' ? activeButtonStyleWithSprite : buttonStyle}
-          onClick={() => onPageChange('curation')}
-          onMouseEnter={(e) => {
-            if (currentPage !== 'curation') {
-              e.currentTarget.style.backgroundColor = '#f8f8f8';
-            }
-          }}
-          onMouseLeave={(e) => {
-            if (currentPage !== 'curation') {
-              e.currentTarget.style.backgroundColor = 'transparent';
-            }
-          }}
-        >
-          Curation
-        </button>
-      </div>
-    </nav>
+        </div>
+      </nav>
     </>
   );
 }
