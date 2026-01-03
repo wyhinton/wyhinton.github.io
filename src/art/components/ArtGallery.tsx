@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ArtCard from './ArtCard';
+import ArtCard from './work/ArtCard';
 import { artAssets, ArtAsset } from "../../generated/artManifest";
 import ArtistNames from './ArtistNames';
 

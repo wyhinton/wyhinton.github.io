@@ -14,6 +14,17 @@ export interface WorkProject {
 
 export const workProjects: WorkProject[] = [
   {
+    "id": "0_bx",
+    "name": "0_bx",
+    "slug": "0_bx",
+    "description": "",
+    "images": [
+      "/assets/art_assets/work/0_bx/0_bx_visualizer_fullv2.webm"
+    ],
+    "imageCount": 1,
+    "folderPath": "/assets/art_assets/work/0_bx"
+  },
+  {
     "id": "archive",
     "name": "Archive",
     "slug": "archive",

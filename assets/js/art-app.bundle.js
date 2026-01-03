@@ -24736,7 +24736,7 @@
     ] }) });
   }
 
-  // src/art/components/ArtCard.tsx
+  // src/art/components/work/ArtCard.tsx
   var import_jsx_runtime3 = __toESM(require_jsx_runtime());
   function ArtCard({ asset }) {
     const getDisplayTitle = () => {
@@ -24969,6 +24969,17 @@
       "flags": []
     },
     {
+      "src": "/assets/art_assets/curation/DEC_19_2023_LOS_ANGELES.png",
+      "slug": "dec_19_2023_los_angeles",
+      "city": "Los Angeles",
+      "date": "2023-12-19",
+      "year": 2023,
+      "month": 12,
+      "day": 19,
+      "ext": "png",
+      "flags": []
+    },
+    {
       "src": "/assets/art_assets/curation/DEC_14_2023_LOS_ANGELES.png",
       "slug": "dec_14_2023_los_angeles",
       "city": "Los Angeles",
@@ -25060,6 +25071,15 @@
 
   // src/generated/workManifest.ts
   var workProjects = [
+    {
+      "id": "0_bx",
+      "name": "0_bx",
+      "slug": "0_bx",
+      "description": "",
+      "images": [],
+      "imageCount": 0,
+      "folderPath": "/assets/art_assets/work/0_bx"
+    },
     {
       "id": "archive",
       "name": "Archive",

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { artistArray } from "../../generated/artistsManifest";
-import SpritePlayback from './SpritePlayback';
+import SpritePlayback from './shared/SpritePlayback';
 
 // CSS for fade-in animation and tooltip
 const fadeInStyle = `

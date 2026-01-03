@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SpritePlayback from './SpritePlayback';
+import SpritePlayback from './shared/SpritePlayback';
 
 interface ArtNavProps {
   currentPage: 'home' | 'work' | 'curation';
