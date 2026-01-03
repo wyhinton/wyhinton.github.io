@@ -195,8 +195,8 @@ async function generateWorkManifest() {
 
     console.log(`   📁 Processing project: ${projectName}`);
     
-    // Find all image files in this project directory
-    const imageFiles = await globby(`${projectPath}/**/*.{png,jpg,jpeg,webp,gif,PNG,JPG,JPEG,WEBP,GIF}`);
+    // Find all image and video files in this project directory
+    const mediaFiles = await globby(`${projectPath}/**/*.{png,jpg,jpeg,webp,gif,mp4,webm,mov,avi,PNG,JPG,JPEG,WEBP,GIF,MP4,WEBM,MOV,AVI}`);
     
     // Find the markdown description file
     const mdFiles = await globby(`${projectPath}/**/*.md`);
@@ -211,7 +211,7 @@ async function generateWorkManifest() {
     }
 
     // Convert file paths to web-accessible URLs
-    const images = imageFiles.map(filePath => {
+    const images = mediaFiles.map(filePath => {
       const relativePath = filePath.replace(/\\/g, '/');
       return `/${relativePath}`;
     });
@@ -256,7 +256,7 @@ export const workProjects: WorkProject[] = ${JSON.stringify(projects, null, 2)} 
   
   console.log(`✅ Work manifest generated: ${projects.length} projects found`);
   projects.forEach(project => {
-    console.log(`   📂 ${project.name}: ${project.imageCount} images`);
+    console.log(`   📂 ${project.name}: ${project.imageCount} media files`);
   });
 }
 

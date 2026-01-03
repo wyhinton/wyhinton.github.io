@@ -167,6 +167,17 @@ export const artAssets: ArtAsset[] = [
     "flags": []
   },
   {
+    "src": "/assets/art_assets/curation/DEC_19_2023_LOS_ANGELES.png",
+    "slug": "dec_19_2023_los_angeles",
+    "city": "Los Angeles",
+    "date": "2023-12-19",
+    "year": 2023,
+    "month": 12,
+    "day": 19,
+    "ext": "png",
+    "flags": []
+  },
+  {
     "src": "/assets/art_assets/curation/DEC_14_2023_LOS_ANGELES.png",
     "slug": "dec_14_2023_los_angeles",
     "city": "Los Angeles",

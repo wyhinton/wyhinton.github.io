@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ArtCard from './ArtCard';
+import ArtCard from './work/ArtCard';
 import { artAssets, ArtAsset } from "../../generated/artManifest";
 import ArtistNames from './ArtistNames';
 
@@ -38,7 +38,7 @@ export default function ArtGallery() {
   });
 
   return (
-    <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '3rem 1rem' }}>
+    <div style={{ maxWidth: '80vw', margin: '0 auto', padding: '3rem 1rem' }}>
       <h2>Webb has worked with many artists in a diverse range of genres. They've organized in Los Angeles, New York, and Portland.
          Curation is an important part of there practice</h2>
       {/* <ArtistNames></ArtistNames> */}

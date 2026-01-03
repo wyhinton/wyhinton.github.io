@@ -164,6 +164,55 @@ Eager Rhizome is an installation that fuses generative 3D animation, depth sensi
     .ipad-image {
       grid-column: span 2;
     }
+
+    .tag-block + p {
+      margin-bottom: 1rem !important;
+    }
+    
+    /* Mobile responsive styles */
+    @media screen and (max-width: 768px) {
+        /* Force flex-row to stack vertically on mobile */
+        .flex-row {
+            flex-direction: column;
+        }
+        
+        .flex-row img {
+            min-width: auto;
+            width: 100%;
+        }
+        
+        /* Force mosaic grid to single column on mobile */
+        .mosaic-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        /* Override any multi-column spans on mobile */
+        .ipad-image,
+        .mosaic-full-width {
+            grid-column: 1;
+        }
+        
+        /* Ensure all images take full width and stack vertically on mobile */
+        img {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: auto !important;
+            display: block;
+            margin-bottom: 1rem;
+        }
+        
+        /* Make sure images in adjacent paragraphs don't display side by side */
+        p img {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        
+        /* Remove any float or inline styles that might cause side-by-side display */
+        p + p img {
+            clear: both;
+            display: block;
+        }
+    }
     
 
     .imessage-bubble{
