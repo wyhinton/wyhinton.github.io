@@ -1,0 +1,47 @@
+/* Post Image Styles */
+.post-image-figure {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.post-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.post-image:hover {
+    transform: scale(1.02);
+}
+
+.post-image.full-width {
+    width: 100%;
+}
+
+.post-image.small {
+    max-width: 400px;
+}
+
+.post-image.medium {
+    max-width: 600px;
+}
+
+.post-image-caption {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .post-image {
+        box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    }
+    
+    .post-image-caption {
+        color: #ccc;
+    }
+}

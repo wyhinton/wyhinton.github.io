@@ -1,0 +1,44 @@
+{% comment %}
+Post Image Include
+Usage: {% include post_image.html name="image.png" alt="Description" caption="Optional caption" %}
+
+This include automatically resolves the image path based on the current post's slug.
+The post slug is derived from the post filename by removing the date prefix and .md extension.
+
+Parameters:
+- name (required): The filename of the image in the post's image folder
+- alt (optional): Alt text for the image (defaults to filename)
+- caption (optional): Caption to display below the image
+- class (optional): Additional CSS classes for the image
+- width (optional): Image width
+- height (optional): Image height
+
+Examples:
+{% include post_image.html name="demo.gif" alt="Demo animation" %}
+{% include post_image.html name="screenshot.png" alt="App screenshot" caption="The main interface" %}
+{% include post_image.html name="chart.svg" alt="Performance chart" class="full-width" %}
+{% endcomment %}
+
+{% comment %} Extract post slug from page.path {% endcomment %}
+{% assign post_filename = page.path | split: '/' | last %}
+{% assign post_name_no_ext = post_filename | remove: '.md' %}
+{% assign post_slug_parts = post_name_no_ext | split: '-' %}
+{% assign post_slug = post_slug_parts | slice: 3, post_slug_parts.size | join: '-' %}
+
+{% comment %} Build the image path {% endcomment %}
+{% assign image_path = '/assets/images/posts/' | append: post_slug | append: '/' | append: include.name %}
+
+{% comment %} Set defaults {% endcomment %}
+{% assign alt_text = include.alt | default: include.name %}
+{% assign css_class = include.class | default: 'post-image' %}
+
+{% comment %} Render the image {% endcomment %}
+<figure class="post-image-figure">
+    <img src="{{ image_path }}" 
+         alt="{{ alt_text }}"
+         class="{{ css_class }}"
+         {% if include.width %}width="{{ include.width }}"{% endif %}
+         {% if include.height %}height="{{ include.height }}"{% endif %}
+    />{% if include.caption %}<figcaption class="post-image-caption">{{ include.caption }}</figcaption>
+    {% endif %}
+</figure>

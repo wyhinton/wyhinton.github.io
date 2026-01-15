@@ -10,7 +10,8 @@
     "dev:art": "npm run watch:art",
     "typecheck": "tsc --noEmit",
     "start": "bundle exec jekyll serve  --livereload",
-    "dev:full": "concurrently \"npm run watch:art\" \"npm run start\""
+    "dev:full": "concurrently \"npm run watch:art\" \"npm run start\"",
+    "create-post-folders": "node scripts/create-post-folders.js"
   },
   "devDependencies": {
     "@tweakpane/core": "^2.0.5",
