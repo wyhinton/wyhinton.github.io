@@ -32,13 +32,15 @@ Examples:
 {% assign alt_text = include.alt | default: include.name %}
 {% assign css_class = include.class | default: 'post-image' %}
 
-{% comment %} Render the image {% endcomment %}
+<div>
 <figure class="post-image-figure">
-    <img src="{{ image_path }}" 
-         alt="{{ alt_text }}"
-         class="{{ css_class }}"
-         {% if include.width %}width="{{ include.width }}"{% endif %}
-         {% if include.height %}height="{{ include.height }}"{% endif %}
-    />{% if include.caption %}<figcaption class="post-image-caption">{{ include.caption }}</figcaption>
-    {% endif %}
+<img src="{{ image_path }}"
+alt="{{ alt_text }}"
+class="{{ css_class }}"
+/>
+{% if include.caption %}
+<figcaption class="post-image-caption">{{ include.caption }}</figcaption>
+{% endif %}
 </figure>
+</div>
+
