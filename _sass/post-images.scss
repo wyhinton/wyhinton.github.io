@@ -2,6 +2,11 @@
 .post-image-figure {
     margin: 2rem 0;
     text-align: center;
+    font-style: italic;
+}
+
+.post-image-figure > p{
+    margin-bottom: 0px;
 }
 
 .post-image {
@@ -31,6 +36,7 @@
     font-style: italic;
     color: #666;
     font-size: 0.9em;
+    font-style: italic;
 }
 
 /* Dark mode support */
