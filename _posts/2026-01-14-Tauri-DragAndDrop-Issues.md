@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Tauri DragAndDrop Issues and Solutions"
+title: "Tauri Drag and Drop Issues on Windows"
 date: 2026-01-14
 categories: [tauri, rust, desktop]
 tags: [drag-drop, file-handling, desktop-app, troubleshooting]
 ---
 
-You may run into this very frustrating problem in your Tauri Windows app if you are trying to use both the OS-level drag and drop API and the HTML5 drag and drop API. TL;DR: As of writing, it's impossible to use both APIs simultaneously, and there's not a clean way to work around that. See this [issue](https://github.com/tauri-apps/tauri/issues/14373). You can choose which one you want to use (on a per-window basis) via the `dragDropEnabled` property, which is set to true by default:
+You may run into this very frustrating problem in your Tauri Windows app if you are trying to use both the OS-level drag and drop API and the HTML5 drag and drop API. TL;DR: As of writing, it's impossible to use both APIs simultaneously, and there's no clean way to work around it. See this [issue](https://github.com/tauri-apps/tauri/issues/14373). You can choose which one you want to use (on a per-window basis) via the `dragDropEnabled` property, which is set to true by default:
 
 ```json
 // from Tauri docs
@@ -17,15 +17,15 @@ You may run into this very frustrating problem in your Tauri Windows app if you 
 },
 ```
 
-If `dragDropEnabled` is true, whenever you try to drag and drop from an element in your webview, you'll see the `not-allowed` cursor 🚫 and even though your `dragstart` event handlers will fire, `dragover` / `drop` / `dragleave` will not fire:
+If dragDropEnabled is true, whenever you try to drag and drop an element in your webview, you’ll see the not-allowed cursor 🚫. Although your dragstart event handlers will fire, dragover, drop, and dragleave will not.
 
 <figcaption>
 {% include post_image.html name="dragdropissue.gif" alt="Demo animation" %}
 </figcaption>
 
-I tried multiple different libraries like [neodrag](https://github.com/PuruVJ/neodrag/tree/main/packages/svelte#readme) and [dnd-svelte-kit](https://dnd-kit-svelte.vercel.app), and they also will not work if `dragDropEnabled` is true on Windows.
+I tried several libraries like [neodrag](https://github.com/PuruVJ/neodrag/tree/main/packages/svelte#readme) and [dnd-svelte-kit](https://dnd-kit-svelte.vercel.app), and they also do not work if `dragDropEnabled` is true on Windows.
 
-If you want to use the OS-level file drag and drop, you have to enable it in your `tauri.conf.json` file, or you can do it with the Rust window builder:
+To use OS-level file drag-and-drop, you can enable it either in your tauri.conf.json file or with the Rust window builder:
 
 ROW_START
 HALF_START
@@ -75,7 +75,7 @@ HALF_START
 HALF_END
 ROW_END
 
-I became a little curious as to why exactly this is a Windows-related issue. Basically, on Windows, `dragDropEnabled = true` installs a native Object Linking and Embedding (OLE) drag-and-drop handler that captures and consumes drag events before the WebView can see them, which disables the HTML5 drag & drop API. OLE on Windows is what enables applications to exchange objects/data via drag-and-drop, clipboard, and embedding, but it's a legacy system. On Mac/Linux, the drag and drop is not consumed.
+I became a little curious as to why exactly this is a Windows-related issue. Basically, on Windows, `dragDropEnabled = true` installs a native Object Linking and Embedding (OLE) drag-and-drop handler. This handler captures and consumes drag events before the WebView can see them, effectively disabling the HTML5 drag & drop API. OLE on Windows is what enables applications to exchange objects/data via drag-and-drop, clipboard, and embedding, but it's a legacy system. On Mac/Linux, the drag and drop is not consumed, so there's not issue.
 
 | Platform    | Drag handling                   |
 | ----------- | ------------------------------- |
