@@ -83,3 +83,5 @@ I became a little curious as to why exactly this is a Windows-related issue. Bas
 | Linux       | GTK/WebKit allows bubbling      |
 | **Windows** | **Exclusive OLE drop target** ❌ |
 
+
+In 2022 Microsoft [devs said they were "working on"](https://github.com/MicrosoftEdge/WebView2Feedback/discussions/3973#discussioncomment-7244365) the underlying issue, but no signs of any progress yet 😢. 
