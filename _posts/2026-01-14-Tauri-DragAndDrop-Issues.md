@@ -6,7 +6,7 @@ categories: [tauri, rust, desktop]
 tags: [drag-drop, file-handling, desktop-app, troubleshooting]
 ---
 
-You may run into this very frustrating problem in your Tauri Windows app if you are trying to use both the OS-level drag and drop API and the HTML5 drag and drop API. TL;DR: As of writing, it's impossible to use both APIs simultaneously, and there's no clean way to work around it. See this [issue](https://github.com/tauri-apps/tauri/issues/14373). You can choose which one you want to use (on a per-window basis) via the `dragDropEnabled` property, which is set to true by default:
+You may run into this very frustrating problem in your Tauri Windows app if you are trying to use both the OS-level drag and drop API and the HTML5 drag and drop API. TL;DR: As of writing, it's impossible to use both APIs simultaneously, and there's no clean way to work around it. See this [issue](https://github.com/tauri-apps/tauri/issues/14373). You can choose which one you want to use (on a per-window basis) via the `dragDropEnabled` property:
 
 ```json
 // from Tauri docs
@@ -17,13 +17,13 @@ You may run into this very frustrating problem in your Tauri Windows app if you 
 },
 ```
 
-If dragDropEnabled is true, whenever you try to drag and drop an element in your webview, you’ll see the not-allowed cursor 🚫. Although your dragstart event handlers will fire, dragover, drop, and dragleave will not.
+Because `dragDropEnabled` is true by default, whenever you try to drag and drop an element in your webview on windows, you’ll see the not-allowed cursor 🚫. 
+
+Dragstart event handlers will fire, but dragover, drop, and dragleave will not. Drag and drop libraries like [neodrag](https://github.com/PuruVJ/neodrag/tree/main/packages/svelte#readme) and [dnd-svelte-kit](https://dnd-kit-svelte.vercel.app) will also not work properly.
 
 <figcaption>
-{% include post_image.html name="dragdropissue.gif" alt="Demo animation" %}
+{% include post_image.html name="dragdropissue.gif" alt="Demo animation" caption="getting a not-allowed when dragging an element"%}
 </figcaption>
-
-I tried several libraries like [neodrag](https://github.com/PuruVJ/neodrag/tree/main/packages/svelte#readme) and [dnd-svelte-kit](https://dnd-kit-svelte.vercel.app), and they also do not work if `dragDropEnabled` is true on Windows.
 
 To use OS-level file drag-and-drop, you can enable it either in your tauri.conf.json file or with the Rust window builder:
 
