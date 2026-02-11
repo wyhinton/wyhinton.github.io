@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit",
     "start": "bundle exec jekyll serve  --livereload",
     "dev:full": "concurrently \"npm run watch:art\" \"npm run start\"",
+    "commit": "powershell -ExecutionPolicy Bypass -File ./scripts/commit-all.ps1",
     "create-post-folders": "node scripts/create-post-folders.js"
   },
   "devDependencies": {
