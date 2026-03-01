@@ -15,6 +15,8 @@ Usage (standalone):
 The VS Code task "🖼️ Insert Post Image" passes ${file} automatically.
 """
 
+from __future__ import annotations
+
 import os
 import re
 import sys
@@ -54,23 +56,38 @@ def pick_post() -> Path:
         print("     ⚠️  Invalid choice, try again.")
 
 
-def pick_image(image_dir: Path) -> str:
-    """Return the filename the user picks from image_dir."""
+def list_images(image_dir: Path):
+    """Return sorted list of image paths in image_dir."""
     images = sorted(
         f for f in image_dir.iterdir()
         if f.is_file() and f.suffix.lower() in IMAGE_EXTS
     )
     if not images:
         sys.exit(f"❌  No images found in {image_dir}")
+    return images
+
+
+def pick_image(image_dir: Path) -> list[str]:
+    """Return selected image filename(s) from image_dir.
+
+    Returns a list with one name, or all names if the user picks 'Insert All'.
+    """
+    images = list_images(image_dir)
+    insert_all_index = len(images) + 1
 
     print(f"\n🖼️   Images in  assets/images/posts/{image_dir.name}/\n")
     for i, img in enumerate(images, 1):
         print(f"  {i:>3}.  {img.name}")
+    print(f"  {insert_all_index:>3}.  Insert All Items ({len(images)})")
     print()
     while True:
         raw = input("Select image number: ").strip()
-        if raw.isdigit() and 1 <= int(raw) <= len(images):
-            return images[int(raw) - 1].name
+        if raw.isdigit():
+            n = int(raw)
+            if 1 <= n <= len(images):
+                return [images[n - 1].name]
+            if n == insert_all_index:
+                return [img.name for img in images]
         print("     ⚠️  Invalid choice, try again.")
 
 
@@ -117,28 +134,42 @@ def main():
             print(f"✅  Created: {image_dir}")
         sys.exit("Add images to the folder and re-run.")
 
-    # 3. Pick the image
-    image_name = pick_image(image_dir)
+    # 3. Pick the image(s)
+    selected = pick_image(image_dir)
 
-    # 4. Optional alt + caption
-    print()
-    default_alt = Path(image_name).stem.replace("-", " ").replace("_", " ").title()
-    alt_raw = input(f'Alt text [{default_alt}]: ').strip()
-    alt     = alt_raw if alt_raw else default_alt
+    if len(selected) == 1:
+        # 4a. Single image — prompt for alt + caption
+        image_name = selected[0]
+        print()
+        default_alt = Path(image_name).stem.replace("-", " ").replace("_", " ").title()
+        alt_raw = input(f'Alt text [{default_alt}]: ').strip()
+        alt     = alt_raw if alt_raw else default_alt
+        caption = input("Caption (leave blank to omit): ").strip()
+        snippets = [build_snippet(image_name, alt, caption)]
+    else:
+        # 4b. All images — auto-generate alt, no caption
+        print(f"\n⚡  Building snippets for all {len(selected)} images...")
+        snippets = [
+            build_snippet(
+                name,
+                Path(name).stem.replace("-", " ").replace("_", " ").title(),
+                "",
+            )
+            for name in selected
+        ]
 
-    caption = input("Caption (leave blank to omit): ").strip()
-
-    # 5. Build & output the snippet
-    snippet = build_snippet(image_name, alt, caption)
+    # 5. Build & output the snippet(s)
+    combined = "\n".join(snippets)
 
     print(f"\n{'─'*60}")
-    print(snippet)
+    print(combined)
     print(f"{'─'*60}")
 
-    if copy_to_clipboard(snippet):
-        print("\n✅  Copied to clipboard — paste it into your post!\n")
+    if copy_to_clipboard(combined):
+        label = "snippet" if len(snippets) == 1 else f"{len(snippets)} snippets"
+        print(f"\n✅  {label.capitalize()} copied to clipboard — paste into your post!\n")
     else:
-        print("\n⚠️  Could not copy to clipboard — paste the snippet above manually.\n")
+        print("\n⚠️  Could not copy to clipboard — paste the snippet(s) above manually.\n")
 
 
 if __name__ == "__main__":
